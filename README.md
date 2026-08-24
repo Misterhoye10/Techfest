@@ -10,11 +10,15 @@ WhatsApp study companion for WAEC & JAMB. Remembers what you got wrong and comes
 
 1. **[docs/reca/BUILD-REQUIREMENTS.md](./docs/reca/BUILD-REQUIREMENTS.md)** - what to build now (MVP contract)
 2. **[docs/reca/FREE-STACK.md](./docs/reca/FREE-STACK.md)** - approved free tools only
-3. [docs/reca/WHATSAPP-SETUP.md](./docs/reca/WHATSAPP-SETUP.md) — Twilio sandbox / Meta setup (ASAP)
-4. [docs/reca/product-prd.md](./docs/reca/product-prd.md) - product PRD
-5. [docs/reca/technical-prd.md](./docs/reca/technical-prd.md) - technical PRD
-6. [docs/reca/investor-brief.md](./docs/reca/investor-brief.md) - pitch brief
-7. [docs/reca/decision-brief-reca-vs-nexus.md](./docs/reca/decision-brief-reca-vs-nexus.md) - why Reca only
+3. [docs/reca/WHATSAPP-SETUP.md](./docs/reca/WHATSAPP-SETUP.md) - Twilio sandbox / Meta setup (ASAP)
+4. [docs/reca/demo-script.md](./docs/reca/demo-script.md) - 90s live demo script
+5. [docs/reca/demo-topics.md](./docs/reca/demo-topics.md) - Bio/Chem demo topics
+6. [docs/reca/conversation-copy.md](./docs/reca/conversation-copy.md) - WhatsApp copy pack
+7. [docs/reca/pitch-outline.md](./docs/reca/pitch-outline.md) - pitch outline
+8. [docs/reca/product-prd.md](./docs/reca/product-prd.md) - product PRD
+9. [docs/reca/technical-prd.md](./docs/reca/technical-prd.md) - technical PRD
+10. [docs/reca/investor-brief.md](./docs/reca/investor-brief.md) - pitch brief
+11. [docs/reca/decision-brief-reca-vs-nexus.md](./docs/reca/decision-brief-reca-vs-nexus.md) - why Reca only
 
 ## Locked decisions
 
