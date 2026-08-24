@@ -9,6 +9,7 @@ Start here → **[BUILD-REQUIREMENTS.md](./BUILD-REQUIREMENTS.md)** (what to bui
 | File | What it is |
 |------|------------|
 | [BUILD-REQUIREMENTS.md](./BUILD-REQUIREMENTS.md) | Hackathon MVP checklist — build contract |
+| [FREE-STACK.md](./FREE-STACK.md) | **Free tools only** — approved stack + bans |
 | [product-prd.md](./product-prd.md) | Full product requirements |
 | [technical-prd.md](./technical-prd.md) | Stack, data model, prompts, build plan |
 | [investor-brief.md](./investor-brief.md) | Pitch / why it wins |

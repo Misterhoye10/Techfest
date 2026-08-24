@@ -3,9 +3,10 @@
 **Track:** AI BuildFest 2026 · Track 3 · Case Study 2 — AI Study Companion  
 **Product:** Reca only (not Nexus)  
 **Platform:** WhatsApp  
+**Budget:** **Free tools / free tiers only** — no paid APIs or paid hosting for the MVP  
 **One-liner for judges:** ChatGPT forgets. Reca doesn’t — it remembers what you got wrong and comes back.
 
-This is the build checklist. Full product detail lives in [product-prd.md](./product-prd.md). Full tech detail lives in [technical-prd.md](./technical-prd.md).
+This is the build checklist. Full product detail lives in [product-prd.md](./product-prd.md). Full tech detail lives in [technical-prd.md](./technical-prd.md). Free stack detail: [FREE-STACK.md](./FREE-STACK.md).
 
 ---
 
@@ -68,16 +69,22 @@ Stretch only if Day 1 loop is green and Day 2 morning resurface works:
 
 ---
 
-## 4. Tech stack (locked)
+## 4. Tech stack (locked — free only)
 
-| Layer | Tool |
-|-------|------|
-| Messaging | Meta WhatsApp Cloud API or Twilio Sandbox |
-| Backend | Node.js + Express |
-| AI | Claude API |
-| Database | Supabase (Postgres) |
-| Scheduler | node-cron (+ **manual demo trigger backup**) |
-| Hosting | Render or Railway (free tier) |
+**Rule:** If it requires a credit card charge to ship the demo, we don’t use it. Prefer sandbox / free tier / existing credits only. See [FREE-STACK.md](./FREE-STACK.md).
+
+| Layer | Tool | Cost |
+|-------|------|------|
+| Messaging | Meta WhatsApp Cloud API **or** Twilio Sandbox | Free / sandbox |
+| Backend | Node.js + Express | Free |
+| AI | Claude API (existing credits) **or** free-tier LLM if credits run out | Existing credits / free tier |
+| Database | Supabase Postgres (free tier) | Free |
+| Scheduler | node-cron in-process (+ **manual demo trigger backup**) | Free |
+| Hosting | Render **or** Railway free web service | Free |
+| Repo / IDE | GitHub + Cursor | Free / already owned |
+| Tunnel (local webhook test) | ngrok free **or** Cloudflare Tunnel | Free |
+
+**Do not add:** paid WhatsApp BSP, paid vector DBs, paid analytics, paid auth, paid hosting upgrades, paid SMS.
 
 ### Data model (minimum)
 
