@@ -1,12 +1,17 @@
-# Reca PRD docs
+# Reca — team docs
 
-Canonical product docs for the **locked track: Reca (Case Study 2)** — WhatsApp platform.
+**Locked track:** Case Study 2 — AI Study Companion (**Reca only**).  
+**Platform:** WhatsApp  
+**Core loop:** explain → quiz → grade → resurface → recap  
 
-| File | Description |
-|------|-------------|
-| [product-prd.md](./product-prd.md) | Product PRD |
-| [technical-prd.md](./technical-prd.md) | Technical PRD |
-| [investor-brief.md](./investor-brief.md) | Investor brief |
-| [decision-brief-reca-vs-nexus.md](./decision-brief-reca-vs-nexus.md) | Decision brief: Reca vs Nexus |
+Start here → **[BUILD-REQUIREMENTS.md](./BUILD-REQUIREMENTS.md)** (what to build now)
 
-**Note:** The root `PRD.md` is an older generic draft. Prefer the files in this folder for Reca team work.
+| File | What it is |
+|------|------------|
+| [BUILD-REQUIREMENTS.md](./BUILD-REQUIREMENTS.md) | Hackathon MVP checklist — build contract |
+| [product-prd.md](./product-prd.md) | Full product requirements |
+| [technical-prd.md](./technical-prd.md) | Stack, data model, prompts, build plan |
+| [investor-brief.md](./investor-brief.md) | Pitch / why it wins |
+| [decision-brief-reca-vs-nexus.md](./decision-brief-reca-vs-nexus.md) | Why Reca (not Nexus) |
+
+**Note:** Root `PRD.md` is an older generic Study Companion draft. Do **not** build from it. Prefer this folder. Archived copy: [../archive/generic-study-companion-prd.md](../archive/generic-study-companion-prd.md)
