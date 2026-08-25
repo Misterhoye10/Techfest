@@ -17,8 +17,12 @@
 |------|------------|
 | [demo-script.md](./demo-script.md) | **90s live demo** — exact messages + timing |
 | [demo-topics.md](./demo-topics.md) | **10 Bio/Chem topics** + right/wrong answers |
-| [conversation-copy.md](./conversation-copy.md) | WhatsApp reply copy (tone locked) |
+| [conversation-copy.md](./conversation-copy.md) | WhatsApp reply copy (**polished / wow**) |
 | [pitch-outline.md](./pitch-outline.md) | Judge pitch + slide titles |
+
+## Code (you can implement here too)
+
+Working backend scaffold: **[`../../backend/`](../../backend/)** — preset topics, Twilio webhook, manual `/demo/resurface` for the aha moment.
 
 ## Full PRDs
 

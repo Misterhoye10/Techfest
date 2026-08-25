@@ -1,42 +1,28 @@
-# Reca — Conversation copy pack
+# Reca — Conversation copy (wow / polished)
 
-**Voice:** encouraging tutor, never scolding. Short sentences. Plain English.  
-**Brand:** calm, focused, trustworthy — study tool, not a game.  
-**Rule:** wrong answers → “not quite” + correct answer + promise to return. Never “wrong.” Never guilt.
+**Voice:** calm tutor. Short. Certain. Human.  
+**Rule:** never “wrong.” Always “not quite” + answer + *I’ll remember / I’ll come back*.  
+**Aha lines (must ship):** memory promise after a miss · one-question resurface · cleared ✓
 
-Use these strings in the backend / WhatsApp replies. Related: [demo-script.md](./demo-script.md) · product brand in [product-prd.md](./product-prd.md)
+Backend: use these strings exactly when possible. Related: [demo-script.md](./demo-script.md)
 
 ---
 
-## 1. First message / onboarding
-
-**When student messages anything the first time (or `hi` / `start`):**
+## 1. First message
 
 ```text
-Hi — I'm Reca, your study companion for WAEC & JAMB.
+Hi — I'm Reca.
 
 Send a topic like: explain photosynthesis
 
-I'll explain it simply, ask 2 quick questions, and remember what you miss so we can practise again later.
+I'll explain it simply, ask 2 quick questions, and come back later if you miss something.
 ```
 
 ---
 
-## 2. After explain + questions
+## 2. Explain + quiz (one question at a time — better for WhatsApp)
 
-**Pattern:**
-
-```text
-{explanation}
-
-Quick check —
-Q1: {question_1}
-Q2: {question_2}
-
-Reply with your answers (e.g. Q1 … Q2 …).
-```
-
-**If one question at a time:**
+**After explanation:**
 
 ```text
 {explanation}
@@ -44,155 +30,117 @@ Reply with your answers (e.g. Q1 … Q2 …).
 Quick check — Q1: {question_1}
 ```
 
-Then after Q1:
+**After Q1 answered, send Q2:**
 
 ```text
 Q2: {question_2}
 ```
 
+*(If both at once for speed in demo, OK — keep under one screen.)*
+
 ---
 
-## 3. Grading
+## 3. Grading — make memory visible
+
+### Q1 miss, Q2 hit (photosynthesis demo path)
+
+```text
+Q2 is correct.
+
+Q1 — not quite. Mitochondria are for respiration. The answer is chloroplast.
+
+I'll remember that chloroplast one for you — I'll check again soon.
+```
 
 ### Both correct
 
 ```text
-Nice — both correct. You've got this topic for now. Want another Biology topic, or Chemistry?
+Nice — both correct. You've got this topic for now.
+
+Want another topic? Try: explain osmosis
 ```
 
-### One correct, one not
+### Still unclear
 
 ```text
-Q2 is correct.
-Q1 — not quite. {short_correction} The answer is {correct_answer}. I'll check this one again soon.
-```
-
-### Both not quite
-
-```text
-Not quite on these yet.
-Q1: {correction_1}
-Q2: {correction_2}
-I'll bring them back later so they stick. Want to try another topic meanwhile?
-```
-
-### Partial / unclear answer
-
-```text
-I couldn't quite match that to the answer. Try a short reply — for Q1, what's your best guess?
+I couldn't match that. Reply with a short answer for Q1 — one or two words is fine.
 ```
 
 ---
 
-## 4. Resurface (hero — unprompted)
-
-**Keep to one question. No wall of text.**
+## 4. Resurface (hero — unprompted, one line)
 
 ```text
 Quick recall — {question_text}
 ```
 
-**Photosynthesis demo:**
+**Demo:**
 
 ```text
 Quick recall — which part of the plant cell captures sunlight for photosynthesis?
 ```
 
-### After resurface — correct
+### Cleared
 
 ```text
-Correct. You've got this one now. Want another Biology topic, or should we look at Chemistry?
+Correct. Cleared: Photosynthesis ✓
+
+You've got this one now. Want Chemistry next? Try: explain acids and bases simply
 ```
 
-### After resurface — still not quite
+### Still not quite
 
 ```text
-Not quite — it's {correct_answer}. I'll check again later. You're building it — keep going.
+Not quite — it's {correct_answer}.
+
+I'll remember it and check again later. You're building it.
 ```
 
 ---
 
 ## 5. Recap
 
-**Student says:** `how am I doing?` / `how am I doing in Biology?` / `how am I doing in Chemistry?`
-
-**Template:**
-
 ```text
-You've covered {n} topics in {subject}.
-Strong: {list}
-Cleared: {list}
-Needs work: {list}
+Biology so far:
+Strong: {strong_list}
+Cleared: {cleared_list}
+Needs work: {needs_work_list}
 
-Want to tackle {next_weak_topic} next?
+Next up: {next_weak}? Just send: explain {next_weak}
 ```
 
-**Demo example:**
+**Empty:**
 
 ```text
-You've covered 6 topics in Biology.
-Strong: Cell structure, Respiration, Genetics.
-Cleared: Photosynthesis.
-Needs work: Ecology, Reproduction.
-
-Want to tackle Ecology next?
-```
-
-**If empty / new user:**
-
-```text
-No topics logged yet. Send something like: explain photosynthesis — and we'll start.
+Nothing saved yet. Send: explain photosynthesis — and I'll start holding topics for you.
 ```
 
 ---
 
-## 6. Help / unknown intent
+## 6. Help
 
 ```text
 I can:
-• explain a topic — e.g. explain osmosis
-• check how you're doing — how am I doing in Biology?
+• explain a topic — explain photosynthesis
+• show progress — how am I doing in Biology?
 
 What do you want to study?
 ```
 
 ---
 
-## 7. Errors (cause + fix — never “something went wrong”)
-
-**AI timeout / overload:**
+## 7. Errors (cause + fix)
 
 ```text
-I couldn't finish that explanation just now. Send the topic again in a moment — e.g. explain photosynthesis.
+I got your message but couldn't finish that. Send the topic again — e.g. explain photosynthesis.
 ```
-
-**Webhook / processing fail:**
-
-```text
-I got your message but couldn't process it. Please send it again.
-```
-
-**Not joined sandbox (support copy for humans, not bot):**
-
-> Send `join <code>` to the Twilio number first — Reca only works on joined phones during the demo.
 
 ---
 
-## 8. Words we never use
+## 8. Never say
 
-| Don’t say | Say instead |
-|-----------|-------------|
-| Wrong. | Not quite. |
-| Incorrect. | Not quite — here’s the right one. |
-| You failed. | I’ll check this again soon. |
-| Stupid mistake / obvious | (never) |
-| I think I understood… | Got it — … / Here’s a simple take — … |
+Wrong · Incorrect · You failed · Something went wrong · I think I understood
 
----
+## 9. Pitch (spoken)
 
-## 9. Pitch crumbs (for slides / spoken)
-
-- ChatGPT forgets. Reca doesn’t.
-- Explain once is easy. Remembering what you missed is the product.
-- Lives in WhatsApp — no new app to abandon.
-- Built on a free stack for BuildFest — real to ship.
+ChatGPT forgets. Reca doesn’t — it remembers what you got wrong and comes back.

@@ -4,7 +4,8 @@ WhatsApp study companion for WAEC & JAMB. Remembers what you got wrong and comes
 
 **Budget:** free tools / free tiers only  
 **Repo branch for docs:** `PRD`  
-**Team docs folder:** [`docs/reca/`](./docs/reca/)
+**Team docs folder:** [`docs/reca/`](./docs/reca/)  
+**Backend (run locally):** [`backend/`](./backend/) - teammates can implement and extend here (preset Reca + WhatsApp webhook). Conversation copy is polished in [`docs/reca/conversation-copy.md`](./docs/reca/conversation-copy.md).
 
 ## Start here
 
