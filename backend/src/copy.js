@@ -13,7 +13,7 @@ I'll explain it simply, ask 2 quick questions, and come back later if you miss s
 
 What do you want to study?`,
 
-  emptyRecap: `Nothing saved yet. Send: explain photosynthesis — and I'll start holding topics for you.`,
+  emptyRecap: `Nothing saved yet. Open Revise, pick a topic, and answer a few questions — Progress will fill in here.`,
 
   unclear: `I couldn't match that. Reply with a short answer for Q1 — one or two words is fine.`,
 
@@ -67,11 +67,15 @@ You've got this one now. Want another topic? Try: explain osmosis`;
 I'll remember it and check again later. You're building it.`;
   },
 
-  recap({ subject, strong, cleared, needsWork, nextWeak }) {
+  recap({ subject, strong, cleared, needsWork, nextWeak, answered, correct, accuracy }) {
     const line = (label, list) =>
       list.length ? `${label}: ${list.join(", ")}` : null;
+    const headline =
+      answered > 0
+        ? `${subject} so far — ${correct}/${answered} correct (${accuracy}%).`
+        : `${subject} so far:`;
     const body = [
-      `${subject} so far:`,
+      headline,
       line("Strong", strong),
       line("Cleared", cleared),
       line("Needs work", needsWork),
@@ -82,7 +86,7 @@ I'll remember it and check again later. You're building it.`;
     if (nextWeak) {
       return `${body}
 
-Next up: ${nextWeak}? Just send: explain ${nextWeak}`;
+Next up: revise ${nextWeak} — open Revise and pick that topic.`;
     }
     return body || copy.emptyRecap;
   },

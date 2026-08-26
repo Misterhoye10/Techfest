@@ -10,7 +10,7 @@ const store = require("./store");
 
 const resurfaceMinutes = Number(process.env.RESURFACE_MINUTES || 2);
 
-function handleIncoming(phone, body) {
+function handleIncoming(phone, body, opts = {}) {
   const text = String(body || "").trim();
   const student = store.getStudent(phone);
 
@@ -26,13 +26,18 @@ function handleIncoming(phone, body) {
     if (isHelp(text)) return [copy.welcome];
 
     if (isRecap(text)) {
-      const subject = text.toLowerCase().includes("chemistry")
+      const lower = text.toLowerCase();
+      const subject = lower.includes("chemistry")
         ? "Chemistry"
-        : text.toLowerCase().includes("biology")
+        : lower.includes("biology")
           ? "Biology"
-          : null;
+          : lower.includes("physics")
+            ? "Physics"
+            : lower.includes("math")
+              ? "Mathematics"
+              : null;
       const prog = store.progressFor(phone, subject);
-      if (!prog.strong.length && !prog.cleared.length && !prog.needsWork.length) {
+      if (!prog.answered) {
         return [copy.emptyRecap];
       }
       return [copy.recap(prog)];
@@ -40,6 +45,14 @@ function handleIncoming(phone, body) {
 
     const topic = findTopic(text);
     if (!topic) return [copy.help];
+
+    // Learn mode: explain only — quizzing lives in Revise
+    if (opts.mode === "learn") {
+      student.pending = null;
+      return [
+        `${topic.explanation}\n\nWhen you're ready to be tested, open Revise and pick this topic.`,
+      ];
+    }
 
     student.pending = {
       topicId: topic.id,

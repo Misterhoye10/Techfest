@@ -1,8 +1,14 @@
 const twilio = require("twilio");
 
+function clean(value) {
+  return String(value || "")
+    .trim()
+    .replace(/^["']|["']$/g, "");
+}
+
 function getClient() {
-  const sid = process.env.TWILIO_ACCOUNT_SID;
-  const token = process.env.TWILIO_AUTH_TOKEN;
+  const sid = clean(process.env.TWILIO_ACCOUNT_SID);
+  const token = clean(process.env.TWILIO_AUTH_TOKEN);
   if (!sid || !token) return null;
   return twilio(sid, token);
 }
@@ -15,7 +21,7 @@ async function sendWhatsApp(to, body) {
   }
 
   const client = getClient();
-  const from = process.env.TWILIO_WHATSAPP_FROM;
+  const from = clean(process.env.TWILIO_WHATSAPP_FROM);
   if (!client || !from) {
     console.warn("Twilio not configured — printing message instead:");
     console.log(`→ ${to}: ${body}`);
@@ -23,7 +29,12 @@ async function sendWhatsApp(to, body) {
   }
 
   const toAddr = to.startsWith("whatsapp:") ? to : `whatsapp:${to}`;
-  return client.messages.create({ from, to: toAddr, body });
+  try {
+    return await client.messages.create({ from, to: toAddr, body });
+  } catch (err) {
+    console.error("Twilio send failed:", err.message || err);
+    throw err;
+  }
 }
 
 module.exports = { sendWhatsApp };

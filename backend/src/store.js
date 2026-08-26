@@ -63,36 +63,94 @@ function markSurfaced(phone, index) {
 function progressFor(phone, subjectFilter) {
   const s = getStudent(phone);
   const byTopic = new Map();
+
   for (const a of s.attempts) {
     if (subjectFilter && a.subject.toLowerCase() !== subjectFilter.toLowerCase()) continue;
     const cur = byTopic.get(a.topicId) || {
       topicId: a.topicId,
       subject: a.subject,
-      anyWrong: false,
-      anyCleared: false,
-      anyCorrect: false,
+      answered: 0,
+      correct: 0,
+      wrongOpen: 0,
+      cleared: 0,
     };
-    if (a.isCorrect) cur.anyCorrect = true;
-    if (!a.isCorrect && !a.cleared) cur.anyWrong = true;
-    if (a.cleared) cur.anyCleared = true;
+    cur.answered += 1;
+    if (a.isCorrect || a.cleared) cur.correct += 1;
+    if (!a.isCorrect && !a.cleared) cur.wrongOpen += 1;
+    if (a.cleared) cur.cleared += 1;
     byTopic.set(a.topicId, cur);
   }
 
+  const topics = [];
   const strong = [];
   const cleared = [];
   const needsWork = [];
+  let answered = 0;
+  let correct = 0;
+  const bySubject = new Map();
+
   for (const t of byTopic.values()) {
-    const label = t.topicId.replace(/-/g, " ");
-    if (t.anyCleared) cleared.push(capitalize(label));
-    else if (t.anyWrong) needsWork.push(capitalize(label));
-    else if (t.anyCorrect) strong.push(capitalize(label));
+    answered += t.answered;
+    correct += t.correct;
+    const label = capitalize(t.topicId.replace(/-/g, " "));
+    const accuracy = t.answered ? Math.round((t.correct / t.answered) * 100) : 0;
+    let status = "strong";
+    if (t.wrongOpen > 0) status = "needsWork";
+    else if (t.cleared > 0 && t.wrongOpen === 0) status = "cleared";
+
+    const row = {
+      topicId: t.topicId,
+      label,
+      subject: t.subject,
+      answered: t.answered,
+      correct: t.correct,
+      wrongOpen: t.wrongOpen,
+      accuracy,
+      status,
+    };
+    topics.push(row);
+
+    if (status === "needsWork") needsWork.push(label);
+    else if (status === "cleared") cleared.push(label);
+    else strong.push(label);
+
+    const sub = bySubject.get(t.subject) || {
+      subject: t.subject,
+      answered: 0,
+      correct: 0,
+      needsWork: 0,
+    };
+    sub.answered += t.answered;
+    sub.correct += t.correct;
+    if (status === "needsWork") sub.needsWork += 1;
+    bySubject.set(t.subject, sub);
   }
+
+  topics.sort((a, b) => {
+    if (a.status === "needsWork" && b.status !== "needsWork") return -1;
+    if (b.status === "needsWork" && a.status !== "needsWork") return 1;
+    return b.answered - a.answered;
+  });
+
+  const subjects = [...bySubject.values()].map((sub) => ({
+    ...sub,
+    accuracy: sub.answered ? Math.round((sub.correct / sub.answered) * 100) : 0,
+  }));
+
+  const nextWeakTopic = topics.find((t) => t.status === "needsWork") || null;
+
   return {
     subject: subjectFilter || "All subjects",
+    answered,
+    correct,
+    accuracy: answered ? Math.round((correct / answered) * 100) : 0,
     strong,
     cleared,
     needsWork,
-    nextWeak: needsWork[0] || null,
+    topics,
+    subjects,
+    nextWeak: nextWeakTopic ? nextWeakTopic.label : null,
+    nextWeakTopic,
   };
 }
 

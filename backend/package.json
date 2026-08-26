@@ -17,5 +17,9 @@
     "express": "^4.21.0",
     "node-cron": "^3.0.3",
     "twilio": "^5.3.0"
+  },
+  "devDependencies": {
+    "@hugeicons/core-free-icons": "^4.3.0",
+    "@hugeicons/react": "^1.1.10"
   }
 }
