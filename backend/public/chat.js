@@ -4,7 +4,6 @@
     { label: "Osmosis", send: "explain osmosis" },
     { label: "Respiration", send: "explain aerobic respiration" },
     { label: "Acids & bases", send: "explain acids and bases simply" },
-    { label: "How am I doing?", send: "how am I doing in Biology?" },
   ];
 
   const ABOUT =
@@ -16,27 +15,44 @@
   const input = document.getElementById("messageInput");
   const statusLine = document.getElementById("statusLine");
   const topicChips = document.getElementById("topicChips");
-  const menuBtn = document.getElementById("menuBtn");
-  const menuPanel = document.getElementById("menuPanel");
-  const suggestRow = document.getElementById("suggestRow");
+  const sideTopics = document.getElementById("sideTopics");
+  const mainTitle = document.getElementById("mainTitle");
+  const mainEyebrow = document.getElementById("mainEyebrow");
+  const newSessionBtn = document.getElementById("newSessionBtn");
+  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
 
   const seen = new Set();
   let phone = localStorage.getItem("reca_phone") || "";
   let lastEventId = "";
   let busy = false;
+  let activeTopic = "";
 
   function timeLabel(ts = Date.now()) {
     return new Date(ts).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
   }
 
-  function setMenuOpen(open) {
-    menuPanel.hidden = !open;
-    menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+  function closeMobileNav() {
+    app.classList.remove("is-nav-open");
   }
 
-  function enterChatMode() {
+  function enterChatMode(title) {
     app.dataset.mode = "chat";
     thread.hidden = false;
+    if (title) {
+      mainTitle.textContent = title;
+      mainEyebrow.textContent = "Current topic";
+    }
+  }
+
+  function topicTitleFromSend(send) {
+    const found = TOPICS.find((t) => t.send === send);
+    if (found) return found.label;
+    if (/how am i doing/i.test(send)) return "Progress";
+    if (/explain\s+(.+)/i.test(send)) {
+      const m = send.match(/explain\s+(.+)/i);
+      return m[1].replace(/\bsimply\b/i, "").trim().replace(/^\w/, (c) => c.toUpperCase());
+    }
+    return "Revision";
   }
 
   function addBubble(text, role = "in", meta = {}) {
@@ -57,18 +73,41 @@
     thread.scrollTop = thread.scrollHeight;
   }
 
+  function setActiveSideTopic(label) {
+    activeTopic = label;
+    sideTopics.querySelectorAll(".side-topic").forEach((btn) => {
+      btn.classList.toggle("is-active", btn.dataset.label === label);
+    });
+  }
+
   function renderTopics() {
     topicChips.innerHTML = "";
+    sideTopics.innerHTML = "";
+
     TOPICS.forEach((item) => {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "chip";
-      btn.textContent = item.label;
-      btn.addEventListener("click", () => {
-        setMenuOpen(false);
+      const chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "chip";
+      chip.textContent = item.label;
+      chip.addEventListener("click", () => sendMessage(item.send));
+      topicChips.appendChild(chip);
+
+      const side = document.createElement("button");
+      side.type = "button";
+      side.className = "side-topic";
+      side.dataset.label = item.label;
+      side.textContent = item.label;
+      side.addEventListener("click", () => {
+        closeMobileNav();
         sendMessage(item.send);
       });
-      topicChips.appendChild(btn);
+      sideTopics.appendChild(side);
+    });
+  }
+
+  function setNavActive(name) {
+    document.querySelectorAll(".nav-item").forEach((btn) => {
+      btn.classList.toggle("is-active", btn.dataset.nav === name);
     });
   }
 
@@ -81,6 +120,10 @@
       thread.innerHTML = "";
       app.dataset.mode = "welcome";
       thread.hidden = true;
+      mainTitle.textContent = "Ready to revise?";
+      mainEyebrow.textContent = "WAEC & JAMB";
+      setActiveSideTopic("");
+      setNavActive("revise");
     }
 
     const res = await fetch("/api/session", {
@@ -91,15 +134,22 @@
     const data = await res.json();
     phone = data.phone;
     localStorage.setItem("reca_phone", phone);
-    statusLine.innerHTML = '<span class="pill__dot" aria-hidden="true"></span>Online';
+    statusLine.textContent = "Online";
   }
 
   async function sendMessage(text) {
     if (!text || busy) return;
     busy = true;
-    enterChatMode();
+    const title = topicTitleFromSend(text);
+    enterChatMode(title);
+    setActiveSideTopic(TOPICS.find((t) => t.send === text)?.label || activeTopic);
+    if (/how am i doing/i.test(text)) setNavActive("progress");
+    else setNavActive("revise");
+
     addBubble(text, "out");
     input.value = "";
+    closeMobileNav();
+
     try {
       const res = await fetch("/api/chat", {
         method: "POST",
@@ -132,44 +182,34 @@
     }
   }
 
-  function onMenuAction(action) {
-    setMenuOpen(false);
-    if (action === "progress") {
-      sendMessage("how am I doing in Biology?");
-      return;
-    }
-    if (action === "topics") {
-      suggestRow.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      input.focus();
-      return;
-    }
-    if (action === "about") {
-      enterChatMode();
-      addBubble(ABOUT, "in");
-      return;
-    }
-    if (action === "new") {
-      startSession(true).then(() => input.focus());
-    }
-  }
-
-  menuBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    setMenuOpen(menuPanel.hidden);
+  document.querySelectorAll(".nav-item").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const nav = btn.dataset.nav;
+      closeMobileNav();
+      if (nav === "revise") {
+        setNavActive("revise");
+        input.focus();
+        return;
+      }
+      if (nav === "progress") {
+        sendMessage("how am I doing in Biology?");
+        return;
+      }
+      if (nav === "about") {
+        enterChatMode("How Reca works");
+        setNavActive("about");
+        addBubble(ABOUT, "in");
+      }
+    });
   });
 
-  menuPanel.addEventListener("click", (e) => {
-    const item = e.target.closest("[data-action]");
-    if (!item) return;
-    onMenuAction(item.dataset.action);
+  newSessionBtn.addEventListener("click", () => {
+    closeMobileNav();
+    startSession(true).then(() => input.focus());
   });
 
-  document.addEventListener("click", (e) => {
-    if (!menuPanel.hidden && !e.target.closest(".menu")) setMenuOpen(false);
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") setMenuOpen(false);
+  mobileMenuBtn.addEventListener("click", () => {
+    app.classList.toggle("is-nav-open");
   });
 
   form.addEventListener("submit", (e) => {
