@@ -7,21 +7,25 @@
     { label: "How am I doing?", send: "how am I doing in Biology?" },
   ];
 
+  const app = document.getElementById("app");
   const thread = document.getElementById("thread");
   const form = document.getElementById("chatForm");
   const input = document.getElementById("messageInput");
   const statusLine = document.getElementById("statusLine");
   const topicChips = document.getElementById("topicChips");
-  const suggestRow = document.getElementById("suggestRow");
 
   const seen = new Set();
   let phone = localStorage.getItem("reca_phone") || "";
   let lastEventId = "";
   let busy = false;
-  let hasChatted = false;
 
   function timeLabel(ts = Date.now()) {
     return new Date(ts).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  }
+
+  function enterChatMode() {
+    app.dataset.mode = "chat";
+    thread.hidden = false;
   }
 
   function addBubble(text, role = "in", meta = {}) {
@@ -54,10 +58,6 @@
     });
   }
 
-  function hideSuggestions() {
-    if (hasChatted) suggestRow.hidden = true;
-  }
-
   async function startSession() {
     const res = await fetch("/api/session", {
       method: "POST",
@@ -67,15 +67,14 @@
     const data = await res.json();
     phone = data.phone;
     localStorage.setItem("reca_phone", phone);
-    addBubble(data.welcome, "in");
     statusLine.textContent = "Online";
+    // Welcome lives in the hero; keep chat clean until first student message
   }
 
   async function sendMessage(text) {
     if (!text || busy) return;
     busy = true;
-    hasChatted = true;
-    hideSuggestions();
+    enterChatMode();
     addBubble(text, "out");
     input.value = "";
     try {
@@ -87,7 +86,7 @@
       const data = await res.json();
       (data.replies || []).forEach((r) => addBubble(r, "in"));
     } catch (_) {
-      addBubble("Something went wrong sending that. Try again in a moment.", "system");
+      addBubble("Couldn’t send that. Try again in a moment.", "system");
     } finally {
       busy = false;
       input.focus();
@@ -95,7 +94,7 @@
   }
 
   async function pollEvents() {
-    if (!phone) return;
+    if (!phone || app.dataset.mode !== "chat") return;
     try {
       const res = await fetch(
         `/api/events?phone=${encodeURIComponent(phone)}&after=${encodeURIComponent(lastEventId)}`
@@ -117,4 +116,5 @@
 
   renderTopics();
   startSession().then(() => setInterval(pollEvents, 1500));
+  input.focus();
 })();
