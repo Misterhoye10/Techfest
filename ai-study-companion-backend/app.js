@@ -194,7 +194,7 @@ app.get('/webhook', (req, res) => {
 
   if (token === verify_token && challenge) {
     console.log('✅ Webhook verified');
-    res.send(challenge);
+    res.set('Content-Type', 'text/plain').send(challenge);
   } else {
     console.log('❌ Webhook verification failed');
     res.sendStatus(403);
