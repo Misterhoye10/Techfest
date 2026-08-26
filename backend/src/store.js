@@ -3,19 +3,38 @@
  * Swap for Supabase later — same shape.
  */
 const students = new Map();
+/** Outbound messages for web chat clients: phone → [{ id, text, at, kind }] */
+const outbox = new Map();
 
 function getStudent(phone) {
   if (!students.has(phone)) {
     students.set(phone, {
       phone,
-      // pending: { topicId, step: 'q1'|'q2'|'done', answers: {} }
       pending: null,
-      // attempts: [{ topicId, subject, questionId, questionText, correctAnswer, isCorrect, nextReviewAt, cleared }]
       attempts: [],
-      awaitingResurface: null, // { attemptIndex, questionText, correctAnswer, accept, topicLabel }
+      awaitingResurface: null,
     });
   }
   return students.get(phone);
+}
+
+function pushOutbox(phone, text, kind = "bot") {
+  if (!outbox.has(phone)) outbox.set(phone, []);
+  const item = {
+    id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    text,
+    kind,
+    at: Date.now(),
+  };
+  outbox.get(phone).push(item);
+  return item;
+}
+
+function drainOutbox(phone, afterId) {
+  const list = outbox.get(phone) || [];
+  if (!afterId) return list.slice();
+  const idx = list.findIndex((m) => m.id === afterId);
+  return idx === -1 ? list.slice() : list.slice(idx + 1);
 }
 
 function listDue(now = Date.now()) {
@@ -86,5 +105,7 @@ module.exports = {
   listDue,
   markSurfaced,
   progressFor,
+  pushOutbox,
+  drainOutbox,
   _students: students,
 };

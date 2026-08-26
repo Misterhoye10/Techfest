@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Reca — Study companion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/chat.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="rail" aria-hidden="true">
+        <p class="rail__brand">Reca</p>
+        <p class="rail__tag">ChatGPT forgets.<br />Reca doesn’t.</p>
+        <ol class="rail__steps">
+          <li>explain photosynthesis</li>
+          <li>Answer Q1 wrong: <code>mitochondria</code></li>
+          <li>Answer Q2: <code>glucose and oxygen</code></li>
+          <li>Wait — or hit <strong>Resurface now</strong></li>
+          <li>Reply: <code>chloroplast</code></li>
+        </ol>
+      </aside>
+
+      <main class="phone" aria-label="Reca chat demo">
+        <header class="phone__bar">
+          <div class="phone__avatar" aria-hidden="true">R</div>
+          <div class="phone__meta">
+            <h1>Reca</h1>
+            <p id="statusLine">WAEC &amp; JAMB study companion · online</p>
+          </div>
+          <button type="button" class="phone__fire" id="resurfaceBtn" title="Demo: fire resurface">
+            Resurface now
+          </button>
+        </header>
+
+        <div class="phone__thread" id="thread" role="log" aria-live="polite"></div>
+
+        <form class="phone__composer" id="chatForm">
+          <input
+            id="messageInput"
+            type="text"
+            autocomplete="off"
+            placeholder="Message Reca…"
+            enterkeyhint="send"
+          />
+          <button type="submit" aria-label="Send">Send</button>
+        </form>
+        <p class="phone__hint">
+          Demo channel (WhatsApp APIs blocked). Same memory engine.
+        </p>
+      </main>
+    </div>
+    <script src="/chat.js"></script>
+  </body>
+</html>

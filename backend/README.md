@@ -1,34 +1,39 @@
 # Reca backend
 
-WhatsApp study companion — **preset-first** (works with $0 LLM spend). Optional Claude key later.
+Study companion — **preset-first**. Demo via **web chat** (primary when Meta/Twilio blocked). WhatsApp webhook optional.
 
-## You can run this on your machine
+## Run (web chat demo)
 
-```bash
+```powershell
 cd backend
 copy .env.example .env
+# Recommended while WhatsApp is blocked:
+# DRY_RUN=true
 npm install
 npm run dev
 ```
 
-Test without Twilio:
+Open **http://localhost:3000/chat.html**
 
-```bash
-curl -X POST http://localhost:3000/debug/chat -H "Content-Type: application/json" -d "{\"phone\":\"+2348000000001\",\"body\":\"explain photosynthesis\"}"
-```
+### Live demo path
 
-Then answer Q1 wrong (`mitochondria`), Q2 right (`glucose and oxygen`), wait `RESURFACE_MINUTES` (default 2) **or** fire:
+1. `explain photosynthesis`  
+2. Q1: `mitochondria`  
+3. Q2: `glucose and oxygen`  
+4. Click **Resurface now**  
+5. `chloroplast`  
+6. Optional: `how am I doing in Biology?`
 
-```bash
-curl -X POST http://localhost:3000/demo/resurface -H "Content-Type: application/json" -d "{\"phone\":\"+2348000000001\"}"
-```
+## APIs
 
-## Twilio webhook
-
-1. Deploy or tunnel (`ngrok http 3000`)
-2. Sandbox “when a message comes in” → `https://<host>/webhook/whatsapp`
-3. Join sandbox from your phone
-4. Send: `explain photosynthesis`
+| Route | Use |
+|-------|-----|
+| `GET /chat.html` | Judge-facing chat UI |
+| `POST /api/session` | Start session |
+| `POST /api/chat` | Send message |
+| `GET /api/events` | Poll resurface |
+| `POST /demo/resurface` | Manual aha |
+| `POST /webhook/whatsapp` | Twilio (optional) |
 
 ## Env
 
@@ -36,13 +41,12 @@ See `.env.example`. **Never commit `.env`.**
 
 | Key | Required |
 |-----|----------|
-| TWILIO_* | For real WhatsApp |
-| ANTHROPIC_API_KEY | Optional — presets work without it |
-| RESURFACE_MINUTES | `2` for live demo |
+| `DRY_RUN=true` | Yes while Twilio broken |
+| `TWILIO_*` | Only for real WhatsApp |
+| `RESURFACE_MINUTES` | `2` for live demo |
 
-## Collaborate with Koye
+## Docs
 
-- This folder is the shared backend start
-- If he already has code elsewhere, merge — don’t fork two bots
-- Copy pack: `docs/reca/conversation-copy.md`
-- Topics: `docs/reca/demo-topics.md`
+- [docs/reca/WEB-CHAT-SETUP.md](../docs/reca/WEB-CHAT-SETUP.md)  
+- [docs/reca/conversation-copy.md](../docs/reca/conversation-copy.md)  
+- [docs/reca/demo-topics.md](../docs/reca/demo-topics.md)  
