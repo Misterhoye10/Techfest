@@ -26,6 +26,8 @@ const META_ACCESS_TOKEN = process.env.META_ACCESS_TOKEN;
 const META_API_VERSION = 'v18.0';
 const META_BUSINESS_ACCOUNT_ID = '1323786675754976';
 
+const userSessions = {};
+
 // ========== HEALTH CHECK ==========
 app.get('/', (req, res) => {
   res.json({
@@ -263,8 +265,15 @@ app.post('/webhook', async (req, res) => {
 
       // Format and send response
       const explanation = aiResponse.explanation;
-      const q1 = aiResponse.questions[0]?.text || 'Question 1';
-      const q2 = aiResponse.questions[1]?.text || 'Question 2';
+      const q1 = aiResponse.questions[0]?.text || aiResponse.questions[0] || 'Question 1';
+      const q2 = aiResponse.questions[1]?.text || aiResponse.questions[1] || 'Question 2';
+
+      // Save session state
+      userSessions[senderPhone] = {
+        topic: topic,
+        questions: [q1, q2],
+        timestamp: Date.now()
+      };
 
       const response = `📚 *${topic}*\n\n${explanation}\n\n❓ *Quick Check:*\nQ1: ${q1}\nQ2: ${q2}\n\nReply with your answers!`;
 
@@ -275,11 +284,85 @@ app.post('/webhook', async (req, res) => {
       await sendMetaWhatsAppMessage(senderPhone, '❌ Sorry, something went wrong. Try again later.');
     }
   } else {
-    // For other messages, send a guide
-    try {
-      await sendMetaWhatsAppMessage(senderPhone, `📝 You said: "${userMessage}"\n\nTry: "explain photosynthesis" to get started!`);
-    } catch (error) {
-      console.error('❌ Error sending guide:', error.message);
+    // Check if user has an active session (answering a quiz)
+    const session = userSessions[senderPhone];
+    if (session) {
+      console.log(`📝 User is answering quiz for topic: ${session.topic}`);
+      try {
+        await sendMetaWhatsAppMessage(senderPhone, '⏳ Checking your answers...');
+        
+        // Call Gemini to grade the answers
+        const gradePrompt = `You are a study assistant grading a student's answers for WAEC/JAMB exam preparation.
+        
+Topic: ${session.topic}
+Questions asked:
+1. ${session.questions[0]}
+2. ${session.questions[1]}
+
+Student's answers: "${userMessage}"
+
+Please grade their answers:
+1. Provide a score (e.g. 0/2, 1/2, or 2/2) in bold at the start.
+2. For each question, state if the answer was correct, partially correct, or incorrect, and provide a very brief explanation/correction.
+3. Keep the tone extremely encouraging and helpful. Use emojis.
+
+Format your response as a clean WhatsApp message.`;
+
+        let feedbackText;
+        if (process.env.GEMINI_API_KEY) {
+          const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+          const res = await axios.post(
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${GEMINI_API_KEY}`,
+            {
+              contents: [
+                {
+                  parts: [
+                    {
+                      text: gradePrompt
+                    }
+                  ]
+                }
+              ]
+            }
+          );
+          feedbackText = res.data.candidates[0].content.parts[0].text;
+        } else {
+          // Fallback if no Gemini key (Claude)
+          const res = await axios.post(
+            'https://api.anthropic.com/v1/messages',
+            {
+              model: 'claude-3-5-sonnet-20241022',
+              max_tokens: 1024,
+              messages: [{ role: 'user', content: gradePrompt }]
+            },
+            {
+              headers: {
+                'x-api-key': process.env.CLAUDE_API_KEY,
+                'anthropic-version': '2023-06-01',
+                'content-type': 'application/json'
+              }
+            }
+          );
+          feedbackText = res.data.content[0].text;
+        }
+
+        // Clear session after grading
+        delete userSessions[senderPhone];
+
+        // Send feedback
+        await sendMetaWhatsAppMessage(senderPhone, feedbackText);
+        console.log('✅ Grading feedback sent');
+      } catch (error) {
+        console.error('❌ Error grading answers:', error.message);
+        await sendMetaWhatsAppMessage(senderPhone, '❌ Sorry, I had trouble grading your answers. Try sending "explain [topic]" to start a new quiz!');
+      }
+    } else {
+      // For other messages, send a guide
+      try {
+        await sendMetaWhatsAppMessage(senderPhone, `📝 You said: "${userMessage}"\n\nTry: "explain photosynthesis" to get started!`);
+      } catch (error) {
+        console.error('❌ Error sending guide:', error.message);
+      }
     }
   }
 });
