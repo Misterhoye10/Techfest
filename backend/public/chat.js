@@ -7,12 +7,18 @@
     { label: "How am I doing?", send: "how am I doing in Biology?" },
   ];
 
+  const ABOUT =
+    "I’m Reca — your WAEC & JAMB study companion. Send a topic, I’ll explain it simply and ask two quick questions. If you miss one, I remember it and bring it back later so it sticks.";
+
   const app = document.getElementById("app");
   const thread = document.getElementById("thread");
   const form = document.getElementById("chatForm");
   const input = document.getElementById("messageInput");
   const statusLine = document.getElementById("statusLine");
   const topicChips = document.getElementById("topicChips");
+  const menuBtn = document.getElementById("menuBtn");
+  const menuPanel = document.getElementById("menuPanel");
+  const suggestRow = document.getElementById("suggestRow");
 
   const seen = new Set();
   let phone = localStorage.getItem("reca_phone") || "";
@@ -21,6 +27,11 @@
 
   function timeLabel(ts = Date.now()) {
     return new Date(ts).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  }
+
+  function setMenuOpen(open) {
+    menuPanel.hidden = !open;
+    menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
   }
 
   function enterChatMode() {
@@ -53,12 +64,25 @@
       btn.type = "button";
       btn.className = "chip";
       btn.textContent = item.label;
-      btn.addEventListener("click", () => sendMessage(item.send));
+      btn.addEventListener("click", () => {
+        setMenuOpen(false);
+        sendMessage(item.send);
+      });
       topicChips.appendChild(btn);
     });
   }
 
-  async function startSession() {
+  async function startSession(fresh = false) {
+    if (fresh) {
+      localStorage.removeItem("reca_phone");
+      phone = "";
+      lastEventId = "";
+      seen.clear();
+      thread.innerHTML = "";
+      app.dataset.mode = "welcome";
+      thread.hidden = true;
+    }
+
     const res = await fetch("/api/session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -67,8 +91,7 @@
     const data = await res.json();
     phone = data.phone;
     localStorage.setItem("reca_phone", phone);
-    statusLine.textContent = "Online";
-    // Welcome lives in the hero; keep chat clean until first student message
+    statusLine.innerHTML = '<span class="pill__dot" aria-hidden="true"></span>Online';
   }
 
   async function sendMessage(text) {
@@ -109,12 +132,52 @@
     }
   }
 
+  function onMenuAction(action) {
+    setMenuOpen(false);
+    if (action === "progress") {
+      sendMessage("how am I doing in Biology?");
+      return;
+    }
+    if (action === "topics") {
+      suggestRow.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      input.focus();
+      return;
+    }
+    if (action === "about") {
+      enterChatMode();
+      addBubble(ABOUT, "in");
+      return;
+    }
+    if (action === "new") {
+      startSession(true).then(() => input.focus());
+    }
+  }
+
+  menuBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    setMenuOpen(menuPanel.hidden);
+  });
+
+  menuPanel.addEventListener("click", (e) => {
+    const item = e.target.closest("[data-action]");
+    if (!item) return;
+    onMenuAction(item.dataset.action);
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!menuPanel.hidden && !e.target.closest(".menu")) setMenuOpen(false);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setMenuOpen(false);
+  });
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     sendMessage(input.value.trim());
   });
 
   renderTopics();
-  startSession().then(() => setInterval(pollEvents, 1500));
+  startSession(false).then(() => setInterval(pollEvents, 1500));
   input.focus();
 })();
