@@ -1,37 +1,38 @@
-# Reca — Web chat setup (no Meta / Twilio required)
+# Reca web chat
 
-**When to use:** WhatsApp sandbox / Meta API blocked.  
-**What it is:** Browser chat that runs the same Reca loop (explain → quiz → grade → resurface → recap).
+**This is the student product UI** — not a judge control panel.
 
-## Setup (you)
+Open: **http://localhost:3000/chat.html**
+
+## What students see
+
+- Clean chat with Reca
+- Suggested topics (photosynthesis, osmosis, etc.)
+- Type any topic or answer freely
+- Weak topics **resurface automatically** after `RESURFACE_MINUTES` (default 2 for fest)
+
+## What was removed (on purpose)
+
+- Demo sidebar / cheat answer chips
+- “Resurface now” button
+- Judge notes about WhatsApp being blocked
+
+For the pitch/demo video: record the student flow. Narrate the aha when Reca messages first.
+
+## Run
 
 ```powershell
-cd "C:\Users\USER\Documents\Projects\Reca\backend"
-copy .env.example .env
-# Optional: DRY_RUN=true
-npm install
+cd backend
 npm run dev
 ```
 
-Open **http://localhost:3000/chat.html**
+Set in `.env` for a faster live aha:
 
-## Demo path
-
-Follow the checklist on the left of the chat page, or [demo-script.md](./demo-script.md) with **Resurface now** instead of waiting for WhatsApp.
-
-## Judge line
-
-> Production is WhatsApp. Sandbox APIs blocked us, so you’re seeing the live loop here — same memory engine.
-
-## Share with Koye
-
-```text
-Web chat demo is ready in backend/public.
-Run: cd backend && npm run dev
-Open: http://localhost:3000/chat.html
-
-Same engine as WhatsApp path. /demo/resurface button for the aha.
-Meta/Twilio can stay blocked — we demo this.
+```env
+RESURFACE_MINUTES=1
+DRY_RUN=true
 ```
 
-Full notes: [../../backend/public/README.md](../../backend/public/README.md)
+## Judge line (spoken, not on screen)
+
+> This is what the student sees. Production ships on WhatsApp — same memory loop. We’re showing the product UI because messaging sandboxes blocked us.

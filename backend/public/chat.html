@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Reca — Study companion</title>
+    <title>Reca</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,70 +14,39 @@
   </head>
   <body>
     <div class="app">
-      <header class="top">
-        <div class="top__brand">
-          <span class="top__mark" aria-hidden="true">R</span>
-          <div>
-            <p class="top__name">Reca</p>
-            <p class="top__line">ChatGPT forgets. Reca doesn’t.</p>
-          </div>
-        </div>
-        <p class="top__note">Demo chat · same memory engine · WhatsApp is the production channel</p>
-      </header>
-
-      <div class="layout">
-        <aside class="panel">
-          <h2 class="panel__title">Live demo</h2>
-          <ol class="panel__steps">
-            <li>Pick a topic below (or type)</li>
-            <li>Miss Q1 on purpose for the aha</li>
-            <li>Hit <strong>Resurface now</strong></li>
-            <li>Answer correctly → cleared ✓</li>
-          </ol>
-
-          <h3 class="panel__label">Preset topics</h3>
-          <div class="chips" id="topicChips"></div>
-
-          <h3 class="panel__label">Demo answers</h3>
-          <div class="chips chips--answers" id="answerChips"></div>
-
-          <div class="panel__actions">
-            <button type="button" class="btn btn--accent" id="resurfaceBtn">Resurface now</button>
-            <button type="button" class="btn btn--ghost" id="resetBtn">New session</button>
-          </div>
-        </aside>
-
-        <main class="chat" aria-label="Reca chat">
-          <header class="chat__bar">
-            <div class="chat__who">
-              <span class="chat__avatar" aria-hidden="true">R</span>
-              <div>
-                <h1>Reca</h1>
-                <p id="statusLine">Online · WAEC &amp; JAMB</p>
-              </div>
+      <main class="chat" aria-label="Reca">
+        <header class="chat__bar">
+          <div class="chat__who">
+            <span class="chat__avatar" aria-hidden="true">R</span>
+            <div>
+              <h1>Reca</h1>
+              <p id="statusLine">Online</p>
             </div>
-          </header>
+          </div>
+        </header>
 
-          <div class="chat__thread" id="thread" role="log" aria-live="polite"></div>
+        <div class="chat__thread" id="thread" role="log" aria-live="polite"></div>
 
-          <div class="chat__quick" id="quickRow" hidden></div>
+        <div class="chat__suggest" id="suggestRow" aria-label="Suggested topics">
+          <p class="chat__suggest-label">Try a topic</p>
+          <div class="chips" id="topicChips"></div>
+        </div>
 
-          <form class="chat__composer" id="chatForm">
-            <input
-              id="messageInput"
-              type="text"
-              autocomplete="off"
-              placeholder="Message Reca…"
-              enterkeyhint="send"
-            />
-            <button type="submit" class="chat__send" aria-label="Send">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M3.5 12L20 4l-6.5 16-2.2-6.3L3.5 12z" fill="currentColor" />
-              </svg>
-            </button>
-          </form>
-        </main>
-      </div>
+        <form class="chat__composer" id="chatForm">
+          <input
+            id="messageInput"
+            type="text"
+            autocomplete="off"
+            placeholder="Ask Reca about a topic…"
+            enterkeyhint="send"
+          />
+          <button type="submit" class="chat__send" aria-label="Send">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M3.5 12L20 4l-6.5 16-2.2-6.3L3.5 12z" fill="currentColor" />
+            </svg>
+          </button>
+        </form>
+      </main>
     </div>
     <script src="/chat.js"></script>
   </body>
