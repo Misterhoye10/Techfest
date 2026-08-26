@@ -1,12 +1,30 @@
 (() => {
+  const PRESETS = [
+    { label: "Photosynthesis", send: "explain photosynthesis", demo: true },
+    { label: "Osmosis", send: "explain osmosis" },
+    { label: "Respiration", send: "explain aerobic respiration" },
+    { label: "Acids & bases", send: "explain acids and bases simply" },
+    { label: "How am I doing?", send: "how am I doing in Biology?" },
+  ];
+
+  const DEMO_ANSWERS = [
+    { label: "Q1 wrong · mitochondria", send: "mitochondria", kind: "warn" },
+    { label: "Q2 right · glucose and oxygen", send: "glucose and oxygen", kind: "ok" },
+    { label: "Resurface answer · chloroplast", send: "chloroplast", kind: "accent" },
+  ];
+
   const thread = document.getElementById("thread");
   const form = document.getElementById("chatForm");
   const input = document.getElementById("messageInput");
   const resurfaceBtn = document.getElementById("resurfaceBtn");
+  const resetBtn = document.getElementById("resetBtn");
   const statusLine = document.getElementById("statusLine");
+  const topicChips = document.getElementById("topicChips");
+  const answerChips = document.getElementById("answerChips");
+  const quickRow = document.getElementById("quickRow");
 
   const seen = new Set();
-  let phone = localStorage.getItem("reca_phone") || "";
+  let phone = "";
   let lastEventId = "";
   let busy = false;
 
@@ -32,7 +50,42 @@
     thread.scrollTop = thread.scrollHeight;
   }
 
-  async function startSession() {
+  function makeChip(item, target) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "chip";
+    if (item.kind === "warn") btn.classList.add("chip--warn");
+    if (item.kind === "ok") btn.classList.add("chip--ok");
+    if (item.kind === "accent" || item.demo) btn.classList.add("chip--accent");
+    btn.textContent = item.label;
+    btn.addEventListener("click", () => sendMessage(item.send));
+    target.appendChild(btn);
+    return btn;
+  }
+
+  function renderChips() {
+    topicChips.innerHTML = "";
+    answerChips.innerHTML = "";
+    quickRow.innerHTML = "";
+    PRESETS.forEach((p) => {
+      makeChip(p, topicChips);
+      if (p.demo || p.label.startsWith("How")) {
+        const q = makeChip(p, quickRow);
+        if (p.demo) q.textContent = "Start: photosynthesis";
+      }
+    });
+    DEMO_ANSWERS.forEach((a) => makeChip(a, answerChips));
+    quickRow.hidden = false;
+  }
+
+  async function startSession(fresh = false) {
+    if (fresh) {
+      localStorage.removeItem("reca_phone");
+      phone = "";
+      lastEventId = "";
+      seen.clear();
+      thread.innerHTML = "";
+    }
     const res = await fetch("/api/session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -42,7 +95,7 @@
     phone = data.phone;
     localStorage.setItem("reca_phone", phone);
     addBubble(data.welcome, "in");
-    statusLine.textContent = "Online · demo chat (same memory engine)";
+    statusLine.textContent = "Online · preset curriculum";
   }
 
   async function sendMessage(text) {
@@ -58,8 +111,8 @@
       });
       const data = await res.json();
       (data.replies || []).forEach((r) => addBubble(r, "in"));
-    } catch (err) {
-      addBubble("Couldn’t reach Reca. Is the server running?", "system");
+    } catch (_) {
+      addBubble("Couldn’t reach Reca. Is the server running on port 3000?", "system");
     } finally {
       busy = false;
       input.focus();
@@ -74,21 +127,16 @@
       );
       const data = await res.json();
       for (const m of data.messages || []) {
-        if (seen.has(m.id)) {
-          lastEventId = m.id;
-          continue;
-        }
-        // Skip echoes already shown from /api/chat responses
         addBubble(m.text, "in", m);
         lastEventId = m.id;
       }
     } catch (_) {
-      /* ignore transient poll errors */
+      /* ignore */
     }
   }
 
   async function fireResurface() {
-    addBubble("Firing resurface…", "system");
+    addBubble("Coming back with what you missed…", "system");
     try {
       const res = await fetch("/demo/resurface", {
         method: "POST",
@@ -97,13 +145,12 @@
       });
       const data = await res.json();
       if (!res.ok) {
-        addBubble(data.error || "Nothing to resurface yet.", "system");
+        addBubble(data.error || "Nothing to resurface yet — miss a question first.", "system");
         return;
       }
-      // Message also arrives via outbox poll; show immediately for demo certainty
       if (data.message) addBubble(data.message, "in");
     } catch (_) {
-      addBubble("Resurface failed — is the server up?", "system");
+      addBubble("Resurface failed — check the server.", "system");
     }
   }
 
@@ -111,10 +158,10 @@
     e.preventDefault();
     sendMessage(input.value.trim());
   });
-
   resurfaceBtn.addEventListener("click", fireResurface);
+  resetBtn.addEventListener("click", () => startSession(true));
 
-  startSession().then(() => {
-    setInterval(pollEvents, 1500);
-  });
+  renderChips();
+  phone = localStorage.getItem("reca_phone") || "";
+  startSession(false).then(() => setInterval(pollEvents, 1500));
 })();
