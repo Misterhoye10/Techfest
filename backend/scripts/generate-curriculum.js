@@ -5,6 +5,7 @@
  */
 const fs = require("fs");
 const path = require("path");
+const { EXTRA_SEEDS } = require("./subject-seeds-extra");
 
 function slug(s) {
   return String(s)
@@ -790,6 +791,10 @@ for (const pack of FACT_PACKS) {
   }
 }
 
+for (const seed of EXTRA_SEEDS) {
+  SEEDS.push(seed);
+}
+
 function buildQuestion(item, index) {
   const answer = String(item.answer).trim();
   const flatDistractors = (item.distractors || [])
@@ -845,7 +850,40 @@ function expandToN(items, n) {
 
 const TARGET_TOPICS_PER_SUBJECT = 50;
 const QUESTIONS_PER_TOPIC = 50;
-const SUBJECTS = ["Biology", "Chemistry", "Physics", "Mathematics"];
+const SUBJECTS = [
+  "Biology",
+  "Chemistry",
+  "Physics",
+  "Mathematics",
+  "Further Mathematics",
+  "English Language",
+  "Agriculture",
+  "Yoruba",
+  "Igbo",
+  "Hausa",
+];
+
+function subjectIcon(subject) {
+  switch (subject) {
+    case "Biology":
+    case "Agriculture":
+      return "leaf-01";
+    case "Chemistry":
+      return "chemistry-01";
+    case "Physics":
+      return "flash";
+    case "Mathematics":
+    case "Further Mathematics":
+      return "calculator-01";
+    case "English Language":
+    case "Yoruba":
+    case "Igbo":
+    case "Hausa":
+      return "book-open-01";
+    default:
+      return "book-01";
+  }
+}
 
 /** Pad each subject to 50 topics by cloning seeds into practice sets. */
 function padSeedsToSubjectTarget(seeds) {
@@ -906,14 +944,7 @@ function buildBank() {
         ...seed.title.toLowerCase().split(/\s+/).filter((w) => w.length > 3),
       ]),
       explanation: seed.explanation,
-      icon:
-        seed.subject === "Biology"
-          ? "leaf-01"
-          : seed.subject === "Chemistry"
-            ? "chemistry-01"
-            : seed.subject === "Physics"
-              ? "flash"
-              : "calculator-01",
+      icon: subjectIcon(seed.subject),
       questions: expandToN(seed.items, QUESTIONS_PER_TOPIC),
     };
   });
