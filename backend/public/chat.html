@@ -209,31 +209,39 @@
             </div>
           </div>
 
-          <!-- REVISE hub + quiz -->
-          <div class="welcome" id="reviseWelcome" role="region" aria-labelledby="reviseTitle" hidden>
-            <div class="empty">
+          <!-- REVISE hub — ask-first: say a topic, then quiz -->
+          <div class="welcome welcome--ask" id="reviseWelcome" role="region" aria-labelledby="reviseTitle" hidden>
+            <div class="empty empty--ask">
               <div class="empty__visual" aria-hidden="true">
                 <span class="empty__orb"></span>
                 <span data-icon="quiz-03" class="empty__icon"></span>
               </div>
-              <h2 class="empty__title" id="reviseTitle">Quiz what you just learned</h2>
+              <h2 class="empty__title" id="reviseTitle">What should Reca quiz you on?</h2>
               <p class="empty__desc">
-                Pick a topic — 5 short questions. Tap an answer or type your own. End anytime.
+                Type a subject or topic below — Reca starts 5 short questions. End anytime.
               </p>
               <button type="button" class="recommend" id="reviseRecommend">
-                <span class="recommend__eyebrow">Suggested</span>
+                <span class="recommend__eyebrow">Start here</span>
                 <span class="recommend__title" id="reviseRecommendTitle">Genetics basics</span>
-                <span class="recommend__meta">Biology · 5 questions</span>
+                <span class="recommend__meta" id="reviseRecommendMeta">Biology · 5 questions</span>
               </button>
-              <div class="hub-tools">
-                <div class="topic-search">
-                  <span data-icon="search-01" aria-hidden="true"></span>
-                  <input id="reviseSearch" type="search" placeholder="Search topics…" autocomplete="off" />
+              <p class="empty__hint" id="reviseAskHint">
+                Try:
+                <button type="button" class="empty__chip" data-revise="Osmosis">Osmosis</button>
+                <button type="button" class="empty__chip" data-revise="Photosynthesis">Photosynthesis</button>
+                <button type="button" class="empty__chip" data-revise="Acids and bases">Acids &amp; bases</button>
+              </p>
+              <p class="revise-tip" id="reviseTip" hidden role="status"></p>
+              <details class="revise-browse" id="reviseBrowse">
+                <summary class="revise-browse__summary">Browse topics</summary>
+                <div class="revise-browse__body">
+                  <div class="topic-search">
+                    <span data-icon="search-01" aria-hidden="true"></span>
+                    <input id="reviseSearch" type="search" placeholder="Search topics…" autocomplete="off" />
+                  </div>
+                  <div class="empty__actions" id="reviseTopics" role="group" aria-label="Revise a topic"></div>
                 </div>
-                <div class="revise-subjects" id="reviseSubjects" aria-label="Subjects"></div>
-              </div>
-              <p class="hub-browse" id="reviseBrowseLabel">Or pick a topic</p>
-              <div class="empty__actions" id="reviseTopics" role="group" aria-label="Revise a topic"></div>
+              </details>
             </div>
           </div>
 

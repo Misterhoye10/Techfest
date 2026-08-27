@@ -376,7 +376,7 @@
     if (!rec) return;
     const reviseTitle = document.getElementById("reviseRecommendTitle");
     if (reviseTitle) reviseTitle.textContent = rec.label;
-    const reviseMeta = reviseRecommend?.querySelector(".recommend__meta");
+    const reviseMeta = document.getElementById("reviseRecommendMeta") || reviseRecommend?.querySelector(".recommend__meta");
     if (reviseMeta) reviseMeta.textContent = `${rec.subject || "Biology"} · 5 questions`;
   }
 
@@ -1110,12 +1110,15 @@
         document.createTextNode(" Topics to quiz")
       );
       mainEyebrow.textContent = "Revise";
-      mainTitle.textContent = "Quiz what you learned";
+      mainTitle.textContent = "Ask for a quiz";
       app.dataset.mode = "revise-hub";
       showOnly(reviseWelcome);
-      mainDock.hidden = true;
-      input.placeholder = "Type your answer…";
+      mainDock.hidden = false;
+      input.placeholder = "e.g. osmosis, genetics, Biology…";
       renderSideTopics("revise");
+      clearReviseTip();
+      input.focus();
+      syncSendEnabled();
       return;
     }
 
@@ -1699,12 +1702,99 @@
 
   function renderHubs() {
     syncRecommend();
-    renderSubjectBar(reviseSubjects, reviseFilter, (name) => {
-      reviseFilter = name;
-      renderHubs();
-    });
     renderTopicCards(reviseTopics, reviseFilter, reviseQuery, startRevise, "Revise");
     renderSideTopics(feature === "revise" ? "revise" : feature === "progress" ? "progress" : "learn");
+  }
+
+  function clearReviseTip() {
+    const tip = document.getElementById("reviseTip");
+    if (tip) {
+      tip.hidden = true;
+      tip.textContent = "";
+    }
+  }
+
+  function showReviseTip(msg) {
+    const tip = document.getElementById("reviseTip");
+    if (!tip) return;
+    tip.hidden = false;
+    tip.textContent = msg;
+  }
+
+  function openReviseBrowse(filter, query) {
+    const browse = document.getElementById("reviseBrowse");
+    if (browse) browse.open = true;
+    if (filter) reviseFilter = filter;
+    if (query != null) {
+      reviseQuery = query;
+      const search = document.getElementById("reviseSearch");
+      if (search) search.value = query;
+    }
+    renderHubs();
+  }
+
+  /** Resolve typed revise intent → topic, subject browse, or miss */
+  function resolveReviseQuery(text) {
+    const q = String(text || "").trim().toLowerCase();
+    if (!q) return { kind: "empty" };
+
+    const subjects = [...new Set(TOPICS.map((t) => t.subject).filter(Boolean))];
+    const subjectHit = subjects.find((s) => {
+      const sl = s.toLowerCase();
+      return q === sl || q.includes(sl) || sl.includes(q);
+    });
+
+    const scored = TOPICS.map((t) => {
+      const label = String(t.label || "").toLowerCase();
+      const id = String(t.id || "").toLowerCase();
+      let score = 0;
+      if (label === q || id === q) score = 100;
+      else if (label.startsWith(q) || id.startsWith(q)) score = 80;
+      else if (label.includes(q) || id.includes(q)) score = 60;
+      else if ((t.aliases || []).some((a) => String(a).toLowerCase() === q)) score = 95;
+      else if ((t.aliases || []).some((a) => String(a).toLowerCase().includes(q))) score = 50;
+      else if (q.includes(label) && label.length >= 4) score = 70;
+      return { t, score };
+    })
+      .filter((x) => x.score > 0)
+      .sort((a, b) => b.score - a.score);
+
+    if (scored[0]?.score >= 60) {
+      return { kind: "topic", topic: scored[0].t };
+    }
+
+    if (subjectHit) {
+      return { kind: "subject", subject: subjectHit };
+    }
+
+    if (scored[0]) {
+      return { kind: "topic", topic: scored[0].t };
+    }
+
+    return { kind: "miss", query: text.trim() };
+  }
+
+  function handleReviseAsk(text) {
+    const result = resolveReviseQuery(text);
+    input.value = "";
+    syncSendEnabled();
+
+    if (result.kind === "topic" && result.topic) {
+      clearReviseTip();
+      startRevise(result.topic);
+      return;
+    }
+
+    if (result.kind === "subject") {
+      openReviseBrowse(result.subject, "");
+      showReviseTip(`Pick a ${result.subject} topic below — or type a topic name.`);
+      announce(`Choose a ${result.subject} topic to quiz`);
+      return;
+    }
+
+    openReviseBrowse("All", result.query || text);
+    showReviseTip("No exact match — browse below, or tap Start here.");
+    announce("No matching topic");
   }
 
   async function startLearn(item) {
@@ -1840,6 +1930,7 @@
   async function startRevise(item, opts = {}) {
     if (!item?.id) return;
     if (!phone) await startSession(false);
+    clearReviseTip();
 
     const limit = opts.limit != null ? Number(opts.limit) : 5;
 
@@ -2378,6 +2469,14 @@
       if (rec) startRevise(rec);
     });
   }
+
+  document.querySelectorAll("[data-revise]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const label = btn.getAttribute("data-revise");
+      if (!label) return;
+      handleReviseAsk(label);
+    });
+  });
   if (quizEndBtn) {
     quizEndBtn.addEventListener("click", () => endQuizSession());
   }
@@ -2470,25 +2569,7 @@
       return;
     }
     if (feature === "revise" && app.dataset.mode === "revise-hub") {
-      const q = text.toLowerCase();
-      const match = TOPICS.find(
-        (t) =>
-          q.includes(String(t.label || "").toLowerCase()) ||
-          t.aliases?.some((a) => q.includes(String(a).toLowerCase()))
-      );
-      input.value = "";
-      syncSendEnabled();
-      if (match) {
-        startRevise(match);
-        return;
-      }
-      const search = document.getElementById("reviseSearch");
-      if (search) {
-        search.value = text;
-        search.dispatchEvent(new Event("input", { bubbles: true }));
-        search.focus();
-      }
-      announce("No matching topic — pick one below or refine search.");
+      handleReviseAsk(text);
       return;
     }
     // Learn: freeform ask — server resolves topic (including typos); don't pin UI topic
