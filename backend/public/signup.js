@@ -150,7 +150,7 @@
     if (syncWaLink) {
       syncWaLink.href =
         continueUrl ||
-        `https://wa.me/${biz}?text=${encodeURIComponent("explain photosynthesis")}`;
+        `https://wa.me/${biz}?text=${encodeURIComponent("explain genetics basics")}`;
       syncWaLink.textContent = "Open WhatsApp";
     }
   }

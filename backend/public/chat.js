@@ -1,6 +1,6 @@
 (() => {
   const FALLBACK_TOPICS = [
-    { id: "photosynthesis", label: "Photosynthesis", subject: "Biology", send: "explain photosynthesis", icon: "sun-03" },
+    { id: "genetics-basics", label: "Genetics basics", subject: "Biology", send: "explain genetics basics", icon: "bubble-chat-double" },
     { id: "osmosis", label: "Osmosis", subject: "Biology", send: "explain osmosis", icon: "droplet" },
     { id: "aerobic-respiration", label: "Respiration", subject: "Biology", send: "explain aerobic respiration", icon: "lungs" },
     { id: "acids-bases", label: "Acids & bases", subject: "Chemistry", send: "explain acids and bases", icon: "chemistry-01" },
@@ -95,7 +95,7 @@
 
   function continueOnWhatsAppUrl(topicLabel) {
     const biz = String(recaConfig.whatsappNumber || "15556777893").replace(/\D/g, "");
-    const topic = String(topicLabel || "photosynthesis")
+    const topic = String(topicLabel || "genetics-basics")
       .trim()
       .replace(/^explain\s+/i, "");
     return `https://wa.me/${biz}?text=${encodeURIComponent(`explain ${topic}`)}`;
@@ -361,8 +361,8 @@
 
   function recommendedTopic() {
     return (
-      TOPICS.find((t) => t.id === "photosynthesis") ||
-      TOPICS.find((t) => /photosynthesis/i.test(t.label)) ||
+      TOPICS.find((t) => t.id === "genetics-basics") ||
+      TOPICS.find((t) => /genetics/i.test(t.label)) ||
       TOPICS[0]
     );
   }
@@ -674,7 +674,7 @@
     const link = document.getElementById("waContinueLink");
     if (link) {
       link.href = continueOnWhatsAppUrl(
-        lastLearnTopic?.label || activeQuizTopic?.label || "photosynthesis"
+        lastLearnTopic?.label || activeQuizTopic?.label || "genetics-basics"
       );
       link.hidden = false;
     }
@@ -1662,7 +1662,7 @@
     btn.append(iconEl("quiz-03"), document.createTextNode(" Try 2 quick questions"));
     btn.addEventListener("click", () => topic && startRevise(topic, { limit: 2 }));
 
-    const wa = makeContinueWaButton(topic?.label || topic?.id || "photosynthesis");
+    const wa = makeContinueWaButton(topic?.label || topic?.id || "genetics-basics");
     wa.className = "learn-cta__link";
     wa.textContent = "Continue on WhatsApp";
 
@@ -1902,7 +1902,7 @@
     toLearn.textContent = "Back to Learn";
     toLearn.addEventListener("click", () => setFeature("learn"));
 
-    const onWa = makeContinueWaButton(summary.topicLabel || summary.topicId || "photosynthesis");
+    const onWa = makeContinueWaButton(summary.topicLabel || summary.topicId || "genetics-basics");
     onWa.className = "learn-cta__link";
     onWa.textContent = "Continue on WhatsApp";
 
@@ -2262,7 +2262,7 @@
       const link = document.getElementById("waContinueLink");
       if (link) {
         link.href = continueOnWhatsAppUrl(
-          lastLearnTopic?.label || activeQuizTopic?.label || "photosynthesis"
+          lastLearnTopic?.label || activeQuizTopic?.label || "genetics-basics"
         );
         link.hidden = false;
       }
