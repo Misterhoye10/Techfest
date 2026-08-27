@@ -37,6 +37,15 @@
   const quizBar = document.getElementById("quizBar");
   const quizMemory = document.getElementById("quizMemory");
   const quizEndBtn = document.getElementById("quizEndBtn");
+  const quizDiagram = document.getElementById("quizDiagram");
+  const quizDiagramImg = document.getElementById("quizDiagramImg");
+  const quizDiagramCap = document.getElementById("quizDiagramCap");
+  const attachBtn = document.getElementById("attachBtn");
+  const imageUpload = document.getElementById("imageUpload");
+  const composerPreview = document.getElementById("composerPreview");
+  const composerPreviewImg = document.getElementById("composerPreviewImg");
+  const composerPreviewLabel = document.getElementById("composerPreviewLabel");
+  const composerPreviewClear = document.getElementById("composerPreviewClear");
   const progressDue = document.getElementById("progressDue");
   const progressDueList = document.getElementById("progressDueList");
   const progressDueLead = document.getElementById("progressDueLead");
@@ -77,6 +86,8 @@
   let progressFilter = "All";
   let thinkingEl = null;
   let thinkingTimer = null;
+  let thinkingSecondaryTimer = null;
+  let pendingUpload = null;
   let quizLocked = false;
   let recaConfig = {
     whatsappNumber: "15556777893",
@@ -414,7 +425,20 @@
     droplet: '<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>',
     lungs:
       '<path d="M6.081 22c-1.605 0-2.888-1.37-2.708-2.966l1.735-15.3A2.5 2.5 0 0 1 7.59 1.5h.82a2.5 2.5 0 0 1 2.482 2.234l.75 6.516"/><path d="M17.919 22c1.605 0 2.888-1.37 2.708-2.966l-1.735-15.3A2.5 2.5 0 0 0 16.41 1.5h-.82a2.5 2.5 0 0 0-2.482 2.234l-.75 6.516"/><path d="M12 10v12"/>',
+    "image-add-01":
+      '<rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><path d="M19 3v4"/><path d="M21 5h-4"/>',
   };
+
+  function recaAvatarEl() {
+    const img = document.createElement("img");
+    img.className = "turn__avatar-mark";
+    img.src = "/assets/reca-mark.svg";
+    img.alt = "";
+    img.width = 34;
+    img.height = 34;
+    img.setAttribute("aria-hidden", "true");
+    return img;
+  }
 
   function iconEl(name, className = "") {
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -548,6 +572,116 @@
     }
   }
 
+  function flashSave(el, text, isError) {
+    if (!el) return;
+    el.hidden = false;
+    el.classList.toggle("is-error", Boolean(isError));
+    el.textContent = text;
+    clearTimeout(el._hideTimer);
+    el._hideTimer = setTimeout(() => {
+      el.hidden = true;
+    }, 2400);
+  }
+
+  function isGuestSession() {
+    if (localStorage.getItem("reca_signed_in") === "1") return false;
+    return (
+      localStorage.getItem("reca_guest") === "1" ||
+      !/^\+\d{10,15}$/.test((localStorage.getItem("reca_phone") || "").trim())
+    );
+  }
+
+  function daysFromExamValue(value) {
+    if (!value) return null;
+    return Math.round(
+      (new Date(`${value}T12:00:00`) - new Date(new Date().toDateString())) / 86400000
+    );
+  }
+
+  function syncSettingsAccountUi() {
+    const phoneSaved = (localStorage.getItem("reca_phone") || "").trim();
+    const signedIn = localStorage.getItem("reca_signed_in") === "1";
+    const linked = /^\+\d{10,15}$/.test(phoneSaved);
+    const guest = isGuestSession();
+
+    const badge = document.getElementById("settingsAccountBadge");
+    const label = document.getElementById("settingsAccountLabel");
+    const emailEl = document.getElementById("profileEmail");
+    const authAction = document.getElementById("settingsAuthAction");
+    const authLink = document.getElementById("profileAuthLink");
+    const authLabel = document.getElementById("profileAuthLabel");
+
+    if (badge) badge.classList.toggle("is-linked", linked && !guest);
+    if (label) {
+      label.textContent = linked && !guest ? "WhatsApp linked" : guest ? "Guest session" : "Signed in";
+    }
+    if (emailEl) {
+      if (linked) {
+        emailEl.hidden = false;
+        emailEl.textContent = phoneSaved;
+      } else {
+        emailEl.hidden = true;
+      }
+    }
+
+    const signOut = () => {
+      localStorage.removeItem("reca_signed_in");
+      localStorage.removeItem("reca_email");
+      localStorage.setItem("reca_guest", "1");
+      location.assign("/signup.html?mode=signin&force=1");
+    };
+
+    if (authAction) {
+      if (signedIn || (linked && !guest)) {
+        authAction.textContent = "Sign out";
+        authAction.href = "#";
+        authAction.onclick = (e) => {
+          e.preventDefault();
+          signOut();
+        };
+      } else {
+        authAction.textContent = "Link WhatsApp";
+        authAction.href = "/signup.html";
+        authAction.onclick = null;
+      }
+    }
+
+    if (authLink && authLabel) {
+      if (signedIn || (linked && !guest)) {
+        authLabel.textContent = "Sign out";
+        authLink.href = "#";
+      } else {
+        authLabel.textContent = "Link WhatsApp";
+        authLink.href = "/signup.html";
+      }
+    }
+
+    const examEmpty = document.getElementById("settingsExamEmpty");
+    const examClear = document.getElementById("settingsExamClear");
+    const examVal = profileExamDate?.value || localStorage.getItem("reca_exam_date") || "";
+    if (examEmpty) examEmpty.hidden = Boolean(examVal);
+    if (examClear) examClear.hidden = !examVal;
+    syncExamHint(daysFromExamValue(examVal));
+
+    const waLinked = document.getElementById("settingsWaLinked");
+    const waEmpty = document.getElementById("settingsWaEmpty");
+    const waLinkedValue = document.getElementById("settingsWaLinkedValue");
+    if (waLinked) waLinked.hidden = !linked;
+    if (waEmpty) waEmpty.hidden = linked;
+    if (waLinkedValue) waLinkedValue.textContent = linked ? phoneSaved : "—";
+    if (waPhone && linked && !waPhone.value) waPhone.value = phoneSaved;
+
+    const link = document.getElementById("waContinueLink");
+    if (link) {
+      link.href = continueOnWhatsAppUrl(
+        lastLearnTopic?.label || activeQuizTopic?.label || "photosynthesis"
+      );
+      link.hidden = false;
+    }
+
+    syncProfileMenuMeta();
+  }
+
   function showSettingsSection(section) {
     const key = SETTINGS_TITLES[section] ? section : "general";
     document.querySelectorAll("[data-settings-nav]").forEach((btn) => {
@@ -558,10 +692,14 @@
     });
     if (settingsTitle) settingsTitle.textContent = SETTINGS_TITLES[key];
     app.dataset.settingsSection = key;
+    syncSettingsAccountUi();
 
     if (key === "general") profileName?.focus();
     if (key === "exam") profileExamDate?.focus();
-    if (key === "whatsapp") waPhone?.focus();
+    if (key === "whatsapp") {
+      refreshWhatsAppStatus();
+      waPhone?.focus();
+    }
   }
 
   function closeLearnMoreFlyout() {
@@ -592,16 +730,10 @@
     settingsModal.hidden = false;
     document.body.style.overflow = "hidden";
     syncAppearButtons(themePref());
-    syncExamHint(
-      profileExamDate?.value
-        ? Math.round(
-            (new Date(`${profileExamDate.value}T12:00:00`) -
-              new Date(new Date().toDateString())) /
-              86400000
-          )
-        : null
-    );
+    syncSettingsAccountUi();
     showSettingsSection(section || "general");
+    const dialog = document.getElementById("settingsDialog");
+    dialog?.focus?.();
   }
 
   function closeSettingsModal() {
@@ -699,13 +831,15 @@
       if (v) localStorage.setItem("reca_display_name", v);
       else localStorage.removeItem("reca_display_name");
       syncDisplayName();
-      syncProfileMenuMeta();
+      syncSettingsAccountUi();
+      const saveEl = document.getElementById("settingsProfileSave");
+      flashSave(saveEl, v ? "Name saved" : "Name cleared");
       if (phone) {
         fetch("/api/profile", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ phone, name: v }),
-        }).catch(() => {});
+        }).catch(() => flashSave(saveEl, "Couldn’t sync name", true));
       }
     };
     profileName.addEventListener("change", saveName);
@@ -737,63 +871,50 @@
   if (profileExamDate) {
     const savedExam = localStorage.getItem("reca_exam_date") || "";
     if (savedExam) profileExamDate.value = savedExam;
-    profileExamDate.addEventListener("change", () => {
-      const v = profileExamDate.value;
+    const saveExam = (v) => {
+      const saveEl = document.getElementById("settingsExamSave");
       if (v) localStorage.setItem("reca_exam_date", v);
       else localStorage.removeItem("reca_exam_date");
-      if (!phone || !v) return;
+      syncExamHint(daysFromExamValue(v));
+      syncSettingsAccountUi();
+      flashSave(saveEl, v ? "Exam date saved" : "Exam date cleared");
+      if (!phone) return;
       fetch("/api/profile", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone, examDate: v }),
+        body: JSON.stringify({ phone, examDate: v || "" }),
       })
         .then((r) => r.json())
-        .then((d) => syncExamHint(d.daysToExam))
-        .catch(() => {});
+        .then((d) => {
+          if (d.daysToExam != null) syncExamHint(d.daysToExam);
+        })
+        .catch(() => flashSave(saveEl, "Couldn’t sync exam date", true));
+    };
+    profileExamDate.addEventListener("change", () => saveExam(profileExamDate.value));
+    document.getElementById("settingsExamClear")?.addEventListener("click", () => {
+      profileExamDate.value = "";
+      saveExam("");
     });
   }
 
   (function syncProfileAccount() {
-    const emailEl = document.getElementById("profileEmail");
     const authLink = document.getElementById("profileAuthLink");
-    const authLabel = document.getElementById("profileAuthLabel");
-    const phoneSaved = (localStorage.getItem("reca_phone") || "").trim();
-    const signedIn = localStorage.getItem("reca_signed_in") === "1";
-    if (emailEl) {
-      if (signedIn && phoneSaved) {
-        emailEl.hidden = false;
-        emailEl.textContent = phoneSaved;
-      } else {
-        emailEl.hidden = true;
-      }
-    }
-    syncProfileMenuMeta();
+    syncSettingsAccountUi();
     if (authLink) {
-      if (signedIn) {
-        if (authLabel) authLabel.textContent = "Sign out";
-        authLink.href = "#";
-        authLink.addEventListener("click", (e) => {
+      authLink.addEventListener("click", (e) => {
+        const signedIn = localStorage.getItem("reca_signed_in") === "1";
+        const phoneSaved = (localStorage.getItem("reca_phone") || "").trim();
+        const linked = /^\+\d{10,15}$/.test(phoneSaved);
+        if (signedIn || (linked && !isGuestSession())) {
           e.preventDefault();
-          // Keep phone + name for Returning prefill; require OTP again
           localStorage.removeItem("reca_signed_in");
           localStorage.removeItem("reca_email");
           localStorage.setItem("reca_guest", "1");
           location.assign("/signup.html?mode=signin&force=1");
-        });
-      } else if (authLabel) {
-        authLabel.textContent = "Link WhatsApp";
-        authLink.href = "/signup.html";
-      }
+        }
+      });
     }
   })();
-
-  function isGuestSession() {
-    if (localStorage.getItem("reca_signed_in") === "1") return false;
-    return (
-      localStorage.getItem("reca_guest") === "1" ||
-      !/^\+\d{10,15}$/.test((localStorage.getItem("reca_phone") || "").trim())
-    );
-  }
 
   function showLinkBanner() {
     const banner = document.getElementById("linkBanner");
@@ -867,7 +988,85 @@
       const on = els.includes(el);
       el.hidden = !on;
       el.style.display = on ? "" : "none";
+      if (on) {
+        el.setAttribute("data-panel", "true");
+        // Retrigger panel entrance
+        el.style.animation = "none";
+        void el.offsetWidth;
+        el.style.animation = "";
+      } else {
+        el.removeAttribute("data-panel");
+      }
     });
+  }
+
+  function generatingLabel(kind, topicHint) {
+    const topic = String(topicHint || "").trim();
+    switch (kind) {
+      case "explain":
+        return topic ? `Reca is explaining ${topic}…` : "Reca is explaining…";
+      case "answer":
+        return "Reca is answering…";
+      case "photo":
+        return "Reading your photo…";
+      case "quiz":
+        return "Building 2 quick questions…";
+      default:
+        return "Reca’s AI is thinking…";
+    }
+  }
+
+  function showThinking(labelOrOpts) {
+    const opts =
+      typeof labelOrOpts === "string" || labelOrOpts == null
+        ? { label: labelOrOpts }
+        : labelOrOpts;
+    const label = opts.label || generatingLabel(opts.kind, opts.topic);
+    hideThinking(true);
+    thinkingTimer = setTimeout(() => {
+      thinkingEl = document.createElement("div");
+      thinkingEl.className = "turn turn--in turn--thinking";
+      const avatar = document.createElement("div");
+      avatar.className = "turn__avatar";
+      avatar.appendChild(recaAvatarEl());
+      const bubble = document.createElement("div");
+      bubble.className = "thinking";
+      const pulse = document.createElement("span");
+      pulse.className = "thinking__pulse";
+      pulse.setAttribute("aria-hidden", "true");
+      const copy = document.createElement("div");
+      copy.className = "thinking__copy";
+      const lab = document.createElement("span");
+      lab.className = "thinking__label";
+      lab.textContent = label;
+      const secondary = document.createElement("span");
+      secondary.className = "thinking__secondary";
+      secondary.textContent = "Still working — exam Wi‑Fi is fine";
+      copy.append(lab, secondary);
+      bubble.append(pulse, copy);
+      thinkingEl.append(avatar, bubble);
+      thread.appendChild(thinkingEl);
+      scrollThread();
+      thinkingSecondaryTimer = setTimeout(() => {
+        secondary.classList.add("is-visible");
+      }, 1200);
+    }, 80);
+  }
+
+  function hideThinking(immediate) {
+    if (thinkingTimer) clearTimeout(thinkingTimer);
+    thinkingTimer = null;
+    if (thinkingSecondaryTimer) clearTimeout(thinkingSecondaryTimer);
+    thinkingSecondaryTimer = null;
+    if (!thinkingEl) return;
+    const el = thinkingEl;
+    thinkingEl = null;
+    if (immediate) {
+      el.remove();
+      return;
+    }
+    el.classList.add("is-exiting");
+    setTimeout(() => el.remove(), 140);
   }
 
   function setFeature(name) {
@@ -948,10 +1147,81 @@
     return body;
   }
 
-  function addBubble(text, role = "in", meta = {}) {
+  /** Structure Learn replies: spelling note → explanation → quick-check callout */
+  function formatTeachBody(text) {
+    const raw = String(text || "").trim();
+    const wrap = document.createElement("div");
+    wrap.className = "msg__teach";
+
+    let rest = raw;
+    const spellingMatch = rest.match(/^Spelling check:\s*([\s\S]+?)(?:\n\n|$)/i);
+    if (spellingMatch) {
+      const note = document.createElement("p");
+      note.className = "msg__spell";
+      note.textContent = spellingMatch[1].replace(/\s*;\s*/g, " · ").replace(/\.\s*$/, "");
+      wrap.appendChild(note);
+      rest = rest.slice(spellingMatch[0].length).trim();
+    }
+
+    const checkSplit = rest.split(/\n\n(?=Quick check\b)/i);
+    const explain = (checkSplit[0] || "").trim();
+    const check = (checkSplit[1] || "").trim();
+
+    if (explain) {
+      const body = formatBody(explain);
+      wrap.appendChild(body);
+    }
+
+    if (check) {
+      const callout = document.createElement("div");
+      callout.className = "msg__check";
+      const label = document.createElement("span");
+      label.className = "msg__check-label";
+      label.textContent = "Quick check";
+      const bodyText = check.replace(/^Quick check\s*[—–-]?\s*/i, "").trim();
+      const p = document.createElement("p");
+      p.className = "msg__check-text";
+      p.textContent = bodyText;
+      callout.append(label, p);
+      wrap.appendChild(callout);
+    }
+
+    if (!wrap.childNodes.length) wrap.appendChild(formatBody(raw));
+    return wrap;
+  }
+
+  function normalizeReply(reply) {
+    if (reply && typeof reply === "object") {
+      return {
+        text: String(reply.text != null ? reply.text : ""),
+        image: reply.image || null,
+      };
+    }
+    return { text: String(reply || ""), image: null };
+  }
+
+  function appendMedia(el, image) {
+    if (!image?.src || !el) return;
+    const figure = document.createElement("figure");
+    figure.className = "msg__media";
+    const img = document.createElement("img");
+    img.src = image.src;
+    img.alt = image.alt || image.caption || "Teaching diagram";
+    img.loading = "lazy";
+    figure.appendChild(img);
+    if (image.caption) {
+      const cap = document.createElement("figcaption");
+      cap.textContent = image.caption;
+      figure.appendChild(cap);
+    }
+    el.appendChild(figure);
+  }
+
+  function addBubble(raw, role = "in", meta = {}) {
     if (meta.id && seen.has(meta.id)) return;
     if (meta.id) seen.add(meta.id);
 
+    const { text, image } = normalizeReply(raw);
     const turn = document.createElement("div");
     turn.className = role === "out" ? "turn turn--out" : "turn turn--in";
 
@@ -959,23 +1229,36 @@
       const avatar = document.createElement("div");
       avatar.className = "turn__avatar";
       avatar.setAttribute("aria-hidden", "true");
-      avatar.appendChild(iconEl("mortarboard-01"));
+      avatar.appendChild(recaAvatarEl());
       turn.appendChild(avatar);
     }
 
     const stack = document.createElement("div");
     stack.className = "turn__stack";
     const el = document.createElement("div");
-    el.className = role === "out" ? "msg msg--out" : "msg msg--in";
+    const isTeach = role === "in" && (feature === "learn" || meta.teach);
+    el.className =
+      role === "out" ? "msg msg--out" : isTeach ? "msg msg--in msg--teach" : "msg msg--in";
 
-    if (role === "in") el.appendChild(formatBody(text));
-    else {
+    if (role === "in") {
+      if (isTeach) {
+        const badge = document.createElement("div");
+        badge.className = "msg__badge";
+        badge.append(iconEl("book-open-01"), document.createTextNode(" Explanation"));
+        el.appendChild(badge);
+        el.appendChild(formatTeachBody(text));
+      } else {
+        el.appendChild(formatBody(text));
+      }
+      appendMedia(el, image || meta.image);
+    } else {
       const body = document.createElement("div");
       body.className = "msg__body";
       const p = document.createElement("p");
       p.textContent = text;
       body.appendChild(p);
       el.appendChild(body);
+      appendMedia(el, image || meta.image);
     }
 
     const metaRow = document.createElement("div");
@@ -989,36 +1272,6 @@
     turn.appendChild(stack);
     thread.appendChild(turn);
     scrollThread();
-  }
-
-  function showThinking(label) {
-    hideThinking(true);
-    thinkingTimer = setTimeout(() => {
-      thinkingEl = document.createElement("div");
-      thinkingEl.className = "turn turn--in turn--thinking";
-      const avatar = document.createElement("div");
-      avatar.className = "turn__avatar";
-      avatar.appendChild(iconEl("mortarboard-01"));
-      const bubble = document.createElement("div");
-      bubble.className = "thinking";
-      const dots = document.createElement("span");
-      dots.className = "thinking__dots";
-      for (let i = 0; i < 3; i++) dots.appendChild(document.createElement("span"));
-      const lab = document.createElement("span");
-      lab.className = "thinking__label";
-      lab.textContent = label || "Reca’s AI is thinking…";
-      bubble.append(dots, lab);
-      thinkingEl.append(avatar, bubble);
-      thread.appendChild(thinkingEl);
-      scrollThread();
-    }, 120);
-  }
-
-  function hideThinking() {
-    if (thinkingTimer) clearTimeout(thinkingTimer);
-    thinkingTimer = null;
-    if (thinkingEl) thinkingEl.remove();
-    thinkingEl = null;
   }
 
   function filtered(filter, query) {
@@ -1399,18 +1652,26 @@
     thread.querySelectorAll(".learn-cta").forEach((el) => el.remove());
     const cta = document.createElement("div");
     cta.className = "learn-cta";
+
     const row = document.createElement("div");
     row.className = "learn-cta__row";
+
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "learn-cta__btn learn-cta__btn--primary";
-    btn.append(iconEl("quiz-03"), document.createTextNode(" Let AI quiz this topic"));
-    btn.addEventListener("click", () => topic && startRevise(topic));
-    row.append(btn, makeContinueWaButton(topic?.label || topic?.id || "photosynthesis"));
+    btn.className = "learn-cta__btn";
+    btn.append(iconEl("quiz-03"), document.createTextNode(" Try 2 quick questions"));
+    btn.addEventListener("click", () => topic && startRevise(topic, { limit: 2 }));
+
+    const wa = makeContinueWaButton(topic?.label || topic?.id || "photosynthesis");
+    wa.className = "learn-cta__link";
+    wa.textContent = "Continue on WhatsApp";
+
+    row.append(btn, wa);
+
     const hint = document.createElement("p");
     hint.className = "learn-cta__hint";
-    hint.textContent =
-      "Keep asking follow-ups, quiz here, or continue the same topic on WhatsApp — same number, same Progress.";
+    hint.textContent = "Short check on this topic — End anytime. Misses go to Progress.";
+
     cta.append(row, hint);
     thread.appendChild(cta);
     scrollThread();
@@ -1433,13 +1694,11 @@
 
     if (!opts.hideOutgoing) addBubble(text, "out");
     input.value = "";
-    showThinking(
-      mode === "learn"
-        ? opts.fresh
-          ? "Reca’s AI is explaining…"
-          : "Reca’s AI is answering…"
-        : "Reca’s AI is thinking…"
-    );
+    const topicHint = opts.learnTopic?.label || lastLearnTopic?.label || "";
+    showThinking({
+      kind: mode === "learn" ? (opts.fresh ? "explain" : "answer") : "chat",
+      topic: opts.fresh ? topicHint : "",
+    });
 
     try {
       // Soft focus only — server resolves typos + topic switches
@@ -1495,9 +1754,11 @@
     }
   }
 
-  async function startRevise(item) {
+  async function startRevise(item, opts = {}) {
     if (!item?.id) return;
     if (!phone) await startSession(false);
+
+    const limit = opts.limit != null ? Number(opts.limit) : 5;
 
     setNavActive("revise");
     feature = "revise";
@@ -1514,7 +1775,8 @@
     quizSummary.hidden = true;
     quizSummary.replaceChildren();
     quizOptions.innerHTML = "";
-    quizQuestion.textContent = "Reca’s AI is loading your question…";
+    quizQuestion.textContent =
+      limit <= 2 ? "Building 2 quick questions…" : "Loading your quiz…";
     quizLocked = true;
     setStatus("Loading…", true);
 
@@ -1522,7 +1784,7 @@
       const res = await fetch("/api/quiz/start", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone, topicId: item.id }),
+        body: JSON.stringify({ phone, topicId: item.id, limit }),
       });
       const data = await res.json();
       if (!res.ok || !data.question) throw new Error(data.error || "Failed");
@@ -1541,6 +1803,8 @@
 
   function renderQuestion(q) {
     if (!q) return;
+    const quizLabel = document.getElementById("quizLabel");
+    const quizComposerHint = document.getElementById("quizComposerHint");
     quizSummary.hidden = true;
     quizFeedback.hidden = true;
     if (quizMemory) {
@@ -1548,19 +1812,44 @@
       quizMemory.textContent = "";
     }
     if (quizEndBtn) quizEndBtn.hidden = false;
+    if (quizComposerHint) quizComposerHint.hidden = false;
     quizTopic.textContent = `${q.subject} · ${q.topicLabel}`;
     quizCount.textContent = `${q.index} of ${q.total}`;
+    if (quizLabel) quizLabel.textContent = `Question ${q.index}`;
     if (quizBar) {
       const pct = Math.max(4, Math.round((q.index / Math.max(q.total, 1)) * 100));
       quizBar.style.width = `${pct}%`;
     }
+    if (quizDiagram && quizDiagramImg) {
+      if (q.diagram?.src) {
+        quizDiagram.hidden = false;
+        quizDiagramImg.src = q.diagram.src;
+        quizDiagramImg.alt = q.diagram.alt || q.diagram.caption || "Topic diagram";
+        if (quizDiagramCap) quizDiagramCap.textContent = q.diagram.caption || "";
+        quizDiagram.style.animation = "none";
+        void quizDiagram.offsetWidth;
+        quizDiagram.style.animation = "";
+      } else {
+        quizDiagram.hidden = true;
+        quizDiagramImg.removeAttribute("src");
+        if (quizDiagramCap) quizDiagramCap.textContent = "";
+      }
+    }
     quizQuestion.textContent = q.text;
     quizOptions.innerHTML = "";
-    (q.options || []).forEach((opt) => {
+    const letters = "ABCDEFGH";
+    (q.options || []).forEach((opt, i) => {
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "quiz__option";
-      btn.textContent = opt;
+      btn.dataset.answer = opt;
+      const letter = document.createElement("span");
+      letter.className = "quiz__option-letter";
+      letter.textContent = letters[i] || String(i + 1);
+      const label = document.createElement("span");
+      label.className = "quiz__option-text";
+      label.textContent = opt;
+      btn.append(letter, label);
       btn.addEventListener("click", () => submitQuizAnswer(opt));
       quizOptions.appendChild(btn);
     });
@@ -1574,15 +1863,24 @@
     quizSummary.replaceChildren();
     if (quizEndBtn) quizEndBtn.hidden = true;
     if (quizMemory) quizMemory.hidden = true;
+    const quizComposerHint = document.getElementById("quizComposerHint");
+    if (quizComposerHint) quizComposerHint.hidden = true;
+
+    const badge = document.createElement("p");
+    badge.className = "quiz__summary-badge";
+    badge.textContent = "Session complete";
+
     const h = document.createElement("p");
     h.className = "quiz__summary-title";
     h.textContent = summary.message;
+
     const actions = document.createElement("div");
     actions.className = "quiz__summary-actions";
+
     const again = document.createElement("button");
     again.type = "button";
     again.className = "quiz__again";
-    again.textContent = "Quiz again with AI";
+    again.append(iconEl("quiz-03"), document.createTextNode(" Quiz again"));
     again.addEventListener("click", () => {
       const match =
         TOPICS.find((t) => t.id === summary.topicId) ||
@@ -1591,20 +1889,25 @@
         TOPICS[0];
       startRevise(match);
     });
+
     const toProgress = document.createElement("button");
     toProgress.type = "button";
     toProgress.className = "quiz__to-learn";
-    toProgress.textContent = "See AI memory";
+    toProgress.textContent = "See Progress";
     toProgress.addEventListener("click", () => setFeature("progress"));
+
     const toLearn = document.createElement("button");
     toLearn.type = "button";
     toLearn.className = "quiz__to-learn";
-    toLearn.textContent = "Ask AI to explain";
+    toLearn.textContent = "Back to Learn";
     toLearn.addEventListener("click", () => setFeature("learn"));
+
     const onWa = makeContinueWaButton(summary.topicLabel || summary.topicId || "photosynthesis");
-    onWa.className = "quiz__again";
-    actions.append(again, onWa, toProgress, toLearn);
-    quizSummary.append(h, actions);
+    onWa.className = "learn-cta__link";
+    onWa.textContent = "Continue on WhatsApp";
+
+    actions.append(again, toProgress, toLearn, onWa);
+    quizSummary.append(badge, h, actions);
     mainDock.hidden = true;
     announce(summary.message);
 
@@ -1648,7 +1951,7 @@
 
     quizOptions.querySelectorAll("button").forEach((b) => {
       b.disabled = true;
-      if (b.textContent === answer) b.classList.add("is-picked");
+      if (b.dataset.answer === answer) b.classList.add("is-picked");
     });
 
     try {
@@ -1664,10 +1967,20 @@
       quizFeedback.className =
         "quiz__feedback " + (data.feedback.correct ? "is-correct" : "is-wrong");
       quizFeedback.replaceChildren();
-      quizFeedback.append(
+
+      const head = document.createElement("div");
+      head.className = "quiz__feedback-head";
+      head.append(
         iconEl(data.feedback.correct ? "checkmark-circle-02" : "alert-circle"),
-        document.createTextNode(" " + data.feedback.message)
+        document.createTextNode(data.feedback.correct ? " Correct" : " Not quite")
       );
+      const msg = document.createElement("p");
+      msg.className = "quiz__feedback-msg";
+      msg.textContent = data.feedback.message || "";
+      quizFeedback.append(head, msg);
+      quizFeedback.style.animation = "none";
+      void quizFeedback.offsetWidth;
+      quizFeedback.style.animation = "";
 
       if (quizMemory) {
         if (data.feedback.memoryPromise) {
@@ -1683,12 +1996,20 @@
       }
 
       quizOptions.querySelectorAll("button").forEach((b) => {
+        const opt = b.dataset.answer || "";
         if (
-          normalize(b.textContent) === normalize(data.feedback.correctAnswer) ||
-          data.feedback.correctAnswer.toLowerCase().includes(b.textContent.toLowerCase()) ||
-          b.textContent
+          normalize(opt) === normalize(data.feedback.correctAnswer) ||
+          String(data.feedback.correctAnswer || "")
             .toLowerCase()
-            .includes(data.feedback.correctAnswer.toLowerCase().split("(")[0].trim())
+            .includes(opt.toLowerCase()) ||
+          opt
+            .toLowerCase()
+            .includes(
+              String(data.feedback.correctAnswer || "")
+                .toLowerCase()
+                .split("(")[0]
+                .trim()
+            )
         ) {
           b.classList.add("is-correct");
         }
@@ -1955,12 +2276,17 @@
     if (/^\+\d{10,15}$/.test(saved)) {
       waPhone.value = saved;
     }
+    const waLinkBtn = document.getElementById("waLinkBtn");
     waForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       const raw = waPhone.value.trim();
       waStatus.hidden = false;
       waStatus.classList.remove("is-error");
       waStatus.textContent = "Linking…";
+      if (waLinkBtn) {
+        waLinkBtn.disabled = true;
+        waLinkBtn.textContent = "…";
+      }
       try {
         const res = await fetch("/api/whatsapp/link", {
           method: "POST",
@@ -1971,17 +2297,33 @@
         if (!res.ok) throw new Error(data.error || "Link failed");
         phone = data.phone;
         localStorage.setItem("reca_phone", phone);
+        localStorage.setItem("reca_signed_in", "1");
+        localStorage.removeItem("reca_guest");
         syncDisplayName();
-        syncProfileMenuMeta();
+        syncSettingsAccountUi();
         waStatus.textContent = data.joinHint || `Linked ${phone}`;
         setStatus("Online", true);
         if (feature === "progress") loadProgress();
+        document.getElementById("linkBanner") && (document.getElementById("linkBanner").hidden = true);
       } catch (err) {
         waStatus.classList.add("is-error");
         waStatus.textContent = err.message || "Couldn’t link number";
+      } finally {
+        if (waLinkBtn) {
+          waLinkBtn.disabled = false;
+          waLinkBtn.textContent = "Link";
+        }
       }
     });
   }
+
+  document.querySelectorAll("[data-settings-go]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const dest = btn.getAttribute("data-settings-go");
+      closeSettingsModal();
+      if (dest === "learn" || dest === "revise" || dest === "progress") setFeature(dest);
+    });
+  });
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -2011,6 +2353,127 @@
       fresh: false,
     });
   });
+
+  function clearPendingUpload() {
+    pendingUpload = null;
+    if (imageUpload) imageUpload.value = "";
+    if (composerPreview) composerPreview.classList.remove("is-visible");
+    if (composerPreviewImg) composerPreviewImg.removeAttribute("src");
+  }
+
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const raw = String(reader.result || "");
+        const base64 = raw.includes(",") ? raw.split(",")[1] : raw;
+        resolve(base64);
+      };
+      reader.onerror = () => reject(reader.error || new Error("Read failed"));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function uploadPastQuestion(file) {
+    if (!file || busy) return;
+    if (!phone) await startSession(false);
+
+    setFeature("learn");
+    setComposerBusy(true);
+    setStatus("Reading photo…", true);
+    app.dataset.mode = "chat";
+    showOnly(thread);
+    addBubble("📷 Past question photo", "out", {
+      image: pendingUpload?.previewSrc
+        ? { src: pendingUpload.previewSrc, alt: "Uploaded past question", caption: file.name }
+        : null,
+    });
+    showThinking({ kind: "photo" });
+
+    try {
+      const imageBase64 = await fileToBase64(file);
+      const res = await fetch("/api/learn/upload", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          phone,
+          imageBase64,
+          mimeType: file.type || "image/jpeg",
+          note: input.value.trim() || undefined,
+        }),
+      });
+      const data = await res.json();
+      hideThinking();
+      if (!res.ok) {
+        addBubble(data.error || "Couldn’t read that image. Try a clearer photo.", "in");
+        setStatus("Online", true);
+        return;
+      }
+      (data.replies || []).forEach((r) => addBubble(r, "in"));
+      if (data.topic) {
+        lastLearnTopic = {
+          id: data.topic.id,
+          label: data.topic.label,
+          subject: data.topic.subject,
+          send: `explain ${data.topic.label}`,
+        };
+        mainTitle.textContent = data.topic.label;
+        mainEyebrow.textContent = "Learn · From your photo";
+        input.placeholder = `Ask a follow-up about ${data.topic.label}…`;
+        appendLearnQuizNudge(lastLearnTopic);
+      }
+      clearPendingUpload();
+      input.value = "";
+      setStatus("Online", true);
+      announce("Reca explained your photo");
+    } catch (_) {
+      hideThinking();
+      addBubble("Couldn’t upload that. Check your connection and try again.", "in");
+      setStatus("Offline", false);
+    } finally {
+      setComposerBusy(false);
+      syncSendEnabled();
+      input.focus();
+    }
+  }
+
+  if (attachBtn && imageUpload) {
+    attachBtn.addEventListener("click", () => {
+      if (busy) return;
+      imageUpload.click();
+    });
+    imageUpload.addEventListener("change", () => {
+      const file = imageUpload.files && imageUpload.files[0];
+      if (!file) return;
+      if (!file.type.startsWith("image/")) {
+        addBubble("Please upload a photo (JPG or PNG).", "in");
+        clearPendingUpload();
+        return;
+      }
+      if (file.size > 6 * 1024 * 1024) {
+        addBubble("That photo is too large — try one under 6MB.", "in");
+        clearPendingUpload();
+        return;
+      }
+      const previewSrc = URL.createObjectURL(file);
+      pendingUpload = { file, previewSrc };
+      if (composerPreviewImg) {
+        composerPreviewImg.src = previewSrc;
+        composerPreviewImg.alt = file.name;
+      }
+      if (composerPreviewLabel) composerPreviewLabel.textContent = file.name;
+      if (composerPreview) composerPreview.classList.add("is-visible");
+      // Auto-send for fest demo — one tap from camera roll to explain
+      uploadPastQuestion(file);
+    });
+  }
+
+  if (composerPreviewClear) {
+    composerPreviewClear.addEventListener("click", () => {
+      if (pendingUpload?.previewSrc) URL.revokeObjectURL(pendingUpload.previewSrc);
+      clearPendingUpload();
+    });
+  }
 
   document.querySelectorAll("[data-ask]").forEach((btn) => {
     btn.addEventListener("click", () => {

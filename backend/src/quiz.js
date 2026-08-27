@@ -6,6 +6,7 @@ const {
   shuffle,
 } = require("./topics");
 const store = require("./store");
+const { getDiagram } = require("./diagrams");
 
 const resurfaceMinutes = Number(process.env.RESURFACE_MINUTES || 2);
 
@@ -19,6 +20,7 @@ function publicQuestion(topic, question, index, total) {
     total,
     text: question.text,
     options: shuffle(question.options || [question.correctAnswer]),
+    diagram: getDiagram(topic.id, topic.subject),
   };
 }
 
@@ -27,8 +29,12 @@ function sessionOrder(quiz, topic) {
   return topic.questions.map((_, i) => i);
 }
 
-/** Start a revise quiz — AI asks, student picks or types. No explanation. */
-function startQuiz(phone, topicId) {
+/** Start a revise quiz — AI asks, student picks or types. No explanation.
+ *  @param {string} phone
+ *  @param {string} topicId
+ *  @param {{ limit?: number }} [opts] — default 5; Learn quick-check uses 2
+ */
+function startQuiz(phone, topicId, opts = {}) {
   const student = store.getStudent(phone);
   const topic = topicId ? findTopicById(topicId) : topics[0];
   if (!topic) return { error: "Topic not found" };
@@ -42,8 +48,10 @@ function startQuiz(phone, topicId) {
     const j = Math.floor(Math.random() * (i + 1));
     [order[i], order[j]] = [order[j], order[i]];
   }
-  // Full topic bank — each curriculum topic ships 50 Q&As
-  const session = order.slice(0, Math.min(50, order.length));
+
+  const requested = Number(opts.limit);
+  const limit = Number.isFinite(requested) && requested > 0 ? Math.floor(requested) : 5;
+  const session = order.slice(0, Math.min(limit, order.length));
 
   student.quiz = {
     topicId: topic.id,

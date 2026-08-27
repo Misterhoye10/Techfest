@@ -38,6 +38,16 @@ Ship and demo only:
 | Nomi-style Explore / Library / price cards | Never — wrong JTBD |
 | Fine-tune on student uploads | Not without research + infra |
 
+## Amendment — 2026-08-27 (motion + pictures pass)
+
+Pulled **next-slice Option A** into the web demo ahead of fest:
+
+- Composer `+` → `POST /api/learn/upload` (Gemini vision when `GEMINI_API_KEY` set)
+- Local teaching SVGs via `diagrams.js` on Learn replies + Revise questions
+- Motion system: `docs/reca/motion-system.md`
+
+Still deferred: PDF banks, auto-diagram-every-topic, Nomi carousels, fine-tuning.
+
 ## Why
 
 - Moat is **memory over time** (#8 JTBD), not multimodal chat.  
