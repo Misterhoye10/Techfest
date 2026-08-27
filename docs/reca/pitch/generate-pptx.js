@@ -43,7 +43,7 @@ function footer(slide, left, num) {
     color: COLORS.muted,
     fontFace: "Calibri",
   });
-  slide.addText(`${num} / 10`, {
+  slide.addText(`${num} / 12`, {
     x: 11.2,
     y: 7.05,
     w: 1.4,
@@ -494,7 +494,71 @@ function eyebrow(slide, text) {
   footer(s, "Everyday life · exam calendar demand", 7);
 }
 
-// 8 Live
+// 8 Business
+{
+  const s = pptx.addSlide();
+  addBg(s);
+  eyebrow(s, "Business model");
+  s.addText("Free for students first. Paid where schools need visibility.", {
+    x: 0.7,
+    y: 1.1,
+    w: 12,
+    h: 1.1,
+    fontSize: 28,
+    color: COLORS.ink,
+    fontFace: "Georgia",
+  });
+  const biz = [
+    ["FREEMIUM", "Individual students stay free — low marginal AI cost per interaction."],
+    ["B2B2C", "Private schools & tutorial centres — per-student / cohort plans + teacher progress view."],
+    ["SPONSORED", "Exam-prep sponsors, NGOs, or telcos subsidise public-school students."],
+  ];
+  biz.forEach((b, i) => {
+    const x = 0.7 + i * 4.1;
+    s.addShape(pptx.shapes.ROUNDED_RECTANGLE, {
+      x,
+      y: 2.5,
+      w: 3.9,
+      h: 2.6,
+      fill: { color: COLORS.panel },
+      rectRadius: 0.12,
+    });
+    s.addText(b[0], {
+      x: x + 0.25,
+      y: 2.75,
+      w: 3.4,
+      h: 0.35,
+      fontSize: 12,
+      bold: true,
+      color: COLORS.muted,
+      fontFace: "Calibri",
+    });
+    s.addText(b[1], {
+      x: x + 0.25,
+      y: 3.3,
+      w: 3.4,
+      h: 1.5,
+      fontSize: 14,
+      color: COLORS.ink,
+      fontFace: "Calibri",
+    });
+  });
+  s.addText(
+    "Moat: attempt history + WhatsApp distribution + WAEC/JAMB curriculum.",
+    {
+      x: 0.7,
+      y: 5.5,
+      w: 12,
+      h: 0.5,
+      fontSize: 14,
+      color: COLORS.muted,
+      fontFace: "Calibri",
+    }
+  );
+  footer(s, "Post-fest roadmap", 8);
+}
+
+// 9 Live
 {
   const s = pptx.addSlide();
   addBg(s);
@@ -542,51 +606,108 @@ function eyebrow(slide, text) {
       fontFace: "Calibri",
     }
   );
-  footer(s, "Guest mode available", 8);
+  footer(s, "Guest mode available", 9);
 }
 
-// 9 Why
+// 10 Team
 {
   const s = pptx.addSlide();
   addBg(s);
-  eyebrow(s, "Why we built Reca");
-  s.addText("Because explanations without follow-up still leave students alone.", {
+  eyebrow(s, "The team");
+  s.addText("Who built Reca.", {
     x: 0.7,
-    y: 1.2,
+    y: 1.1,
     w: 11.5,
-    h: 1.5,
-    fontSize: 30,
+    h: 0.8,
+    fontSize: 32,
     color: COLORS.ink,
     fontFace: "Georgia",
   });
-  s.addText(
-    "We didn’t set out to build “another chatbot.” We set out to close the gap between understanding a topic tonight and still owning it on exam day — on the phone students already hold after school.",
-    {
-      x: 0.7,
-      y: 3,
-      w: 11.5,
-      h: 1.3,
-      fontSize: 16,
-      color: COLORS.muted,
-      fontFace: "Calibri",
-    }
-  );
-  s.addText(
-    "AI BuildFest gave us two days. We shipped the full loop on a free stack — and the hero is still that unprompted return.",
-    {
-      x: 0.7,
-      y: 4.5,
-      w: 11.5,
-      h: 1,
-      fontSize: 16,
-      color: COLORS.muted,
-      fontFace: "Calibri",
-    }
-  );
-  footer(s, "Case Study 2 · AI for Everyday Life", 9);
+  s.addShape(pptx.shapes.ROUNDED_RECTANGLE, {
+    x: 0.7,
+    y: 2.2,
+    w: 5.7,
+    h: 2.8,
+    fill: { color: COLORS.panel },
+    rectRadius: 0.12,
+  });
+  s.addShape(pptx.shapes.ROUNDED_RECTANGLE, {
+    x: 6.9,
+    y: 2.2,
+    w: 5.7,
+    h: 2.8,
+    fill: { color: COLORS.panel },
+    rectRadius: 0.12,
+  });
+  s.addText("PRODUCT DESIGN & UX", {
+    x: 1,
+    y: 2.45,
+    w: 5,
+    h: 0.3,
+    fontSize: 12,
+    bold: true,
+    color: COLORS.muted,
+    fontFace: "Calibri",
+  });
+  s.addText("Talodabioluwa Paul", {
+    x: 1,
+    y: 2.9,
+    w: 5,
+    h: 0.5,
+    fontSize: 22,
+    color: COLORS.ink,
+    fontFace: "Georgia",
+  });
+  s.addText("Experience, copy, flows, and the student-facing product system.", {
+    x: 1,
+    y: 3.55,
+    w: 5.1,
+    h: 1,
+    fontSize: 14,
+    color: COLORS.muted,
+    fontFace: "Calibri",
+  });
+  s.addText("ENGINEERING & WHATSAPP", {
+    x: 7.2,
+    y: 2.45,
+    w: 5,
+    h: 0.3,
+    fontSize: 12,
+    bold: true,
+    color: COLORS.muted,
+    fontFace: "Calibri",
+  });
+  s.addText("Folarin Oyewole", {
+    x: 7.2,
+    y: 2.9,
+    w: 5,
+    h: 0.5,
+    fontSize: 22,
+    color: COLORS.ink,
+    fontFace: "Georgia",
+  });
+  s.addText("Backend, Meta Cloud API, memory loop, and deploy.", {
+    x: 7.2,
+    y: 3.55,
+    w: 5.1,
+    h: 1,
+    fontSize: 14,
+    color: COLORS.muted,
+    fontFace: "Calibri",
+  });
+  s.addText("AI BuildFest 2026 · Track 3 · Case Study 2 · Participant ID BF-0933", {
+    x: 0.7,
+    y: 5.4,
+    w: 12,
+    h: 0.4,
+    fontSize: 13,
+    color: COLORS.muted,
+    fontFace: "Calibri",
+  });
+  footer(s, "Built in two days on a free stack", 10);
 }
 
-// 10 Close
+// 11 Roadmap
 {
   const s = pptx.addSlide();
   addBg(s);
@@ -596,7 +717,7 @@ function eyebrow(slide, text) {
     y: 1.1,
     w: 11.5,
     h: 1.2,
-    fontSize: 30,
+    fontSize: 28,
     color: COLORS.ink,
     fontFace: "Georgia",
   });
@@ -635,7 +756,7 @@ function eyebrow(slide, text) {
     color: COLORS.ink,
     fontFace: "Calibri",
   });
-  s.addText("NEXT", {
+  s.addText("NEXT 90 DAYS", {
     x: 7.2,
     y: 2.85,
     w: 5,
@@ -645,7 +766,7 @@ function eyebrow(slide, text) {
     color: COLORS.muted,
     fontFace: "Calibri",
   });
-  s.addText("School / tutorial pilots · teacher progress view · broader WAEC coverage.", {
+  s.addText("2–3 school / tutorial pilots · teacher progress view · broader WAEC coverage.", {
     x: 7.2,
     y: 3.3,
     w: 5.1,
@@ -654,25 +775,91 @@ function eyebrow(slide, text) {
     color: COLORS.ink,
     fontFace: "Calibri",
   });
-  s.addText("Claude waits for you. Reca comes first.", {
+  s.addText(
+    "The ask: recognition and support to pilot Reca with real students for the next WAEC/JAMB cycle.",
+    {
+      x: 0.7,
+      y: 4.8,
+      w: 12,
+      h: 0.7,
+      fontSize: 16,
+      color: COLORS.ink,
+      fontFace: "Calibri",
+    }
+  );
+  footer(s, "Case Study 2 · AI for Everyday Life", 11);
+}
+
+// 12 Thank you
+{
+  const s = pptx.addSlide();
+  addBg(s);
+  s.addShape(pptx.shapes.ROUNDED_RECTANGLE, {
     x: 0.7,
-    y: 4.8,
-    w: 12,
-    h: 0.5,
+    y: 0.55,
+    w: 0.42,
+    h: 0.42,
+    fill: { color: COLORS.accent },
+    rectRadius: 0.08,
+  });
+  s.addText("R", {
+    x: 0.7,
+    y: 0.55,
+    w: 0.42,
+    h: 0.42,
+    fontSize: 16,
+    color: "FFFFFF",
+    align: "center",
+    valign: "middle",
+    fontFace: "Georgia",
+  });
+  s.addText("Reca", {
+    x: 1.25,
+    y: 0.58,
+    w: 3,
+    h: 0.4,
     fontSize: 20,
+    color: COLORS.ink,
+    fontFace: "Georgia",
+  });
+  s.addText("THANK YOU", {
+    x: 0.7,
+    y: 2.8,
+    w: 12,
+    h: 0.35,
+    fontSize: 12,
+    bold: true,
+    color: COLORS.accent,
+    fontFace: "Calibri",
+  });
+  s.addText("Claude waits for you.\nReca comes first.", {
+    x: 0.7,
+    y: 3.25,
+    w: 11.5,
+    h: 1.6,
+    fontSize: 36,
     color: COLORS.ink,
     fontFace: "Georgia",
   });
   s.addText("https://reca-study-companion.vercel.app/signup.html", {
     x: 0.7,
-    y: 5.5,
+    y: 5.15,
     w: 12,
     h: 0.4,
-    fontSize: 14,
+    fontSize: 16,
     color: COLORS.primary,
     fontFace: "Calibri",
   });
-  footer(s, "Thank you · Reca", 10);
+  s.addText("Talodabioluwa Paul · Folarin Oyewole · BF-0933", {
+    x: 0.7,
+    y: 5.7,
+    w: 12,
+    h: 0.35,
+    fontSize: 13,
+    color: COLORS.muted,
+    fontFace: "Calibri",
+  });
+  footer(s, "AI BuildFest 2026", 12);
 }
 
 pptx.writeFile({ fileName: OUT }).then(() => {

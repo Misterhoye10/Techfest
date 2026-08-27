@@ -146,6 +146,28 @@
         max-width: 56rem;
       }
 
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.85rem;
+        margin-top: 0.5rem;
+        width: 100%;
+        max-width: 56rem;
+      }
+
+      .person-name {
+        font-family: var(--font-display);
+        font-size: 1.45rem;
+        letter-spacing: -0.02em;
+        color: #fff;
+        margin: 0.15rem 0 0.55rem;
+      }
+
+      .card--person p:last-child {
+        font-size: 0.92rem;
+        color: var(--muted);
+      }
+
       .card {
         background: color-mix(in srgb, var(--panel) 88%, transparent);
         border: 1px solid var(--line);
@@ -399,7 +421,7 @@
           The active memory companion for WAEC &amp; JAMB students — on WhatsApp.
         </p>
         <p class="meta">Live · https://reca-study-companion.vercel.app</p>
-        <div class="footer-row"><span>Reca</span><span>01 / 10</span></div>
+        <div class="footer-row"><span>Reca</span><span>01 / 12</span></div>
       </section>
 
       <!-- 2 Problem -->
@@ -424,7 +446,7 @@
             <div class="stat__l">credit pass incl. Eng + Maths — pressure, not certainty</div>
           </div>
         </div>
-        <div class="footer-row"><span>Impact starts with retention</span><span>02 / 10</span></div>
+        <div class="footer-row"><span>Impact starts with retention</span><span>02 / 12</span></div>
       </section>
 
       <!-- 3 Gap -->
@@ -451,7 +473,7 @@
             </ul>
           </div>
         </div>
-        <div class="footer-row"><span>Active vs passive memory</span><span>03 / 10</span></div>
+        <div class="footer-row"><span>Active vs passive memory</span><span>03 / 12</span></div>
       </section>
 
       <!-- 4 Solution -->
@@ -465,7 +487,7 @@
         <p class="lead" style="margin-top: 0.85rem; color: var(--accent)">
           No new app. No dashboard homework. WhatsApp is already the habit.
         </p>
-        <div class="footer-row"><span>WhatsApp-native · free stack</span><span>04 / 10</span></div>
+        <div class="footer-row"><span>WhatsApp-native · free stack</span><span>04 / 12</span></div>
       </section>
 
       <!-- 5 Loop / functionality -->
@@ -498,7 +520,7 @@
           Web + WhatsApp sync · Learn / Revise / Progress · 10 subjects · photo past-question path ·
           shipped on Meta Cloud API + Gemini with preset fallback.
         </p>
-        <div class="footer-row"><span>Working product, not a mock</span><span>05 / 10</span></div>
+        <div class="footer-row"><span>Working product, not a mock</span><span>05 / 12</span></div>
       </section>
 
       <!-- 6 AI -->
@@ -525,7 +547,7 @@
           Preset curriculum bank keeps the demo reliable if the model is offline. AI is the teacher;
           spaced recall is the product.
         </p>
-        <div class="footer-row"><span>LLM + correctness-triggered memory</span><span>06 / 10</span></div>
+        <div class="footer-row"><span>LLM + correctness-triggered memory</span><span>06 / 12</span></div>
       </section>
 
       <!-- 7 Impact -->
@@ -538,11 +560,35 @@
           <li><span>✓</span> Turns “I read it” into “I still know it”</li>
           <li><span>✓</span> Free-tier stack so a pilot doesn’t require paid infrastructure day one</li>
         </ul>
-        <div class="footer-row"><span>Everyday life · exam calendar demand</span><span>07 / 10</span></div>
+        <div class="footer-row"><span>Everyday life · exam calendar demand</span><span>07 / 12</span></div>
       </section>
 
-      <!-- 8 Live + demo -->
+      <!-- 8 Business -->
       <section class="slide" data-slide="8">
+        <p class="eyebrow">Business model</p>
+        <h2>Free for students first. Paid where schools need visibility.</h2>
+        <div class="grid-3">
+          <div class="card">
+            <h3>Freemium</h3>
+            <p>Individual students stay free — low marginal AI cost per interaction.</p>
+          </div>
+          <div class="card">
+            <h3>B2B2C</h3>
+            <p>Private schools &amp; tutorial centres — per-student / cohort plans + teacher progress view.</p>
+          </div>
+          <div class="card">
+            <h3>Sponsored access</h3>
+            <p>Exam-prep sponsors, NGOs, or telcos subsidise public-school students (zero-rated data).</p>
+          </div>
+        </div>
+        <p class="lead" style="margin-top: 1.1rem; font-size: 0.95rem">
+          Moat: attempt history + WhatsApp distribution + WAEC/JAMB curriculum — not “another generic chat.”
+        </p>
+        <div class="footer-row"><span>Post-fest roadmap</span><span>08 / 12</span></div>
+      </section>
+
+      <!-- 9 Live + demo -->
+      <section class="slide" data-slide="9">
         <p class="eyebrow">Live link &amp; demo</p>
         <h2>Try the product. Watch the aha.</h2>
         <p class="lead">
@@ -555,27 +601,33 @@
         <p class="meta" style="margin-top: 1.5rem">
           Demo script: explain photosynthesis → wrong Q1 → unprompted resurface → chloroplast
         </p>
-        <div class="footer-row"><span>Guest mode available</span><span>08 / 10</span></div>
+        <div class="footer-row"><span>Guest mode available</span><span>09 / 12</span></div>
       </section>
 
-      <!-- 9 Why we built -->
-      <section class="slide" data-slide="9">
-        <p class="eyebrow">Why we built Reca</p>
-        <h2>Because explanations without follow-up still leave students alone.</h2>
-        <p class="lead">
-          We didn’t set out to build “another chatbot.” We set out to close the gap between
-          understanding a topic tonight and still owning it on exam day — on the phone students
-          already hold after school.
-        </p>
-        <p class="lead" style="margin-top: 1rem">
-          AI BuildFest gave us two days. We shipped the full loop on a free stack — and the
-          hero is still that unprompted return.
-        </p>
-        <div class="footer-row"><span>Case Study 2 · AI for Everyday Life</span><span>09 / 10</span></div>
-      </section>
-
-      <!-- 10 Close -->
+      <!-- 10 Team -->
       <section class="slide" data-slide="10">
+        <p class="eyebrow">The team</p>
+        <h2>Who built Reca.</h2>
+        <div class="grid-2">
+          <div class="card card--person">
+            <h3>Product design &amp; UX</h3>
+            <p class="person-name">Talodabioluwa Paul</p>
+            <p>Experience, copy, flows, and the student-facing product system.</p>
+          </div>
+          <div class="card card--person">
+            <h3>Engineering &amp; WhatsApp</h3>
+            <p class="person-name">Folarin Oyewole</p>
+            <p>Backend, Meta Cloud API, memory loop, and deploy.</p>
+          </div>
+        </div>
+        <p class="meta" style="margin-top: 1.25rem">
+          AI BuildFest 2026 · Track 3 · Case Study 2 · Participant ID <strong style="color:#fff">BF-0933</strong>
+        </p>
+        <div class="footer-row"><span>Built in two days on a free stack</span><span>10 / 12</span></div>
+      </section>
+
+      <!-- 11 Roadmap / ask -->
+      <section class="slide" data-slide="11">
         <p class="eyebrow">What’s next</p>
         <h2>Pilot with real students. Expand the syllabus. Keep coming first.</h2>
         <div class="grid-2">
@@ -584,23 +636,39 @@
             <p>Working loop on WhatsApp + web. Live link ready for judges.</p>
           </div>
           <div class="card">
-            <h3>Next</h3>
-            <p>School / tutorial pilots · teacher progress view · broader WAEC subject coverage.</p>
+            <h3>Next 90 days</h3>
+            <p>2–3 school / tutorial pilots · teacher progress view · broader WAEC subject coverage.</p>
           </div>
         </div>
-        <p class="lead" style="margin-top: 1.35rem">
-          Claude waits for you. <strong style="color: #fff">Reca comes first.</strong>
+        <p class="lead" style="margin-top: 1.25rem; font-size: 0.98rem">
+          <strong style="color:#fff">The ask:</strong> recognition and support to pilot Reca with real students
+          for the next WAEC/JAMB cycle.
+        </p>
+        <div class="footer-row"><span>Case Study 2 · AI for Everyday Life</span><span>11 / 12</span></div>
+      </section>
+
+      <!-- 12 Thank you -->
+      <section class="slide slide--title" data-slide="12">
+        <div class="brand-row">
+          <div class="brand-mark" aria-hidden="true">R</div>
+          <div class="brand-name">Reca</div>
+        </div>
+        <p class="eyebrow">Thank you</p>
+        <h1>Claude waits for you.<br />Reca comes first.</h1>
+        <p class="lead" style="margin-top: 1rem">
+          Questions welcome — try the live product or ask about the resurface demo.
         </p>
         <a class="link" href="https://reca-study-companion.vercel.app/signup.html" target="_blank" rel="noopener">
-          Live product →
+          https://reca-study-companion.vercel.app/signup.html →
         </a>
-        <div class="footer-row"><span>Thank you · Reca</span><span>10 / 10</span></div>
+        <p class="meta">Talodabioluwa Paul · Folarin Oyewole · BF-0933</p>
+        <div class="footer-row"><span>AI BuildFest 2026</span><span>12 / 12</span></div>
       </section>
     </div>
 
     <nav class="nav" aria-label="Slides">
       <button type="button" id="prev">←</button>
-      <span class="nav__count" id="count">1 / 10</span>
+      <span class="nav__count" id="count">1 / 12</span>
       <button type="button" id="next">→</button>
     </nav>
 
