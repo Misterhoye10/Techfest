@@ -19,6 +19,11 @@ const BY_KEY = {
     caption: "Aerobic respiration — glucose + oxygen → energy",
     alt: "Simple diagram of aerobic respiration",
   },
+  "anaerobic-respiration": {
+    src: "/assets/diagrams/respiration.svg",
+    caption: "Respiration — releasing energy from food",
+    alt: "Simple diagram of respiration",
+  },
   respiration: {
     src: "/assets/diagrams/respiration.svg",
     caption: "Respiration — releasing energy from food",
@@ -29,7 +34,22 @@ const BY_KEY = {
     caption: "Acids, bases, and the pH scale",
     alt: "Simple pH scale from acid to base",
   },
+  "acids-and-bases": {
+    src: "/assets/diagrams/acids-bases.svg",
+    caption: "Acids, bases, and the pH scale",
+    alt: "Simple pH scale from acid to base",
+  },
   acid: {
+    src: "/assets/diagrams/acids-bases.svg",
+    caption: "Acids, bases, and the pH scale",
+    alt: "Simple pH scale from acid to base",
+  },
+  alkali: {
+    src: "/assets/diagrams/acids-bases.svg",
+    caption: "Acids, bases, and the pH scale",
+    alt: "Simple pH scale from acid to base",
+  },
+  ph: {
     src: "/assets/diagrams/acids-bases.svg",
     caption: "Acids, bases, and the pH scale",
     alt: "Simple pH scale from acid to base",
@@ -49,11 +69,6 @@ const BY_KEY = {
     caption: "Diffusion — particles spread from high to low concentration",
     alt: "Simple diagram of diffusion",
   },
-  "acids-and-bases": {
-    src: "/assets/diagrams/acids-bases.svg",
-    caption: "Acids, bases, and the pH scale",
-    alt: "Simple pH scale from acid to base",
-  },
   "cell-structure": {
     src: "/assets/diagrams/cell.svg",
     caption: "Animal cell — key parts",
@@ -63,6 +78,30 @@ const BY_KEY = {
     src: "/assets/diagrams/cell.svg",
     caption: "Animal cell — key parts",
     alt: "Simple animal cell diagram",
+  },
+  genetics: {
+    src: "/assets/diagrams/cell.svg",
+    caption: "Cell — where genetic material lives",
+    alt: "Simple animal cell diagram",
+  },
+  chromosome: {
+    src: "/assets/diagrams/cell.svg",
+    caption: "Cell — where genetic material lives",
+    alt: "Simple animal cell diagram",
+  },
+};
+
+/** Subject fallbacks — only when a real diagram exists for that subject family */
+const BY_SUBJECT = {
+  biology: {
+    src: "/assets/diagrams/cell.svg",
+    caption: "Animal cell — key parts",
+    alt: "Simple animal cell diagram",
+  },
+  chemistry: {
+    src: "/assets/diagrams/acids-bases.svg",
+    caption: "Acids, bases, and the pH scale",
+    alt: "Simple pH scale from acid to base",
   },
 };
 
@@ -74,18 +113,15 @@ function getDiagram(topicId, subject) {
 
   if (BY_KEY[id]) return { ...BY_KEY[id], topicId: id };
 
-  const hit = Object.keys(BY_KEY).find((key) => id.includes(key) || key.includes(id));
+  // Prefer longer keys first so "acids-and-bases" wins over "acid"
+  const keys = Object.keys(BY_KEY).sort((a, b) => b.length - a.length);
+  const hit = keys.find((key) => id.includes(key) || key.includes(id));
   if (hit) return { ...BY_KEY[hit], topicId: id };
 
   const sub = String(subject || "").toLowerCase();
-  if (sub.includes("biology")) {
-    return {
-      src: "/assets/diagrams/cell.svg",
-      caption: "Animal cell — key parts",
-      alt: "Simple animal cell diagram",
-      topicId: id,
-    };
-  }
+  if (sub.includes("biology")) return { ...BY_SUBJECT.biology, topicId: id };
+  if (sub.includes("chemistry")) return { ...BY_SUBJECT.chemistry, topicId: id };
+
   return null;
 }
 

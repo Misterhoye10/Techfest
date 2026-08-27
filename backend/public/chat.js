@@ -1210,14 +1210,31 @@
     return { text: String(reply || ""), image: null };
   }
 
+  function assetUrl(src) {
+    const raw = String(src || "").trim();
+    if (!raw) return "";
+    if (/^(https?:|data:|blob:)/i.test(raw)) return raw;
+    try {
+      return new URL(raw, window.location.origin).href;
+    } catch (_) {
+      return raw;
+    }
+  }
+
   function appendMedia(el, image) {
     if (!image?.src || !el) return;
     const figure = document.createElement("figure");
     figure.className = "msg__media";
     const img = document.createElement("img");
-    img.src = image.src;
+    img.src = assetUrl(image.src);
     img.alt = image.alt || image.caption || "Teaching diagram";
-    img.loading = "lazy";
+    img.decoding = "async";
+    img.loading = "eager";
+    img.width = 640;
+    img.height = 360;
+    img.addEventListener("error", () => {
+      figure.hidden = true;
+    });
     figure.appendChild(img);
     if (image.caption) {
       const cap = document.createElement("figcaption");
@@ -1910,15 +1927,28 @@
     if (quizDiagram && quizDiagramImg) {
       if (q.diagram?.src) {
         quizDiagram.hidden = false;
-        quizDiagramImg.src = q.diagram.src;
+        quizDiagram.removeAttribute("hidden");
+        quizDiagram.style.display = "block";
+        quizDiagramImg.removeAttribute("hidden");
+        quizDiagramImg.src = assetUrl(q.diagram.src);
         quizDiagramImg.alt = q.diagram.alt || q.diagram.caption || "Topic diagram";
+        quizDiagramImg.decoding = "async";
+        quizDiagramImg.loading = "eager";
+        quizDiagramImg.width = 640;
+        quizDiagramImg.height = 360;
+        quizDiagramImg.onerror = () => {
+          quizDiagram.hidden = true;
+          quizDiagram.style.display = "";
+        };
         if (quizDiagramCap) quizDiagramCap.textContent = q.diagram.caption || "";
         quizDiagram.style.animation = "none";
         void quizDiagram.offsetWidth;
         quizDiagram.style.animation = "";
       } else {
         quizDiagram.hidden = true;
+        quizDiagram.style.display = "";
         quizDiagramImg.removeAttribute("src");
+        quizDiagramImg.onerror = null;
         if (quizDiagramCap) quizDiagramCap.textContent = "";
       }
     }
