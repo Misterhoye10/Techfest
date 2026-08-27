@@ -1,10 +1,16 @@
 (() => {
   const FALLBACK_TOPICS = [
-    { id: "genetics-basics", label: "Genetics basics", subject: "Biology", send: "explain genetics basics", icon: "bubble-chat-double" },
+    { id: "photosynthesis", label: "Photosynthesis", subject: "Biology", send: "explain photosynthesis", icon: "sun-03" },
     { id: "osmosis", label: "Osmosis", subject: "Biology", send: "explain osmosis", icon: "droplet" },
+    { id: "genetics-basics", label: "Genetics basics", subject: "Biology", send: "explain genetics basics", icon: "bubble-chat-double" },
     { id: "aerobic-respiration", label: "Respiration", subject: "Biology", send: "explain aerobic respiration", icon: "lungs" },
     { id: "acids-bases", label: "Acids & bases", subject: "Chemistry", send: "explain acids and bases", icon: "chemistry-01" },
   ];
+
+  const DEMO_TOPIC_IDS = ["photosynthesis", "osmosis", "genetics-basics"];
+  const urlParams = new URLSearchParams(location.search);
+  const wantsGuest = urlParams.get("guest") === "1";
+  const showBrowseTopics = urlParams.get("browse") === "1";
 
   const app = document.getElementById("app");
   const thread = document.getElementById("thread");
@@ -365,7 +371,9 @@
 
   function recommendedTopic() {
     return (
-      TOPICS.find((t) => t.id === "genetics-basics") ||
+      TOPICS.find((t) => t.id === "photosynthesis") ||
+      TOPICS.find((t) => /photosynthesis/i.test(t.label)) ||
+      TOPICS.find((t) => t.id === "osmosis") ||
       TOPICS.find((t) => /genetics/i.test(t.label)) ||
       TOPICS[0]
     );
@@ -378,6 +386,8 @@
     if (reviseTitle) reviseTitle.textContent = rec.label;
     const reviseMeta = document.getElementById("reviseRecommendMeta") || reviseRecommend?.querySelector(".recommend__meta");
     if (reviseMeta) reviseMeta.textContent = `${rec.subject || "Biology"} · 5 questions`;
+    const browse = document.getElementById("reviseBrowse");
+    if (browse) browse.hidden = !showBrowseTopics;
   }
 
   /** Inline SVGs — no icon font (CDN glyphs were rendering as CJK tofu). */
@@ -678,7 +688,7 @@
     const link = document.getElementById("waContinueLink");
     if (link) {
       link.href = continueOnWhatsAppUrl(
-        lastLearnTopic?.label || activeQuizTopic?.label || "genetics-basics"
+        lastLearnTopic?.label || activeQuizTopic?.label || "photosynthesis"
       );
       link.hidden = false;
     }
@@ -1431,6 +1441,13 @@
       return list;
     }
     const list = filtered(filter, query);
+    if (mode === "learn" || mode === "revise") {
+      const demoFirst = DEMO_TOPIC_IDS.map((id) => list.find((t) => t.id === id)).filter(Boolean);
+      const rest = list.filter((t) => !DEMO_TOPIC_IDS.includes(t.id));
+      if (!query && filter === "All" && demoFirst.length) {
+        return [...demoFirst, ...rest].slice(0, mode === "learn" ? 8 : list.length);
+      }
+    }
     // No search/filter: sample per subject so English/Agric/languages aren't buried under Biology
     if (!query && filter === "All") return balancedTopicSample(list, 8);
     return list;
@@ -1833,7 +1850,7 @@
     btn.append(iconEl("quiz-03"), document.createTextNode(" Try 2 quick questions"));
     btn.addEventListener("click", () => topic && startRevise(topic, { limit: 2 }));
 
-    const wa = makeContinueWaButton(topic?.label || topic?.id || "genetics-basics");
+    const wa = makeContinueWaButton(topic?.label || topic?.id || "photosynthesis");
     wa.className = "learn-cta__link";
     wa.textContent = "Continue on WhatsApp";
 
@@ -2113,7 +2130,7 @@
     toLearn.textContent = "Back to Learn";
     toLearn.addEventListener("click", () => setFeature("learn"));
 
-    const onWa = makeContinueWaButton(summary.topicLabel || summary.topicId || "genetics-basics");
+    const onWa = makeContinueWaButton(summary.topicLabel || summary.topicId || "photosynthesis");
     onWa.className = "learn-cta__link";
     onWa.textContent = "Continue on WhatsApp";
 
@@ -2275,8 +2292,11 @@
   }
 
   async function startSession(fresh = false) {
-    if (fresh) {
+    if (fresh || wantsGuest) {
       localStorage.removeItem("reca_phone");
+      localStorage.removeItem("reca_signed_in");
+      localStorage.removeItem("reca_email");
+      if (wantsGuest) localStorage.setItem("reca_guest", "1");
       phone = "";
       lastEventId = "";
       seen.clear();
@@ -2497,7 +2517,7 @@
       const link = document.getElementById("waContinueLink");
       if (link) {
         link.href = continueOnWhatsAppUrl(
-          lastLearnTopic?.label || activeQuizTopic?.label || "genetics-basics"
+          lastLearnTopic?.label || activeQuizTopic?.label || "photosynthesis"
         );
         link.hidden = false;
       }
@@ -2720,8 +2740,13 @@
 
   loadConfig()
     .then(() => loadTopics())
-    .then(() => startSession(false))
+    .then(() => startSession(wantsGuest))
     .then(() => {
+      if (wantsGuest) {
+        const clean = new URL(location.href);
+        clean.searchParams.delete("guest");
+        history.replaceState({}, "", clean);
+      }
       refreshWhatsAppStatus();
       setFeature("learn");
       syncSendEnabled();
