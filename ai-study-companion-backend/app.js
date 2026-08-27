@@ -27,6 +27,7 @@ const META_API_VERSION = 'v18.0';
 const META_BUSINESS_ACCOUNT_ID = '1323786675754976';
 
 const userSessions = {};
+const userProgress = {};
 
 // ========== HEALTH CHECK ==========
 app.get('/', (req, res) => {
@@ -346,12 +347,43 @@ Format your response as a clean WhatsApp message.`;
           feedbackText = res.data.content[0].text;
         }
 
+        // Calculate study streak
+        const progress = userProgress[senderPhone] || { streak: 0, lastDate: null };
+        const today = new Date().toDateString();
+        const yesterday = new Date(Date.now() - 86400000).toDateString();
+        
+        if (progress.lastDate === yesterday) {
+          progress.streak += 1;
+        } else if (progress.lastDate === today) {
+          // Keep current streak if they study multiple times in a day
+        } else {
+          progress.streak = 1; // start new streak
+        }
+        progress.lastDate = today;
+        userProgress[senderPhone] = progress;
+
         // Clear session after grading
         delete userSessions[senderPhone];
 
+        // Append streak message
+        const streakMessage = `\n\n🔥 *Daily Streak: ${progress.streak} days!* Keep it up! 🎓`;
+        const finalFeedback = feedbackText + streakMessage;
+
         // Send feedback
-        await sendMetaWhatsAppMessage(senderPhone, feedbackText);
-        console.log('✅ Grading feedback sent');
+        await sendMetaWhatsAppMessage(senderPhone, finalFeedback);
+        console.log('✅ Grading feedback and streak sent');
+
+        // Schedule simulated push notification reminder for 15 seconds later (Demo feature)
+        setTimeout(async () => {
+          try {
+            console.log(`🔔 Sending simulated streak reminder to ${senderPhone}...`);
+            const reminderText = `🔔 *Reca Study Reminder* 🔔\n\nHey study buddy! Keep your 🔥 *${progress.streak}-day streak* alive!\n\nWhat would you like to study today? Reply with *explain [topic]* (e.g. "explain photosynthesis" or "explain gravity").`;
+            await sendMetaWhatsAppMessage(senderPhone, reminderText);
+            console.log(`✅ Simulated daily reminder sent to ${senderPhone}`);
+          } catch (err) {
+            console.error('❌ Error sending simulated reminder:', err.message);
+          }
+        }, 15000);
       } catch (error) {
         console.error('❌ Error grading answers:', error.message);
         await sendMetaWhatsAppMessage(senderPhone, '❌ Sorry, I had trouble grading your answers. Try sending "explain [topic]" to start a new quiz!');
