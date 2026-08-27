@@ -31,11 +31,11 @@ If step 6 fails live, we look like every other study chatbot.
 
 | # | Requirement | Done when |
 |---|-------------|-----------|
-| 1 | WhatsApp in/out (Twilio sandbox or Meta test number) | Send a message → get a reply on a real phone |
-| 2 | Explain + quiz via Claude | Topic in → short explanation + 2 questions out |
-| 3 | Grade + store | Answer graded; wrong answers saved in Supabase with `next_review_date` |
-| 4 | Resurface (hero) | Cron or manual trigger sends weak question unprompted (1–2 min compressed timer for demo) |
-| 5 | Recap | `how am I doing in Biology?` returns strong / needs work from DB |
+| 1 | WhatsApp in/out (Meta Cloud API test number) | Send a message → get a reply on a real allow-listed phone |
+| 2 | Explain + quiz via Gemini (preset fallback) | Topic in → short explanation + 2 questions out |
+| 3 | Grade + store | Answer graded; wrong answers saved with `nextReviewAt` (in-memory for fest; Supabase for student identity) |
+| 4 | Resurface (hero) | Cron or `POST /demo/resurface` (+ `DEMO_SECRET`) sends weak question unprompted (1–2 min compressed timer) |
+| 5 | Recap | `how am I doing in Biology?` returns strong / needs work |
 
 ### MVP feature list (product)
 
