@@ -52,20 +52,23 @@ If step 6 fails live, we look like every other study chatbot.
 
 ## 3. Do not build (out of scope for this fest)
 
-- Photo-of-notes / OCR / PDF upload
+- Photo-of-notes / OCR / PDF upload **during the live demo window**
 - Companion web dashboard (unless Day 2 has spare time after loop is solid)
 - Full syllabus across all subjects
 - True SM-2 adaptive spaced repetition
 - Yoruba / Igbo / Hausa
 - Parent or teacher progress dashboard
 - Nexus / Case Study 3 features
-- Fancy marketing UI
+- Fancy marketing UI / Nomi-style shopping carousels
+- Fine-tuned “trained on my past questions” models
+
+**Locked next slice (after resurface is green):** one photo of a past question/notes → explain + 2 quiz questions → misses still resurface. See [decisions/0001-capture-and-visual-answers.md](./decisions/0001-capture-and-visual-answers.md).
 
 Stretch only if Day 1 loop is green and Day 2 morning resurface works:
 
-- Photo-of-notes input
+- Photo-of-notes input (that next slice)
+- Teaching diagrams in answers when they clarify the concept
 - Difficulty scaling
-- Simple companion web view
 
 ---
 
