@@ -167,9 +167,10 @@ function publicError(err, fallback = "Something went wrong. Try again.") {
 }
 
 function otpEchoAllowed() {
-  if (isProd()) return false;
   const dry = String(process.env.DRY_RUN).toLowerCase() === "true";
-  return dry || String(process.env.OTP_ECHO).toLowerCase() === "true";
+  const forceEcho = String(process.env.OTP_ECHO || "").toLowerCase() === "true";
+  if (isProd() && !dry && !forceEcho) return false;
+  return dry || forceEcho;
 }
 
 const globalLimiter = rateLimit({
