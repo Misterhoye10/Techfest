@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Reca</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/signup.css" />
+  </head>
+  <body>
+    <main class="auth">
+      <section class="auth__panel" aria-labelledby="authTitle">
+        <a class="auth__brand" href="/signup.html">
+          <span class="auth__mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
+              <path d="M22 10v6" />
+              <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
+            </svg>
+          </span>
+          <span class="auth__brand-name">Reca</span>
+        </a>
+
+        <div class="auth__body">
+          <h1 class="auth__title" id="authTitle">Continue with WhatsApp</h1>
+
+          <div class="auth__modes" role="tablist" aria-label="Account">
+            <button type="button" class="auth__mode is-active" role="tab" aria-selected="true" data-mode="signup" id="modeSignup">
+              New
+            </button>
+            <button type="button" class="auth__mode" role="tab" aria-selected="false" data-mode="signin" id="modeSignin">
+              Returning
+            </button>
+          </div>
+
+          <form class="auth__form" id="authForm" novalidate>
+            <label class="auth__field" id="nameField">
+              <span class="auth__label">Name</span>
+              <input
+                id="authName"
+                name="name"
+                type="text"
+                maxlength="40"
+                autocomplete="nickname"
+                placeholder="Chiamaka"
+              />
+            </label>
+
+            <label class="auth__field">
+              <span class="auth__label">WhatsApp</span>
+              <div class="auth__phone">
+                <span class="auth__phone-prefix" aria-hidden="true">+234</span>
+                <input
+                  id="authPhone"
+                  name="phone"
+                  type="tel"
+                  inputmode="tel"
+                  autocomplete="tel"
+                  placeholder="801 234 5678"
+                  required
+                />
+              </div>
+            </label>
+
+            <p class="auth__error" id="authError" hidden role="alert"></p>
+
+            <button type="submit" class="auth__primary" id="authSubmit">Send code</button>
+          </form>
+
+          <form class="auth__otp" id="otpForm" hidden novalidate>
+            <h1 class="auth__title auth__title--sm" id="otpHeading">Enter code</h1>
+            <label class="auth__field">
+              <span class="auth__label">Code</span>
+              <input
+                id="otpCode"
+                name="code"
+                type="text"
+                inputmode="numeric"
+                pattern="[0-9]*"
+                maxlength="4"
+                autocomplete="one-time-code"
+                placeholder="••••"
+                required
+              />
+            </label>
+            <p class="auth__error" id="otpError" hidden role="alert"></p>
+            <p class="auth__dev" id="otpDev" hidden></p>
+            <button type="submit" class="auth__primary" id="otpSubmit">Continue</button>
+            <div class="auth__otp-actions">
+              <button type="button" class="auth__text" id="otpResend">Resend</button>
+              <button type="button" class="auth__text" id="otpBack">Change number</button>
+            </div>
+          </form>
+
+          <div class="auth__sync" id="syncCard" hidden>
+            <h1 class="auth__title auth__title--sm">Ready</h1>
+            <a class="auth__wa" id="syncWaLink" href="#" target="_blank" rel="noopener">Open WhatsApp</a>
+            <button type="button" class="auth__secondary" id="syncContinue">Open Reca</button>
+          </div>
+
+          <a class="auth__guest" id="authGuest" href="/chat.html?guest=1">Continue as guest</a>
+        </div>
+      </section>
+
+      <aside class="auth__visual" aria-hidden="true">
+        <div class="auth__visual-frame">
+          <img
+            class="auth__visual-img"
+            src="/assets/reca-signup-hero.png"
+            alt=""
+            width="900"
+            height="1200"
+            decoding="async"
+          />
+          <p class="auth__visual-line">Reca comes to you first.</p>
+        </div>
+      </aside>
+    </main>
+
+    <script src="/signup.js" defer></script>
+  </body>
+</html>

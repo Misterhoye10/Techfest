@@ -1,9 +1,12 @@
 # Reca — Live demo script (~90 seconds)
 
-**Pitch line (say first):** ChatGPT forgets. Reca doesn’t — it remembers what you got wrong and comes back.
+**Pitch line (say first):** Claude and ChatGPT remember when you come back. Reca comes to you first.
 
-**Persona on stage:** Chiamaka (SS3, WAEC Biology)  
-**Channel:** WhatsApp (Twilio sandbox — demo phone must be joined)  
+**If a judge cites Claude Memory, say:**  
+> Claude and ChatGPT remember what you tell them when you come back and ask. Reca doesn’t wait for you to come back — it decides on its own when you’re due to forget something, and comes to you first.
+
+**Persona on stage:** Chiamaka (SS3, WAEC Biology) — studying on her own phone after school  
+**Channel:** WhatsApp (Twilio sandbox — demo phone must be joined) · web chat backup at `/chat.html`  
 **Hero moment:** Step 5 — Reca messages **first** (unprompted)
 
 Related: [demo-topics.md](./demo-topics.md) · [conversation-copy.md](./conversation-copy.md) · [BUILD-REQUIREMENTS.md](./BUILD-REQUIREMENTS.md)
@@ -15,7 +18,8 @@ Related: [demo-topics.md](./demo-topics.md) · [conversation-copy.md](./conversa
 - [ ] Demo phone joined to sandbox
 - [ ] Backup phone joined
 - [ ] Hosting warmed (open health URL 5–10 min before)
-- [ ] Manual resurface trigger ready (backup if cron is slow)
+- [ ] Manual resurface trigger ready: `POST /demo/resurface`
+- [ ] Optional briefing trigger: `POST /demo/briefing` (“23 days to WAEC…”)
 - [ ] Pre-seeded student profile optional (if live AI fails)
 - [ ] This script rehearsed twice
 
@@ -23,7 +27,7 @@ Related: [demo-topics.md](./demo-topics.md) · [conversation-copy.md](./conversa
 
 ## Spoken intro (15 sec)
 
-> Millions of WAEC and JAMB students reread notes and still forget. Every chatbot can explain photosynthesis once. None of them remember that *this* student got *this* question wrong — and message them again later. That’s Reca. Watch.
+> Millions of WAEC and JAMB students reread notes and still forget. Every chatbot can explain photosynthesis once. Their memory is passive — you have to come back and ask. Reca decides when you’re due to forget, and messages you first. Watch.
 
 ---
 
@@ -57,7 +61,7 @@ Q1 mitochondria, Q2 glucose and oxygen
 
 ### Step 4 — Narrate for judges (5 sec)
 
-> She got one wrong. A normal chatbot stops here. Reca stores that weak spot.
+> She got one wrong. A normal chatbot stops here. Reca stores that weak spot — and schedules the follow-up. She doesn’t have to come back and ask.
 
 ### Step 5 — HERO: unprompted resurface
 
@@ -89,7 +93,7 @@ how am I doing in Biology?
 
 ## Spoken close (10 sec)
 
-> That’s the product: not another explainer — a memory layer on WhatsApp, where students already live. Built on a free stack in two days. ChatGPT forgets. Reca doesn’t.
+> That’s the product: not another explainer — an active memory companion on WhatsApp, where students already study after school. Built on a free stack. Claude waits for you. Reca comes first.
 
 ---
 
@@ -97,7 +101,8 @@ how am I doing in Biology?
 
 1. Show Twilio/Meta logs + DB row: attempt stored with `next_review_date`  
 2. Fire manual resurface on a backup joined phone  
-3. If AI is down: use pre-seeded photosynthesis session (same scripted messages)
+3. Fire `/demo/briefing` to show the daily companion line  
+4. If AI is down: use pre-seeded photosynthesis session (same scripted messages)
 
 **Never improvise a new topic on stage.** Stick to photosynthesis (primary) or osmosis (backup) from [demo-topics.md](./demo-topics.md).
 
@@ -110,7 +115,7 @@ how am I doing in Biology?
 | 0:00 | Pitch line |
 | 0:15 | Send explain |
 | 0:30 | Wrong answer |
-| 0:40 | Narrate memory |
+| 0:40 | Narrate active memory |
 | 0:45 | Resurface lands |
 | 1:05 | Correct + recap |
 | 1:20 | Close |

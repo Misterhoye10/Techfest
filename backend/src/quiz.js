@@ -42,8 +42,8 @@ function startQuiz(phone, topicId) {
     const j = Math.floor(Math.random() * (i + 1));
     [order[i], order[j]] = [order[j], order[i]];
   }
-  // Full topic bank — each curriculum topic ships 100 Q&As
-  const session = order.slice(0, Math.min(100, order.length));
+  // Full topic bank — each curriculum topic ships 50 Q&As
+  const session = order.slice(0, Math.min(50, order.length));
 
   student.quiz = {
     topicId: topic.id,
@@ -113,12 +113,16 @@ function answerQuiz(phone, answer) {
     message: correct
       ? "Correct — well done."
       : question.correction || `Not quite. The answer is ${question.correctAnswer}.`,
+    memoryPromise: correct
+      ? null
+      : "I'll remember this one for you — I'll check again soon. Watch Progress for what's due.",
   };
 
   const nextIndex = qi + 1;
   if (nextIndex >= order.length) {
     const score = student.quiz.results.filter((r) => r.correct).length;
     const total = student.quiz.results.length;
+    const missed = total - score;
     student.quiz = null;
     return {
       ok: true,
@@ -132,7 +136,7 @@ function answerQuiz(phone, answer) {
         message:
           score === total
             ? `Nice — ${score}/${total} correct. You've got this topic for now.`
-            : `${score}/${total} correct. I'll remember what you missed and bring it back later.`,
+            : `${score}/${total} correct. I'll remember the ${missed} you missed and bring them back later.`,
       },
       question: null,
     };
@@ -148,4 +152,35 @@ function answerQuiz(phone, answer) {
   };
 }
 
-module.exports = { startQuiz, answerQuiz, currentQuiz };
+/** End revise early — keep attempts already logged for Progress / resurface. */
+function endQuiz(phone) {
+  const student = store.getStudent(phone);
+  if (!student.quiz) return { ok: true, ended: false };
+  const topic = findTopicById(student.quiz.topicId);
+  const score = student.quiz.results.filter((r) => r.correct).length;
+  const total = student.quiz.results.length;
+  const topicId = student.quiz.topicId;
+  const label = topic ? topicLabel(topic) : topicId;
+  student.quiz = null;
+  const missed = student.attempts.filter(
+    (a) => a.topicId === topicId && !a.isCorrect && !a.cleared
+  ).length;
+  return {
+    ok: true,
+    ended: true,
+    summary: {
+      topicLabel: label,
+      topicId,
+      score,
+      total,
+      message:
+        total === 0
+          ? "Session ended. Pick a topic when you're ready."
+          : missed > 0
+            ? `Paused at ${score}/${total}. I'll remember what you missed.`
+            : `Paused at ${score}/${total}. Solid work — come back anytime.`,
+    },
+  };
+}
+
+module.exports = { startQuiz, answerQuiz, currentQuiz, endQuiz };

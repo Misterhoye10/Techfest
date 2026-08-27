@@ -34,6 +34,19 @@
   const quizOptions = document.getElementById("quizOptions");
   const quizFeedback = document.getElementById("quizFeedback");
   const quizSummary = document.getElementById("quizSummary");
+  const quizBar = document.getElementById("quizBar");
+  const quizMemory = document.getElementById("quizMemory");
+  const quizEndBtn = document.getElementById("quizEndBtn");
+  const progressDue = document.getElementById("progressDue");
+  const progressDueList = document.getElementById("progressDueList");
+  const progressDueLead = document.getElementById("progressDueLead");
+  const learnRecommend = document.getElementById("learnRecommend");
+  const reviseRecommend = document.getElementById("reviseRecommend");
+  const profileBtn = document.getElementById("profileBtn");
+  const profilePopover = document.getElementById("profilePopover");
+  const profileName = document.getElementById("profileName");
+  const profileExamDate = document.getElementById("profileExamDate");
+  const profileWrap = document.getElementById("profileWrap");
 
   const progressPanel = document.getElementById("progressPanel");
   const progressEmpty = document.getElementById("progressEmpty");
@@ -65,6 +78,292 @@
   let thinkingEl = null;
   let thinkingTimer = null;
   let quizLocked = false;
+  let recaConfig = {
+    whatsappNumber: "15556777893",
+  };
+
+  function continueOnWhatsAppUrl(topicLabel) {
+    const biz = String(recaConfig.whatsappNumber || "15556777893").replace(/\D/g, "");
+    const topic = String(topicLabel || "photosynthesis")
+      .trim()
+      .replace(/^explain\s+/i, "");
+    return `https://wa.me/${biz}?text=${encodeURIComponent(`explain ${topic}`)}`;
+  }
+
+  async function loadConfig() {
+    try {
+      const res = await fetch("/api/config");
+      const data = await res.json();
+      if (data.whatsappNumber) recaConfig.whatsappNumber = data.whatsappNumber;
+    } catch (_) {
+      /* defaults */
+    }
+  }
+
+  async function sendWhatsAppAlert(message) {
+    const p = (localStorage.getItem("reca_phone") || phone || "").replace(/\D/g, "");
+    if (!p || !message) return;
+    try {
+      await fetch("/api/send-alert", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone: p, message }),
+      });
+    } catch (_) {
+      /* best-effort — Render may be cold */
+    }
+  }
+
+  function makeContinueWaButton(topicLabel) {
+    const a = document.createElement("a");
+    a.className = "learn-cta__btn learn-cta__btn--wa";
+    a.href = continueOnWhatsAppUrl(topicLabel);
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.textContent = "Continue on WhatsApp";
+    return a;
+  }
+
+  let lastLearnTopic = null;
+  let activeQuizTopic = null;
+  let activeNudge = null;
+  const UNREAD_KEY = "reca_unread_nudges";
+
+  function loadUnreadNudges() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(UNREAD_KEY) || "[]");
+      return Array.isArray(raw) ? raw : [];
+    } catch (_) {
+      return [];
+    }
+  }
+
+  function saveUnreadNudges(list) {
+    localStorage.setItem(UNREAD_KEY, JSON.stringify(list.slice(-20)));
+  }
+
+  function unreadCount() {
+    return loadUnreadNudges().length;
+  }
+
+  function syncProgressBadge(extraDue = 0) {
+    const badge = document.getElementById("progressBadge");
+    if (!badge) return;
+    const n = Math.max(unreadCount(), extraDue);
+    if (n > 0) {
+      badge.hidden = false;
+      badge.textContent = n > 9 ? "9+" : String(n);
+    } else {
+      badge.hidden = true;
+      badge.textContent = "0";
+    }
+  }
+
+  function clearUnreadNudges() {
+    saveUnreadNudges([]);
+    syncProgressBadge();
+  }
+
+  function topicFromNudge(nudge) {
+    if (!nudge) return null;
+    if (nudge.topicId) {
+      return (
+        TOPICS.find((t) => t.id === nudge.topicId) || {
+          id: nudge.topicId,
+          label: nudge.topicLabel || capitalizeWords(nudge.topicId),
+          subject: "Biology",
+        }
+      );
+    }
+    if (nudge.topicLabel) {
+      const label = nudge.topicLabel.toLowerCase();
+      return TOPICS.find((t) => t.label.toLowerCase() === label) || null;
+    }
+    return null;
+  }
+
+  function capitalizeWords(id) {
+    return String(id || "")
+      .split("-")
+      .map((w) => w[0]?.toUpperCase() + w.slice(1))
+      .join(" ");
+  }
+
+  function questionFromNudge(nudge) {
+    if (!nudge) return "";
+    if (nudge.questionText) return String(nudge.questionText).trim();
+    const raw = String(nudge.text || "").trim();
+    return raw.replace(/^quick recall\s*[—\-–:]\s*/i, "").trim() || raw;
+  }
+
+  function showNudge(nudge) {
+    const bar = document.getElementById("nudgeBar");
+    const titleEl = document.getElementById("nudgeTitle");
+    const textEl = document.getElementById("nudgeText");
+    const eyeEl = document.getElementById("nudgeEyebrow");
+    const metaEl = document.getElementById("nudgeMeta");
+    const cta = document.getElementById("nudgeCta");
+    if (!bar || !nudge) return;
+
+    activeNudge = nudge;
+    const isBriefing = nudge.type === "briefing";
+    if (eyeEl) {
+      eyeEl.textContent = isBriefing ? "Daily briefing" : "Time to recall";
+    }
+    if (titleEl) {
+      titleEl.textContent = isBriefing
+        ? nudge.title || "Today’s focus"
+        : nudge.topicLabel
+          ? `Recall · ${nudge.topicLabel}`
+          : nudge.title || "Quick recall";
+    }
+    if (textEl) {
+      textEl.textContent = isBriefing
+        ? String(nudge.text || "").split("\n").filter(Boolean)[0] || nudge.text
+        : questionFromNudge(nudge);
+    }
+    if (metaEl) {
+      metaEl.textContent = isBriefing
+        ? "Reca picked today’s focus from your weak spots."
+        : "You missed this earlier. Answer now to clear it from memory.";
+    }
+    if (cta) cta.textContent = isBriefing ? "Start focus" : "Answer now";
+    bar.hidden = false;
+    announce(isBriefing ? "Daily briefing from Reca" : "Quick recall from Reca");
+  }
+
+  function hideNudge() {
+    const bar = document.getElementById("nudgeBar");
+    if (bar) bar.hidden = true;
+    activeNudge = null;
+  }
+
+  function openRecallModal(nudge) {
+    const panel = document.getElementById("recallPanel");
+    const qEl = document.getElementById("recallQuestion");
+    const titleEl = document.getElementById("recallTitle");
+    const inputEl = document.getElementById("recallInput");
+    const feedback = document.getElementById("recallFeedback");
+    const doneBtn = document.getElementById("recallDone");
+    const form = document.getElementById("recallForm");
+    if (!panel || !nudge) return;
+
+    activeNudge = nudge;
+    if (titleEl) {
+      titleEl.textContent = nudge.topicLabel
+        ? `Recall · ${nudge.topicLabel}`
+        : "Answer this";
+    }
+    if (qEl) qEl.textContent = questionFromNudge(nudge);
+    if (feedback) {
+      feedback.hidden = true;
+      feedback.textContent = "";
+      feedback.className = "recall__feedback";
+    }
+    if (doneBtn) doneBtn.hidden = true;
+    if (form) form.hidden = false;
+    if (inputEl) {
+      inputEl.value = "";
+      inputEl.disabled = false;
+    }
+    panel.hidden = false;
+    document.body.style.overflow = "hidden";
+    inputEl?.focus();
+  }
+
+  function closeRecallModal() {
+    const panel = document.getElementById("recallPanel");
+    if (panel) panel.hidden = true;
+    document.body.style.overflow = "";
+  }
+
+  async function submitRecallAnswer(answer) {
+    const feedback = document.getElementById("recallFeedback");
+    const doneBtn = document.getElementById("recallDone");
+    const form = document.getElementById("recallForm");
+    const inputEl = document.getElementById("recallInput");
+    const submitBtn = document.getElementById("recallSubmit");
+    if (!answer || !phone) return;
+
+    if (submitBtn) submitBtn.disabled = true;
+    if (inputEl) inputEl.disabled = true;
+
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone, body: answer, mode: "chat" }),
+      });
+      const data = await res.json();
+      const reply = (data.replies && data.replies[0]) || "Checked.";
+      const ok = /correct|cleared/i.test(reply);
+      if (feedback) {
+        feedback.hidden = false;
+        feedback.className =
+          "recall__feedback " + (ok ? "is-correct" : "is-wrong");
+        feedback.textContent = reply.split("\n")[0];
+      }
+      if (form) form.hidden = true;
+      if (doneBtn) doneBtn.hidden = false;
+      if (activeNudge?.id) {
+        saveUnreadNudges(loadUnreadNudges().filter((n) => n.id !== activeNudge.id));
+        syncProgressBadge();
+      }
+      announce(ok ? "Recall cleared" : "Recall checked");
+    } catch (_) {
+      if (feedback) {
+        feedback.hidden = false;
+        feedback.className = "recall__feedback is-wrong";
+        feedback.textContent = "Couldn’t check that. Try again.";
+      }
+      if (inputEl) inputEl.disabled = false;
+      if (submitBtn) submitBtn.disabled = false;
+    }
+  }
+
+  function enqueueNudge(msg) {
+    const nudge = {
+      id: msg.id,
+      text: msg.text,
+      type: msg.type || "bot",
+      topicId: msg.topicId || null,
+      topicLabel: msg.topicLabel || null,
+      title: msg.title || null,
+      questionText: msg.questionText || null,
+      at: msg.at || Date.now(),
+    };
+    const list = loadUnreadNudges().filter((n) => n.id !== nudge.id);
+    list.push(nudge);
+    saveUnreadNudges(list);
+    syncProgressBadge();
+    showNudge(nudge);
+  }
+
+  function markValue() {
+    localStorage.setItem("reca_has_value", "1");
+  }
+
+  function syncDisplayName() {
+    const name = (localStorage.getItem("reca_display_name") || "").trim();
+    if (userDisplayName) userDisplayName.textContent = name || "Student";
+  }
+
+  function recommendedTopic() {
+    return (
+      TOPICS.find((t) => t.id === "photosynthesis") ||
+      TOPICS.find((t) => /photosynthesis/i.test(t.label)) ||
+      TOPICS[0]
+    );
+  }
+
+  function syncRecommend() {
+    const rec = recommendedTopic();
+    if (!rec) return;
+    const reviseTitle = document.getElementById("reviseRecommendTitle");
+    if (reviseTitle) reviseTitle.textContent = rec.label;
+    const reviseMeta = reviseRecommend?.querySelector(".recommend__meta");
+    if (reviseMeta) reviseMeta.textContent = `${rec.subject || "Biology"} · AI will quiz you`;
+  }
 
   /** Inline SVGs — no icon font (CDN glyphs were rendering as CJK tofu). */
   const ICON_PATHS = {
@@ -103,6 +402,15 @@
       '<rect width="16" height="20" x="4" y="2" rx="2"/><path d="M8 6h8"/><path d="M16 14v4"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/>',
     "sun-03":
       '<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>',
+    "moon-01":
+      '<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',
+    computer:
+      '<rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/>',
+    "settings-01":
+      '<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>',
+    "cancel-01": '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+    "notification-01":
+      '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>',
     droplet: '<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>',
     lungs:
       '<path d="M6.081 22c-1.605 0-2.888-1.37-2.708-2.966l1.735-15.3A2.5 2.5 0 0 1 7.59 1.5h.82a2.5 2.5 0 0 1 2.482 2.234l.75 6.516"/><path d="M17.919 22c1.605 0 2.888-1.37 2.708-2.966l-1.735-15.3A2.5 2.5 0 0 0 16.41 1.5h-.82a2.5 2.5 0 0 0-2.482 2.234l-.75 6.516"/><path d="M12 10v12"/>',
@@ -134,7 +442,7 @@
       const name = el.getAttribute("data-icon");
       const extra = [...el.classList].join(" ");
       const svg = iconEl(name, extra);
-      if (el.classList.contains("brand__mark") || el.classList.contains("side__avatar")) {
+      if (el.classList.contains("brand__mark") || el.classList.contains("side__avatar") || el.classList.contains("profile-pop__avatar")) {
         el.replaceChildren(svg);
         el.removeAttribute("data-icon");
         return;
@@ -144,6 +452,366 @@
   }
 
   hydrateIcons();
+
+  const THEME_KEY = "reca_theme";
+
+  function systemTheme() {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+
+  function themePref() {
+    const stored = localStorage.getItem(THEME_KEY);
+    if (stored === "light" || stored === "dark") return stored;
+    return "system";
+  }
+
+  function resolveTheme(pref) {
+    if (pref === "light" || pref === "dark") return pref;
+    return systemTheme();
+  }
+
+  function syncAppearButtons(pref) {
+    document.querySelectorAll(".appear__btn").forEach((btn) => {
+      const on = btn.dataset.appear === pref;
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+      btn.classList.toggle("is-active", on);
+    });
+    const cap = document.getElementById("profileAppearCap");
+    const appearHint = document.getElementById("settingsAppearHint");
+    const resolved = resolveTheme(pref);
+    const label =
+      pref === "system"
+        ? `System · ${resolved === "dark" ? "Dark" : "Light"}`
+        : pref === "dark"
+          ? "Dark"
+          : "Light";
+    if (cap) cap.textContent = label;
+    if (appearHint) {
+      appearHint.textContent =
+        pref === "system"
+          ? `Follows your device · currently ${resolved}.`
+          : `Using ${resolved} mode.`;
+    }
+  }
+
+  function applyThemePref(pref, persist) {
+    const nextPref = pref === "light" || pref === "dark" ? pref : "system";
+    const resolved = resolveTheme(nextPref);
+    document.documentElement.setAttribute("data-theme", resolved);
+    document.documentElement.setAttribute("data-theme-pref", nextPref);
+    if (persist) {
+      if (nextPref === "system") localStorage.removeItem(THEME_KEY);
+      else localStorage.setItem(THEME_KEY, nextPref);
+    }
+    syncAppearButtons(nextPref);
+  }
+
+  applyThemePref(themePref(), false);
+
+  document.querySelectorAll(".appear__btn").forEach((btn) => {
+    btn.addEventListener("click", () => applyThemePref(btn.dataset.appear, true));
+  });
+
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    if (themePref() !== "system") return;
+    applyThemePref("system", false);
+  });
+
+  const settingsModal = document.getElementById("settingsModal");
+  const settingsBackdrop = document.getElementById("settingsBackdrop");
+  const settingsClose = document.getElementById("settingsClose");
+  const settingsTitle = document.getElementById("settingsTitle");
+  const profileScrim = document.getElementById("profileScrim");
+  const profilePopEmail = document.getElementById("profilePopEmail");
+  const profileWaMeta = document.getElementById("profileWaMeta");
+
+  const SETTINGS_TITLES = {
+    general: "Profile",
+    appearance: "Appearance",
+    exam: "Exam",
+    whatsapp: "WhatsApp",
+    about: "About Reca",
+    how: "How Reca works",
+    help: "Get help",
+    privacy: "Privacy",
+    team: "Team & BuildFest",
+  };
+
+  function syncProfileMenuMeta() {
+    const name = (localStorage.getItem("reca_display_name") || "").trim();
+    const phoneSaved = (localStorage.getItem("reca_phone") || "").trim();
+    if (profilePopEmail) {
+      profilePopEmail.textContent = name || phoneSaved || "Student";
+    }
+    if (profileWaMeta) {
+      profileWaMeta.textContent = /^\+\d{10,15}$/.test(phoneSaved) ? "Linked" : "Link";
+    }
+  }
+
+  function showSettingsSection(section) {
+    const key = SETTINGS_TITLES[section] ? section : "general";
+    document.querySelectorAll("[data-settings-nav]").forEach((btn) => {
+      btn.classList.toggle("is-active", btn.getAttribute("data-settings-nav") === key);
+    });
+    document.querySelectorAll("[data-settings-pane]").forEach((pane) => {
+      pane.hidden = pane.getAttribute("data-settings-pane") !== key;
+    });
+    if (settingsTitle) settingsTitle.textContent = SETTINGS_TITLES[key];
+    app.dataset.settingsSection = key;
+
+    if (key === "general") profileName?.focus();
+    if (key === "exam") profileExamDate?.focus();
+    if (key === "whatsapp") waPhone?.focus();
+  }
+
+  function closeLearnMoreFlyout() {
+    clearTimeout(learnMoreCloseTimer);
+    const flyout = document.getElementById("learnMoreFlyout");
+    const btn = document.getElementById("menuLearnMore");
+    if (flyout) flyout.hidden = true;
+    if (btn) btn.setAttribute("aria-expanded", "false");
+  }
+
+  function openLearnMoreFlyout() {
+    clearTimeout(learnMoreCloseTimer);
+    const flyout = document.getElementById("learnMoreFlyout");
+    const btn = document.getElementById("menuLearnMore");
+    if (flyout) flyout.hidden = false;
+    if (btn) btn.setAttribute("aria-expanded", "true");
+  }
+
+  function scheduleCloseLearnMoreFlyout() {
+    clearTimeout(learnMoreCloseTimer);
+    learnMoreCloseTimer = setTimeout(closeLearnMoreFlyout, 180);
+  }
+
+  function openSettingsModal(section) {
+    closeLearnMoreFlyout();
+    closeProfile();
+    if (!settingsModal) return;
+    settingsModal.hidden = false;
+    document.body.style.overflow = "hidden";
+    syncAppearButtons(themePref());
+    syncExamHint(
+      profileExamDate?.value
+        ? Math.round(
+            (new Date(`${profileExamDate.value}T12:00:00`) -
+              new Date(new Date().toDateString())) /
+              86400000
+          )
+        : null
+    );
+    showSettingsSection(section || "general");
+  }
+
+  function closeSettingsModal() {
+    if (!settingsModal) return;
+    settingsModal.hidden = true;
+    document.body.style.overflow = "";
+  }
+
+  function openProfile() {
+    if (!profilePopover || !profileBtn) return;
+    if (settingsModal && !settingsModal.hidden) closeSettingsModal();
+    profilePopover.hidden = false;
+    profileBtn.setAttribute("aria-expanded", "true");
+    profileBtn.setAttribute("aria-label", "Close account menu");
+    app.classList.add("is-profile-open");
+    if (profileScrim) profileScrim.hidden = false;
+    syncAppearButtons(themePref());
+    syncProfileMenuMeta();
+    closeLearnMoreFlyout();
+  }
+
+  function closeProfile() {
+    if (!profilePopover || !profileBtn) return;
+    closeLearnMoreFlyout();
+    profilePopover.hidden = true;
+    profileBtn.setAttribute("aria-expanded", "false");
+    profileBtn.setAttribute("aria-label", "Open account menu");
+    app.classList.remove("is-profile-open");
+    if (profileScrim) profileScrim.hidden = true;
+  }
+
+  function toggleProfile() {
+    if (!profilePopover) return;
+    if (profilePopover.hidden) openProfile();
+    else closeProfile();
+  }
+
+  if (profileBtn) profileBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleProfile();
+  });
+  if (profileScrim) profileScrim.addEventListener("click", closeProfile);
+
+  let learnMoreCloseTimer = 0;
+  const menuLearnMore = document.getElementById("menuLearnMore");
+  const learnMoreFlyout = document.getElementById("learnMoreFlyout");
+  const learnMoreWrap = document.querySelector(".profile-flyout-wrap");
+  if (menuLearnMore) {
+    menuLearnMore.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const open = menuLearnMore.getAttribute("aria-expanded") === "true";
+      if (open) closeLearnMoreFlyout();
+      else openLearnMoreFlyout();
+    });
+  }
+  if (learnMoreWrap) {
+    learnMoreWrap.addEventListener("mouseenter", () => openLearnMoreFlyout());
+    learnMoreWrap.addEventListener("mouseleave", () => scheduleCloseLearnMoreFlyout());
+  }
+
+  document.querySelectorAll("[data-open-settings]").forEach((el) => {
+    el.addEventListener("click", (e) => {
+      e.stopPropagation();
+      openSettingsModal(el.getAttribute("data-open-settings"));
+    });
+  });
+  document.querySelectorAll("[data-settings-nav]").forEach((btn) => {
+    btn.addEventListener("click", () => showSettingsSection(btn.getAttribute("data-settings-nav")));
+  });
+  if (settingsBackdrop) settingsBackdrop.addEventListener("click", closeSettingsModal);
+  if (settingsClose) settingsClose.addEventListener("click", closeSettingsModal);
+  document.addEventListener("click", (e) => {
+    if (!profileWrap || profilePopover?.hidden) return;
+    if (!profileWrap.contains(e.target) && e.target !== profileScrim) closeProfile();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    if (learnMoreFlyout && !learnMoreFlyout.hidden) {
+      closeLearnMoreFlyout();
+      return;
+    }
+    if (settingsModal && !settingsModal.hidden) {
+      closeSettingsModal();
+      return;
+    }
+    closeProfile();
+  });
+
+  if (profileName) {
+    const savedName = (localStorage.getItem("reca_display_name") || "").trim();
+    profileName.value = savedName;
+    syncDisplayName();
+    const saveName = () => {
+      const v = profileName.value.trim().slice(0, 40);
+      if (v) localStorage.setItem("reca_display_name", v);
+      else localStorage.removeItem("reca_display_name");
+      syncDisplayName();
+      syncProfileMenuMeta();
+      if (phone) {
+        fetch("/api/profile", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ phone, name: v }),
+        }).catch(() => {});
+      }
+    };
+    profileName.addEventListener("change", saveName);
+    profileName.addEventListener("blur", saveName);
+  } else {
+    syncDisplayName();
+  }
+
+  function syncExamHint(days) {
+    const hint = document.getElementById("profileExamHint");
+    const stat = document.getElementById("settingsExamStat");
+    const label =
+      typeof days === "number"
+        ? days >= 0
+          ? `${days}d left`
+          : "Exam open"
+        : "Set date";
+    if (hint) hint.textContent = label;
+    if (stat) {
+      stat.textContent =
+        typeof days === "number"
+          ? days >= 0
+            ? `${days} day${days === 1 ? "" : "s"} left`
+            : "Exam window is open"
+          : "Set your date";
+    }
+  }
+
+  if (profileExamDate) {
+    const savedExam = localStorage.getItem("reca_exam_date") || "";
+    if (savedExam) profileExamDate.value = savedExam;
+    profileExamDate.addEventListener("change", () => {
+      const v = profileExamDate.value;
+      if (v) localStorage.setItem("reca_exam_date", v);
+      else localStorage.removeItem("reca_exam_date");
+      if (!phone || !v) return;
+      fetch("/api/profile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone, examDate: v }),
+      })
+        .then((r) => r.json())
+        .then((d) => syncExamHint(d.daysToExam))
+        .catch(() => {});
+    });
+  }
+
+  (function syncProfileAccount() {
+    const emailEl = document.getElementById("profileEmail");
+    const authLink = document.getElementById("profileAuthLink");
+    const authLabel = document.getElementById("profileAuthLabel");
+    const phoneSaved = (localStorage.getItem("reca_phone") || "").trim();
+    const signedIn = localStorage.getItem("reca_signed_in") === "1";
+    if (emailEl) {
+      if (signedIn && phoneSaved) {
+        emailEl.hidden = false;
+        emailEl.textContent = phoneSaved;
+      } else {
+        emailEl.hidden = true;
+      }
+    }
+    syncProfileMenuMeta();
+    if (authLink) {
+      if (signedIn) {
+        if (authLabel) authLabel.textContent = "Sign out";
+        authLink.href = "#";
+        authLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          // Keep phone + name for Returning prefill; require OTP again
+          localStorage.removeItem("reca_signed_in");
+          localStorage.removeItem("reca_email");
+          localStorage.setItem("reca_guest", "1");
+          location.assign("/signup.html?mode=signin&force=1");
+        });
+      } else if (authLabel) {
+        authLabel.textContent = "Link WhatsApp";
+        authLink.href = "/signup.html";
+      }
+    }
+  })();
+
+  function isGuestSession() {
+    if (localStorage.getItem("reca_signed_in") === "1") return false;
+    return (
+      localStorage.getItem("reca_guest") === "1" ||
+      !/^\+\d{10,15}$/.test((localStorage.getItem("reca_phone") || "").trim())
+    );
+  }
+
+  function showLinkBanner() {
+    const banner = document.getElementById("linkBanner");
+    if (!banner) return;
+    if (!isGuestSession()) return;
+    if (localStorage.getItem("reca_link_prompt_dismissed") === "1") return;
+    banner.hidden = false;
+  }
+
+  function hideLinkBanner(dismiss) {
+    const banner = document.getElementById("linkBanner");
+    if (banner) banner.hidden = true;
+    if (dismiss) localStorage.setItem("reca_link_prompt_dismissed", "1");
+  }
+
+  document.getElementById("linkBannerDismiss")?.addEventListener("click", () => {
+    hideLinkBanner(true);
+  });
 
   function setStatus(text, online = true) {
     statusLine.replaceChildren();
@@ -170,13 +838,21 @@
     thread.scrollTop = thread.scrollHeight;
   }
 
+  function syncSendEnabled() {
+    if (!sendBtn || !input) return;
+    const hasText = Boolean(input.value.trim());
+    const canSend = hasText && !busy;
+    sendBtn.disabled = !canSend;
+    sendBtn.setAttribute("aria-disabled", canSend ? "false" : "true");
+  }
+
   function setComposerBusy(isBusy) {
     busy = isBusy;
     app.dataset.busy = isBusy ? "true" : "false";
     input.disabled = isBusy;
-    sendBtn.disabled = isBusy;
     sendBtn.setAttribute("aria-busy", isBusy ? "true" : "false");
     sendBtn.replaceChildren(iconEl(isBusy ? "rotate-clockwise" : "sent", "composer__send-ico"));
+    syncSendEnabled();
   }
 
   function setNavActive(name) {
@@ -204,30 +880,31 @@
     if (name === "learn") {
       sideTopicsLabel.replaceChildren(
         iconEl("bookmark-01"),
-        document.createTextNode(" Learn topics")
+        document.createTextNode(" Quick topics")
       );
-      mainEyebrow.textContent = "Learn · WAEC & JAMB";
+      mainEyebrow.textContent = "Learn · Ask anything";
       mainTitle.textContent = "Ask Reca";
       app.dataset.mode = "welcome";
       showOnly(learnWelcome);
       mainDock.hidden = false;
-      input.placeholder = "Ask Reca to explain a topic…";
+      input.placeholder = "Ask anything — typos OK, Reca will correct…";
       renderSideTopics("learn");
       input.focus();
+      syncSendEnabled();
       return;
     }
 
     if (name === "revise") {
       sideTopicsLabel.replaceChildren(
         iconEl("quiz-03"),
-        document.createTextNode(" Revise topics")
+        document.createTextNode(" Topics to quiz")
       );
-      mainEyebrow.textContent = "Revise · WAEC & JAMB";
-      mainTitle.textContent = "Answer questions";
+      mainEyebrow.textContent = "Revise · AI quizzes";
+      mainTitle.textContent = "AI quiz";
       app.dataset.mode = "revise-hub";
       showOnly(reviseWelcome);
       mainDock.hidden = false;
-      input.placeholder = "Or type your answer here…";
+      input.placeholder = "Or type your answer for Reca’s AI…";
       renderSideTopics("revise");
       input.focus();
       return;
@@ -236,10 +913,12 @@
     if (name === "progress") {
       sideTopicsLabel.replaceChildren(
         iconEl("analytics-01"),
-        document.createTextNode(" Weak topics")
+        document.createTextNode(" AI memory")
       );
-      mainEyebrow.textContent = "Progress · WAEC & JAMB";
-      mainTitle.textContent = "How you're doing";
+      clearUnreadNudges();
+      hideNudge();
+      mainEyebrow.textContent = "Progress · AI memory";
+      mainTitle.textContent = "What Reca remembers";
       app.dataset.mode = "progress";
       showOnly(progressPanel);
       mainDock.hidden = true;
@@ -327,7 +1006,7 @@
       for (let i = 0; i < 3; i++) dots.appendChild(document.createElement("span"));
       const lab = document.createElement("span");
       lab.className = "thinking__label";
-      lab.textContent = label || "Reca is thinking…";
+      lab.textContent = label || "Reca’s AI is thinking…";
       bubble.append(dots, lab);
       thinkingEl.append(avatar, bubble);
       thread.appendChild(thinkingEl);
@@ -357,6 +1036,7 @@
   }
 
   function renderSubjectBar(container, filter, onPick) {
+    if (!container) return;
     container.innerHTML = "";
     ["All", ...new Set(TOPICS.map((t) => t.subject))].forEach((name) => {
       const btn = document.createElement("button");
@@ -369,6 +1049,7 @@
   }
 
   function renderTopicCards(container, filter, query, onStart, verb) {
+    if (!container) return;
     container.innerHTML = "";
     const list = filtered(filter, query);
     if (!list.length) {
@@ -379,10 +1060,10 @@
       container.appendChild(empty);
       return;
     }
-    list.slice(0, 40).forEach((item, index) => {
+    list.slice(0, 24).forEach((item) => {
       const starter = document.createElement("button");
       starter.type = "button";
-      starter.className = "empty-topic" + (index === 0 ? " is-recommended" : "");
+      starter.className = "empty-topic";
       starter.setAttribute("aria-label", `${verb} ${item.label}`);
 
       const icoWrap = document.createElement("span");
@@ -396,7 +1077,7 @@
       const meta = document.createElement("span");
       meta.className = "empty-topic__meta";
       meta.textContent =
-        verb === "Revise" ? `${item.subject} · Practice` : `${item.subject} · Explain`;
+        verb === "Revise" ? `${item.subject} · AI quiz` : `${item.subject} · AI explain`;
 
       starter.append(icoWrap, label, meta);
       starter.addEventListener("click", () => onStart(item));
@@ -458,7 +1139,7 @@
         toggle.type = "button";
         toggle.className = "side-group__toggle";
         toggle.setAttribute("aria-expanded", String(!isCollapsed));
-        toggle.innerHTML = `<span class="side-group__label">${subject}</span><span class="side-group__meta">${bySubject[subject].length}</span>`;
+        toggle.innerHTML = `<span class="side-group__label">${subject}</span>`;
         const chev = iconEl("arrow-down-01", "side-group__chev");
         toggle.appendChild(chev);
         toggle.addEventListener("click", () => {
@@ -528,11 +1209,62 @@
       progressBody.hidden = true;
       window.__progressWeak = [];
       renderSideTopics("progress");
+      syncProgressBadge();
       return;
     }
 
     progressEmpty.hidden = true;
     progressBody.hidden = false;
+
+    const due = progress.dueForRecall || [];
+    if (progressDue && progressDueList) {
+      if (!due.length) {
+        progressDue.hidden = true;
+        progressDueList.replaceChildren();
+      } else {
+        progressDue.hidden = false;
+        const dueNow = due.filter((d) => d.isDue).length;
+        if (progressDueLead) {
+          progressDueLead.textContent =
+            dueNow > 0
+              ? `${dueNow} ready for recall — same nudge Reca sends on WhatsApp.`
+              : "Reca is holding these misses — revise to clear them before they resurface.";
+        }
+        progressDueList.replaceChildren();
+        due.forEach((d) => {
+          const row = document.createElement("div");
+          row.className = "progress__row";
+          const meta = document.createElement("div");
+          meta.className = "progress__row-meta";
+          const title = document.createElement("p");
+          title.className = "progress__row-title";
+          title.textContent = d.label;
+          const sub = document.createElement("p");
+          sub.className = "progress__row-sub";
+          sub.textContent = d.isDue
+            ? `${d.subject} · ready for recall`
+            : `${d.subject} · Reca is holding this`;
+          meta.append(title, sub);
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "progress__row-btn";
+          btn.textContent = d.isDue ? "Recall now" : "Revise";
+          btn.addEventListener("click", () => {
+            const match = TOPICS.find((t) => t.id === d.topicId) || {
+              id: d.topicId,
+              label: d.label,
+              subject: d.subject,
+            };
+            startRevise(match);
+          });
+          row.append(meta, btn);
+          progressDueList.appendChild(row);
+        });
+        syncProgressBadge(dueNow);
+      }
+    } else {
+      syncProgressBadge();
+    }
 
     progressStats.replaceChildren();
     [
@@ -575,7 +1307,7 @@
     if (!needs.length) {
       const p = document.createElement("p");
       p.className = "progress__hint";
-      p.textContent = "Nothing flagged — keep revising to stay sharp.";
+      p.textContent = "Nothing flagged — keep AI quizzing to stay sharp.";
       progressNeeds.appendChild(p);
     } else {
       needs.forEach((t) => progressNeeds.appendChild(topicRow(t, "Revise")));
@@ -585,7 +1317,7 @@
     if (!strong.length) {
       const p = document.createElement("p");
       p.className = "progress__hint";
-      p.textContent = "No strong topics yet — a few correct answers will land here.";
+      p.textContent = "No strong topics yet — a few correct AI-quiz answers land here.";
       progressStrong.appendChild(p);
     } else {
       strong.forEach((t) => progressStrong.appendChild(topicRow(t, "Practice")));
@@ -632,15 +1364,11 @@
   }
 
   function renderHubs() {
-    renderSubjectBar(learnSubjects, learnFilter, (name) => {
-      learnFilter = name;
-      renderHubs();
-    });
+    syncRecommend();
     renderSubjectBar(reviseSubjects, reviseFilter, (name) => {
       reviseFilter = name;
       renderHubs();
     });
-    renderTopicCards(learnTopics, learnFilter, learnQuery, startLearn, "Learn");
     renderTopicCards(reviseTopics, reviseFilter, reviseQuery, startRevise, "Revise");
     renderSideTopics(feature === "revise" ? "revise" : feature === "progress" ? "progress" : "learn");
   }
@@ -650,12 +1378,121 @@
     feature = "learn";
     app.dataset.feature = "learn";
     app.dataset.mode = "chat";
-    mainEyebrow.textContent = "Learn · Current topic";
+    lastLearnTopic = item;
+    mainEyebrow.textContent = "Learn · AI explaining";
     mainTitle.textContent = item.label;
     showOnly(thread);
     thread.innerHTML = "";
     mainDock.hidden = false;
-    await sendMessage(item.send, { mode: "learn" });
+    input.placeholder = `Ask a follow-up about ${item.label}…`;
+    markValue();
+    await sendMessage(item.send || `explain ${item.label}`, {
+      mode: "learn",
+      learnTopic: item,
+      topicId: item.id,
+      fresh: true,
+      hideOutgoing: true,
+    });
+  }
+
+  function appendLearnQuizNudge(topic) {
+    thread.querySelectorAll(".learn-cta").forEach((el) => el.remove());
+    const cta = document.createElement("div");
+    cta.className = "learn-cta";
+    const row = document.createElement("div");
+    row.className = "learn-cta__row";
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "learn-cta__btn learn-cta__btn--primary";
+    btn.append(iconEl("quiz-03"), document.createTextNode(" Let AI quiz this topic"));
+    btn.addEventListener("click", () => topic && startRevise(topic));
+    row.append(btn, makeContinueWaButton(topic?.label || topic?.id || "photosynthesis"));
+    const hint = document.createElement("p");
+    hint.className = "learn-cta__hint";
+    hint.textContent =
+      "Keep asking follow-ups, quiz here, or continue the same topic on WhatsApp — same number, same Progress.";
+    cta.append(row, hint);
+    thread.appendChild(cta);
+    scrollThread();
+  }
+
+  async function sendMessage(text, opts = {}) {
+    if (!text || busy) return;
+    const mode = opts.mode || (feature === "learn" ? "learn" : "chat");
+
+    if (feature === "revise" && app.dataset.mode === "quiz") {
+      await submitQuizAnswer(text);
+      return;
+    }
+
+    setComposerBusy(true);
+    setStatus("Thinking…", true);
+    app.dataset.mode = "chat";
+    showOnly(thread);
+    if (!thread.childNodes.length || opts.freshThread) thread.innerHTML = "";
+
+    if (!opts.hideOutgoing) addBubble(text, "out");
+    input.value = "";
+    showThinking(
+      mode === "learn"
+        ? opts.fresh
+          ? "Reca’s AI is explaining…"
+          : "Reca’s AI is answering…"
+        : "Reca’s AI is thinking…"
+    );
+
+    try {
+      // Soft focus only — server resolves typos + topic switches
+      const topicId = opts.topicId || lastLearnTopic?.id || undefined;
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          phone,
+          body: text,
+          mode,
+          topicId,
+          fresh: Boolean(opts.fresh),
+        }),
+      });
+      const data = await res.json();
+      hideThinking();
+      (data.replies || []).forEach((r) => addBubble(r, "in"));
+      if (mode === "learn" && data.replies?.length) {
+        // Prefer server focus (handles "osimosis" → Osmosis) over stale lastLearnTopic
+        const topic =
+          TOPICS.find((t) => t.id === data.learnFocusId) ||
+          opts.learnTopic ||
+          lastLearnTopic ||
+          TOPICS.find((t) => t.send === text) ||
+          TOPICS.find((t) =>
+            text.toLowerCase().includes(String(t.label || "").toLowerCase())
+          ) ||
+          recommendedTopic();
+        if (topic) {
+          const switched = lastLearnTopic && lastLearnTopic.id !== topic.id;
+          lastLearnTopic = topic;
+          mainTitle.textContent = topic.label;
+          mainEyebrow.textContent = "Learn · AI explaining";
+          input.placeholder = `Ask a follow-up about ${topic.label}…`;
+          if (switched) {
+            // Keep history, but make the new topic unmistakable in the header
+            mainTitle.textContent = topic.label;
+          }
+        }
+        appendLearnQuizNudge(topic);
+      }
+      setStatus("Online", true);
+      announce("Reca replied");
+    } catch (_) {
+      hideThinking();
+      addBubble("Couldn’t send that. Try again.", "in");
+      setStatus("Offline", false);
+    } finally {
+      setComposerBusy(false);
+      syncSendEnabled();
+      input.focus();
+    }
   }
 
   async function startRevise(item) {
@@ -666,16 +1503,18 @@
     feature = "revise";
     app.dataset.feature = "revise";
     app.dataset.mode = "quiz";
-    mainEyebrow.textContent = "Revise · Your turn";
+    activeQuizTopic = item;
+    markValue();
+    mainEyebrow.textContent = "Revise · AI is quizzing";
     mainTitle.textContent = item.label;
     showOnly(quizPanel);
     mainDock.hidden = false;
-    input.placeholder = "Type your answer, or pick one above…";
+    input.placeholder = "Answer Reca’s AI — type or pick above…";
     quizFeedback.hidden = true;
     quizSummary.hidden = true;
     quizSummary.replaceChildren();
     quizOptions.innerHTML = "";
-    quizQuestion.textContent = "Loading question…";
+    quizQuestion.textContent = "Reca’s AI is loading your question…";
     quizLocked = true;
     setStatus("Loading…", true);
 
@@ -696,7 +1535,6 @@
       quizQuestion.textContent = "Couldn’t start revise. Try again.";
       quizLocked = false;
       setStatus("Online", true);
-      // Fall back to hub so user isn't stuck
       setTimeout(() => setFeature("revise"), 1200);
     }
   }
@@ -705,8 +1543,17 @@
     if (!q) return;
     quizSummary.hidden = true;
     quizFeedback.hidden = true;
+    if (quizMemory) {
+      quizMemory.hidden = true;
+      quizMemory.textContent = "";
+    }
+    if (quizEndBtn) quizEndBtn.hidden = false;
     quizTopic.textContent = `${q.subject} · ${q.topicLabel}`;
-    quizCount.textContent = `${q.index} / ${q.total}`;
+    quizCount.textContent = `${q.index} of ${q.total}`;
+    if (quizBar) {
+      const pct = Math.max(4, Math.round((q.index / Math.max(q.total, 1)) * 100));
+      quizBar.style.width = `${pct}%`;
+    }
     quizQuestion.textContent = q.text;
     quizOptions.innerHTML = "";
     (q.options || []).forEach((opt) => {
@@ -717,7 +1564,81 @@
       btn.addEventListener("click", () => submitQuizAnswer(opt));
       quizOptions.appendChild(btn);
     });
+    const body = document.querySelector(".main__body");
+    if (body) body.scrollTop = 0;
     announce(`Question ${q.index} of ${q.total}`);
+  }
+
+  function showQuizSummary(summary) {
+    quizSummary.hidden = false;
+    quizSummary.replaceChildren();
+    if (quizEndBtn) quizEndBtn.hidden = true;
+    if (quizMemory) quizMemory.hidden = true;
+    const h = document.createElement("p");
+    h.className = "quiz__summary-title";
+    h.textContent = summary.message;
+    const actions = document.createElement("div");
+    actions.className = "quiz__summary-actions";
+    const again = document.createElement("button");
+    again.type = "button";
+    again.className = "quiz__again";
+    again.textContent = "Quiz again with AI";
+    again.addEventListener("click", () => {
+      const match =
+        TOPICS.find((t) => t.id === summary.topicId) ||
+        TOPICS.find((t) => t.label === summary.topicLabel) ||
+        activeQuizTopic ||
+        TOPICS[0];
+      startRevise(match);
+    });
+    const toProgress = document.createElement("button");
+    toProgress.type = "button";
+    toProgress.className = "quiz__to-learn";
+    toProgress.textContent = "See AI memory";
+    toProgress.addEventListener("click", () => setFeature("progress"));
+    const toLearn = document.createElement("button");
+    toLearn.type = "button";
+    toLearn.className = "quiz__to-learn";
+    toLearn.textContent = "Ask AI to explain";
+    toLearn.addEventListener("click", () => setFeature("learn"));
+    const onWa = makeContinueWaButton(summary.topicLabel || summary.topicId || "photosynthesis");
+    onWa.className = "quiz__again";
+    actions.append(again, onWa, toProgress, toLearn);
+    quizSummary.append(h, actions);
+    mainDock.hidden = true;
+    announce(summary.message);
+
+    const name = (localStorage.getItem("reca_display_name") || "Student").trim();
+    const topic = summary.topicLabel || "your topic";
+    const score =
+      typeof summary.score === "number" && typeof summary.total === "number"
+        ? `${summary.score}/${summary.total}`
+        : null;
+    sendWhatsAppAlert(
+      score
+        ? `Great job, ${name}! You finished a Reca web quiz on ${topic} (${score}). Keep going — message Reca anytime.`
+        : `Nice work, ${name}! You finished studying ${topic} on the Reca web app. Keep going on WhatsApp!`
+    );
+  }
+
+  async function endQuizSession() {
+    if (busy) return;
+    setComposerBusy(true);
+    try {
+      const res = await fetch("/api/quiz/end", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone }),
+      });
+      const data = await res.json();
+      if (data.summary) showQuizSummary(data.summary);
+      else setFeature("revise");
+    } catch (_) {
+      setFeature("revise");
+    } finally {
+      setComposerBusy(false);
+      quizLocked = false;
+    }
   }
 
   async function submitQuizAnswer(answer) {
@@ -748,10 +1669,27 @@
         document.createTextNode(" " + data.feedback.message)
       );
 
+      if (quizMemory) {
+        if (data.feedback.memoryPromise) {
+          quizMemory.hidden = false;
+          quizMemory.textContent = data.feedback.memoryPromise;
+        } else {
+          quizMemory.hidden = true;
+        }
+      }
+
+      if (!data.feedback.correct) {
+        showLinkBanner();
+      }
+
       quizOptions.querySelectorAll("button").forEach((b) => {
-        if (normalize(b.textContent) === normalize(data.feedback.correctAnswer) ||
-            data.feedback.correctAnswer.toLowerCase().includes(b.textContent.toLowerCase()) ||
-            b.textContent.toLowerCase().includes(data.feedback.correctAnswer.toLowerCase().split("(")[0].trim())) {
+        if (
+          normalize(b.textContent) === normalize(data.feedback.correctAnswer) ||
+          data.feedback.correctAnswer.toLowerCase().includes(b.textContent.toLowerCase()) ||
+          b.textContent
+            .toLowerCase()
+            .includes(data.feedback.correctAnswer.toLowerCase().split("(")[0].trim())
+        ) {
           b.classList.add("is-correct");
         }
         if (b.classList.contains("is-picked") && !data.feedback.correct) {
@@ -762,39 +1700,13 @@
       input.value = "";
 
       if (data.done) {
-        quizSummary.hidden = false;
-        quizSummary.replaceChildren();
-        const h = document.createElement("p");
-        h.className = "quiz__summary-title";
-        h.textContent = data.summary.message;
-        const actions = document.createElement("div");
-        actions.className = "quiz__summary-actions";
-        const again = document.createElement("button");
-        again.type = "button";
-        again.className = "quiz__again";
-        again.textContent = "Revise again";
-        again.addEventListener("click", () => {
-          const match =
-            TOPICS.find((t) => t.id === data.summary.topicId) ||
-            TOPICS.find((t) => t.label === data.summary.topicLabel) ||
-            TOPICS[0];
-          startRevise(match);
-        });
-        const toLearn = document.createElement("button");
-        toLearn.type = "button";
-        toLearn.className = "quiz__to-learn";
-        toLearn.textContent = "Learn a topic";
-        toLearn.addEventListener("click", () => setFeature("learn"));
-        actions.append(again, toLearn);
-        quizSummary.append(h, actions);
-        mainDock.hidden = true;
-        announce(data.summary.message);
+        showQuizSummary(data.summary);
       } else if (data.question) {
         setTimeout(() => {
           renderQuestion(data.question);
           quizLocked = false;
           input.focus();
-        }, 900);
+        }, data.feedback.correct ? 700 : 1400);
         return;
       }
     } catch (_) {
@@ -818,64 +1730,9 @@
       .trim();
   }
 
-  async function sendMessage(text, opts = {}) {
-    if (!text || busy) return;
-    const mode = opts.mode || (feature === "learn" ? "learn" : "chat");
-
-    if (feature === "revise" && app.dataset.mode === "quiz") {
-      await submitQuizAnswer(text);
-      return;
-    }
-
-    setComposerBusy(true);
-    setStatus("Thinking…", true);
-    app.dataset.mode = "chat";
-    showOnly(thread);
-    if (!thread.childNodes.length || opts.freshThread) thread.innerHTML = "";
-
-    addBubble(text, "out");
-    input.value = "";
-    showThinking(mode === "learn" ? "Explaining…" : "Reca is thinking…");
-
-    try {
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone, body: text, mode }),
-      });
-      const data = await res.json();
-      hideThinking();
-      (data.replies || []).forEach((r) => addBubble(r, "in"));
-      if (mode === "learn" && data.replies?.length) {
-        const cta = document.createElement("div");
-        cta.className = "learn-cta";
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "learn-cta__btn";
-        btn.append(iconEl("quiz-03"), document.createTextNode(" Revise this topic"));
-        const topic =
-          TOPICS.find((t) => t.send === text) ||
-          TOPICS.find((t) => text.toLowerCase().includes(t.label.toLowerCase()));
-        btn.addEventListener("click", () => topic && startRevise(topic));
-        cta.appendChild(btn);
-        thread.appendChild(cta);
-        scrollThread();
-      }
-      setStatus("Online", true);
-      announce("Reca replied");
-    } catch (_) {
-      hideThinking();
-      addBubble("Couldn’t send that. Try again.", "in");
-      setStatus("Offline", false);
-    } finally {
-      setComposerBusy(false);
-      input.focus();
-    }
-  }
-
   async function loadTopics() {
     try {
-      const res = await fetch("/api/topics?limit=200");
+      const res = await fetch("/api/topics?limit=400");
       const data = await res.json();
       if (data.topics?.length) TOPICS = data.topics;
     } catch (_) {
@@ -894,12 +1751,124 @@
     const res = await fetch("/api/session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ phone: phone || undefined }),
+      body: JSON.stringify({
+        phone: phone || undefined,
+        name: localStorage.getItem("reca_display_name") || undefined,
+        examDate: localStorage.getItem("reca_exam_date") || undefined,
+      }),
     });
     const data = await res.json();
     phone = data.phone;
     localStorage.setItem("reca_phone", phone);
+    if (data.examDate) {
+      localStorage.setItem("reca_exam_date", data.examDate);
+      if (profileExamDate) profileExamDate.value = data.examDate;
+    }
+    syncExamHint(data.daysToExam);
+    if (data.displayName) {
+      localStorage.setItem("reca_display_name", data.displayName);
+      if (profileName) profileName.value = data.displayName;
+      syncDisplayName();
+    }
     setStatus("Online", true);
+  }
+
+  async function pollEvents() {
+    if (!phone) return;
+    try {
+      const res = await fetch(
+        `/api/events?phone=${encodeURIComponent(phone)}&after=${encodeURIComponent(lastEventId)}`
+      );
+      const data = await res.json();
+      const msgs = data.messages || [];
+      if (!msgs.length) return;
+      for (const m of msgs) {
+        if (!m?.id || seen.has(m.id)) continue;
+        seen.add(m.id);
+        lastEventId = m.id;
+        const proactive = m.type === "resurface" || m.type === "briefing";
+        if (proactive) {
+          enqueueNudge(m);
+        } else {
+          // Non-proactive bot pushes stay in thread if already chatting
+          if (app.dataset.mode === "chat" && !thread.hidden) {
+            addBubble(m.text, "in", { id: m.id, at: m.at });
+          } else {
+            enqueueNudge({ ...m, type: m.type || "bot", title: m.title || "Reca" });
+          }
+        }
+      }
+      setStatus("Online", true);
+    } catch (_) {
+      /* ignore transient poll errors */
+    }
+  }
+
+  setInterval(pollEvents, 4000);
+
+  const nudgeCta = document.getElementById("nudgeCta");
+  const nudgeDismiss = document.getElementById("nudgeDismiss");
+  const recallForm = document.getElementById("recallForm");
+  const recallDone = document.getElementById("recallDone");
+  const recallBackdrop = document.getElementById("recallBackdrop");
+
+  if (nudgeCta) {
+    nudgeCta.addEventListener("click", () => {
+      const nudge = activeNudge;
+      if (!nudge) return;
+      hideNudge();
+      if (nudge.type === "briefing") {
+        if (nudge.id) {
+          saveUnreadNudges(loadUnreadNudges().filter((n) => n.id !== nudge.id));
+          syncProgressBadge();
+        }
+        const topic = topicFromNudge(nudge);
+        if (topic) startRevise(topic);
+        else setFeature("revise");
+        return;
+      }
+      // Resurface: answer THIS miss — not a full quiz session
+      openRecallModal(nudge);
+    });
+  }
+  if (nudgeDismiss) {
+    nudgeDismiss.addEventListener("click", () => {
+      if (activeNudge?.id) {
+        saveUnreadNudges(loadUnreadNudges().filter((n) => n.id !== activeNudge.id));
+        syncProgressBadge();
+      }
+      hideNudge();
+    });
+  }
+  if (recallForm) {
+    recallForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const inputEl = document.getElementById("recallInput");
+      const answer = inputEl?.value.trim();
+      if (!answer) return;
+      submitRecallAnswer(answer);
+    });
+  }
+  if (recallDone) {
+    recallDone.addEventListener("click", () => {
+      closeRecallModal();
+      setFeature("progress");
+    });
+  }
+  if (recallBackdrop) {
+    recallBackdrop.addEventListener("click", () => closeRecallModal());
+  }
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    const panel = document.getElementById("recallPanel");
+    if (panel && !panel.hidden) closeRecallModal();
+  });
+
+  // Restore last unread nudge after refresh
+  const existingUnread = loadUnreadNudges();
+  if (existingUnread.length) {
+    showNudge(existingUnread[existingUnread.length - 1]);
+    syncProgressBadge();
   }
 
   document.querySelectorAll(".nav-item").forEach((btn) => {
@@ -921,24 +1890,60 @@
     });
   }
 
-  mobileMenuBtn.addEventListener("click", () => {
+  mobileMenuBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
     app.classList.toggle("is-nav-open");
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!app.classList.contains("is-nav-open")) return;
+    if (e.target.closest(".side") || e.target.closest("#mobileMenuBtn")) return;
+    closeMobileNav();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMobileNav();
   });
 
   if (progressEmptyCta) {
     progressEmptyCta.addEventListener("click", () => setFeature("revise"));
   }
 
+  if (learnRecommend) {
+    learnRecommend.addEventListener("click", () => {
+      const rec = recommendedTopic();
+      if (rec) startLearn(rec);
+    });
+  }
+  if (reviseRecommend) {
+    reviseRecommend.addEventListener("click", () => {
+      const rec = recommendedTopic();
+      if (rec) startRevise(rec);
+    });
+  }
+  if (quizEndBtn) {
+    quizEndBtn.addEventListener("click", () => endQuizSession());
+  }
+
   async function refreshWhatsAppStatus() {
     try {
       const res = await fetch("/api/whatsapp/status");
       const data = await res.json();
+      const cfg = await fetch("/api/config").then((r) => r.json()).catch(() => ({}));
+      if (cfg.whatsappNumber) recaConfig.whatsappNumber = cfg.whatsappNumber;
       if (!waHint) return;
-      if (data.configured && data.from) {
-        const num = String(data.from).replace(/^whatsapp:/, "");
-        waHint.textContent = `Sandbox ready. Message ${num} after linking your number.`;
+      const num = data.from || (cfg.whatsappNumber ? `+${cfg.whatsappNumber}` : null);
+      if (num) {
+        waHint.textContent = `Continue on WhatsApp: message ${num}. Same phone number = same Progress.`;
       } else {
-        waHint.textContent = "WhatsApp not configured on the server yet.";
+        waHint.textContent = "Add your WhatsApp number so web and phone stay in sync.";
+      }
+      const link = document.getElementById("waContinueLink");
+      if (link) {
+        link.href = continueOnWhatsAppUrl(
+          lastLearnTopic?.label || activeQuizTopic?.label || "photosynthesis"
+        );
+        link.hidden = false;
       }
     } catch (_) {
       /* ignore */
@@ -949,7 +1954,6 @@
     const saved = localStorage.getItem("reca_phone") || "";
     if (/^\+\d{10,15}$/.test(saved)) {
       waPhone.value = saved;
-      if (userDisplayName) userDisplayName.textContent = saved;
     }
     waForm.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -967,7 +1971,8 @@
         if (!res.ok) throw new Error(data.error || "Link failed");
         phone = data.phone;
         localStorage.setItem("reca_phone", phone);
-        if (userDisplayName) userDisplayName.textContent = phone;
+        syncDisplayName();
+        syncProfileMenuMeta();
         waStatus.textContent = data.joinHint || `Linked ${phone}`;
         setStatus("Online", true);
         if (feature === "progress") loadProgress();
@@ -981,7 +1986,7 @@
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const text = input.value.trim();
-    if (!text) return;
+    if (!text || busy || sendBtn.disabled) return;
     if (feature === "revise" && app.dataset.mode === "quiz") {
       submitQuizAnswer(text);
       return;
@@ -996,15 +2001,36 @@
       if (match) startRevise(match);
       else startRevise(TOPICS[0]);
       input.value = "";
+      syncSendEnabled();
       return;
     }
-    sendMessage(text, { mode: feature === "learn" ? "learn" : "chat" });
+    // Learn: freeform ask — server resolves topic (including typos); don't pin UI topic
+    sendMessage(text, {
+      mode: "learn",
+      topicId: lastLearnTopic?.id,
+      fresh: false,
+    });
   });
 
-  loadTopics()
+  document.querySelectorAll("[data-ask]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const q = btn.getAttribute("data-ask");
+      if (!q || busy) return;
+      setFeature("learn");
+      sendMessage(q, { mode: "learn", fresh: true });
+    });
+  });
+
+  input.addEventListener("input", syncSendEnabled);
+  input.addEventListener("change", syncSendEnabled);
+  syncSendEnabled();
+
+  loadConfig()
+    .then(() => loadTopics())
     .then(() => startSession(false))
     .then(() => {
       refreshWhatsAppStatus();
       setFeature("learn");
+      syncSendEnabled();
     });
 })();

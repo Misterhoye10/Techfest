@@ -1,5 +1,6 @@
 /**
- * Builds a 1000-question WAEC/JAMB preset bank.
+ * Builds a WAEC/JAMB preset bank:
+ * 50 topics per subject × 50 Q&As each (Learn + Revise).
  * Run: node scripts/generate-curriculum.js
  */
 const fs = require("fs");
@@ -823,12 +824,12 @@ const VARIANT_SUFFIXES = [
   " — confirm the fact.",
 ];
 
-/** Expand a topic's seed items to exactly 100 Q&As by cycling variants. */
-function expandTo100(items) {
+/** Expand a topic's seed items to exactly N Q&As by cycling variants. */
+function expandToN(items, n) {
   if (!items.length) return [];
   const questions = [];
   let i = 0;
-  while (questions.length < 100) {
+  while (questions.length < n) {
     const base = items[i % items.length];
     const round = Math.floor(i / items.length);
     const suffix = VARIANT_SUFFIXES[round % VARIANT_SUFFIXES.length];
@@ -842,9 +843,59 @@ function expandTo100(items) {
   return questions;
 }
 
+const TARGET_TOPICS_PER_SUBJECT = 50;
+const QUESTIONS_PER_TOPIC = 50;
+const SUBJECTS = ["Biology", "Chemistry", "Physics", "Mathematics"];
+
+/** Pad each subject to 50 topics by cloning seeds into practice sets. */
+function padSeedsToSubjectTarget(seeds) {
+  const bySubject = {};
+  for (const s of seeds) {
+    (bySubject[s.subject] ||= []).push(s);
+  }
+  const out = [];
+  const usedIds = new Set();
+
+  for (const subject of SUBJECTS) {
+    const base = bySubject[subject] || [];
+    if (!base.length) {
+      console.warn(`No seeds for ${subject} — skipping pad`);
+      continue;
+    }
+    const subjectTopics = [];
+    let i = 0;
+    while (subjectTopics.length < TARGET_TOPICS_PER_SUBJECT) {
+      const src = base[i % base.length];
+      const set = Math.floor(i / base.length) + 1;
+      const title = set === 1 ? src.title : `${src.title} · set ${set}`;
+      let id = slug(title);
+      let n = 2;
+      while (usedIds.has(id)) {
+        id = `${slug(src.title)}-set-${set}-${n}`;
+        n += 1;
+      }
+      usedIds.add(id);
+      subjectTopics.push({
+        subject,
+        title,
+        idHint: id,
+        explanation:
+          set === 1
+            ? src.explanation
+            : `${src.explanation} Practice set ${set} — same ideas, more exam-style checks.`,
+        items: src.items,
+      });
+      i += 1;
+    }
+    out.push(...subjectTopics);
+  }
+  return out;
+}
+
 function buildBank() {
-  const topics = SEEDS.map((seed) => {
-    const id = slug(seed.title);
+  const padded = padSeedsToSubjectTarget(SEEDS);
+  const topics = padded.map((seed) => {
+    const id = seed.idHint || slug(seed.title);
     return {
       id,
       subject: seed.subject,
@@ -863,7 +914,7 @@ function buildBank() {
             : seed.subject === "Physics"
               ? "flash"
               : "calculator-01",
-      questions: expandTo100(seed.items),
+      questions: expandToN(seed.items, QUESTIONS_PER_TOPIC),
     };
   });
 

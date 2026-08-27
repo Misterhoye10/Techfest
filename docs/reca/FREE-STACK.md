@@ -10,9 +10,9 @@ If a teammate wants a paid tool, they must propose a free alternative first — 
 
 | Layer | Tool | Plan | Notes |
 |-------|------|------|--------|
-| Messaging | **Twilio WhatsApp Sandbox** or **Meta WhatsApp Cloud API** (test number) | Free / sandbox | Sandbox is enough for demo. No paid BSP. |
+| Messaging | **Meta WhatsApp Cloud API** | Free / test number | `META_PHONE_NUMBER_ID` + `META_ACCESS_TOKEN`. Webhook: `GET/POST /webhook`. (Twilio retired for this build.) |
 | Backend runtime | **Node.js + Express** | Free | Open source |
-| AI | **Claude API** | Use **existing credits** only | Keep prompts short; cache demo topics if needed. Fallback: another free/credit LLM if Claude credits die mid-fest. |
+| AI | **Google Gemini** (`GEMINI_API_KEY`) | Free tier | Default model `gemini-2.0-flash`. Preset curriculum is always the offline fallback. Groq/OpenRouter OK if Gemini quota dies. |
 | Database | **Supabase** (Postgres) | Free tier | Stay under free row/storage limits |
 | Scheduler | **node-cron** (in-process) | Free | Plus manual “fire resurface” for demo |
 | Hosting | **Render** or **Railway** | Free web service | Expect cold starts — warm the service before the live demo |

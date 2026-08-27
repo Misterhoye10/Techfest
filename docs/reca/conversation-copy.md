@@ -98,6 +98,28 @@ I'll remember it and check again later. You're building it.
 
 ---
 
+## 4b. Daily briefing (unprompted companion — not a retest)
+
+Scheduled once per day (07:00 Africa/Lagos). Demo fire: `POST /demo/briefing`.
+
+```text
+{N} days to WAEC. Today's focus: {weakest_topic} — your weakest topic. Ready?
+
+Open Revise and pick {weakest_topic}, or reply: revise {weakest_topic}
+```
+
+**Demo example:**
+
+```text
+23 days to WAEC. Today's focus: Ecology — your weakest topic. Ready?
+
+Open Revise and pick Ecology, or reply: revise Ecology
+```
+
+**Judge framing:** resurface = correctness-triggered recall; briefing = study-plan companion that comes first.
+
+---
+
 ## 5. Recap
 
 ```text

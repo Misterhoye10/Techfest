@@ -2,12 +2,13 @@
   "name": "reca-backend",
   "version": "1.0.0",
   "private": true,
-  "description": "Reca — WhatsApp study companion (WAEC/JAMB). Preset-first, optional Claude.",
+  "description": "Reca — WhatsApp study companion (WAEC/JAMB). Preset-first, optional Gemini.",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
     "dev": "node --watch src/index.js",
-    "resurface": "node src/fire-resurface.js"
+    "resurface": "node src/fire-resurface.js",
+    "briefing": "node src/fire-briefing.js"
   },
   "engines": {
     "node": ">=18"
@@ -16,6 +17,7 @@
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "node-cron": "^3.0.3",
+    "pg": "^8.23.0",
     "twilio": "^5.3.0"
   },
   "devDependencies": {

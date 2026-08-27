@@ -3,7 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Reca</title>
+    <title>Reca — AI study companion</title>
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("reca_theme");
+          var resolved =
+            stored === "light" || stored === "dark"
+              ? stored
+              : window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+          document.documentElement.setAttribute("data-theme", resolved);
+          document.documentElement.setAttribute(
+            "data-theme-pref",
+            stored === "light" || stored === "dark" ? stored : "system"
+          );
+        } catch (_) {
+          document.documentElement.setAttribute("data-theme", "light");
+          document.documentElement.setAttribute("data-theme-pref", "system");
+        }
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -16,7 +37,7 @@
     <div class="frame" id="app" data-feature="learn" data-mode="welcome">
       <aside class="side" aria-label="Reca navigation">
         <div class="side__top">
-          <a class="brand" href="/" aria-label="Reca home">
+          <a class="brand" href="/chat.html" aria-label="Reca home">
             <span class="brand__mark" aria-hidden="true" data-icon="mortarboard-01"></span>
             <span class="brand__name">Reca</span>
           </a>
@@ -33,6 +54,7 @@
             <button type="button" class="nav-item" data-nav="progress">
               <span data-icon="analytics-01" class="nav-item__ico" aria-hidden="true"></span>
               Progress
+              <span class="nav-item__badge" id="progressBadge" hidden>0</span>
             </button>
           </nav>
 
@@ -46,39 +68,105 @@
         </div>
 
         <div class="side__foot">
-          <div class="side__wa" id="whatsappPanel">
-            <p class="side__wa-label">WhatsApp</p>
-            <p class="side__wa-hint" id="waHint">Link your number so Progress matches your phone.</p>
-            <form class="side__wa-form" id="waForm">
-              <input
-                id="waPhone"
-                type="tel"
-                inputmode="tel"
-                autocomplete="tel"
-                placeholder="+2348012345678"
-                aria-label="WhatsApp number"
-              />
-              <button type="submit" class="side__wa-btn" id="waLinkBtn">Link</button>
-            </form>
-            <p class="side__wa-status" id="waStatus" hidden></p>
-          </div>
-          <div class="side__user">
-            <span class="side__avatar" aria-hidden="true" data-icon="student"></span>
-            <div>
-              <p class="side__user-name" id="userDisplayName">Student</p>
-              <p class="side__user-meta" id="statusLine">
-                <span data-icon="checkmark-circle-02" class="status-ico" aria-hidden="true"></span>
-                Online
-              </p>
+          <div class="profile" id="profileWrap">
+            <button type="button" class="side__user side__user--btn" id="profileBtn" aria-expanded="false" aria-controls="profilePopover" aria-haspopup="menu" aria-label="Open account menu">
+              <span class="side__avatar" aria-hidden="true" data-icon="student"></span>
+              <span class="side__user-copy">
+                <span class="side__user-name" id="userDisplayName">Student</span>
+                <span class="side__user-meta" id="statusLine">
+                  <span data-icon="checkmark-circle-02" class="status-ico" aria-hidden="true"></span>
+                  Online
+                </span>
+              </span>
+              <span data-icon="arrow-down-01" class="side__user-gear" aria-hidden="true"></span>
+            </button>
+
+            <div class="profile-pop" id="profilePopover" hidden role="menu" aria-labelledby="profilePopEmail">
+              <p class="profile-pop__email" id="profilePopEmail">Student</p>
+
+              <div class="profile-menu" role="none">
+                <button type="button" class="profile-row" id="menuSettings" role="menuitem" data-open-settings="general">
+                  <span data-icon="settings-01" class="profile-row__ico" aria-hidden="true"></span>
+                  <span class="profile-row__label">Settings</span>
+                  <span data-icon="arrow-down-01" class="profile-row__chev profile-row__chev--right" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="profile-row" id="menuAppearance" role="menuitem" data-open-settings="appearance">
+                  <span data-icon="sun-03" class="profile-row__ico" aria-hidden="true"></span>
+                  <span class="profile-row__label">Appearance</span>
+                  <span class="profile-row__meta" id="profileAppearCap">System</span>
+                  <span data-icon="arrow-down-01" class="profile-row__chev profile-row__chev--right" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="profile-row" id="menuExam" role="menuitem" data-open-settings="exam">
+                  <span data-icon="bookmark-01" class="profile-row__ico" aria-hidden="true"></span>
+                  <span class="profile-row__label">Exam countdown</span>
+                  <span class="profile-row__meta" id="profileExamHint">Set date</span>
+                  <span data-icon="arrow-down-01" class="profile-row__chev profile-row__chev--right" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="profile-row" id="menuWhatsApp" role="menuitem" data-open-settings="whatsapp">
+                  <span data-icon="sent" class="profile-row__ico" aria-hidden="true"></span>
+                  <span class="profile-row__label">WhatsApp</span>
+                  <span class="profile-row__meta" id="profileWaMeta">Link</span>
+                  <span data-icon="arrow-down-01" class="profile-row__chev profile-row__chev--right" aria-hidden="true"></span>
+                </button>
+              </div>
+
+              <div class="profile-menu__divider" role="separator"></div>
+
+              <div class="profile-menu" role="none">
+                <button type="button" class="profile-row" id="menuHelp" role="menuitem" data-open-settings="help">
+                  <span data-icon="alert-circle" class="profile-row__ico" aria-hidden="true"></span>
+                  <span class="profile-row__label">Get help</span>
+                </button>
+                <div class="profile-flyout-wrap">
+                  <button
+                    type="button"
+                    class="profile-row"
+                    id="menuLearnMore"
+                    role="menuitem"
+                    aria-haspopup="menu"
+                    aria-expanded="false"
+                    aria-controls="learnMoreFlyout"
+                  >
+                    <span data-icon="book-open-01" class="profile-row__ico" aria-hidden="true"></span>
+                    <span class="profile-row__label">Learn more</span>
+                    <span data-icon="arrow-down-01" class="profile-row__chev profile-row__chev--right" aria-hidden="true"></span>
+                  </button>
+                  <div class="profile-flyout" id="learnMoreFlyout" hidden role="menu" aria-label="Learn more">
+                    <button type="button" class="profile-row" role="menuitem" data-open-settings="about">
+                      <span class="profile-row__label">About Reca</span>
+                    </button>
+                    <button type="button" class="profile-row" role="menuitem" data-open-settings="how">
+                      <span class="profile-row__label">How Reca works</span>
+                    </button>
+                    <button type="button" class="profile-row" role="menuitem" data-open-settings="privacy">
+                      <span class="profile-row__label">Privacy</span>
+                    </button>
+                    <div class="profile-menu__divider" role="separator"></div>
+                    <button type="button" class="profile-row" role="menuitem" data-open-settings="team">
+                      <span class="profile-row__label">Team &amp; BuildFest</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="profile-menu__divider" role="separator"></div>
+
+              <div class="profile-menu" role="none">
+                <a class="profile-row profile-row--link" id="profileAuthLink" href="/signup.html?force=1" role="menuitem">
+                  <span data-icon="student" class="profile-row__ico" aria-hidden="true"></span>
+                  <span class="profile-row__label" id="profileAuthLabel">Link WhatsApp</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </aside>
 
       <section class="main" aria-label="Reca workspace">
+        <div class="main__scrim" id="profileScrim" hidden></div>
         <header class="main__bar">
           <div>
-            <p class="main__eyebrow" id="mainEyebrow">Learn · WAEC &amp; JAMB</p>
+            <p class="main__eyebrow" id="mainEyebrow">Learn · Ask anything</p>
             <h1 class="main__title" id="mainTitle">Ask Reca</h1>
           </div>
           <button type="button" class="main__menu-mobile" id="mobileMenuBtn" aria-label="Open menu">
@@ -88,23 +176,23 @@
         </header>
 
         <div class="main__body">
-          <!-- LEARN hub -->
-          <div class="welcome" id="learnWelcome" role="region" aria-labelledby="learnTitle">
-            <div class="empty">
+          <!-- LEARN hub — one job: ask Reca (topics live in the sidebar) -->
+          <div class="welcome welcome--ask" id="learnWelcome" role="region" aria-labelledby="learnTitle">
+            <div class="empty empty--ask">
               <div class="empty__visual" aria-hidden="true">
                 <span class="empty__orb"></span>
-                <span data-icon="book-open-01" class="empty__icon"></span>
+                <span data-icon="ai-chat-02" class="empty__icon"></span>
               </div>
-              <h2 class="empty__title" id="learnTitle">What do you want to learn?</h2>
+              <h2 class="empty__title" id="learnTitle">Ask Reca anything</h2>
               <p class="empty__desc">
-                Ask Reca — get a clear explanation at WAEC &amp; JAMB level.
+                Type any question — even with typos. Reca’s AI corrects the spelling, then explains. Keep asking on any topic.
               </p>
-              <div class="topic-search">
-                <span data-icon="search-01" aria-hidden="true"></span>
-                <input id="learnSearch" type="search" placeholder="Search topics…" autocomplete="off" />
-              </div>
-              <div class="revise-subjects" id="learnSubjects" aria-label="Subjects"></div>
-              <div class="empty__actions" id="learnTopics" role="group" aria-label="Learn a topic"></div>
+              <p class="empty__hint" id="learnAskHint">
+                Try:
+                <button type="button" class="empty__chip" data-ask="What is osmosis?">What is osmosis?</button>
+                <button type="button" class="empty__chip" data-ask="Explain photosynthesis simply">Explain photosynthesis</button>
+                <button type="button" class="empty__chip" data-ask="What are acids and bases?">Acids &amp; bases</button>
+              </p>
             </div>
           </div>
 
@@ -115,27 +203,42 @@
                 <span class="empty__orb"></span>
                 <span data-icon="quiz-03" class="empty__icon"></span>
               </div>
-              <h2 class="empty__title" id="reviseTitle">Ready to revise?</h2>
+              <h2 class="empty__title" id="reviseTitle">Ready for Reca’s AI quiz?</h2>
               <p class="empty__desc">
-                Reca asks. You answer — tap a choice or type your own.
+                Pick a topic — Reca’s AI asks; you answer. Tap a choice or type your own.
               </p>
-              <div class="topic-search">
-                <span data-icon="search-01" aria-hidden="true"></span>
-                <input id="reviseSearch" type="search" placeholder="Search topics to revise…" autocomplete="off" />
+              <button type="button" class="recommend" id="reviseRecommend">
+                <span class="recommend__eyebrow">AI recommends</span>
+                <span class="recommend__title" id="reviseRecommendTitle">Photosynthesis</span>
+                <span class="recommend__meta">Biology · AI will quiz you</span>
+              </button>
+              <div class="hub-tools">
+                <div class="topic-search">
+                  <span data-icon="search-01" aria-hidden="true"></span>
+                  <input id="reviseSearch" type="search" placeholder="Search what Reca should quiz…" autocomplete="off" />
+                </div>
+                <div class="revise-subjects" id="reviseSubjects" aria-label="Subjects"></div>
               </div>
-              <div class="revise-subjects" id="reviseSubjects" aria-label="Subjects"></div>
+              <p class="hub-browse" id="reviseBrowseLabel">Or pick a topic for AI to quiz</p>
               <div class="empty__actions" id="reviseTopics" role="group" aria-label="Revise a topic"></div>
             </div>
           </div>
 
           <div class="quiz" id="quizPanel" hidden>
-            <div class="quiz__meta">
-              <span class="quiz__topic" id="quizTopic">Photosynthesis</span>
-              <span class="quiz__count" id="quizCount">1 / 2</span>
+            <div class="quiz__top">
+              <div class="quiz__meta">
+                <span class="quiz__topic" id="quizTopic">Photosynthesis</span>
+                <span class="quiz__count" id="quizCount">1 / 2</span>
+              </div>
+              <button type="button" class="quiz__end" id="quizEndBtn">End session</button>
+            </div>
+            <div class="quiz__track" aria-hidden="true">
+              <div class="quiz__bar" id="quizBar"></div>
             </div>
             <h2 class="quiz__question" id="quizQuestion">Question</h2>
             <div class="quiz__options" id="quizOptions" role="group" aria-label="Answer choices"></div>
             <div class="quiz__feedback" id="quizFeedback" hidden></div>
+            <p class="quiz__memory" id="quizMemory" hidden></p>
             <div class="quiz__summary" id="quizSummary" hidden></div>
           </div>
 
@@ -145,17 +248,24 @@
                 <span class="empty__orb"></span>
                 <span data-icon="analytics-01" class="empty__icon"></span>
               </div>
-              <h2 class="empty__title">No progress yet</h2>
+              <h2 class="empty__title">No AI memory yet</h2>
               <p class="empty__desc">
-                Answer questions in Revise — Reca will track what’s strong and what still needs work.
+                Answer a few questions in Revise — Reca’s AI maps what’s strong, what needs work, and when to come back first.
               </p>
               <button type="button" class="progress__cta" id="progressEmptyCta">
                 <span data-icon="quiz-03" aria-hidden="true"></span>
-                Start revising
+                Start AI quiz
               </button>
             </div>
 
             <div class="progress__body" id="progressBody" hidden>
+              <div class="progress__due" id="progressDue" hidden>
+                <h3 class="progress__heading">Due for AI recall</h3>
+                <p class="progress__due-lead" id="progressDueLead">
+                  Reca’s AI decided these need a revisit — quiz now to clear them.
+                </p>
+                <div class="progress__list" id="progressDueList"></div>
+              </div>
               <div class="progress__stats" id="progressStats" aria-label="Overall accuracy"></div>
               <div class="progress__filters" id="progressFilters" role="group" aria-label="Filter by subject"></div>
               <section class="progress__section" aria-labelledby="progressNeedsTitle">
@@ -183,16 +293,270 @@
               id="messageInput"
               type="text"
               autocomplete="off"
-              placeholder="Ask Reca to explain a topic…"
+              placeholder="Ask anything — typos OK, Reca will correct…"
               enterkeyhint="send"
             />
-            <button type="submit" class="composer__send" id="sendBtn" aria-label="Send">
+            <button type="submit" class="composer__send" id="sendBtn" aria-label="Send" disabled>
               <span data-icon="sent" class="composer__send-ico" aria-hidden="true"></span>
             </button>
           </form>
         </div>
       </section>
     </div>
+
+    <!-- Claude-style main Settings modal — edits live here, not in the small menu -->
+    <div class="settings" id="settingsModal" hidden>
+      <button type="button" class="settings__backdrop" id="settingsBackdrop" aria-label="Close settings"></button>
+      <div
+        class="settings__dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="settingsTitle"
+        id="settingsDialog"
+      >
+        <button type="button" class="settings__close" id="settingsClose" aria-label="Close settings">
+          <span data-icon="cancel-01" aria-hidden="true"></span>
+        </button>
+
+        <aside class="settings__nav" aria-label="Settings sections">
+          <p class="settings__nav-label">Settings</p>
+          <button type="button" class="settings__nav-item is-active" data-settings-nav="general">
+            <span data-icon="student" aria-hidden="true"></span>
+            Profile
+          </button>
+          <button type="button" class="settings__nav-item" data-settings-nav="appearance">
+            <span data-icon="sun-03" aria-hidden="true"></span>
+            Appearance
+          </button>
+          <button type="button" class="settings__nav-item" data-settings-nav="exam">
+            <span data-icon="bookmark-01" aria-hidden="true"></span>
+            Exam
+          </button>
+          <button type="button" class="settings__nav-item" data-settings-nav="whatsapp">
+            <span data-icon="sent" aria-hidden="true"></span>
+            WhatsApp
+          </button>
+
+          <p class="settings__nav-label settings__nav-label--spaced">Learn more</p>
+          <button type="button" class="settings__nav-item" data-settings-nav="about">
+            <span data-icon="book-open-01" aria-hidden="true"></span>
+            About Reca
+          </button>
+          <button type="button" class="settings__nav-item" data-settings-nav="how">
+            <span data-icon="quiz-03" aria-hidden="true"></span>
+            How it works
+          </button>
+          <button type="button" class="settings__nav-item" data-settings-nav="help">
+            <span data-icon="alert-circle" aria-hidden="true"></span>
+            Get help
+          </button>
+          <button type="button" class="settings__nav-item" data-settings-nav="privacy">
+            <span data-icon="checkmark-circle-02" aria-hidden="true"></span>
+            Privacy
+          </button>
+          <button type="button" class="settings__nav-item" data-settings-nav="team">
+            <span data-icon="mortarboard-01" aria-hidden="true"></span>
+            Team
+          </button>
+        </aside>
+
+        <div class="settings__content">
+          <h2 class="settings__title" id="settingsTitle">Profile</h2>
+
+          <section class="settings__pane" id="settings-general" data-settings-pane="general">
+            <label class="settings__field">
+              <span class="settings__field-label">What should Reca call you?</span>
+              <input id="profileName" type="text" maxlength="40" placeholder="e.g. Chiamaka" autocomplete="nickname" />
+            </label>
+            <p class="settings__hint">Shows in the sidebar. Used in daily briefings.</p>
+            <p class="settings__email" id="profileEmail" hidden></p>
+          </section>
+
+          <section class="settings__pane" id="settings-appearance" data-settings-pane="appearance" hidden>
+            <p class="settings__field-label">Appearance</p>
+            <div class="appear appear--settings" role="group" aria-label="Appearance">
+              <button type="button" class="appear__btn" data-appear="system" aria-pressed="true">
+                <span data-icon="computer" aria-hidden="true"></span>
+                <span>System</span>
+              </button>
+              <button type="button" class="appear__btn" data-appear="light" aria-pressed="false">
+                <span data-icon="sun-03" aria-hidden="true"></span>
+                <span>Light</span>
+              </button>
+              <button type="button" class="appear__btn" data-appear="dark" aria-pressed="false">
+                <span data-icon="moon-01" aria-hidden="true"></span>
+                <span>Dark</span>
+              </button>
+            </div>
+            <p class="settings__hint" id="settingsAppearHint">Follows your device setting.</p>
+          </section>
+
+          <section class="settings__pane" id="settings-exam" data-settings-pane="exam" hidden>
+            <label class="settings__field">
+              <span class="settings__field-label">Exam date</span>
+              <input id="profileExamDate" type="date" />
+            </label>
+            <p class="settings__stat" id="settingsExamStat">Set your date</p>
+            <p class="settings__hint">Powers the daily briefing — Reca comes to you first.</p>
+          </section>
+
+          <section class="settings__pane" id="settings-whatsapp" data-settings-pane="whatsapp" hidden>
+            <p class="settings__field-label">WhatsApp</p>
+            <p class="settings__hint" id="waHint">
+              Progress uses this WhatsApp number.
+            </p>
+            <form class="settings__wa" id="waForm">
+              <input
+                id="waPhone"
+                type="tel"
+                inputmode="tel"
+                autocomplete="tel"
+                placeholder="+2348012345678"
+                aria-label="WhatsApp number"
+              />
+              <button type="submit" class="settings__wa-btn" id="waLinkBtn">Link</button>
+            </form>
+            <a
+              class="settings__wa-continue"
+              id="waContinueLink"
+              href="https://wa.me/15556777893?text=explain%20photosynthesis"
+              target="_blank"
+              rel="noopener"
+              >Open WhatsApp</a
+            >
+            <p class="settings__wa-status" id="waStatus" hidden></p>
+          </section>
+
+          <section class="settings__pane settings__pane--copy" id="settings-about" data-settings-pane="about" hidden>
+            <p class="settings__lead">
+              Reca is an <strong>AI study companion</strong> for WAEC &amp; JAMB — built for AI BuildFest so students get explanations, quizzes, and recall that don’t wait for them to open the chat.
+            </p>
+            <ul class="settings__list">
+              <li><strong>AI Learn</strong> — the model explains any syllabus topic in plain language, by subject.</li>
+              <li><strong>AI Revise</strong> — Reca generates and grades questions; you answer one at a time.</li>
+              <li><strong>AI memory</strong> — Progress tracks what’s weak and when you’re due to forget — then Reca comes first.</li>
+            </ul>
+            <p class="settings__hint">
+              Generic AI chat remembers when you return. Reca’s AI decides when to resurface — on WhatsApp and in this web app.
+            </p>
+          </section>
+
+          <section class="settings__pane settings__pane--copy" id="settings-how" data-settings-pane="how" hidden>
+            <p class="settings__lead">How Reca’s AI loop works</p>
+            <ol class="settings__steps">
+              <li>
+                <strong>Ask the AI</strong>
+                <span>Open Learn, pick a topic, or type in the composer — Reca explains with the study model.</span>
+              </li>
+              <li>
+                <strong>Quiz with AI</strong>
+                <span>Switch to Revise — Reca’s AI asks and grades questions on that topic, one at a time.</span>
+              </li>
+              <li>
+                <strong>AI remembers misses</strong>
+                <span>Wrong answers get a resurface time. Progress shows what’s due for recall.</span>
+              </li>
+              <li>
+                <strong>AI comes first</strong>
+                <span>Unprompted recall nudges + a daily AI briefing (days-to-exam + weakest topic) on web and WhatsApp.</span>
+              </li>
+            </ol>
+          </section>
+
+          <section class="settings__pane settings__pane--copy" id="settings-help" data-settings-pane="help" hidden>
+            <p class="settings__lead">Demo the AI companion fast</p>
+            <ul class="settings__list">
+              <li>Ask Reca to explain <strong>Photosynthesis</strong> on Learn — that’s the AI explanation path.</li>
+              <li>Hit <strong>Revise this topic</strong> — miss one on purpose so the AI memory loop has something to resurface.</li>
+              <li>Trigger recall: wait for the nudge, or call <code>POST /demo/resurface</code>.</li>
+              <li>Daily AI briefing: <code>POST /demo/briefing</code> (same copy on web + WhatsApp when linked).</li>
+              <li>Link WhatsApp in Settings so the AI student id matches phone and Progress.</li>
+            </ul>
+            <p class="settings__hint">Sidebar should say Online when the AI API is up. If it flakes, the demo still runs on the topic bank.</p>
+          </section>
+
+          <section class="settings__pane settings__pane--copy" id="settings-privacy" data-settings-pane="privacy" hidden>
+            <p class="settings__lead">What Reca stores (honest limits)</p>
+            <ul class="settings__list">
+              <li>Your <strong>WhatsApp number</strong> is your account ID — no password.</li>
+              <li>Name, exam date, and theme stay in this browser until you Sign out.</li>
+              <li>Quiz attempts / Progress sync to the shared student record for that number.</li>
+              <li>There is no “forgot password.” Need in again? Returning → code on WhatsApp.</li>
+              <li>Lost number recovery isn’t in this build — Progress stays on the old WhatsApp.</li>
+            </ul>
+            <p class="settings__hint">Don’t paste real secrets or school credentials into the demo.</p>
+          </section>
+
+          <section class="settings__pane settings__pane--copy" id="settings-team" data-settings-pane="team" hidden>
+            <p class="settings__lead">
+              AI BuildFest 2026 · Track 3 · Case Study 2 — <strong>AI for Everyday Life</strong>
+            </p>
+            <ul class="settings__list">
+              <li><strong>Talodabioluwa Paul</strong> &amp; <strong>Folarin Oyewole</strong></li>
+              <li>Participant ID <strong>BF-0933</strong></li>
+              <li>Product: <strong>Reca</strong> — AI-powered WAEC/JAMB study companion (web chat + WhatsApp)</li>
+              <li>Focus: active AI memory — explain → quiz → grade → resurface → daily briefing</li>
+            </ul>
+            <p class="settings__hint">Personal, after-hours AI study — not an in-school deploy for this build.</p>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <!-- Guest: soft prompt to link WhatsApp after a miss -->
+    <div class="link-banner" id="linkBanner" hidden role="status">
+      <p class="link-banner__text" id="linkBannerText">
+        Link WhatsApp to keep Progress on your phone.
+      </p>
+      <a class="link-banner__cta" id="linkBannerCta" href="/signup.html">Link WhatsApp</a>
+      <button type="button" class="link-banner__dismiss" id="linkBannerDismiss" aria-label="Dismiss">
+        Not now
+      </button>
+    </div>
+
+    <!-- Top-right proactive toast — does not interrupt Learn -->
+    <div class="nudge-toast" id="nudgeBar" hidden role="status" aria-live="polite">
+      <div class="nudge-toast__top">
+        <span data-icon="notification-01" class="nudge-toast__ico" aria-hidden="true"></span>
+        <p class="nudge-toast__eyebrow" id="nudgeEyebrow">Time to recall</p>
+        <button type="button" class="nudge-toast__dismiss" id="nudgeDismiss" aria-label="Dismiss">
+          <span data-icon="cancel-01" aria-hidden="true"></span>
+        </button>
+      </div>
+      <p class="nudge-toast__title" id="nudgeTitle">Quick recall</p>
+      <p class="nudge-toast__text" id="nudgeText"></p>
+      <p class="nudge-toast__meta" id="nudgeMeta">You missed this earlier. Answer to clear it.</p>
+      <button type="button" class="nudge-toast__cta" id="nudgeCta">Answer now</button>
+    </div>
+
+    <!-- Focused recall answer (one question) -->
+    <div class="recall" id="recallPanel" hidden>
+      <div class="recall__backdrop" id="recallBackdrop"></div>
+      <div
+        class="recall__card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="recallTitle"
+      >
+        <p class="recall__eyebrow" id="recallEyebrow">Quick recall</p>
+        <h2 class="recall__title" id="recallTitle">Answer this</h2>
+        <p class="recall__question" id="recallQuestion"></p>
+        <p class="recall__hint">One short answer. Reca is checking a miss from earlier.</p>
+        <form class="recall__form" id="recallForm">
+          <input
+            id="recallInput"
+            type="text"
+            autocomplete="off"
+            placeholder="Type your answer…"
+            enterkeyhint="done"
+          />
+          <button type="submit" class="recall__submit" id="recallSubmit">Check</button>
+        </form>
+        <p class="recall__feedback" id="recallFeedback" hidden></p>
+        <button type="button" class="recall__done" id="recallDone" hidden>Done</button>
+      </div>
+    </div>
+
     <script src="/chat.js"></script>
   </body>
 </html>

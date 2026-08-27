@@ -67,6 +67,28 @@ You've got this one now. Want another topic? Try: explain osmosis`;
 I'll remember it and check again later. You're building it.`;
   },
 
+  /**
+   * Unprompted daily companion — not a retest, a study-plan nudge.
+   * Example: "23 days to WAEC. Today's focus: Ecology, your weakest topic. Ready?"
+   */
+  dailyBriefing({ daysLeft, focusTopic, examLabel = "WAEC", name }) {
+    const who = name ? `${name} — ` : "";
+    const focus = focusTopic || "your next topic";
+    if (typeof daysLeft === "number" && daysLeft >= 0) {
+      return `${who}${daysLeft} day${daysLeft === 1 ? "" : "s"} to ${examLabel}. Today's focus: ${focus} — your weakest topic. Ready?
+
+Open Revise and pick ${focus}, or reply: revise ${focus}`;
+    }
+    if (typeof daysLeft === "number" && daysLeft < 0) {
+      return `${who}${examLabel} window is here. Today's focus: ${focus} — keep clearing weak spots.
+
+Open Revise and pick ${focus}.`;
+    }
+    return `${who}Today's focus: ${focus} — your weakest topic. Ready?
+
+Open Revise and pick ${focus}.`;
+  },
+
   recap({ subject, strong, cleared, needsWork, nextWeak, answered, correct, accuracy }) {
     const line = (label, list) =>
       list.length ? `${label}: ${list.join(", ")}` : null;

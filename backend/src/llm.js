@@ -1,0 +1,218 @@
+/**
+ * Reca LLM layer — Gemini first (free tier), preset curriculum is the fallback.
+ * Never call this from the browser; keys stay in backend/.env only.
+ */
+
+const MODEL =
+  process.env.GEMINI_MODEL ||
+  process.env.GOOGLE_GEMINI_MODEL ||
+  "gemini-2.0-flash";
+
+function apiKey() {
+  return (
+    process.env.GEMINI_API_KEY ||
+    process.env.GOOGLE_API_KEY ||
+    process.env.GOOGLE_GENERATIVE_AI_API_KEY ||
+    ""
+  ).trim();
+}
+
+function isEnabled() {
+  return Boolean(apiKey());
+}
+
+function providerLabel() {
+  if (apiKey()) return `gemini:${MODEL}`;
+  if (process.env.ANTHROPIC_API_KEY) return "anthropic-unset";
+  return "preset";
+}
+
+function stripFences(text) {
+  return String(text || "")
+    .replace(/^```(?:json)?\s*/i, "")
+    .replace(/\s*```$/i, "")
+    .trim();
+}
+
+function parseJson(text) {
+  const raw = stripFences(text);
+  try {
+    return JSON.parse(raw);
+  } catch (_) {
+    const start = raw.indexOf("{");
+    const end = raw.lastIndexOf("}");
+    if (start >= 0 && end > start) {
+      return JSON.parse(raw.slice(start, end + 1));
+    }
+    throw new Error("LLM returned non-JSON");
+  }
+}
+
+async function generateJson(system, user) {
+  const key = apiKey();
+  if (!key) return null;
+
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${encodeURIComponent(key)}`;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 20000);
+
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      signal: controller.signal,
+      body: JSON.stringify({
+        systemInstruction: { parts: [{ text: system }] },
+        contents: [{ role: "user", parts: [{ text: user }] }],
+        generationConfig: {
+          temperature: 0.4,
+          maxOutputTokens: 1024,
+          responseMimeType: "application/json",
+        },
+      }),
+    });
+
+    if (!res.ok) {
+      const errText = await res.text().catch(() => "");
+      console.error(`Gemini ${res.status}:`, errText.slice(0, 400));
+      return null;
+    }
+
+    const data = await res.json();
+    const text = data?.candidates?.[0]?.content?.parts
+      ?.map((p) => p.text || "")
+      .join("")
+      .trim();
+    if (!text) {
+      console.error("Gemini empty response", JSON.stringify(data).slice(0, 300));
+      return null;
+    }
+    return parseJson(text);
+  } catch (err) {
+    console.error("Gemini call failed:", err.message);
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+/**
+ * Explain a topic + exactly 2 short-answer practice questions (WAEC/JAMB level).
+ * Returns { explanation, questions: [{ id, text, correctAnswer, accept, correction }] } or null.
+ */
+async function explainAndQuiz({ topicTitle, subject, studentAsk }) {
+  const system = `You are Reca, a WhatsApp study companion for Nigerian WAEC and JAMB students (SS2/SS3).
+Return ONLY valid JSON. No markdown.
+Tone: plain, warm, short — like a sharp classmate, not a textbook.
+Explanation: 3–5 sentences max.
+Questions: exactly 2 short-answer items (not multiple choice). WAEC syllabus difficulty.
+Each question needs a clear correctAnswer and 2–5 accept strings (common phrasings / synonyms).
+correction: one short sentence if they get it wrong.`;
+
+  const user = `Subject: ${subject || "Biology"}
+Topic: ${topicTitle}
+Student message: ${studentAsk || topicTitle}
+
+Return JSON shape:
+{
+  "explanation": "string",
+  "questions": [
+    {
+      "id": "q1",
+      "text": "question text ending with ?",
+      "correctAnswer": "canonical short answer",
+      "accept": ["canonical", "synonym"],
+      "correction": "short fix if wrong"
+    },
+    {
+      "id": "q2",
+      "text": "...",
+      "correctAnswer": "...",
+      "accept": ["..."],
+      "correction": "..."
+    }
+  ]
+}`;
+
+  const data = await generateJson(system, user);
+  if (!data?.explanation || !Array.isArray(data.questions) || data.questions.length < 2) {
+    return null;
+  }
+
+  const questions = data.questions.slice(0, 2).map((q, i) => {
+    const correct = String(q.correctAnswer || q.accept?.[0] || "").trim();
+    const accept = Array.isArray(q.accept)
+      ? q.accept.map(String).filter(Boolean)
+      : [];
+    if (correct && !accept.includes(correct)) accept.unshift(correct);
+    return {
+      id: String(q.id || `llm-q${i + 1}`),
+      text: String(q.text || "").trim(),
+      correctAnswer: correct,
+      accept: accept.length ? accept : [correct],
+      correction:
+        String(q.correction || "").trim() ||
+        (correct ? `Not quite — it's ${correct}.` : "Not quite."),
+      options: accept.slice(0, 4),
+    };
+  });
+
+  if (!questions[0].text || !questions[1].text || !questions[0].correctAnswer) {
+    return null;
+  }
+
+  return {
+    explanation: String(data.explanation).trim(),
+    questions,
+  };
+}
+
+/**
+ * Grade a free-text answer (lenient on phrasing).
+ * Returns { is_correct, feedback } or null.
+ */
+async function gradeAnswerLlm({ questionText, correctAnswer, accept, studentAnswer }) {
+  const system = `You grade WAEC/JAMB short answers for Reca.
+Be lenient on spelling and phrasing if the core concept is right.
+Return ONLY JSON: { "is_correct": boolean, "feedback": "short plain correction if wrong, empty if correct" }`;
+
+  const user = `Question: ${questionText}
+Correct concept: ${correctAnswer}
+Also accept: ${(accept || []).join("; ")}
+Student answer: ${studentAnswer}`;
+
+  const data = await generateJson(system, user);
+  if (!data || typeof data.is_correct !== "boolean") return null;
+  return {
+    is_correct: data.is_correct,
+    feedback: String(data.feedback || "").trim(),
+  };
+}
+
+/**
+ * Learn-mode answer grounded on a syllabus topic.
+ * Returns { reply } or null.
+ */
+async function learnReply({ topicTitle, subject, explanation, studentAsk }) {
+  const system = `You are Reca on WhatsApp. Answer the student's question about this syllabus topic.
+Keep it to 4–6 short sentences. WAEC/JAMB level. No markdown headings.
+End by inviting them to ask more or take a quiz.
+Return ONLY JSON: { "reply": "string" }`;
+
+  const user = `Subject: ${subject}
+Topic: ${topicTitle}
+Syllabus notes: ${explanation}
+Student asked: ${studentAsk}`;
+
+  const data = await generateJson(system, user);
+  if (!data?.reply) return null;
+  return { reply: String(data.reply).trim() };
+}
+
+module.exports = {
+  isEnabled,
+  providerLabel,
+  explainAndQuiz,
+  gradeAnswerLlm,
+  learnReply,
+};
