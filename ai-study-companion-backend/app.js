@@ -244,9 +244,32 @@ app.post('/webhook', async (req, res) => {
   const greetings = ['hi', 'hello', 'hey', 'start', 'get started', 'ready to study', 'setup', 'welcome'];
   const isGreeting = greetings.some(g => cleanMsg.includes(g)) || cleanMsg === 'reca';
 
+  let topic = userMessage.trim();
+  const prefixes = [
+    /^explain\s+/i,
+    /^what\s+is\s+/i,
+    /^what\s+are\s+/i,
+    /^tell\s+me\s+about\s+/i,
+    /^define\s+/i,
+    /^how\s+does\s+/i,
+    /^how\s+do\s+/i
+  ];
+  
+  let isStudyRequest = false;
+  for (const prefix of prefixes) {
+    if (prefix.test(topic)) {
+      topic = topic.replace(prefix, '').trim();
+      isStudyRequest = true;
+      break;
+    }
+  }
+
+  const wordCount = userMessage.trim().split(/\s+/).length;
+  const session = userSessions[senderPhone];
+  const isShortTopic = wordCount <= 3 && !session && !isGreeting;
+
   // Check if user wants to explain something
-  if (userMessage.toLowerCase().startsWith('explain ')) {
-    const topic = userMessage.substring(8).trim();
+  if ((isStudyRequest || isShortTopic) && topic.length > 0) {
     console.log('🎓 User wants to explain:', topic);
 
     try {
@@ -403,7 +426,7 @@ Format your response as a clean WhatsApp message.`;
     } else {
       // For other messages, send a guide
       try {
-        await sendMetaWhatsAppMessage(senderPhone, `📝 You said: "${userMessage}"\n\nTry: "explain genetics" to get started!`);
+        await sendMetaWhatsAppMessage(senderPhone, `📝 You said: "${userMessage}"\n\nTry asking: "explain genetics" or "what is gravity" to get started!`);
       } catch (error) {
         console.error('❌ Error sending guide:', error.message);
       }
