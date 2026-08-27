@@ -139,12 +139,7 @@ async function handleIncoming(phone, body, opts = {}) {
           if (ai?.reply) explanation = ai.reply;
         }
 
-        const bodyText = [
-          explanation,
-          "",
-          `You’re on ${topicLabel(topic)} (${topic.subject}). Ask another question anytime — any topic — and Reca will answer.`,
-        ].join("\n");
-        return [withSpelling(corrections, bodyText)];
+        return [withSpelling(corrections, explanation)];
       }
 
       return learnFollowUp(student, topic, text, corrections);
