@@ -1,6 +1,6 @@
 # Reca — Demo topics (Biology & Chemistry)
 
-**Purpose:** Fixed topics for Claude testing + live demo. Do not improvise on stage.  
+**Purpose:** Fixed topics for Gemini/preset testing + live demo. Do not improvise on stage.  
 **Coverage:** 10 topics (6 Biology, 4 Chemistry) — WAEC/JAMB style, SS2/SS3 level.  
 **Primary live demo topic:** #1 Photosynthesis  
 **Backup live demo topic:** #2 Osmosis  
@@ -27,7 +27,7 @@ Give this file to backend for prompt testing. Related: [demo-script.md](./demo-s
 
 **Must-cover concepts:** sunlight, chlorophyll/chloroplast, CO₂ + water → glucose + oxygen
 
-**Q1:** Which part of the plant cell captures sunlight for photosynthesis?  
+**Q1 (preset bank):** Which organelle captures sunlight for photosynthesis?  
 **Correct:** chloroplast (accept: chlorophyll in chloroplast — lenient)  
 **Wrong (demo):** mitochondria  
 
@@ -35,7 +35,7 @@ Give this file to backend for prompt testing. Related: [demo-script.md](./demo-s
 **Correct:** glucose and oxygen  
 **Wrong:** water and carbon dioxide  
 
-**Resurface line:** Quick recall — which part of the plant cell captures sunlight for photosynthesis?
+**Resurface line:** Quick recall — which organelle captures sunlight for photosynthesis?
 
 ---
 

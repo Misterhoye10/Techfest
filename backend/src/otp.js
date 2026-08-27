@@ -3,14 +3,28 @@
  * In-memory — fine for BuildFest; move to Redis/Supabase later.
  */
 
+const crypto = require("crypto");
+
 const codes = new Map(); // phone → { code, name, purpose, expiresAt, attempts, lastSentAt }
 
 const TTL_MS = Number(process.env.OTP_TTL_MS || 10 * 60 * 1000);
 const RESEND_MS = Number(process.env.OTP_RESEND_MS || 45 * 1000);
 const MAX_ATTEMPTS = Number(process.env.OTP_MAX_ATTEMPTS || 5);
+const CODE_DIGITS = Number(process.env.OTP_DIGITS || 6);
 
 function generateCode() {
-  return String(Math.floor(1000 + Math.random() * 9000));
+  const digits = CODE_DIGITS === 4 ? 4 : 6;
+  if (digits === 4) {
+    return String(crypto.randomInt(1000, 10000));
+  }
+  return String(crypto.randomInt(100000, 1000000));
+}
+
+function timingSafeCodeEqual(a, b) {
+  const left = Buffer.from(String(a || "").trim());
+  const right = Buffer.from(String(b || "").trim());
+  if (left.length !== right.length) return false;
+  return crypto.timingSafeEqual(left, right);
 }
 
 function createOtp({ phone, name, purpose }) {
@@ -56,7 +70,7 @@ function verifyOtp({ phone, code }) {
     err.status = 429;
     throw err;
   }
-  if (String(code || "").trim() !== record.code) {
+  if (!timingSafeCodeEqual(code, record.code)) {
     const left = MAX_ATTEMPTS - record.attempts;
     const err = new Error(
       left > 0

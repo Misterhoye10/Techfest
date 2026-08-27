@@ -1,186 +1,143 @@
-# Reca — WhatsApp setup flow (do this ASAP)
+# Reca — WhatsApp setup (Meta Cloud API)
 
-**Goal:** Get a free WhatsApp channel working so Reca can receive and send messages.  
-**Budget:** Free only (Twilio Sandbox or Meta test number).  
-**Default path:** **Twilio WhatsApp Sandbox** (fastest for a 2-day hackathon).
+**Goal:** Get WhatsApp receive + send working so Reca can message students first.  
+**Budget:** Free / Meta test number only.  
+**Locked path:** **Meta WhatsApp Cloud API** (Twilio is retired for this build — ignore old Twilio docs).
 
-Related: [FREE-STACK.md](./FREE-STACK.md) · [BUILD-REQUIREMENTS.md](./BUILD-REQUIREMENTS.md) · [technical-prd.md](./technical-prd.md)
-
----
-
-## Decision
-
-| Option | Use when | Speed |
-|--------|----------|-------|
-| **Twilio WhatsApp Sandbox** (preferred) | You need to start today | ~20–30 min |
-| Meta WhatsApp Cloud API test number | Twilio signup is blocked in your region | Slower (1–2+ hrs) |
-
-**Locked for Reca MVP:** start on Twilio Sandbox. Switch to Meta only if Twilio fails.
+Related: [FREE-STACK.md](./FREE-STACK.md) · [security.md](./security.md) · [demo-script.md](./demo-script.md)
 
 ---
 
-## Flow A — Twilio WhatsApp Sandbox (required path)
+## Why Meta
 
-### Step 1 — Create Twilio account
-1. Open [https://www.twilio.com/try-twilio](https://www.twilio.com/try-twilio)
-2. Sign up (free trial is fine)
-3. Verify your phone number
+The backend (`backend/src/whatsapp.js`) talks to Meta Graph API only. Credentials:
 
-**Owner:** one teammate (post Account SID later — never in public chat as a full secret dump if avoidable; use team vault).
+| Env | Purpose |
+|-----|---------|
+| `META_PHONE_NUMBER_ID` | Send API |
+| `META_ACCESS_TOKEN` | Bearer token |
+| `META_VERIFY_TOKEN` | Webhook GET challenge (must match Meta dashboard) |
+| `META_APP_SECRET` | Verify `X-Hub-Signature-256` on POST (**required in production**) |
+| `META_DISPLAY_PHONE_NUMBER` | Optional E.164 shown in UI |
 
-### Step 2 — Open WhatsApp Sandbox
-1. Twilio Console → **Messaging** → **Try it out** → **Send a WhatsApp message**  
-   Direct: [https://console.twilio.com/us1/develop/sms/try-it-out/whatsapp-learn](https://console.twilio.com/us1/develop/sms/try-it-out/whatsapp-learn)
-2. Copy the join instructions. Example shape:
-   - Send `join <code-words>` to `+1 415 XXX XXXX`
+---
 
-### Step 3 — Join from every demo phone
-On WhatsApp, message the Twilio sandbox number:
+## Setup flow
+
+### 1 — Meta app + WhatsApp product
+
+1. Open [https://developers.facebook.com](https://developers.facebook.com)
+2. Create (or open) a **Business** app
+3. Add product **WhatsApp**
+4. From **API Setup**, copy:
+   - Phone number ID
+   - Temporary (or permanent) access token
+   - Test / display phone number
+
+### 2 — Allow-list every demo phone
+
+Meta test numbers only talk to **allow-listed** recipients.
+
+Add:
+- On-stage demo phone
+- Backup phone
+- Every teammate who will test
+
+**Done when:** Meta console can send a test message to that phone.
+
+### 3 — Deploy Reca webhook
+
+Host on **Render** (always-on Node — not Vercel for the hero cron):
 
 ```text
-join <the-code-shown-in-console>
+GET/POST https://<your-app>.onrender.com/webhook
 ```
 
-Wait for confirmation that you joined the sandbox.
+(Also mounted at `/webhook/whatsapp` for older notes.)
 
-**Must join:**
-- Every teammate’s phone
-- The on-stage demo phone
-- Any judge / volunteer phone you can get early
+In Meta → WhatsApp → Configuration → Webhook:
 
-Sandbox **only** talks to numbers that have joined.
+1. Callback URL = the URL above  
+2. Verify token = same string as `META_VERIFY_TOKEN` in Render env  
+3. Subscribe to **messages**
 
-### Step 4 — Prove 2-way chat (before backend)
-1. In Twilio “try it out”, send a WhatsApp message to your joined number
-2. Reply from your phone
-3. Confirm the inbound reply appears in Twilio (logs / monitor)
+**Done when:** Meta shows webhook verified (GET challenge succeeds).
 
-**Done when:** messages go both ways with **no code yet**.
-
-### Step 5 — Save credentials for backend (private)
-From Twilio Console:
-
-| Value | Example shape | Store in |
-|-------|---------------|----------|
-| Account SID | `ACxxxxxxxx` | `.env` / team secrets |
-| Auth Token | secret | `.env` / team secrets — **never commit to GitHub** |
-| WhatsApp from | `whatsapp:+1415xxxxxxx` | `.env` |
-
-Suggested `.env` keys:
+### 4 — Render env (minimum for stage)
 
 ```env
-TWILIO_ACCOUNT_SID=
-TWILIO_AUTH_TOKEN=
-TWILIO_WHATSAPP_FROM=whatsapp:+1415xxxxxxx
+NODE_ENV=production
+ENABLE_DEMO=true
+DEMO_SECRET=<long-random>
+META_PHONE_NUMBER_ID=
+META_ACCESS_TOKEN=
+META_VERIFY_TOKEN=<unique-not-default>
+META_APP_SECRET=
+DRY_RUN=false
+OTP_ECHO=false
+RESURFACE_MINUTES=2
 ```
 
-### Step 6 — Point webhook at Reca backend
-When Express is running (Render / Railway, or local + tunnel):
+See [security.md](./security.md) for the full list.
 
-1. Twilio Sandbox → **Sandbox settings** (or WhatsApp sandbox config)
-2. **When a message comes in** →  
-   `https://<your-app>.onrender.com/webhook/whatsapp`  
-   (or ngrok / Cloudflare Tunnel URL while developing)
-3. Method: **HTTP POST**
-4. Save
+### 5 — Smoke test
 
-**Local test (optional, free):**
-- Run API on `localhost:3000`
-- Expose with **ngrok free** or **Cloudflare Tunnel**
-- Paste that HTTPS URL into the sandbox webhook field
-
-### Step 7 — Smoke test with Reca
-1. From a joined phone, send: `explain photosynthesis`
-2. Backend should receive the webhook and reply on WhatsApp
-3. First milestone reply can be: `Reca is online` (echo) before full AI loop
-
-**Day 1 done for WhatsApp when:** join works + webhook receives + bot replies.
-
----
-
-## Flow B — Meta WhatsApp Cloud API (fallback only)
-
-Use only if Twilio is blocked.
-
-1. Go to [https://developers.facebook.com](https://developers.facebook.com)
-2. Create an app (type **Business**)
-3. Add product **WhatsApp**
-4. Copy the **test phone number** and **temporary access token**
-5. Add recipient phone numbers to the allow-list
-6. Configure webhook to the same endpoint:  
-   `POST /webhook/whatsapp`
-7. Verify token challenge (Meta sends a GET verify request — backend must handle it)
-
-**Done when:** test number can message an allow-listed phone and receive replies via your webhook.
-
----
-
-## End-to-end message flow (what we’re building toward)
+From an allow-listed phone:
 
 ```text
-Student WhatsApp
-      |
-      |  (joined sandbox / allow-listed)
-      v
-Twilio or Meta WhatsApp API
-      |
-      |  POST /webhook/whatsapp
-      v
-Reca backend (Node + Express)
-   |--> classify intent (topic / answer / recap)
-   |--> Claude (explain / grade)  [free credits]
-   |--> Supabase (store attempts)
-   |--> node-cron / manual trigger (resurface)
-      |
-      |  outbound WhatsApp message
-      v
-Student WhatsApp
+explain photosynthesis
 ```
 
-### Product loop over this channel
+Expect a Reca reply. Then complete Q1 wrong → fire resurface (teammate):
 
-1. Capture topic  
-2. Explain  
-3. Quiz (2 questions)  
-4. Grade + store  
-5. **Unprompted resurface** (hero)  
-6. Recap on request  
+```bash
+RECA_URL=https://<your-app>.onrender.com DEMO_SECRET=… npm run resurface -- +234…
+```
+
+**Day done when:** inbound explain works + unprompted resurface lands on WhatsApp.
 
 ---
 
-## Team checklist (ASAP)
+## Message flow
+
+```text
+Student WhatsApp (allow-listed)
+      |
+      |  Meta Cloud API
+      |  POST /webhook
+      v
+Reca backend (Node + Express on Render)
+   |--> explain / quiz / grade (Gemini or preset)
+   |--> in-memory attempts + nextReviewAt
+   |--> node-cron / POST /demo/resurface
+      |
+      |  outbound WhatsApp
+      v
+Student WhatsApp  ← hero: Reca messages first
+```
+
+---
+
+## Demo-day rules
+
+- Re-check allow-list the morning of (tokens expire; numbers get dropped)
+- Warm Render `/health` 5–10 minutes before stage
+- Keep a **manual fire** ready — there is no student UI “Resurface now” button
+- Never commit access tokens or app secrets to GitHub
+- Prefer **preset quiz** on stage if Gemini invents different questions mid-pitch
+
+---
+
+## Team checklist
 
 | # | Task | Owner | Status |
 |---|------|-------|--------|
-| 1 | Create Twilio account | | |
-| 2 | Post `join …` instructions in team chat | | |
-| 3 | All teammates join sandbox | | |
-| 4 | Prove 2-way chat in Twilio console | | |
-| 5 | Save SID / token / from-number in private secrets | | |
-| 6 | Deploy or tunnel webhook URL | | |
-| 7 | Set sandbox “when message comes in” webhook | | |
-| 8 | Echo reply: `Reca is online` | | |
-| 9 | Wire explain → quiz → grade | | |
-| 10 | Wire resurface + manual backup trigger | | |
+| 1 | Meta app + WhatsApp product | | |
+| 2 | Allow-list demo + backup phones | | |
+| 3 | Deploy Render + set env (incl. `ENABLE_DEMO` + `DEMO_SECRET`) | | |
+| 4 | Webhook verify + messages subscribed | | |
+| 5 | Smoke: `explain photosynthesis` replies | | |
+| 6 | Smoke: wrong answer → `npm run resurface` → WhatsApp first | | |
+| 7 | Laptop fire script ready for stage | | |
 
----
-
-## Demo-day rules (do not skip)
-
-- Re-check that the **demo phone is still joined** to the sandbox (sessions can drop)
-- Join **backup phones** the same morning
-- Warm free hosting (Render/Railway) 5–10 minutes before going on stage
-- Keep a **manual resurface** route/button even if cron works
-- Never put Auth Token or Meta permanent tokens in the public repo
-
----
-
-## Who does what right now
-
-| Role | Do this next |
-|------|----------------|
-| Anyone with a phone | Create Twilio + share join code + everyone joins |
-| Backend | Scaffold `POST /webhook/whatsapp` + echo reply |
-| Rest of team | Join sandbox; don’t wait on code |
-
-**Next 15 minutes:** one person creates Twilio, posts join instructions, everyone joins, send a test message both ways.
+**Next 15 minutes:** one person confirms allow-list + webhook; another warms Render and tests fire with the secret.

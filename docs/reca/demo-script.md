@@ -6,21 +6,24 @@
 > Claude and ChatGPT remember what you tell them when you come back and ask. Reca doesn’t wait for you to come back — it decides on its own when you’re due to forget something, and comes to you first.
 
 **Persona on stage:** Chiamaka (SS3, WAEC Biology) — studying on her own phone after school  
-**Channel:** WhatsApp (Twilio sandbox — demo phone must be joined) · web chat backup at `/chat.html`  
+**Channel:** WhatsApp via **Meta Cloud API** (demo phone must be on the Meta allow-list) · web chat backup at `/chat.html`  
 **Hero moment:** Step 5 — Reca messages **first** (unprompted)
 
-Related: [demo-topics.md](./demo-topics.md) · [conversation-copy.md](./conversation-copy.md) · [BUILD-REQUIREMENTS.md](./BUILD-REQUIREMENTS.md)
+Related: [demo-topics.md](./demo-topics.md) · [conversation-copy.md](./conversation-copy.md) · [WHATSAPP-SETUP.md](./WHATSAPP-SETUP.md) · [security.md](./security.md)
 
 ---
 
 ## Before you go on stage (checklist)
 
-- [ ] Demo phone joined to sandbox
-- [ ] Backup phone joined
-- [ ] Hosting warmed (open health URL 5–10 min before)
-- [ ] Manual resurface trigger ready: `POST /demo/resurface`
-- [ ] Optional briefing trigger: `POST /demo/briefing` (“23 days to WAEC…”)
-- [ ] Pre-seeded student profile optional (if live AI fails)
+- [ ] Demo phone on Meta WhatsApp **allow-list**
+- [ ] Backup phone on allow-list
+- [ ] Render warmed (`GET /health` 5–10 min before)
+- [ ] Render env: `ENABLE_DEMO=true`, `DEMO_SECRET`, `META_*`, `DRY_RUN=false`, `NODE_ENV=production`
+- [ ] Manual resurface ready on laptop:  
+  `RECA_URL=https://…onrender.com DEMO_SECRET=… npm run resurface -- +234…`  
+  (or curl with header `x-demo-secret`)
+- [ ] Optional briefing: `POST /demo/briefing` with same secret
+- [ ] Quiz path rehearsed (preset bank **or** live Gemini — answer whatever Q1 actually asks)
 - [ ] This script rehearsed twice
 
 ---
@@ -43,21 +46,27 @@ Explain photosynthesis simply
 
 ### Step 2 — Quiz (Reca sends)
 
-Reca asks **Q1** and **Q2** (or Q1 first — answer one at a time if that’s how backend works).
+Reca asks **Q1** then **Q2** (one at a time).
 
-**For the demo, use the known pair from topics doc:**
-- Q1: Which part of the plant cell captures sunlight for photosynthesis?
+**Preset-bank wording (if Gemini is off):**
+- Q1: Which organelle captures sunlight for photosynthesis?
 - Q2: What are the two main products of photosynthesis?
+
+*(If Gemini is on, read the live question — still answer Q1 wrong on purpose.)*
 
 ### Step 3 — Wrong answer on purpose (you type)
 
 ```text
-Q1 mitochondria, Q2 glucose and oxygen
+mitochondria
 ```
 
-*(Or answer Q1 only as `mitochondria` if one-at-a-time.)*
+Then for Q2 (when asked):
 
-**Expect:** Q2 correct / Q1 not quite — chloroplast is correct; Reca says it will check again later.
+```text
+glucose and oxygen
+```
+
+**Expect:** Q1 not quite — chloroplast is correct; Reca says it will check again later. Q2 correct.
 
 ### Step 4 — Narrate for judges (5 sec)
 
@@ -65,12 +74,18 @@ Q1 mitochondria, Q2 glucose and oxygen
 
 ### Step 5 — HERO: unprompted resurface
 
-**Trigger:** compressed cron (1–2 min) **or** teammate hits manual `/demo/resurface` / admin fire.
+**Trigger:** compressed cron (1–2 min) **or** teammate fires:
+
+```bash
+npm run resurface -- +234XXXXXXXXXX
+```
+
+(with `RECA_URL` + `DEMO_SECRET` set). There is **no** “Resurface now” button in the student UI.
 
 **Do not type anything.** Wait for Reca to message first:
 
 ```text
-Quick recall — which part of the plant cell captures sunlight for photosynthesis?
+Quick recall — which organelle captures sunlight for photosynthesis?
 ```
 
 **You answer:**
@@ -99,10 +114,10 @@ how am I doing in Biology?
 
 ## Backup if WhatsApp flakes
 
-1. Show Twilio/Meta logs + DB row: attempt stored with `next_review_date`  
-2. Fire manual resurface on a backup joined phone  
+1. Show web chat on the **same** session — outbox nudge appears within ~4s after fire  
+2. Fire manual resurface on a backup **allow-listed** phone  
 3. Fire `/demo/briefing` to show the daily companion line  
-4. If AI is down: use pre-seeded photosynthesis session (same scripted messages)
+4. If AI is down: unset Gemini / use preset — same photosynthesis script  
 
 **Never improvise a new topic on stage.** Stick to photosynthesis (primary) or osmosis (backup) from [demo-topics.md](./demo-topics.md).
 

@@ -235,6 +235,15 @@ Return ONLY JSON:
   const timer = setTimeout(() => controller.abort(), 35000);
 
   try {
+    const cleaned = String(imageBase64 || "").replace(/^data:[^;]+;base64,/, "");
+    const mimeRaw = String(mimeType || "image/jpeg").toLowerCase().split(";")[0].trim();
+    const mime = mimeRaw === "image/jpg" ? "image/jpeg" : mimeRaw;
+    const allowed = new Set(["image/jpeg", "image/png", "image/webp", "image/gif"]);
+    if (!allowed.has(mime)) return null;
+    const approxBytes = Math.floor((cleaned.length * 3) / 4);
+    if (approxBytes > Number(process.env.MAX_UPLOAD_BYTES || 1_500_000)) return null;
+    const safeNote = String(note || "").trim().slice(0, 400);
+
     const res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -247,13 +256,13 @@ Return ONLY JSON:
             parts: [
               {
                 text:
-                  note ||
+                  (safeNote ? `Student note: ${safeNote}\n\n` : "") +
                   "Explain this for WAEC/JAMB and give exactly 2 short-answer practice questions.",
               },
               {
                 inlineData: {
-                  mimeType: mimeType || "image/jpeg",
-                  data: String(imageBase64).replace(/^data:[^;]+;base64,/, ""),
+                  mimeType: mime,
+                  data: cleaned,
                 },
               },
             ],

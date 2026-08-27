@@ -1,6 +1,8 @@
 require("dotenv").config();
 const path = require("path");
 const express = require("express");
+const helmet = require("helmet");
+const cors = require("cors");
 const cron = require("node-cron");
 const { handleIncoming, prepareResurface, prepareDailyBriefing } = require("./engine");
 const { startQuiz, answerQuiz, currentQuiz, endQuiz } = require("./quiz");
@@ -12,13 +14,51 @@ const otp = require("./otp");
 const db = require("./db");
 const alerts = require("./alerts");
 const { getDiagram } = require("./diagrams");
+const security = require("./security");
 
 const app = express();
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json({ limit: "8mb" }));
-app.use(express.static(path.join(__dirname, "..", "public")));
+
+app.disable("x-powered-by");
+app.set("trust proxy", Number(process.env.TRUST_PROXY_HOPS || 1));
+
+app.use(
+  helmet({
+    contentSecurityPolicy: false, // static HTML + inline boot theme script
+    crossOriginEmbedderPolicy: false,
+  })
+);
+
+const corsOrigin = String(process.env.CORS_ORIGIN || "").trim();
+app.use(
+  cors({
+    origin: corsOrigin
+      ? corsOrigin.split(",").map((s) => s.trim()).filter(Boolean)
+      : false, // same-origin only by default
+    methods: ["GET", "POST", "OPTIONS"],
+  })
+);
+
+app.use(express.urlencoded({ extended: false, limit: "32kb" }));
+app.use(
+  express.json({
+    limit: process.env.JSON_BODY_LIMIT || "2mb",
+    verify: (req, _res, buf) => {
+      req.rawBody = buf;
+    },
+  })
+);
+app.use(security.globalLimiter);
+app.use(express.static(path.join(__dirname, "..", "public"), {
+  dotfiles: "deny",
+  index: false,
+}));
 
 app.get("/health", async (_req, res) => {
+  const detail =
+    String(process.env.HEALTH_DETAIL || "").toLowerCase() === "true" || !security.isProd();
+  if (!detail) {
+    return res.json({ ok: true, service: "reca" });
+  }
   const dbPing = await db.ping().catch((e) => ({ ok: false, error: e.message }));
   res.json({
     ok: true,
@@ -39,7 +79,6 @@ app.get("/api/config", (_req, res) => {
     ok: true,
     whatsappNumber: alerts.whatsappBusinessDigits(),
     continueExample: alerts.continueOnWhatsAppUrl("photosynthesis"),
-    alertProxy: "/api/send-alert",
   });
 });
 
@@ -52,8 +91,7 @@ function whatsappFromNumber() {
 }
 
 function shouldEchoOtp() {
-  const dry = String(process.env.DRY_RUN).toLowerCase() === "true";
-  return dry || String(process.env.OTP_ECHO).toLowerCase() === "true";
+  return security.otpEchoAllowed();
 }
 
 async function handleRequestOtp(req, res) {
@@ -75,8 +113,9 @@ async function handleRequestOtp(req, res) {
     if (purpose === "signin") {
       const existing = store.getAccountByPhone(phone);
       if (!existing && String(process.env.AUTH_REQUIRE_EXISTING).toLowerCase() === "true") {
-        return res.status(404).json({
-          error: "No Reca account on this number yet — switch to New student.",
+        // Same message as signup path — avoid account enumeration
+        return res.status(400).json({
+          error: "Couldn’t start sign-in for this number. Try New student, or check the number.",
         });
       }
     }
@@ -96,7 +135,7 @@ async function handleRequestOtp(req, res) {
       console.error("OTP Meta WhatsApp send failed:", deliverNote);
     }
 
-    console.log(`[otp] ${phone} → ${issued.code} (${purpose}) delivered=${delivered}`);
+    console.log(`[otp] ${phone} purpose=${purpose} delivered=${delivered}`);
 
     const payload = {
       ok: true,
@@ -108,11 +147,11 @@ async function handleRequestOtp(req, res) {
       whatsappFrom: whatsappFromNumber() || null,
       message: delivered
         ? `Code sent to WhatsApp on ${phone}.`
-        : "Couldn’t reach WhatsApp yet — allow-list this number in Meta, then Resend. Local demo: OTP_ECHO=true.",
+        : "Couldn’t reach WhatsApp yet — allow-list this number in Meta, then Resend.",
     };
 
     if (shouldEchoOtp()) payload.devCode = issued.code;
-    if (!delivered && deliverNote) payload.deliverError = deliverNote;
+    if (!delivered && deliverNote && !security.isProd()) payload.deliverError = deliverNote;
 
     res.json(payload);
   } catch (err) {
@@ -120,12 +159,12 @@ async function handleRequestOtp(req, res) {
   }
 }
 
-app.post("/api/auth/request-otp", handleRequestOtp);
-app.post("/api/auth/signup", (req, res) => {
+app.post("/api/auth/request-otp", security.authLimiter, handleRequestOtp);
+app.post("/api/auth/signup", security.authLimiter, (req, res) => {
   req.body.purpose = "signup";
   return handleRequestOtp(req, res);
 });
-app.post("/api/auth/login", (req, res) => {
+app.post("/api/auth/login", security.authLimiter, (req, res) => {
   req.body.purpose = "signin";
   return handleRequestOtp(req, res);
 });
@@ -134,7 +173,7 @@ app.post("/api/auth/login", (req, res) => {
  * Step 2 — verify code → create/open account.
  * Body: { phone, code, name? }
  */
-app.post("/api/auth/verify-otp", async (req, res) => {
+app.post("/api/auth/verify-otp", security.authLimiter, async (req, res) => {
   try {
     const phone = store.normalizePhoneE164(req.body.phone);
     if (!phone) {
@@ -158,7 +197,7 @@ app.post("/api/auth/verify-otp", async (req, res) => {
       });
     } catch (err) {
       console.error("Supabase upsert failed:", err.message);
-      dbSync = { ok: false, error: err.message };
+      dbSync = { ok: false, error: security.isProd() ? "sync deferred" : err.message };
     }
 
     res.json({
@@ -182,23 +221,24 @@ app.post("/api/auth/verify-otp", async (req, res) => {
 });
 
 /**
- * Proxy to live Render WhatsApp alerts (Meta lives on that server).
+ * Proxy to live Render WhatsApp alerts — gated (was open spam vector).
  * Body: { phone, message } — phone may include + or not.
  */
-app.post("/api/send-alert", async (req, res) => {
+app.post("/api/send-alert", security.requireDemoAccess, security.authLimiter, async (req, res) => {
   try {
     const result = await alerts.sendAlert({
       phone: req.body.phone,
-      message: req.body.message,
+      message: String(req.body.message || "").slice(0, 1000),
     });
     res.json(result);
   } catch (err) {
-    res.status(err.status || 502).json({ error: err.message || "Alert failed" });
+    res.status(err.status || 502).json({ error: security.publicError(err, "Alert failed") });
   }
 });
 
+/** Student id: E.164 or guest_* — never a shared fallback phone. */
 function normalizePhone(raw) {
-  return store.normalizePhoneE164(raw) || "+2348000000001";
+  return security.resolveStudentId(raw);
 }
 
 function capitalizeTopic(topicId) {
@@ -241,17 +281,29 @@ function enrichReplies(rawReplies, student) {
   });
 }
 
+function studentFromReq(req, res) {
+  const phone = normalizePhone(req.body?.phone ?? req.query?.phone);
+  if (!phone) {
+    res.status(400).json({
+      error: "Valid session required. Refresh the page or sign in with WhatsApp.",
+    });
+    return null;
+  }
+  return phone;
+}
+
 /** Web chat API — primary demo path when Meta/Twilio blocked */
-app.post("/api/chat", async (req, res) => {
-  const phone = normalizePhone(req.body.phone);
-  const body = String(req.body.body || "").trim();
-  if (!body) return res.status(400).json({ error: "body required" });
+app.post("/api/chat", security.chatLimiter, async (req, res) => {
+  const phone = studentFromReq(req, res);
+  if (!phone) return;
+  const checked = security.validateChatBody(req.body.body);
+  if (!checked.ok) return res.status(400).json({ error: checked.error });
 
   store.getStudent(phone);
   const mode = req.body.mode === "learn" ? "learn" : "chat";
-  const topicId = req.body.topicId ? String(req.body.topicId) : undefined;
+  const topicId = req.body.topicId ? String(req.body.topicId).slice(0, 80) : undefined;
   const fresh = Boolean(req.body.fresh);
-  const replies = await handleIncoming(phone, body, { mode, topicId, fresh });
+  const replies = await handleIncoming(phone, checked.body, { mode, topicId, fresh });
   const student = store.getStudent(phone);
   res.json({
     ok: true,
@@ -270,12 +322,17 @@ app.post("/api/chat", async (req, res) => {
  * Upload past question / notes photo → explain + set pending 2-question quiz.
  * Body: { phone, imageBase64, mimeType?, note? }
  */
-app.post("/api/learn/upload", async (req, res) => {
+app.post("/api/learn/upload", security.uploadLimiter, async (req, res) => {
   try {
-    const phone = normalizePhone(req.body.phone);
-    const imageBase64 = String(req.body.imageBase64 || "").trim();
-    if (!imageBase64) {
-      return res.status(400).json({ error: "imageBase64 required" });
+    const phone = studentFromReq(req, res);
+    if (!phone) return;
+    const upload = security.validateUploadPayload({
+      imageBase64: req.body.imageBase64,
+      mimeType: req.body.mimeType,
+      note: req.body.note,
+    });
+    if (!upload.ok) {
+      return res.status(upload.status || 400).json({ error: upload.error });
     }
     if (!llm.isEnabled()) {
       return res.status(503).json({
@@ -284,9 +341,9 @@ app.post("/api/learn/upload", async (req, res) => {
     }
 
     const parsed = await llm.explainFromImage({
-      imageBase64,
-      mimeType: req.body.mimeType || "image/jpeg",
-      note: req.body.note,
+      imageBase64: upload.imageBase64,
+      mimeType: upload.mimeType,
+      note: upload.note,
     });
     if (!parsed) {
       return res.status(422).json({
@@ -339,40 +396,46 @@ app.post("/api/learn/upload", async (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: err.message || "Upload failed" });
+    res.status(500).json({ error: security.publicError(err, "Upload failed") });
   }
 });
 
-app.post("/api/quiz/start", (req, res) => {
-  const phone = normalizePhone(req.body.phone);
+app.post("/api/quiz/start", security.chatLimiter, (req, res) => {
+  const phone = studentFromReq(req, res);
+  if (!phone) return;
   const limit = req.body.limit != null ? Number(req.body.limit) : undefined;
-  const result = startQuiz(phone, req.body.topicId, { limit });
+  const topicId = req.body.topicId ? String(req.body.topicId).slice(0, 80) : undefined;
+  const result = startQuiz(phone, topicId, { limit });
   if (result.error) return res.status(400).json(result);
   res.json(result);
 });
 
-app.post("/api/quiz/answer", (req, res) => {
-  const phone = normalizePhone(req.body.phone);
-  const answer = String(req.body.answer || "").trim();
+app.post("/api/quiz/answer", security.chatLimiter, (req, res) => {
+  const phone = studentFromReq(req, res);
+  if (!phone) return;
+  const answer = String(req.body.answer || "").trim().slice(0, 500);
   if (!answer) return res.status(400).json({ error: "answer required" });
   const result = answerQuiz(phone, answer);
   if (result.error) return res.status(400).json(result);
   res.json(result);
 });
 
-app.post("/api/quiz/end", (req, res) => {
-  const phone = normalizePhone(req.body.phone);
+app.post("/api/quiz/end", security.chatLimiter, (req, res) => {
+  const phone = studentFromReq(req, res);
+  if (!phone) return;
   res.json(endQuiz(phone));
 });
 
 app.get("/api/quiz/current", (req, res) => {
-  const phone = normalizePhone(req.query.phone);
+  const phone = studentFromReq(req, res);
+  if (!phone) return;
   res.json(currentQuiz(phone));
 });
 
 app.get("/api/progress", (req, res) => {
-  const phone = normalizePhone(req.query.phone);
-  const subject = String(req.query.subject || "").trim() || null;
+  const phone = studentFromReq(req, res);
+  if (!phone) return;
+  const subject = String(req.query.subject || "").trim().slice(0, 40) || null;
   const progress = store.progressFor(phone, subject);
   res.json({ ok: true, phone, progress });
 });
@@ -386,18 +449,14 @@ app.get("/api/whatsapp/status", (_req, res) => {
     provider: "meta",
     configured,
     from: from || null,
-    phoneNumberId: process.env.META_PHONE_NUMBER_ID ? "set" : null,
     webhookPath: "/webhook",
-    tip: configured
-      ? "Point Meta WhatsApp webhook to https://<public-host>/webhook (GET verify + POST messages)"
-      : "Add META_PHONE_NUMBER_ID + META_ACCESS_TOKEN to backend/.env",
   });
 });
 
 /** Link web session to a real WhatsApp number (E.164). */
-app.post("/api/whatsapp/link", (req, res) => {
-  const phone = normalizePhone(req.body.phone);
-  if (!/^\+\d{10,15}$/.test(phone)) {
+app.post("/api/whatsapp/link", security.authLimiter, (req, res) => {
+  const phone = store.normalizePhoneE164(req.body.phone);
+  if (!phone || !/^\+\d{10,15}$/.test(phone)) {
     return res.status(400).json({
       error: "Use full international format, e.g. +2348012345678",
     });
@@ -469,14 +528,16 @@ app.get("/api/topics", (req, res) => {
         (t.aliases || []).some((a) => a.includes(q))
     );
   }
-  const limit = Math.min(Number(req.query.limit) || 200, 400);
-  const offset = Number(req.query.offset) || 0;
+  const limit = Math.min(Number(req.query.limit) || 600, 1000);
+  const offset = Math.max(0, Number(req.query.offset) || 0);
   const slice = list.slice(offset, offset + limit);
+  const subjects = [...new Set(list.map((t) => t.subject))].sort();
   res.json({
     stats: stats(),
     total: list.length,
     offset,
     limit,
+    subjects,
     topics: slice.map((t) => ({
       id: t.id,
       subject: t.subject,
@@ -491,23 +552,27 @@ app.get("/api/topics", (req, res) => {
 });
 
 app.get("/api/revise", (req, res) => {
-  const phone = normalizePhone(req.query.phone);
+  const phone = studentFromReq(req, res);
+  if (!phone) return;
   const student = store.getStudent(phone);
   res.json({ ok: true, phone, revise: reviseSnapshot(student) });
 });
 
 /** Poll for unprompted messages (resurface aha) */
 app.get("/api/events", (req, res) => {
-  const phone = normalizePhone(req.query.phone);
-  const after = req.query.after || "";
+  const phone = studentFromReq(req, res);
+  if (!phone) return;
+  const after = String(req.query.after || "").slice(0, 64);
   const messages = store.drainOutbox(phone, after);
   res.json({ phone, messages });
 });
 
 app.post("/api/session", (req, res) => {
-  const phone = normalizePhone(req.body.phone || `+2348${Date.now().toString().slice(-9)}`);
+  // Mint unique guest_* if no valid phone — never share one bucket across users
+  let phone = security.resolveStudentId(req.body.phone);
+  if (!phone) phone = security.mintGuestId();
   const student = store.getStudent(phone);
-  if (req.body.name) store.setDisplayName(phone, req.body.name);
+  if (req.body.name) store.setDisplayName(phone, String(req.body.name).slice(0, 40));
   if (req.body.examDate) {
     try {
       store.setExamDate(phone, req.body.examDate);
@@ -518,6 +583,7 @@ app.post("/api/session", (req, res) => {
   res.json({
     ok: true,
     phone,
+    guest: security.GUEST_RE.test(phone),
     welcome: copy.welcome,
     revise: reviseSnapshot(student),
     examDate: student.examDate,
@@ -529,9 +595,10 @@ app.post("/api/session", (req, res) => {
 
 app.post("/api/profile", (req, res) => {
   try {
-    const phone = normalizePhone(req.body.phone);
+    const phone = studentFromReq(req, res);
+    if (!phone) return;
     const student = store.getStudent(phone);
-    if (req.body.name != null) store.setDisplayName(phone, req.body.name);
+    if (req.body.name != null) store.setDisplayName(phone, String(req.body.name).slice(0, 40));
     if (req.body.examDate !== undefined) {
       if (req.body.examDate) store.setExamDate(phone, req.body.examDate);
       else {
@@ -574,6 +641,11 @@ async function handleMetaWebhookGet(req, res) {
 }
 
 async function handleMetaWebhookPost(req, res) {
+  if (!security.verifyMetaWebhookSignature(req)) {
+    console.warn("Meta webhook signature rejected");
+    return res.sendStatus(403);
+  }
+
   // Ack immediately (Meta retries if slow)
   res.sendStatus(200);
 
@@ -582,10 +654,12 @@ async function handleMetaWebhookPost(req, res) {
     if (!inbound.length) return;
 
     for (const msg of inbound) {
-      console.log(`← Meta ${msg.phone}: ${msg.text}`);
-      const replies = await handleIncoming(msg.phone, msg.text);
-      for (const text of replies) {
-        await deliver(msg.phone, text, { whatsapp: true });
+      const text = String(msg.text || "").trim().slice(0, security.MAX_CHAT_CHARS);
+      if (!text) continue;
+      console.log(`← Meta ${msg.phone}: ${text.slice(0, 80)}`);
+      const replies = await handleIncoming(msg.phone, text);
+      for (const reply of replies) {
+        await deliver(msg.phone, reply, { whatsapp: true });
       }
     }
   } catch (err) {
@@ -593,17 +667,21 @@ async function handleMetaWebhookPost(req, res) {
   }
 }
 
-app.get("/webhook", handleMetaWebhookGet);
-app.post("/webhook", handleMetaWebhookPost);
-app.get("/webhook/whatsapp", handleMetaWebhookGet);
-app.post("/webhook/whatsapp", handleMetaWebhookPost);
+app.get("/webhook", security.webhookLimiter, handleMetaWebhookGet);
+app.post("/webhook", security.webhookLimiter, handleMetaWebhookPost);
+app.get("/webhook/whatsapp", security.webhookLimiter, handleMetaWebhookGet);
+app.post("/webhook/whatsapp", security.webhookLimiter, handleMetaWebhookPost);
 
 /**
  * Manual hero trigger for live demo.
  * Always queues to web outbox; WhatsApp send is best-effort.
+ * Requires DEMO_SECRET (header x-demo-secret) when set.
  */
-app.post("/demo/resurface", async (req, res) => {
+app.post("/demo/resurface", security.requireDemoAccess, async (req, res) => {
   const phone = normalizePhone(req.body.phone || req.query.phone);
+  if (!phone) {
+    return res.status(400).json({ error: "Valid phone required" });
+  }
   const student = store.getStudent(phone);
 
   let target = null;
@@ -640,8 +718,11 @@ app.post("/demo/resurface", async (req, res) => {
  * Manual daily briefing for live demo / judges.
  * Uses weakest topic + days-to-exam (default WAEC_EXAM_DATE).
  */
-app.post("/demo/briefing", async (req, res) => {
+app.post("/demo/briefing", security.requireDemoAccess, async (req, res) => {
   const phone = normalizePhone(req.body.phone || req.query.phone);
+  if (!phone) {
+    return res.status(400).json({ error: "Valid phone required" });
+  }
   const student = store.getStudent(phone);
   if (!student.attempts.length) {
     return res.status(404).json({
@@ -676,14 +757,15 @@ app.post("/demo/briefing", async (req, res) => {
   });
 });
 
-app.post("/debug/chat", async (req, res) => {
+app.post("/debug/chat", security.requireDemoAccess, async (req, res) => {
   const phone = normalizePhone(req.body.phone);
-  const body = req.body.body || "";
+  if (!phone) return res.status(400).json({ error: "Valid phone required" });
+  const body = String(req.body.body || "").slice(0, security.MAX_CHAT_CHARS);
   const replies = await handleIncoming(phone, body);
   res.json({ replies, student: store.getStudent(phone), llm: llm.providerLabel() });
 });
 
-app.get("/debug/due", (_req, res) => {
+app.get("/debug/due", security.requireDemoAccess, (_req, res) => {
   res.json({ due: store.listDue() });
 });
 
@@ -748,7 +830,7 @@ if (!process.env.VERCEL) {
     console.log(`Reca listening on :${port}`);
     console.log(`Web chat:  http://localhost:${port}/chat.html`);
     console.log(`Signup:    http://localhost:${port}/signup.html`);
-    console.log(`Demo fire: POST /demo/resurface | POST /demo/briefing`);
+    console.log(`Demo fire: POST /demo/resurface | POST /demo/briefing (header x-demo-secret)`);
     console.log(`Briefing cron: ${briefingCron} (${process.env.BRIEFING_TZ || "Africa/Lagos"})`);
   });
 }

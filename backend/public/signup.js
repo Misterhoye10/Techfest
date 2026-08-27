@@ -220,8 +220,8 @@
     e.preventDefault();
     showError(otpError, "");
     const code = (otpCode?.value || "").trim();
-    if (!/^\d{4}$/.test(code)) {
-      showError(otpError, "Enter the 4-digit code.");
+    if (!/^\d{4,6}$/.test(code)) {
+      showError(otpError, "Enter the code from WhatsApp.");
       otpCode?.focus();
       return;
     }
@@ -280,6 +280,8 @@
 
   guestLink?.addEventListener("click", () => {
     localStorage.setItem("reca_guest", "1");
+    localStorage.removeItem("reca_phone");
+    localStorage.removeItem("reca_signed_in");
     localStorage.removeItem(SESSION_KEY);
   });
 })();

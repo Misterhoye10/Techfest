@@ -22,7 +22,12 @@ function accessToken() {
 }
 
 function verifyToken() {
-  return clean(process.env.META_VERIFY_TOKEN) || "reca_webhook_token";
+  const token = clean(process.env.META_VERIFY_TOKEN);
+  if (token) return token;
+  if (String(process.env.NODE_ENV || "").toLowerCase() === "production") {
+    console.error("[security] META_VERIFY_TOKEN missing in production");
+  }
+  return clean(process.env.META_VERIFY_TOKEN) || "reca_webhook_token_CHANGE_ME";
 }
 
 /** Display number for UI (E.164 if set). */
