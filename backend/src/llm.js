@@ -209,10 +209,116 @@ Student asked: ${studentAsk}`;
   return { reply: String(data.reply).trim() };
 }
 
+/**
+ * Vision: past question / notes photo → short explain + 2 quiz items.
+ * imageBase64 without data: prefix; mimeType e.g. image/jpeg
+ */
+async function explainFromImage({ imageBase64, mimeType, note }) {
+  const key = apiKey();
+  if (!key || !imageBase64) return null;
+
+  const system = `You are Reca, a WAEC/JAMB study companion.
+The student uploaded a photo of notes or a past question.
+Return ONLY JSON:
+{
+  "topicTitle": "short topic name",
+  "subject": "Biology|Chemistry|Physics|Mathematics|General",
+  "explanation": "3–5 plain sentences",
+  "questions": [
+    { "id": "q1", "text": "...?", "correctAnswer": "...", "accept": ["..."], "correction": "..." },
+    { "id": "q2", "text": "...?", "correctAnswer": "...", "accept": ["..."], "correction": "..." }
+  ]
+}`;
+
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${encodeURIComponent(key)}`;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 35000);
+
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      signal: controller.signal,
+      body: JSON.stringify({
+        systemInstruction: { parts: [{ text: system }] },
+        contents: [
+          {
+            role: "user",
+            parts: [
+              {
+                text:
+                  note ||
+                  "Explain this for WAEC/JAMB and give exactly 2 short-answer practice questions.",
+              },
+              {
+                inlineData: {
+                  mimeType: mimeType || "image/jpeg",
+                  data: String(imageBase64).replace(/^data:[^;]+;base64,/, ""),
+                },
+              },
+            ],
+          },
+        ],
+        generationConfig: {
+          temperature: 0.3,
+          maxOutputTokens: 1200,
+          responseMimeType: "application/json",
+        },
+      }),
+    });
+
+    if (!res.ok) {
+      const errText = await res.text().catch(() => "");
+      console.error(`Gemini vision ${res.status}:`, errText.slice(0, 400));
+      return null;
+    }
+
+    const data = await res.json();
+    const text = data?.candidates?.[0]?.content?.parts
+      ?.map((p) => p.text || "")
+      .join("")
+      .trim();
+    if (!text) return null;
+    const parsed = parseJson(text);
+    if (!parsed?.explanation || !Array.isArray(parsed.questions) || parsed.questions.length < 2) {
+      return null;
+    }
+
+    const questions = parsed.questions.slice(0, 2).map((q, i) => {
+      const correct = String(q.correctAnswer || q.accept?.[0] || "").trim();
+      const accept = Array.isArray(q.accept) ? q.accept.map(String).filter(Boolean) : [];
+      if (correct && !accept.includes(correct)) accept.unshift(correct);
+      return {
+        id: String(q.id || `img-q${i + 1}`),
+        text: String(q.text || "").trim(),
+        correctAnswer: correct,
+        accept: accept.length ? accept : [correct],
+        correction:
+          String(q.correction || "").trim() ||
+          (correct ? `Not quite — it's ${correct}.` : "Not quite."),
+        options: accept.slice(0, 4),
+      };
+    });
+
+    return {
+      topicTitle: String(parsed.topicTitle || "Uploaded question").trim(),
+      subject: String(parsed.subject || "General").trim(),
+      explanation: String(parsed.explanation).trim(),
+      questions,
+    };
+  } catch (err) {
+    console.error("Gemini vision failed:", err.message);
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 module.exports = {
   isEnabled,
   providerLabel,
   explainAndQuiz,
   gradeAnswerLlm,
   learnReply,
+  explainFromImage,
 };

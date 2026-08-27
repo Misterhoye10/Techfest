@@ -11,10 +11,11 @@ const llm = require("./llm");
 const otp = require("./otp");
 const db = require("./db");
 const alerts = require("./alerts");
+const { getDiagram } = require("./diagrams");
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(express.json({ limit: "8mb" }));
 app.use(express.static(path.join(__dirname, "..", "public")));
 
 app.get("/health", async (_req, res) => {
@@ -220,6 +221,26 @@ async function deliver(phone, text, { whatsapp = true } = {}) {
   }
 }
 
+function enrichReplies(rawReplies, student) {
+  const list = Array.isArray(rawReplies) ? rawReplies : [];
+  const topicId = student?.learnFocusId || student?.pending?.topicId || null;
+  const subject = student?.pending?.subject || null;
+  const diagram = topicId ? getDiagram(topicId, subject) : null;
+
+  return list.map((item, i) => {
+    if (item && typeof item === "object" && item.text != null) {
+      return {
+        text: String(item.text),
+        image: item.image || (i === 0 ? diagram : null),
+      };
+    }
+    return {
+      text: String(item || ""),
+      image: i === 0 ? diagram : null,
+    };
+  });
+}
+
 /** Web chat API — primary demo path when Meta/Twilio blocked */
 app.post("/api/chat", async (req, res) => {
   const phone = normalizePhone(req.body.phone);
@@ -232,20 +253,100 @@ app.post("/api/chat", async (req, res) => {
   const fresh = Boolean(req.body.fresh);
   const replies = await handleIncoming(phone, body, { mode, topicId, fresh });
   const student = store.getStudent(phone);
-  // Return only — outbox is for unprompted resurface (avoid duplicate bubbles)
   res.json({
     ok: true,
     phone,
-    replies,
+    replies: enrichReplies(replies, student),
     revise: reviseSnapshot(student),
     learnFocusId: student.learnFocusId || null,
+    diagram: student.learnFocusId
+      ? getDiagram(student.learnFocusId, student.pending?.subject)
+      : null,
     llm: llm.providerLabel(),
   });
 });
 
+/**
+ * Upload past question / notes photo → explain + set pending 2-question quiz.
+ * Body: { phone, imageBase64, mimeType?, note? }
+ */
+app.post("/api/learn/upload", async (req, res) => {
+  try {
+    const phone = normalizePhone(req.body.phone);
+    const imageBase64 = String(req.body.imageBase64 || "").trim();
+    if (!imageBase64) {
+      return res.status(400).json({ error: "imageBase64 required" });
+    }
+    if (!llm.isEnabled()) {
+      return res.status(503).json({
+        error: "Vision needs GEMINI_API_KEY on the server.",
+      });
+    }
+
+    const parsed = await llm.explainFromImage({
+      imageBase64,
+      mimeType: req.body.mimeType || "image/jpeg",
+      note: req.body.note,
+    });
+    if (!parsed) {
+      return res.status(422).json({
+        error: "Couldn’t read that image. Try a clearer photo of one question.",
+      });
+    }
+
+    const student = store.getStudent(phone);
+    const topicId = `upload-${Date.now().toString(36)}`;
+    const topic = {
+      id: topicId,
+      title: parsed.topicTitle,
+      subject: parsed.subject,
+      explanation: parsed.explanation,
+      questions: parsed.questions,
+    };
+
+    student.learnFocusId = topicId;
+    student.learnDepth = 0;
+    student.pending = {
+      topicId,
+      subject: parsed.subject,
+      step: "q1",
+      topic,
+      q1Correct: null,
+      q2Correct: null,
+    };
+    student.awaitingResurface = null;
+
+    const diagram = getDiagram(parsed.topicTitle, parsed.subject);
+    const replies = enrichReplies(
+      [
+        `${parsed.explanation}\n\nQuick check — Q1: ${parsed.questions[0].text}`,
+      ],
+      { learnFocusId: topicId, pending: { subject: parsed.subject, topicId } }
+    );
+    if (diagram && replies[0]) replies[0].image = diagram;
+
+    res.json({
+      ok: true,
+      phone,
+      topic: {
+        id: topicId,
+        label: parsed.topicTitle,
+        subject: parsed.subject,
+      },
+      replies,
+      revise: reviseSnapshot(student),
+      learnFocusId: topicId,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message || "Upload failed" });
+  }
+});
+
 app.post("/api/quiz/start", (req, res) => {
   const phone = normalizePhone(req.body.phone);
-  const result = startQuiz(phone, req.body.topicId);
+  const limit = req.body.limit != null ? Number(req.body.limit) : undefined;
+  const result = startQuiz(phone, req.body.topicId, { limit });
   if (result.error) return res.status(400).json(result);
   res.json(result);
 });
@@ -384,6 +485,7 @@ app.get("/api/topics", (req, res) => {
       icon: t.icon || "book-01",
       questionCount: t.questions?.length || 0,
       aliases: t.aliases,
+      diagram: getDiagram(t.id, t.subject),
     })),
   });
 });
@@ -430,7 +532,12 @@ app.post("/api/profile", (req, res) => {
     const phone = normalizePhone(req.body.phone);
     const student = store.getStudent(phone);
     if (req.body.name != null) store.setDisplayName(phone, req.body.name);
-    if (req.body.examDate) store.setExamDate(phone, req.body.examDate);
+    if (req.body.examDate !== undefined) {
+      if (req.body.examDate) store.setExamDate(phone, req.body.examDate);
+      else {
+        student.examDate = null;
+      }
+    }
     if (req.body.examLabel) {
       student.examLabel = String(req.body.examLabel).trim().slice(0, 24) || student.examLabel;
     }
