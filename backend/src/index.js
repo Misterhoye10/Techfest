@@ -635,11 +635,15 @@ cron.schedule(
   { timezone: process.env.BRIEFING_TZ || "Africa/Lagos" }
 );
 
-const port = Number(process.env.PORT || 3000);
-app.listen(port, () => {
-  console.log(`Reca listening on :${port}`);
-  console.log(`Web chat:  http://localhost:${port}/chat.html`);
-  console.log(`Signup:    http://localhost:${port}/signup.html`);
-  console.log(`Demo fire: POST /demo/resurface | POST /demo/briefing`);
-  console.log(`Briefing cron: ${briefingCron} (${process.env.BRIEFING_TZ || "Africa/Lagos"})`);
-});
+if (!process.env.VERCEL) {
+  const port = Number(process.env.PORT || 3000);
+  app.listen(port, () => {
+    console.log(`Reca listening on :${port}`);
+    console.log(`Web chat:  http://localhost:${port}/chat.html`);
+    console.log(`Signup:    http://localhost:${port}/signup.html`);
+    console.log(`Demo fire: POST /demo/resurface | POST /demo/briefing`);
+    console.log(`Briefing cron: ${briefingCron} (${process.env.BRIEFING_TZ || "Africa/Lagos"})`);
+  });
+}
+
+module.exports = app;
