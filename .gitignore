@@ -1,0 +1,8 @@
+ai-study-companion-backend/
+node_modules/
+.env
+*.log
+venv/
+.vscode/
+.DS_Store
+Thumbs.db
