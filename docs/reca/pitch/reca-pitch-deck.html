@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reca — Pitch Deck · AI BuildFest 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #f4f6fb;
+        --muted: #9aa3b5;
+        --line: rgba(255, 255, 255, 0.12);
+        --bg: #07090f;
+        --panel: #0e121b;
+        --primary: #225aeb;
+        --accent: #fb735b;
+        --wa: #25d366;
+        --font-display: "Gilda Display", Georgia, serif;
+        --font-ui: Inter, system-ui, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        height: 100%;
+        background: #000;
+        color: var(--ink);
+        font-family: var(--font-ui);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .deck {
+        width: min(100vw, calc(100vh * 16 / 9));
+        height: min(100vh, calc(100vw * 9 / 16));
+        margin: auto;
+        position: relative;
+        background: var(--bg);
+        overflow: hidden;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
+      }
+
+      .slide {
+        position: absolute;
+        inset: 0;
+        padding: clamp(1.5rem, 4.5vw, 3.25rem) clamp(1.75rem, 5vw, 3.75rem);
+        display: none;
+        flex-direction: column;
+        background:
+          radial-gradient(ellipse 70% 55% at 100% 0%, color-mix(in srgb, var(--primary) 18%, transparent), transparent 55%),
+          radial-gradient(ellipse 50% 40% at 0% 100%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 50%),
+          var(--bg);
+      }
+
+      .slide.is-active {
+        display: flex;
+      }
+
+      .slide--title {
+        justify-content: flex-end;
+        padding-bottom: clamp(2.5rem, 8vh, 4.5rem);
+      }
+
+      .eyebrow {
+        font-size: 0.72rem;
+        font-weight: 650;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.85rem;
+      }
+
+      h1 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: clamp(2.4rem, 5.5vw, 4.1rem);
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        max-width: 16ch;
+      }
+
+      h2 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: clamp(1.85rem, 3.8vw, 2.85rem);
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        max-width: 22ch;
+        margin-bottom: 1.25rem;
+      }
+
+      .lead {
+        font-size: clamp(1rem, 1.7vw, 1.2rem);
+        line-height: 1.5;
+        color: color-mix(in srgb, var(--ink) 82%, var(--muted));
+        max-width: 42rem;
+      }
+
+      .meta {
+        margin-top: 1.5rem;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      .brand-row {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        margin-bottom: auto;
+      }
+
+      .brand-mark {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 0.55rem;
+        background: var(--accent);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-family: var(--font-display);
+        font-size: 1.15rem;
+        line-height: 1;
+      }
+
+      .brand-name {
+        font-family: var(--font-display);
+        font-size: 1.35rem;
+        letter-spacing: -0.02em;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+        margin-top: 0.5rem;
+        width: 100%;
+        max-width: 56rem;
+      }
+
+      .card {
+        background: color-mix(in srgb, var(--panel) 88%, transparent);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 1.15rem 1.2rem 1.25rem;
+      }
+
+      .card h3 {
+        font-size: 0.78rem;
+        font-weight: 650;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.55rem;
+      }
+
+      .card p,
+      .card li {
+        font-size: 0.98rem;
+        line-height: 1.45;
+        color: color-mix(in srgb, var(--ink) 88%, var(--muted));
+      }
+
+      .card ul {
+        list-style: none;
+        display: grid;
+        gap: 0.45rem;
+      }
+
+      .card li::before {
+        content: "";
+        display: inline-block;
+        width: 0.4rem;
+        height: 0.4rem;
+        border-radius: 50%;
+        background: var(--primary);
+        margin-right: 0.55rem;
+        vertical-align: 0.15rem;
+      }
+
+      .vs .card:first-child {
+        border-color: color-mix(in srgb, var(--muted) 35%, transparent);
+      }
+
+      .vs .card:last-child {
+        border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+        background: color-mix(in srgb, var(--accent) 8%, var(--panel));
+      }
+
+      .loop {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0.55rem;
+        margin-top: 1rem;
+        width: 100%;
+        max-width: 56rem;
+      }
+
+      .loop__step {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 0.9rem 0.75rem;
+        text-align: center;
+        min-height: 5.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.35rem;
+      }
+
+      .loop__step.is-hero {
+        border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+        box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 25%, transparent);
+      }
+
+      .loop__n {
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      .loop__label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        line-height: 1.25;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.85rem;
+        margin-top: 1.1rem;
+        width: 100%;
+        max-width: 52rem;
+      }
+
+      .stat {
+        border-left: 2px solid var(--primary);
+        padding: 0.35rem 0 0.35rem 0.9rem;
+      }
+
+      .stat__n {
+        font-family: var(--font-display);
+        font-size: clamp(1.6rem, 3vw, 2.2rem);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+      }
+
+      .stat__l {
+        margin-top: 0.35rem;
+        font-size: 0.82rem;
+        color: var(--muted);
+        line-height: 1.35;
+        max-width: 18ch;
+      }
+
+      .link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        margin-top: 1.25rem;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        border-bottom: 1px solid color-mix(in srgb, var(--primary) 70%, transparent);
+        padding-bottom: 0.15rem;
+      }
+
+      .footer-row {
+        margin-top: auto;
+        padding-top: 1.25rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.72rem;
+        color: var(--muted);
+        letter-spacing: 0.04em;
+      }
+
+      .nav {
+        position: fixed;
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 20;
+        display: flex;
+        gap: 0.4rem;
+        align-items: center;
+        background: rgba(7, 9, 15, 0.85);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0.35rem 0.45rem;
+        backdrop-filter: blur(10px);
+      }
+
+      .nav button {
+        border: 0;
+        background: transparent;
+        color: var(--ink);
+        font: inherit;
+        font-size: 0.8rem;
+        font-weight: 600;
+        padding: 0.45rem 0.75rem;
+        border-radius: 999px;
+        cursor: pointer;
+      }
+
+      .nav button:hover {
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .nav__count {
+        min-width: 3.5rem;
+        text-align: center;
+        font-size: 0.75rem;
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .checklist {
+        display: grid;
+        gap: 0.55rem;
+        margin-top: 0.75rem;
+        max-width: 40rem;
+      }
+
+      .checklist li {
+        list-style: none;
+        display: flex;
+        gap: 0.65rem;
+        align-items: flex-start;
+        font-size: 1.02rem;
+        line-height: 1.4;
+      }
+
+      .checklist li span {
+        color: var(--wa);
+        font-weight: 700;
+      }
+
+      @media print {
+        @page {
+          size: 13.333in 7.5in;
+          margin: 0;
+        }
+        html,
+        body {
+          background: #000;
+          height: auto;
+          overflow: visible;
+        }
+        .nav {
+          display: none !important;
+        }
+        .deck {
+          width: 13.333in;
+          height: auto;
+          box-shadow: none;
+          max-width: none;
+          max-height: none;
+        }
+        .slide {
+          position: relative;
+          display: flex !important;
+          width: 13.333in;
+          height: 7.5in;
+          page-break-after: always;
+          break-after: page;
+        }
+        .slide:last-child {
+          page-break-after: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="deck" id="deck">
+      <!-- 1 Title -->
+      <section class="slide slide--title is-active" data-slide="1">
+        <div class="brand-row">
+          <div class="brand-mark" aria-hidden="true">R</div>
+          <div class="brand-name">Reca</div>
+        </div>
+        <p class="eyebrow">AI BuildFest 2026 · Track 3 · Case Study 2</p>
+        <h1>ChatGPT waits for you.<br />Reca comes first.</h1>
+        <p class="lead" style="margin-top: 1rem">
+          The active memory companion for WAEC &amp; JAMB students — on WhatsApp.
+        </p>
+        <p class="meta">Live · https://reca-study-companion.vercel.app</p>
+        <div class="footer-row"><span>Reca</span><span>01 / 10</span></div>
+      </section>
+
+      <!-- 2 Problem -->
+      <section class="slide" data-slide="2">
+        <p class="eyebrow">The problem</p>
+        <h2>Students study hard. Then they forget what mattered.</h2>
+        <p class="lead">
+          Millions of Nigerian candidates prepare alone after school. They reread notes —
+          but they don’t know what they’ve actually lost.
+        </p>
+        <div class="stats">
+          <div class="stat">
+            <div class="stat__n">~1.95M</div>
+            <div class="stat__l">WASSCE candidates (2026 cycle)</div>
+          </div>
+          <div class="stat">
+            <div class="stat__n">~2.24M</div>
+            <div class="stat__l">JAMB UTME registrations</div>
+          </div>
+          <div class="stat">
+            <div class="stat__n">61.5%</div>
+            <div class="stat__l">credit pass incl. Eng + Maths — pressure, not certainty</div>
+          </div>
+        </div>
+        <div class="footer-row"><span>Impact starts with retention</span><span>02 / 10</span></div>
+      </section>
+
+      <!-- 3 Gap -->
+      <section class="slide" data-slide="3">
+        <p class="eyebrow">Why not “just use ChatGPT”?</p>
+        <h2>Passive memory is not enough.</h2>
+        <div class="grid-2 vs">
+          <div class="card">
+            <h3>Claude / ChatGPT</h3>
+            <ul>
+              <li>Explain when you ask</li>
+              <li>Remember when you return</li>
+              <li>You open another app</li>
+              <li>No exam-triggered follow-up</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Reca</h3>
+            <ul>
+              <li>Explain → quiz → grade</li>
+              <li>Remembers what you got wrong</li>
+              <li>Messages you first on WhatsApp</li>
+              <li>WAEC/JAMB-framed practice</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-row"><span>Active vs passive memory</span><span>03 / 10</span></div>
+      </section>
+
+      <!-- 4 Solution -->
+      <section class="slide" data-slide="4">
+        <p class="eyebrow">The solution</p>
+        <h2>Reca — study companion that returns on its own.</h2>
+        <p class="lead">
+          A student sends a topic (or a past-question photo). Reca explains in plain exam language,
+          asks two quick questions, grades instantly — then resurfaces weak spots unprompted.
+        </p>
+        <p class="lead" style="margin-top: 0.85rem; color: var(--accent)">
+          No new app. No dashboard homework. WhatsApp is already the habit.
+        </p>
+        <div class="footer-row"><span>WhatsApp-native · free stack</span><span>04 / 10</span></div>
+      </section>
+
+      <!-- 5 Loop / functionality -->
+      <section class="slide" data-slide="5">
+        <p class="eyebrow">Functionality &amp; execution</p>
+        <h2>One loop. Built end-to-end.</h2>
+        <div class="loop">
+          <div class="loop__step">
+            <div class="loop__n">01</div>
+            <div class="loop__label">Capture</div>
+          </div>
+          <div class="loop__step">
+            <div class="loop__n">02</div>
+            <div class="loop__label">Explain</div>
+          </div>
+          <div class="loop__step">
+            <div class="loop__n">03</div>
+            <div class="loop__label">Quiz + grade</div>
+          </div>
+          <div class="loop__step is-hero">
+            <div class="loop__n">Hero</div>
+            <div class="loop__label">Unprompted resurface</div>
+          </div>
+          <div class="loop__step">
+            <div class="loop__n">05</div>
+            <div class="loop__label">Recap / briefing</div>
+          </div>
+        </div>
+        <p class="lead" style="margin-top: 1.25rem; font-size: 0.95rem">
+          Web + WhatsApp sync · Learn / Revise / Progress · 10 subjects · photo past-question path ·
+          shipped on Meta Cloud API + Gemini with preset fallback.
+        </p>
+        <div class="footer-row"><span>Working product, not a mock</span><span>05 / 10</span></div>
+      </section>
+
+      <!-- 6 AI -->
+      <section class="slide" data-slide="6">
+        <p class="eyebrow">Use of AI</p>
+        <h2>AI that teaches — then remembers.</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Generation</h3>
+            <p>
+              Gemini explains WAEC/JAMB topics in plain language, builds 2 practice questions,
+              grades answers, and can read a past-question photo.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Memory decision</h3>
+            <p>
+              Wrong answers schedule a follow-up. Reca decides <em>when</em> to return —
+              the student doesn’t open the chat to dig it up.
+            </p>
+          </div>
+        </div>
+        <p class="lead" style="margin-top: 1rem; font-size: 0.95rem">
+          Preset curriculum bank keeps the demo reliable if the model is offline. AI is the teacher;
+          spaced recall is the product.
+        </p>
+        <div class="footer-row"><span>LLM + correctness-triggered memory</span><span>06 / 10</span></div>
+      </section>
+
+      <!-- 7 Impact -->
+      <section class="slide" data-slide="7">
+        <p class="eyebrow">Impact &amp; usefulness</p>
+        <h2>Built for how Nigerian students already study.</h2>
+        <ul class="checklist">
+          <li><span>✓</span> After-school phone habit — not an in-school laptop fantasy</li>
+          <li><span>✓</span> Zero download friction on the channel they already use</li>
+          <li><span>✓</span> Turns “I read it” into “I still know it”</li>
+          <li><span>✓</span> Free-tier stack so a pilot doesn’t require paid infrastructure day one</li>
+        </ul>
+        <div class="footer-row"><span>Everyday life · exam calendar demand</span><span>07 / 10</span></div>
+      </section>
+
+      <!-- 8 Live + demo -->
+      <section class="slide" data-slide="8">
+        <p class="eyebrow">Live link &amp; demo</p>
+        <h2>Try the product. Watch the aha.</h2>
+        <p class="lead">
+          Web companion (same memory loop): open Learn → ask a topic → miss one question →
+          Reca comes back. WhatsApp is the stage hero — Reca messages first.
+        </p>
+        <a class="link" href="https://reca-study-companion.vercel.app/signup.html" target="_blank" rel="noopener">
+          https://reca-study-companion.vercel.app/signup.html →
+        </a>
+        <p class="meta" style="margin-top: 1.5rem">
+          Demo script: explain photosynthesis → wrong Q1 → unprompted resurface → chloroplast
+        </p>
+        <div class="footer-row"><span>Guest mode available</span><span>08 / 10</span></div>
+      </section>
+
+      <!-- 9 Why we built -->
+      <section class="slide" data-slide="9">
+        <p class="eyebrow">Why we built Reca</p>
+        <h2>Because explanations without follow-up still leave students alone.</h2>
+        <p class="lead">
+          We didn’t set out to build “another chatbot.” We set out to close the gap between
+          understanding a topic tonight and still owning it on exam day — on the phone students
+          already hold after school.
+        </p>
+        <p class="lead" style="margin-top: 1rem">
+          AI BuildFest gave us two days. We shipped the full loop on a free stack — and the
+          hero is still that unprompted return.
+        </p>
+        <div class="footer-row"><span>Case Study 2 · AI for Everyday Life</span><span>09 / 10</span></div>
+      </section>
+
+      <!-- 10 Close -->
+      <section class="slide" data-slide="10">
+        <p class="eyebrow">What’s next</p>
+        <h2>Pilot with real students. Expand the syllabus. Keep coming first.</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Now</h3>
+            <p>Working loop on WhatsApp + web. Live link ready for judges.</p>
+          </div>
+          <div class="card">
+            <h3>Next</h3>
+            <p>School / tutorial pilots · teacher progress view · broader WAEC subject coverage.</p>
+          </div>
+        </div>
+        <p class="lead" style="margin-top: 1.35rem">
+          Claude waits for you. <strong style="color: #fff">Reca comes first.</strong>
+        </p>
+        <a class="link" href="https://reca-study-companion.vercel.app/signup.html" target="_blank" rel="noopener">
+          Live product →
+        </a>
+        <div class="footer-row"><span>Thank you · Reca</span><span>10 / 10</span></div>
+      </section>
+    </div>
+
+    <nav class="nav" aria-label="Slides">
+      <button type="button" id="prev">←</button>
+      <span class="nav__count" id="count">1 / 10</span>
+      <button type="button" id="next">→</button>
+    </nav>
+
+    <script>
+      const slides = [...document.querySelectorAll(".slide")];
+      let i = 0;
+      function show(n) {
+        i = (n + slides.length) % slides.length;
+        slides.forEach((s, idx) => s.classList.toggle("is-active", idx === i));
+        document.getElementById("count").textContent = `${i + 1} / ${slides.length}`;
+      }
+      document.getElementById("prev").onclick = () => show(i - 1);
+      document.getElementById("next").onclick = () => show(i + 1);
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight" || e.key === " ") show(i + 1);
+        if (e.key === "ArrowLeft") show(i - 1);
+      });
+    </script>
+  </body>
+</html>
