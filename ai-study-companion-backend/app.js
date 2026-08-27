@@ -240,6 +240,10 @@ app.post('/webhook', async (req, res) => {
   // Acknowledge receipt immediately
   res.sendStatus(200);
 
+  const cleanMsg = userMessage.toLowerCase().trim();
+  const greetings = ['hi', 'hello', 'hey', 'start', 'get started', 'ready to study', 'setup', 'welcome'];
+  const isGreeting = greetings.some(g => cleanMsg.includes(g)) || cleanMsg === 'reca';
+
   // Check if user wants to explain something
   if (userMessage.toLowerCase().startsWith('explain ')) {
     const topic = userMessage.substring(8).trim();
@@ -283,6 +287,14 @@ app.post('/webhook', async (req, res) => {
     } catch (error) {
       console.error('❌ Error in explain flow:', error.message);
       await sendMetaWhatsAppMessage(senderPhone, '❌ Sorry, something went wrong. Try again later.');
+    }
+  } else if (isGreeting) {
+    console.log('👋 User sent a greeting/welcome message');
+    try {
+      const welcomeText = `👋 *Welcome to Reca — your AI Study Companion!* 🎓\n\nI'm here to help you prepare for your WAEC & JAMB exams and make study sessions easy. Here is what we can do:\n\n📚 *1. Learn any topic:* Just type *explain [topic]* (e.g. "explain gravity" or "explain demand and supply").\n\n❓ *2. Test yourself:* After the explanation, I will quiz you and grade your answers in real-time.\n\n🔥 *3. Keep your streak:* Study daily to keep your streak alive and get smart reminders!\n\nWhat subject or topic would you like to dive into first? ✏️`;
+      await sendMetaWhatsAppMessage(senderPhone, welcomeText);
+    } catch (error) {
+      console.error('❌ Error sending welcome message:', error.message);
     }
   } else {
     // Check if user has an active session (answering a quiz)
