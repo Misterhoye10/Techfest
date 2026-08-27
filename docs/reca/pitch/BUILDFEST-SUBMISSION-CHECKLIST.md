@@ -61,7 +61,7 @@ Source: [BuildFest site](https://hack-ai-thon.10alyticsbusiness.ca/buildfest) ·
 
 ### One-paragraph description (paste)
 
-> Reca is a WhatsApp-native WAEC/JAMB study companion. Students get plain-language explanations and quick quizzes; when they miss a question, Reca remembers and messages them back unprompted — active memory, not another chatbot that waits. Built on Meta Cloud API + Gemini with a free stack. Live web companion: https://reca-study-companion.vercel.app/signup.html
+> Reca is an AI-powered WAEC/JAMB study companion built for AI BuildFest 2026 (10Alytics). Students get AI explanations and quick quizzes; when they miss a question, Reca’s active memory messages them back unprompted — not another chatbot that waits. Meta Cloud API + Gemini. Live: https://reca-study-companion.vercel.app/signup.html
 
 ---
 
