@@ -223,14 +223,14 @@
     activeNudge = nudge;
     const isBriefing = nudge.type === "briefing";
     if (eyeEl) {
-      eyeEl.textContent = isBriefing ? "Daily briefing" : "Time to recall";
+      eyeEl.textContent = isBriefing ? "Today’s plan" : "Time to revisit";
     }
     if (titleEl) {
       titleEl.textContent = isBriefing
         ? nudge.title || "Today’s focus"
         : nudge.topicLabel
-          ? `Recall · ${nudge.topicLabel}`
-          : nudge.title || "Quick recall";
+          ? nudge.topicLabel
+          : nudge.title || "Quick check";
     }
     if (textEl) {
       textEl.textContent = isBriefing
@@ -240,11 +240,11 @@
     if (metaEl) {
       metaEl.textContent = isBriefing
         ? "Reca picked today’s focus from your weak spots."
-        : "You missed this earlier. Answer now to clear it from memory.";
+        : "You missed this earlier. Answer to clear it.";
     }
     if (cta) cta.textContent = isBriefing ? "Start focus" : "Answer now";
     bar.hidden = false;
-    announce(isBriefing ? "Daily briefing from Reca" : "Quick recall from Reca");
+    announce(isBriefing ? "Daily briefing from Reca" : "Reminder from Reca");
   }
 
   function hideNudge() {
@@ -266,7 +266,7 @@
     activeNudge = nudge;
     if (titleEl) {
       titleEl.textContent = nudge.topicLabel
-        ? `Recall · ${nudge.topicLabel}`
+        ? nudge.topicLabel
         : "Answer this";
     }
     if (qEl) qEl.textContent = questionFromNudge(nudge);
@@ -377,7 +377,7 @@
     const reviseTitle = document.getElementById("reviseRecommendTitle");
     if (reviseTitle) reviseTitle.textContent = rec.label;
     const reviseMeta = reviseRecommend?.querySelector(".recommend__meta");
-    if (reviseMeta) reviseMeta.textContent = `${rec.subject || "Biology"} · AI will quiz you`;
+    if (reviseMeta) reviseMeta.textContent = `${rec.subject || "Biology"} · 5 questions`;
   }
 
   /** Inline SVGs — no icon font (CDN glyphs were rendering as CJK tofu). */
@@ -1023,7 +1023,7 @@
       case "quiz":
         return "Building 2 quick questions…";
       default:
-        return "Reca’s AI is thinking…";
+        return "Reca is thinking…";
     }
   }
 
@@ -1097,7 +1097,7 @@
       app.dataset.mode = "welcome";
       showOnly(learnWelcome);
       mainDock.hidden = false;
-      input.placeholder = "Ask anything — typos OK, Reca will correct…";
+      input.placeholder = "Ask a question…";
       renderSideTopics("learn");
       input.focus();
       syncSendEnabled();
@@ -1114,7 +1114,7 @@
       app.dataset.mode = "revise-hub";
       showOnly(reviseWelcome);
       mainDock.hidden = true;
-      input.placeholder = "Answer Reca’s AI — type or pick above…";
+      input.placeholder = "Type your answer…";
       renderSideTopics("revise");
       return;
     }
@@ -1122,11 +1122,11 @@
     if (name === "progress") {
       sideTopicsLabel.replaceChildren(
         iconEl("analytics-01"),
-        document.createTextNode(" AI memory")
+        document.createTextNode(" Your progress")
       );
       clearUnreadNudges();
       hideNudge();
-      mainEyebrow.textContent = "Progress · AI memory";
+      mainEyebrow.textContent = "Progress";
       mainTitle.textContent = "What Reca remembers";
       app.dataset.mode = "progress";
       showOnly(progressPanel);
@@ -1367,7 +1367,7 @@
       const meta = document.createElement("span");
       meta.className = "empty-topic__meta";
       meta.textContent =
-        verb === "Revise" ? `${item.subject} · AI quiz` : `${item.subject} · AI explain`;
+        verb === "Revise" ? `${item.subject} · Quiz` : `${item.subject} · Explain`;
 
       starter.append(icoWrap, label, meta);
       starter.addEventListener("click", () => onStart(item));
@@ -1543,8 +1543,8 @@
         if (progressDueLead) {
           progressDueLead.textContent =
             dueNow > 0
-              ? `${dueNow} ready for recall — same nudge Reca sends on WhatsApp.`
-              : "Reca is holding these misses — revise to clear them before they resurface.";
+              ? `${dueNow} ready for a revisit — same reminders Reca sends on WhatsApp.`
+              : "These still need work — quiz again to clear them.";
         }
         progressDueList.replaceChildren();
         due.forEach((d) => {
@@ -1623,7 +1623,7 @@
     if (!needs.length) {
       const p = document.createElement("p");
       p.className = "progress__hint";
-      p.textContent = "Nothing flagged — keep AI quizzing to stay sharp.";
+      p.textContent = "Nothing flagged — keep quizzing to stay sharp.";
       progressNeeds.appendChild(p);
     } else {
       needs.forEach((t) => progressNeeds.appendChild(topicRow(t, "Revise")));
@@ -1696,12 +1696,12 @@
     app.dataset.feature = "learn";
     app.dataset.mode = "chat";
     lastLearnTopic = item;
-    mainEyebrow.textContent = "Learn · AI explaining";
+    mainEyebrow.textContent = "Learn";
     mainTitle.textContent = item.label;
     showOnly(thread);
     thread.innerHTML = "";
     mainDock.hidden = false;
-    input.placeholder = `Ask a follow-up about ${item.label}…`;
+    input.placeholder = `Ask about ${item.label}…`;
     markValue();
     await sendMessage(item.send || `explain ${item.label}`, {
       mode: "learn",
@@ -1796,8 +1796,8 @@
           const switched = lastLearnTopic && lastLearnTopic.id !== topic.id;
           lastLearnTopic = topic;
           mainTitle.textContent = topic.label;
-          mainEyebrow.textContent = "Learn · AI explaining";
-          input.placeholder = `Ask a follow-up about ${topic.label}…`;
+          mainEyebrow.textContent = "Learn";
+          input.placeholder = `Ask about ${topic.label}…`;
           if (switched) {
             // Keep history, but make the new topic unmistakable in the header
             mainTitle.textContent = topic.label;
@@ -1832,11 +1832,11 @@
     app.dataset.mode = "quiz";
     activeQuizTopic = item;
     markValue();
-    mainEyebrow.textContent = "Revise · AI is quizzing";
+    mainEyebrow.textContent = "Revise";
     mainTitle.textContent = item.label;
     showOnly(quizPanel);
     mainDock.hidden = false;
-    input.placeholder = "Answer Reca’s AI — type or pick above…";
+    input.placeholder = "Type your answer…";
     quizFeedback.hidden = true;
     quizFeedback.replaceChildren();
     quizSummary.hidden = true;
@@ -2535,8 +2535,8 @@
           send: `explain ${data.topic.label}`,
         };
         mainTitle.textContent = data.topic.label;
-        mainEyebrow.textContent = "Learn · From your photo";
-        input.placeholder = `Ask a follow-up about ${data.topic.label}…`;
+        mainEyebrow.textContent = "Learn";
+        input.placeholder = `Ask about ${data.topic.label}…`;
         appendLearnQuizNudge(lastLearnTopic);
       }
       clearPendingUpload();

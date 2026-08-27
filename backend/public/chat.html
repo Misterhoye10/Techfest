@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Reca — AI study companion</title>
+    <title>Reca — Study companion</title>
     <link rel="icon" href="/assets/reca-mark.svg" type="image/svg+xml" />
     <script>
       (function () {
@@ -198,7 +198,7 @@
               </div>
               <h2 class="empty__title" id="learnTitle">Ask Reca anything</h2>
               <p class="empty__desc">
-                Type a question — typos are fine. Reca corrects spelling, then explains in plain exam language.
+                Type a question. Reca explains in plain exam language.
               </p>
               <p class="empty__hint" id="learnAskHint">
                 Try:
@@ -218,21 +218,21 @@
               </div>
               <h2 class="empty__title" id="reviseTitle">Quiz what you just learned</h2>
               <p class="empty__desc">
-                Pick a topic — Reca asks 5 short questions. Tap an answer or type your own. End anytime.
+                Pick a topic — 5 short questions. Tap an answer or type your own. End anytime.
               </p>
               <button type="button" class="recommend" id="reviseRecommend">
-                <span class="recommend__eyebrow">AI recommends</span>
+                <span class="recommend__eyebrow">Suggested</span>
                 <span class="recommend__title" id="reviseRecommendTitle">Genetics basics</span>
-                <span class="recommend__meta">Biology · AI will quiz you</span>
+                <span class="recommend__meta">Biology · 5 questions</span>
               </button>
               <div class="hub-tools">
                 <div class="topic-search">
                   <span data-icon="search-01" aria-hidden="true"></span>
-                  <input id="reviseSearch" type="search" placeholder="Search what Reca should quiz…" autocomplete="off" />
+                  <input id="reviseSearch" type="search" placeholder="Search topics…" autocomplete="off" />
                 </div>
                 <div class="revise-subjects" id="reviseSubjects" aria-label="Subjects"></div>
               </div>
-              <p class="hub-browse" id="reviseBrowseLabel">Or pick a topic for AI to quiz</p>
+              <p class="hub-browse" id="reviseBrowseLabel">Or pick a topic</p>
               <div class="empty__actions" id="reviseTopics" role="group" aria-label="Revise a topic"></div>
             </div>
           </div>
@@ -271,21 +271,21 @@
                 <span class="empty__orb"></span>
                 <span data-icon="analytics-01" class="empty__icon"></span>
               </div>
-              <h2 class="empty__title">No AI memory yet</h2>
+              <h2 class="empty__title">No quizzes yet</h2>
               <p class="empty__desc">
-                Answer a few questions in Revise — Reca’s AI maps what’s strong, what needs work, and when to come back first.
+                Answer a few questions in Revise — Reca shows what’s strong, what needs work, and when to come back.
               </p>
               <button type="button" class="progress__cta" id="progressEmptyCta">
                 <span data-icon="quiz-03" aria-hidden="true"></span>
-                Start AI quiz
+                Start a quiz
               </button>
             </div>
 
             <div class="progress__body" id="progressBody" hidden>
               <div class="progress__due" id="progressDue" hidden>
-                <h3 class="progress__heading">Due for AI recall</h3>
+                <h3 class="progress__heading">Come back to these</h3>
                 <p class="progress__due-lead" id="progressDueLead">
-                  Reca’s AI decided these need a revisit — quiz now to clear them.
+                  These need another look — quiz now to clear them.
                 </p>
                 <div class="progress__list" id="progressDueList"></div>
               </div>
@@ -302,7 +302,7 @@
             </div>
 
             <div class="progress__loading" id="progressLoading" hidden>
-              <p class="progress__loading-label">Loading AI memory…</p>
+              <p class="progress__loading-label">Loading progress…</p>
               <div class="progress__skel" aria-hidden="true"></div>
               <div class="progress__skel" aria-hidden="true"></div>
               <div class="progress__skel" aria-hidden="true"></div>
@@ -328,7 +328,7 @@
               id="messageInput"
               type="text"
               autocomplete="off"
-              placeholder="Ask anything — typos OK, Reca will correct…"
+              placeholder="Ask a question…"
               enterkeyhint="send"
             />
             <input
@@ -516,50 +516,50 @@
 
           <section class="settings__pane settings__pane--copy" id="settings-about" data-settings-pane="about" hidden>
             <p class="settings__lead">
-              Reca is an <strong>AI study companion</strong> for WAEC &amp; JAMB — built for AI BuildFest so students get explanations, quizzes, and recall that don’t wait for them to open the chat.
+              Reca helps WAEC &amp; JAMB students explain topics, quiz themselves, and come back to what they missed — on web and WhatsApp.
             </p>
             <ul class="settings__list">
-              <li><strong>AI Learn</strong> — the model explains any syllabus topic in plain language, by subject.</li>
-              <li><strong>AI Revise</strong> — Reca generates and grades questions; you answer one at a time.</li>
-              <li><strong>AI memory</strong> — Progress tracks what’s weak and when you’re due to forget — then Reca comes first.</li>
+              <li><strong>Learn</strong> — ask any syllabus topic in plain language.</li>
+              <li><strong>Revise</strong> — short quizzes, graded one question at a time.</li>
+              <li><strong>Progress</strong> — see what’s weak and when to revisit.</li>
             </ul>
             <p class="settings__hint">
-              Generic AI chat remembers when you return. Reca’s AI decides when to resurface — on WhatsApp and in this web app.
+              Most chat apps wait for you to return. Reca comes to you first.
             </p>
           </section>
 
           <section class="settings__pane settings__pane--copy" id="settings-how" data-settings-pane="how" hidden>
-            <p class="settings__lead">How Reca’s AI loop works</p>
+            <p class="settings__lead">How Reca works</p>
             <ol class="settings__steps">
               <li>
-                <strong>Ask the AI</strong>
-                <span>Open Learn, pick a topic, or type in the composer — Reca explains with the study model.</span>
+                <strong>Ask</strong>
+                <span>Open Learn and type a question — Reca explains.</span>
               </li>
               <li>
-                <strong>Quiz with AI</strong>
-                <span>From Learn, try 2 quick questions — or open Revise for a 5-question session.</span>
+                <strong>Quiz</strong>
+                <span>Try 2 quick questions from Learn, or open Revise for 5.</span>
               </li>
               <li>
-                <strong>AI remembers misses</strong>
-                <span>Wrong answers get a resurface time. Progress shows what’s due for recall.</span>
+                <strong>Track misses</strong>
+                <span>Wrong answers show up in Progress when they’re due again.</span>
               </li>
               <li>
-                <strong>AI comes first</strong>
-                <span>Unprompted recall nudges + a daily AI briefing (days-to-exam + weakest topic) on web and WhatsApp.</span>
+                <strong>Come back first</strong>
+                <span>Reca reminds you on web and WhatsApp — you don’t have to open the app first.</span>
               </li>
             </ol>
           </section>
 
           <section class="settings__pane settings__pane--copy" id="settings-help" data-settings-pane="help" hidden>
-            <p class="settings__lead">Demo the AI companion fast</p>
+            <p class="settings__lead">Try Reca fast</p>
             <ul class="settings__list">
-              <li>Ask Reca to explain <strong>Genetics basics</strong> on Learn — that’s the AI explanation path.</li>
-              <li>Tap <strong>Try 2 quick questions</strong> — miss one on purpose so memory has something to resurface.</li>
-              <li>Trigger recall: wait for the nudge, or call <code>POST /demo/resurface</code>.</li>
-              <li>Daily AI briefing: <code>POST /demo/briefing</code> (same copy on web + WhatsApp when linked).</li>
-              <li>Link WhatsApp in Settings so the student id matches phone and Progress.</li>
+              <li>Ask Reca to explain <strong>Genetics basics</strong> on Learn.</li>
+              <li>Tap <strong>Try 2 quick questions</strong> — miss one on purpose.</li>
+              <li>Open <strong>Progress</strong> to see what needs work.</li>
+              <li>When a reminder appears, tap <strong>Answer now</strong>.</li>
+              <li>Link WhatsApp in Settings so Progress follows your phone.</li>
             </ul>
-            <p class="settings__hint">Sidebar should say Online when the AI API is up. If it flakes, the demo still runs on the topic bank.</p>
+            <p class="settings__hint">Sidebar should say Online when Reca is connected.</p>
             <div class="settings__actions">
               <button type="button" class="settings__ghost-btn" id="settingsHelpLearn" data-settings-go="learn">
                 Go to Learn
@@ -589,10 +589,10 @@
             <ul class="settings__list">
               <li><strong>Talodabioluwa Paul</strong> &amp; <strong>Folarin Oyewole</strong></li>
               <li>Participant ID <strong>BF-0933</strong></li>
-              <li>Product: <strong>Reca</strong> — AI-powered WAEC/JAMB study companion (web chat + WhatsApp)</li>
-              <li>Focus: active AI memory — explain → quiz → grade → resurface → daily briefing</li>
+              <li>Product: <strong>Reca</strong> — WAEC/JAMB study companion (web + WhatsApp)</li>
+              <li>Focus: explain → quiz → remember misses → come back first</li>
             </ul>
-            <p class="settings__hint">Personal, after-hours AI study — not an in-school deploy for this build.</p>
+            <p class="settings__hint">Personal study after school — not an in-school deploy for this build.</p>
           </section>
         </div>
       </div>
@@ -613,12 +613,12 @@
     <div class="nudge-toast" id="nudgeBar" hidden role="status" aria-live="polite">
       <div class="nudge-toast__top">
         <span data-icon="notification-01" class="nudge-toast__ico" aria-hidden="true"></span>
-        <p class="nudge-toast__eyebrow" id="nudgeEyebrow">Time to recall</p>
+        <p class="nudge-toast__eyebrow" id="nudgeEyebrow">Time to revisit</p>
         <button type="button" class="nudge-toast__dismiss" id="nudgeDismiss" aria-label="Dismiss">
           <span data-icon="cancel-01" aria-hidden="true"></span>
         </button>
       </div>
-      <p class="nudge-toast__title" id="nudgeTitle">Quick recall</p>
+      <p class="nudge-toast__title" id="nudgeTitle">Quick check</p>
       <p class="nudge-toast__text" id="nudgeText"></p>
       <p class="nudge-toast__meta" id="nudgeMeta">You missed this earlier. Answer to clear it.</p>
       <button type="button" class="nudge-toast__cta" id="nudgeCta">Answer now</button>
