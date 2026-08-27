@@ -5,7 +5,7 @@
 
 **Live link (also put in description):** https://reca-study-companion.vercel.app/signup.html
 
-Related: [demo-script.md](../demo-script.md) · pitch deck in this folder
+Related: [MINI-DEMOS.md](./MINI-DEMOS.md) (two short cuts) · [demo-script.md](../demo-script.md) · pitch deck in this folder
 
 ---
 
@@ -17,6 +17,9 @@ Prove in under 2 minutes:
 2. Product loop (explain → quiz)  
 3. **Hero:** Reca messages unprompted  
 4. Live product exists  
+
+Prefer filming **two mini demos** ([MINI-DEMOS.md](./MINI-DEMOS.md)):  
+**A** WhatsApp resurface (official upload) · **B** web Learn → Revise → Progress (B-roll / community).
 
 ---
 

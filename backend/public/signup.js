@@ -13,6 +13,7 @@
   const otpBack = document.getElementById("otpBack");
   const otpError = document.getElementById("otpError");
   const otpDev = document.getElementById("otpDev");
+  const otpLead = document.getElementById("otpLead");
   const syncCard = document.getElementById("syncCard");
   const syncWaLink = document.getElementById("syncWaLink");
   const syncContinue = document.getElementById("syncContinue");
@@ -112,6 +113,11 @@
     syncCard.hidden = true;
     if (guestLink) guestLink.hidden = true;
     pendingPhone = phone;
+    if (otpLead) {
+      otpLead.textContent = phone
+        ? `Code sent to ${phone}. Enter it below.`
+        : "Enter the code from WhatsApp.";
+    }
     if (otpDev) {
       if (devCode) {
         otpDev.hidden = false;
@@ -150,9 +156,10 @@
     if (syncWaLink) {
       syncWaLink.href =
         continueUrl ||
-        `https://wa.me/${biz}?text=${encodeURIComponent("Hey Reca, let's start studying! 🚀")}`;
+        `https://wa.me/${biz}?text=${encodeURIComponent("Hey Reca, let's start studying!")}`;
       syncWaLink.textContent = "Open WhatsApp";
     }
+    syncContinue?.focus();
   }
 
   async function requestCode() {

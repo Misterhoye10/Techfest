@@ -710,7 +710,7 @@ body {
 .settings {
   position: fixed;
   inset: 0;
-  z-index: 80;
+  z-index: 90;
   display: grid;
   place-items: center;
   padding: 1.25rem;
@@ -1525,7 +1525,7 @@ body {
   position: fixed;
   top: max(0.85rem, env(safe-area-inset-top));
   right: max(0.85rem, env(safe-area-inset-right));
-  z-index: 80;
+  z-index: 70;
   box-sizing: border-box;
   width: min(22rem, calc(100vw - 1.7rem));
   padding: 0.9rem 0.95rem 1rem;
@@ -1626,8 +1626,8 @@ body {
   font: inherit;
   font-size: 0.8rem;
   font-weight: 600;
-  padding: 0.5rem 0.95rem;
-  min-height: 36px;
+  padding: 0.55rem 1rem;
+  min-height: 44px;
   cursor: pointer;
 }
 
@@ -2160,6 +2160,11 @@ body {
   color: var(--muted);
 }
 
+.empty__hint .hgi {
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
 .empty__chip {
   margin: 0;
   padding: 0.4rem 0.75rem;
@@ -2358,21 +2363,6 @@ body {
   font-size: 0.72rem;
   font-weight: 500;
   color: var(--muted);
-}
-
-.empty__hint {
-  margin: 1.15rem 0 0;
-  font-size: 0.8rem;
-  color: var(--muted);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-}
-
-.empty__hint .hgi {
-  font-size: 0.9rem;
-  line-height: 1;
 }
 
 @keyframes empty-in {
@@ -2702,15 +2692,41 @@ body {
 }
 
 .msg--error {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
+  display: grid;
   gap: 0.65rem;
   padding: 0.95rem 1rem;
   border-radius: 14px;
   background: color-mix(in srgb, var(--accent) 8%, white);
   border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line));
   color: var(--ink);
+}
+
+.msg--error .msg__body {
+  margin: 0;
+}
+
+.msg--error .msg__body p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.msg__retry {
+  justify-self: start;
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--line));
+  background: var(--white);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.5rem 0.85rem;
+  border-radius: 999px;
+  cursor: pointer;
+  min-height: 40px;
+}
+
+.msg__retry:hover {
+  background: var(--accent-soft);
 }
 
 .msg__error-ico {
@@ -3206,10 +3222,6 @@ body {
   background: var(--main-chat-bg);
 }
 
-.frame[data-mode="chat"] .chips[hidden] {
-  display: flex !important;
-}
-
 @media (max-width: 860px) {
   .frame {
     grid-template-columns: 1fr;
@@ -3695,28 +3707,36 @@ body {
 }
 
 .learn-cta__btn--primary {
-  border: 1px solid var(--line);
-  background: var(--white);
-  color: var(--ink);
+  border: 0;
+  background: var(--primary);
+  color: #fff;
   font-size: 0.86rem;
-  padding: 0.55rem 0.9rem;
-  box-shadow: none;
+  padding: 0.55rem 0.95rem;
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--primary) 28%, transparent);
 }
 
-.learn-cta__btn--primary:hover,
+.learn-cta__btn--primary .ico {
+  color: #fff;
+}
+
+.learn-cta__btn--primary:hover {
+  border-color: transparent;
+  background: color-mix(in srgb, var(--primary) 88%, black);
+  color: #fff;
+}
+
+.learn-cta__btn--primary:hover .ico {
+  color: #fff;
+}
+
 .learn-cta__btn:hover {
   border-color: color-mix(in srgb, var(--primary) 35%, var(--line));
   background: var(--primary-soft);
   color: var(--primary);
 }
 
-.learn-cta__btn--primary:hover .ico,
 .learn-cta__btn:hover .ico {
   color: var(--primary);
-}
-
-.learn-cta__btn--primary:hover {
-  background: var(--primary-soft);
 }
 
 .learn-cta__row {
@@ -3759,11 +3779,16 @@ body {
   line-height: 1.4;
 }
 
-[data-theme="dark"] .learn-cta__btn,
-[data-theme="dark"] .learn-cta__btn--primary {
+[data-theme="dark"] .learn-cta__btn {
   background: var(--card);
   border-color: var(--line);
   color: var(--ink);
+}
+
+[data-theme="dark"] .learn-cta__btn--primary {
+  background: var(--primary);
+  border-color: transparent;
+  color: #fff;
 }
 
 .recommend {
@@ -3786,14 +3811,15 @@ body {
 }
 
 .recommend::after {
-  content: "?";
+  content: "→";
   grid-column: 2;
   grid-row: 1 / span 3;
   align-self: center;
   color: var(--primary);
-  font-size: 1.25rem;
-  font-weight: 600;
-  opacity: 0.85;
+  font-size: 1.35rem;
+  font-weight: 500;
+  opacity: 0.9;
+  line-height: 1;
 }
 
 .recommend:hover {
@@ -4196,6 +4222,22 @@ body {
   align-items: center;
 }
 
+.quiz__summary-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1rem;
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.quiz__summary-link {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
 .quiz__again,
 .quiz__to-learn {
   display: inline-flex;
@@ -4225,6 +4267,28 @@ body {
   border: 1px solid var(--line);
   background: var(--surface);
   color: var(--ink);
+}
+
+.quiz__error-msg {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.quiz__error-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+#quizFeedback[hidden],
+#quizDiagram[hidden],
+#quizSummary[hidden],
+#quizMemory[hidden],
+#recallFeedback[hidden],
+#recallDone[hidden] {
+  display: none !important;
 }
 
 .main__dock[hidden] {
@@ -4415,8 +4479,59 @@ body {
   font-size: 0.92rem;
 }
 
+.progress__loading {
+  display: grid;
+  gap: 0.85rem;
+  text-align: left;
+}
+
+.progress__loading-label {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.progress__skel {
+  height: 3.25rem;
+  border-radius: 12px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--line) 55%, transparent) 0%,
+    color-mix(in srgb, var(--card) 80%, white) 50%,
+    color-mix(in srgb, var(--line) 55%, transparent) 100%
+  );
+  background-size: 200% 100%;
+  animation: progressSkel 1.1s ease-in-out infinite;
+}
+
+@keyframes progressSkel {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
 .progress__error {
+  display: grid;
+  gap: 0.75rem;
+  justify-items: center;
+  padding: 1.25rem 1rem;
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, #b42318 25%, var(--line));
+  background: color-mix(in srgb, #b42318 6%, var(--card));
   color: #b42318;
+}
+
+.progress__error .progress__cta {
+  margin-top: 0.15rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress__skel {
+    animation: none;
+  }
 }
 
 #progressPanel[hidden],

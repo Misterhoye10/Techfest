@@ -1092,8 +1092,8 @@
         iconEl("bookmark-01"),
         document.createTextNode(" Quick topics")
       );
-      mainEyebrow.textContent = "Learn · Ask anything";
-      mainTitle.textContent = "Ask Reca";
+      mainEyebrow.textContent = "Learn";
+      mainTitle.textContent = "Ask anything";
       app.dataset.mode = "welcome";
       showOnly(learnWelcome);
       mainDock.hidden = false;
@@ -1109,14 +1109,13 @@
         iconEl("quiz-03"),
         document.createTextNode(" Topics to quiz")
       );
-      mainEyebrow.textContent = "Revise · AI quizzes";
-      mainTitle.textContent = "AI quiz";
+      mainEyebrow.textContent = "Revise";
+      mainTitle.textContent = "Quiz what you learned";
       app.dataset.mode = "revise-hub";
       showOnly(reviseWelcome);
-      mainDock.hidden = false;
-      input.placeholder = "Or type your answer for Reca’s AI…";
+      mainDock.hidden = true;
+      input.placeholder = "Answer Reca’s AI — type or pick above…";
       renderSideTopics("revise");
-      input.focus();
       return;
     }
 
@@ -1281,6 +1280,33 @@
     el.appendChild(metaRow);
     stack.appendChild(el);
     turn.appendChild(stack);
+    thread.appendChild(turn);
+    scrollThread();
+  }
+
+  function addErrorBubble(message, onRetry) {
+    const turn = document.createElement("div");
+    turn.className = "turn turn--error";
+    const el = document.createElement("div");
+    el.className = "msg msg--error";
+    const body = document.createElement("div");
+    body.className = "msg__body";
+    const p = document.createElement("p");
+    p.textContent = message;
+    body.appendChild(p);
+    el.appendChild(body);
+    if (typeof onRetry === "function") {
+      const retry = document.createElement("button");
+      retry.type = "button";
+      retry.className = "msg__retry";
+      retry.textContent = "Try again";
+      retry.addEventListener("click", () => {
+        turn.remove();
+        onRetry();
+      });
+      el.appendChild(retry);
+    }
+    turn.appendChild(el);
     thread.appendChild(turn);
     scrollThread();
   }
@@ -1642,14 +1668,15 @@
       console.error("loadProgress", err);
       progressLoading.hidden = true;
       progressError.hidden = false;
-      progressError.textContent = "Couldn’t load progress. Try again.";
+      progressError.replaceChildren();
+      const msg = document.createElement("p");
+      msg.textContent = "Couldn’t load progress — check your connection, then retry.";
       const retry = document.createElement("button");
       retry.type = "button";
       retry.className = "progress__cta";
       retry.textContent = "Retry";
       retry.addEventListener("click", () => loadProgress());
-      progressError.appendChild(document.createElement("br"));
-      progressError.appendChild(retry);
+      progressError.append(msg, retry);
     }
   }
 
@@ -1695,7 +1722,7 @@
 
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "learn-cta__btn";
+    btn.className = "learn-cta__btn learn-cta__btn--primary";
     btn.append(iconEl("quiz-03"), document.createTextNode(" Try 2 quick questions"));
     btn.addEventListener("click", () => topic && startRevise(topic, { limit: 2 }));
 
@@ -1782,7 +1809,9 @@
       announce("Reca replied");
     } catch (_) {
       hideThinking();
-      addBubble("Couldn’t send that. Try again.", "in");
+      addErrorBubble("Couldn’t send that — check your connection, then try again.", () =>
+        sendMessage(text, opts)
+      );
       setStatus("Offline", false);
     } finally {
       setComposerBusy(false);
@@ -1809,6 +1838,7 @@
     mainDock.hidden = false;
     input.placeholder = "Answer Reca’s AI — type or pick above…";
     quizFeedback.hidden = true;
+    quizFeedback.replaceChildren();
     quizSummary.hidden = true;
     quizSummary.replaceChildren();
     quizOptions.innerHTML = "";
@@ -1831,10 +1861,30 @@
       input.focus();
     } catch (err) {
       console.error("startRevise", err);
-      quizQuestion.textContent = "Couldn’t start revise. Try again.";
+      quizQuestion.textContent = "Couldn’t start this quiz.";
+      quizOptions.innerHTML = "";
+      quizFeedback.hidden = false;
+      quizFeedback.replaceChildren();
+      const note = document.createElement("p");
+      note.className = "quiz__error-msg";
+      note.textContent = "Check your connection, then retry — or pick another topic.";
+      const row = document.createElement("div");
+      row.className = "quiz__error-actions";
+      const retry = document.createElement("button");
+      retry.type = "button";
+      retry.className = "quiz__again";
+      retry.textContent = "Retry";
+      retry.addEventListener("click", () => startRevise(item, opts));
+      const back = document.createElement("button");
+      back.type = "button";
+      back.className = "quiz__to-learn";
+      back.textContent = "Back to topics";
+      back.addEventListener("click", () => setFeature("revise"));
+      row.append(retry, back);
+      quizFeedback.append(note, row);
       quizLocked = false;
+      mainDock.hidden = true;
       setStatus("Online", true);
-      setTimeout(() => setFeature("revise"), 1200);
     }
   }
 
@@ -1914,9 +1964,15 @@
     const actions = document.createElement("div");
     actions.className = "quiz__summary-actions";
 
+    const toProgress = document.createElement("button");
+    toProgress.type = "button";
+    toProgress.className = "quiz__again";
+    toProgress.append(iconEl("analytics-01"), document.createTextNode(" See Progress"));
+    toProgress.addEventListener("click", () => setFeature("progress"));
+
     const again = document.createElement("button");
     again.type = "button";
-    again.className = "quiz__again";
+    again.className = "quiz__to-learn";
     again.append(iconEl("quiz-03"), document.createTextNode(" Quiz again"));
     again.addEventListener("click", () => {
       const match =
@@ -1927,15 +1983,12 @@
       startRevise(match);
     });
 
-    const toProgress = document.createElement("button");
-    toProgress.type = "button";
-    toProgress.className = "quiz__to-learn";
-    toProgress.textContent = "See Progress";
-    toProgress.addEventListener("click", () => setFeature("progress"));
+    const links = document.createElement("div");
+    links.className = "quiz__summary-links";
 
     const toLearn = document.createElement("button");
     toLearn.type = "button";
-    toLearn.className = "quiz__to-learn";
+    toLearn.className = "learn-cta__link quiz__summary-link";
     toLearn.textContent = "Back to Learn";
     toLearn.addEventListener("click", () => setFeature("learn"));
 
@@ -1943,7 +1996,8 @@
     onWa.className = "learn-cta__link";
     onWa.textContent = "Continue on WhatsApp";
 
-    actions.append(again, toProgress, toLearn, onWa);
+    links.append(toLearn, onWa);
+    actions.append(toProgress, again, links);
     quizSummary.append(badge, h, actions);
     mainDock.hidden = true;
     announce(summary.message);
@@ -2386,16 +2440,25 @@
       return;
     }
     if (feature === "revise" && app.dataset.mode === "revise-hub") {
-      // typed topic name on revise hub — try match and start quiz
+      const q = text.toLowerCase();
       const match = TOPICS.find(
         (t) =>
-          text.toLowerCase().includes(t.label.toLowerCase()) ||
-          t.aliases?.some((a) => text.toLowerCase().includes(a))
+          q.includes(String(t.label || "").toLowerCase()) ||
+          t.aliases?.some((a) => q.includes(String(a).toLowerCase()))
       );
-      if (match) startRevise(match);
-      else startRevise(TOPICS[0]);
       input.value = "";
       syncSendEnabled();
+      if (match) {
+        startRevise(match);
+        return;
+      }
+      const search = document.getElementById("reviseSearch");
+      if (search) {
+        search.value = text;
+        search.dispatchEvent(new Event("input", { bubbles: true }));
+        search.focus();
+      }
+      announce("No matching topic — pick one below or refine search.");
       return;
     }
     // Learn: freeform ask — server resolves topic (including typos); don't pin UI topic
@@ -2457,7 +2520,9 @@
       const data = await res.json();
       hideThinking();
       if (!res.ok) {
-        addBubble(data.error || "Couldn’t read that image. Try a clearer photo.", "in");
+        addErrorBubble(data.error || "Couldn’t read that image. Try a clearer photo.", () =>
+          uploadPastQuestion(file)
+        );
         setStatus("Online", true);
         return;
       }
@@ -2480,7 +2545,9 @@
       announce("Reca explained your photo");
     } catch (_) {
       hideThinking();
-      addBubble("Couldn’t upload that. Check your connection and try again.", "in");
+      addErrorBubble("Couldn’t upload that — check your connection, then try again.", () =>
+        uploadPastQuestion(file)
+      );
       setStatus("Offline", false);
     } finally {
       setComposerBusy(false);

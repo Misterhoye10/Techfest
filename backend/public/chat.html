@@ -183,8 +183,8 @@
             <span class="main__menu-label">Topics</span>
           </button>
           <div class="main__bar-copy">
-            <p class="main__eyebrow" id="mainEyebrow">Learn · Ask anything</p>
-            <h1 class="main__title" id="mainTitle">Ask Reca</h1>
+            <p class="main__eyebrow" id="mainEyebrow">Learn</p>
+            <h1 class="main__title" id="mainTitle">Ask anything</h1>
           </div>
         </header>
 
@@ -301,8 +301,13 @@
               </section>
             </div>
 
-            <p class="progress__loading" id="progressLoading" hidden>Loading progress…</p>
-            <p class="progress__error" id="progressError" hidden></p>
+            <div class="progress__loading" id="progressLoading" hidden>
+              <p class="progress__loading-label">Loading AI memory…</p>
+              <div class="progress__skel" aria-hidden="true"></div>
+              <div class="progress__skel" aria-hidden="true"></div>
+              <div class="progress__skel" aria-hidden="true"></div>
+            </div>
+            <div class="progress__error" id="progressError" hidden></div>
           </div>
 
           <div class="thread" id="thread" role="log" aria-live="polite" aria-relevant="additions" hidden></div>
