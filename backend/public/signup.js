@@ -24,6 +24,14 @@
   const modeSignin = document.getElementById("modeSignin");
   const modesEl = document.querySelector(".auth__modes");
   const guestLink = document.getElementById("authGuest");
+  const guestNote = document.getElementById("authGuestNote");
+  const authDivider = document.getElementById("authDivider");
+
+  function setGuestPromoVisible(show) {
+    if (guestLink) guestLink.hidden = !show;
+    if (guestNote) guestNote.hidden = !show;
+    if (authDivider) authDivider.hidden = !show;
+  }
 
   const params = new URLSearchParams(location.search);
   const showWaCta = params.get("wa") === "1";
@@ -121,7 +129,7 @@
     if (introEl) introEl.hidden = true;
     otpForm.hidden = false;
     syncCard.hidden = true;
-    if (guestLink) guestLink.hidden = true;
+    setGuestPromoVisible(false);
     pendingPhone = phone;
     if (otpLead) {
       otpLead.textContent = phone
@@ -147,7 +155,7 @@
     if (introEl) introEl.hidden = false;
     otpForm.hidden = true;
     syncCard.hidden = true;
-    if (guestLink) guestLink.hidden = false;
+    setGuestPromoVisible(true);
     pendingPhone = null;
     showError(otpError, "");
     setMode(mode);
@@ -160,7 +168,7 @@
     if (titleEl) titleEl.hidden = true;
     if (introEl) introEl.hidden = true;
     syncCard.hidden = false;
-    if (guestLink) guestLink.hidden = true;
+    setGuestPromoVisible(false);
 
     const biz =
       (whatsappFrom || "").replace(/\D/g, "") ||

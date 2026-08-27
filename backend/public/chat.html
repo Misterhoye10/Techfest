@@ -197,14 +197,15 @@
                 <span data-icon="ai-chat-02" class="empty__icon"></span>
               </div>
               <h2 class="empty__title" id="learnTitle">Ask Reca anything</h2>
+              <p class="empty__coach" id="learnCoach">Ask → Quiz → Progress remembers misses</p>
               <p class="empty__desc">
                 Type a question. Reca explains in plain exam language.
               </p>
               <p class="empty__hint" id="learnAskHint">
                 Try:
-                <button type="button" class="empty__chip" data-ask="What is osmosis?">What is osmosis?</button>
+                <button type="button" class="empty__chip" data-ask="Explain photosynthesis simply">Photosynthesis</button>
+                <button type="button" class="empty__chip" data-ask="What is osmosis?">Osmosis</button>
                 <button type="button" class="empty__chip" data-ask="Explain genetics basics simply">Genetics basics</button>
-                <button type="button" class="empty__chip" data-ask="What are acids and bases?">Acids &amp; bases</button>
               </p>
             </div>
           </div>
@@ -222,7 +223,7 @@
               </p>
               <button type="button" class="recommend" id="reviseRecommend">
                 <span class="recommend__eyebrow">Start here</span>
-                <span class="recommend__title" id="reviseRecommendTitle">Genetics basics</span>
+                <span class="recommend__title" id="reviseRecommendTitle">Photosynthesis</span>
                 <span class="recommend__meta" id="reviseRecommendMeta">Biology · 5 questions</span>
               </button>
               <p class="empty__hint" id="reviseAskHint">
@@ -232,7 +233,7 @@
                 <button type="button" class="empty__chip" data-revise="Acids and bases">Acids &amp; bases</button>
               </p>
               <p class="revise-tip" id="reviseTip" hidden role="status"></p>
-              <details class="revise-browse" id="reviseBrowse">
+              <details class="revise-browse" id="reviseBrowse" hidden>
                 <summary class="revise-browse__summary">Browse topics</summary>
                 <div class="revise-browse__body">
                   <div class="topic-search">
@@ -281,7 +282,7 @@
               </div>
               <h2 class="empty__title">No quizzes yet</h2>
               <p class="empty__desc">
-                Answer a few questions in Revise — Reca shows what’s strong, what needs work, and when to come back.
+                Miss a question in Revise — we’ll show it here. Strong topics and due recalls land here too.
               </p>
               <button type="button" class="progress__cta" id="progressEmptyCta">
                 <span data-icon="quiz-03" aria-hidden="true"></span>
@@ -411,10 +412,6 @@
             <span data-icon="checkmark-circle-02" aria-hidden="true"></span>
             Privacy
           </button>
-          <button type="button" class="settings__nav-item" data-settings-nav="team">
-            <span data-icon="student" aria-hidden="true"></span>
-            Team
-          </button>
         </aside>
 
         <div class="settings__content">
@@ -501,7 +498,7 @@
             <a
               class="settings__wa-continue"
               id="waContinueLink"
-              href="https://wa.me/15556777893?text=explain%20genetics%20basics"
+              href="https://wa.me/15556777893?text=explain%20photosynthesis"
               target="_blank"
               rel="noopener"
               >Open WhatsApp chat</a
@@ -548,7 +545,7 @@
           <section class="settings__pane settings__pane--copy" id="settings-help" data-settings-pane="help" hidden>
             <p class="settings__lead">Try Reca fast</p>
             <ul class="settings__list">
-              <li>Ask Reca to explain <strong>Genetics basics</strong> on Learn.</li>
+              <li>Ask Reca to explain <strong>Photosynthesis</strong> on Learn.</li>
               <li>Tap <strong>Try 2 quick questions</strong> — miss one on purpose.</li>
               <li>Open <strong>Progress</strong> to see what needs work.</li>
               <li>When a reminder appears, tap <strong>Answer now</strong>.</li>

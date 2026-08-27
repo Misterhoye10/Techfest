@@ -6,7 +6,7 @@
   <line x1="320" y1="90" x2="320" y2="270" stroke="#1a1a1a" stroke-width="4" stroke-dasharray="6 6"/>
   <text x="180" y="80" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" fill="#6b7280">Dilute (more water)</text>
   <text x="460" y="80" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" fill="#6b7280">Concentrated</text>
-  <text x="320" y="310" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#1a1a1a" font-weight="600">Membrane  water moves ’</text>
+  <text x="320" y="310" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#1a1a1a" font-weight="600">Membrane  water moves ï¿½</text>
   <path d="M250 180 H390" stroke="#225aeb" stroke-width="3" marker-end="url(#a)"/>
   <defs>
     <marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">

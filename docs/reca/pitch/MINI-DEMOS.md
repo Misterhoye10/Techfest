@@ -35,8 +35,8 @@ Full shot list: [DEMO-VIDEO.md](./DEMO-VIDEO.md)
 
 | Time | Show | Say |
 |------|------|-----|
-| 0:00–0:10 | Signup (clean form only) | “Same product on web — WhatsApp link or guest.” |
-| 0:10–0:30 | Learn: ask “What is osmosis?” | “Ask anything — typos OK. One job: explain.” |
+| 0:00–0:10 | Signup → **Continue as guest** | “Same product on web — no OTP needed.” |
+| 0:10–0:30 | Learn: ask “Explain photosynthesis simply” | “Ask anything — typos OK. One job: explain.” |
 | 0:30–0:45 | Tap **Try 2 quick questions** | “One primary next step — short AI quiz.” |
 | 0:45–1:05 | Miss one · finish · **See Progress** | “Misses become memory — Progress shows what’s weak.” |
 | 1:05–1:20 | Nudge toast or Progress “Due for AI recall” | “Reca decides what to resurface — on web and WhatsApp.” |

@@ -24,8 +24,15 @@
         <div class="auth__body">
           <h1 class="auth__title" id="authTitle">Start studying</h1>
           <p class="auth__intro" id="authIntro">
-            Use the web app now. WhatsApp reminders work on demo numbers only.
+            Try Reca on the web — no signup needed. WhatsApp reminders work on demo numbers only.
           </p>
+
+          <a class="auth__primary auth__primary--guest" id="authGuest" href="/chat.html?guest=1">
+            Continue as guest
+          </a>
+          <p class="auth__guest-note" id="authGuestNote">Fastest way to try Learn, Revise, and Progress.</p>
+
+          <p class="auth__divider" id="authDivider" aria-hidden="true"><span>or sign in</span></p>
 
           <div class="auth__modes" role="tablist" aria-label="Account">
             <button type="button" class="auth__mode is-active" role="tab" aria-selected="true" data-mode="signup" id="modeSignup">
@@ -108,7 +115,6 @@
             <a class="auth__wa-link" id="syncWaLink" href="#" hidden>Open WhatsApp (demo)</a>
           </div>
 
-          <a class="auth__guest" id="authGuest" href="/chat.html?guest=1">Continue as guest</a>
         </div>
       </section>
 

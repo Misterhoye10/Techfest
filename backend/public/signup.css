@@ -177,6 +177,8 @@ body {
 .auth__sync[hidden],
 .auth__title[hidden],
 .auth__guest[hidden],
+.auth__guest-note[hidden],
+.auth__divider[hidden],
 .auth__error[hidden],
 .auth__dev[hidden],
 .auth__field[hidden] {
@@ -330,8 +332,43 @@ body {
   font: inherit;
   font-size: 0.95rem;
   font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: transform 160ms var(--ease), background 160ms var(--ease), opacity 160ms var(--ease);
+}
+
+.auth__primary--guest {
+  margin-top: 1.15rem;
+}
+
+.auth__guest-note {
+  margin: 0.55rem 0 0;
+  max-width: 34ch;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--muted) 92%, transparent);
+}
+
+.auth__divider {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin: 1.35rem 0 1.1rem;
+  color: color-mix(in srgb, var(--muted) 88%, transparent);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.auth__divider::before,
+.auth__divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: color-mix(in srgb, var(--line) 88%, transparent);
 }
 
 .auth__primary:hover {
