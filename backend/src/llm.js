@@ -222,7 +222,7 @@ The student uploaded a photo of notes or a past question.
 Return ONLY JSON:
 {
   "topicTitle": "short topic name",
-  "subject": "Biology|Chemistry|Physics|Mathematics|General",
+  "subject": "Biology|Chemistry|Physics|Mathematics|Further Mathematics|English Language|Agriculture|Yoruba|Igbo|Hausa|General",
   "explanation": "3–5 plain sentences",
   "questions": [
     { "id": "q1", "text": "...?", "correctAnswer": "...", "accept": ["..."], "correction": "..." },

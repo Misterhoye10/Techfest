@@ -161,7 +161,7 @@ function getGlobalLexicon() {
     add(topic.id.replace(/-/g, " "));
     (topic.aliases || []).forEach(add);
   });
-  ["Biology", "Chemistry", "Physics", "Mathematics", "Maths", "Math"].forEach(add);
+  ["Biology", "Chemistry", "Physics", "Mathematics", "Maths", "Math", "Further Mathematics", "English Language", "English", "Agriculture", "Yoruba", "Igbo", "Hausa"].forEach(add);
   globalLexicon = map;
   return map;
 }

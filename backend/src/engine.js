@@ -173,15 +173,27 @@ async function handleIncoming(phone, body, opts = {}) {
 
     if (isRecap(text)) {
       const lower = text.toLowerCase();
-      const subject = lower.includes("chemistry")
-        ? "Chemistry"
-        : lower.includes("biology")
-          ? "Biology"
-          : lower.includes("physics")
-            ? "Physics"
-            : lower.includes("math")
-              ? "Mathematics"
-              : null;
+      const subject = lower.includes("further math")
+        ? "Further Mathematics"
+        : lower.includes("english")
+          ? "English Language"
+          : lower.includes("agriculture") || lower.includes("agric")
+            ? "Agriculture"
+            : lower.includes("yoruba")
+              ? "Yoruba"
+              : lower.includes("igbo")
+                ? "Igbo"
+                : lower.includes("hausa")
+                  ? "Hausa"
+                  : lower.includes("chemistry")
+                    ? "Chemistry"
+                    : lower.includes("biology")
+                      ? "Biology"
+                      : lower.includes("physics")
+                        ? "Physics"
+                        : lower.includes("math")
+                          ? "Mathematics"
+                          : null;
       const prog = store.progressFor(phone, subject);
       if (!prog.answered) {
         return [copy.emptyRecap];
