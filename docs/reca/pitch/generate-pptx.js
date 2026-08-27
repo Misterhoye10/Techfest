@@ -1,5 +1,5 @@
 /**
- * Generate Reca pitch deck PPTX (10 slides).
+ * Generate Reca pitch deck PPTX (13 slides).
  * Run: node docs/reca/pitch/generate-pptx.js
  */
 const path = require("path");
@@ -43,7 +43,7 @@ function footer(slide, left, num) {
     color: COLORS.muted,
     fontFace: "Calibri",
   });
-  slide.addText(`${num} / 12`, {
+  slide.addText(`${num} / 13`, {
     x: 11.2,
     y: 7.05,
     w: 1.4,
@@ -451,7 +451,63 @@ function eyebrow(slide, text) {
   footer(s, "LLM + correctness-triggered memory", 6);
 }
 
-// 7 Impact
+// 7 Tools used
+{
+  const s = pptx.addSlide();
+  addBg(s);
+  eyebrow(s, "Tools used");
+  s.addText("What we built Reca with.", {
+    x: 0.7,
+    y: 1.05,
+    w: 12,
+    h: 0.7,
+    fontSize: 32,
+    color: COLORS.ink,
+    fontFace: "Georgia",
+  });
+  const tools = [
+    ["META BUSINESS SUITE", "WhatsApp Cloud API setup, phone number, and messaging for OTP + unprompted resurface."],
+    ["GOOGLE GEMINI", "Explain, quiz, grade, and photo past-questions — the teaching brain of Reca."],
+    ["ANTIGRAVITY", "AI coding agent for scaffolding and shipping the product loop faster."],
+    ["CURSOR", "IDE for product design, UX polish, security harden, and deck/handoff work."],
+  ];
+  tools.forEach((t, i) => {
+    const col = i % 2;
+    const row = Math.floor(i / 2);
+    const x = 0.7 + col * 6.2;
+    const y = 2.0 + row * 2.25;
+    s.addShape(pptx.shapes.ROUNDED_RECTANGLE, {
+      x,
+      y,
+      w: 5.9,
+      h: 2.05,
+      fill: { color: COLORS.panel },
+      rectRadius: 0.12,
+    });
+    s.addText(t[0], {
+      x: x + 0.3,
+      y: y + 0.3,
+      w: 5.3,
+      h: 0.35,
+      fontSize: 12,
+      bold: true,
+      color: COLORS.muted,
+      fontFace: "Calibri",
+    });
+    s.addText(t[1], {
+      x: x + 0.3,
+      y: y + 0.8,
+      w: 5.3,
+      h: 0.95,
+      fontSize: 16,
+      color: COLORS.ink,
+      fontFace: "Calibri",
+    });
+  });
+  footer(s, "Portal checklist: tools used", 7);
+}
+
+// 8 Impact
 {
   const s = pptx.addSlide();
   addBg(s);
@@ -491,10 +547,10 @@ function eyebrow(slide, text) {
       fontFace: "Calibri",
     });
   });
-  footer(s, "Everyday life · exam calendar demand", 7);
+  footer(s, "Everyday life · exam calendar demand", 8);
 }
 
-// 8 Business
+// 9 Business
 {
   const s = pptx.addSlide();
   addBg(s);
@@ -555,10 +611,10 @@ function eyebrow(slide, text) {
       fontFace: "Calibri",
     }
   );
-  footer(s, "Post-fest roadmap", 8);
+  footer(s, "Post-fest roadmap", 9);
 }
 
-// 9 Live
+// 10 Live
 {
   const s = pptx.addSlide();
   addBg(s);
@@ -606,10 +662,10 @@ function eyebrow(slide, text) {
       fontFace: "Calibri",
     }
   );
-  footer(s, "Guest mode available", 9);
+  footer(s, "Guest mode available", 10);
 }
 
-// 10 Team
+// 11 Team
 {
   const s = pptx.addSlide();
   addBg(s);
@@ -704,10 +760,10 @@ function eyebrow(slide, text) {
     color: COLORS.muted,
     fontFace: "Calibri",
   });
-  footer(s, "Built in two days on a free stack", 10);
+  footer(s, "Built in two days on a free stack", 11);
 }
 
-// 11 Roadmap
+// 12 Roadmap
 {
   const s = pptx.addSlide();
   addBg(s);
@@ -787,10 +843,10 @@ function eyebrow(slide, text) {
       fontFace: "Calibri",
     }
   );
-  footer(s, "Case Study 2 · AI for Everyday Life", 11);
+  footer(s, "Case Study 2 · AI for Everyday Life", 12);
 }
 
-// 12 Thank you
+// 13 Thank you
 {
   const s = pptx.addSlide();
   addBg(s);
@@ -859,7 +915,7 @@ function eyebrow(slide, text) {
     color: COLORS.muted,
     fontFace: "Calibri",
   });
-  footer(s, "AI BuildFest 2026", 12);
+  footer(s, "AI BuildFest 2026", 13);
 }
 
 pptx.writeFile({ fileName: OUT }).then(() => {

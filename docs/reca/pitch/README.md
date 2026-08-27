@@ -24,7 +24,7 @@
 
 Also required for points: working build submit · **demo video upload** · community · early submit.
 
-## 12-slide map
+## 13-slide map
 
 | # | Slide | Covers |
 |---|--------|--------|
@@ -34,11 +34,12 @@ Also required for points: working build submit · **demo video upload** · commu
 | 4 | Solution | Reca on WhatsApp |
 | 5 | Functionality | Full loop → **10% execution** |
 | 6 | Use of AI | Generation + memory |
-| 7 | Impact | Everyday usefulness → **25% useful** |
-| 8 | Business | Freemium · B2B2C · sponsored |
-| 9 | Live + demo | URL + demo path |
-| 10 | Team | Talodabioluwa Paul · Folarin Oyewole · BF-0933 |
-| 11 | Roadmap / ask | Next 90 days + ask |
-| 12 | Thank you | Close + contacts |
+| 7 | Tools used | Meta Business Suite · Gemini · Antigravity · Cursor |
+| 8 | Impact | Everyday usefulness → **25% useful** |
+| 9 | Business | Freemium · B2B2C · sponsored |
+| 10 | Live + demo | URL + demo path |
+| 11 | Team | Talodabioluwa Paul · Folarin Oyewole · BF-0933 |
+| 12 | Roadmap / ask | Next 90 days + ask |
+| 13 | Thank you | Close + contacts |
 
-If more teammates should appear on slide 10, send names + roles and we’ll update.
+If more teammates should appear on slide 11, send names + roles and we’ll update.

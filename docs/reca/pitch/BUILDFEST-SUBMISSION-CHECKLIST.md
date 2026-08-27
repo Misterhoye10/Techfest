@@ -75,7 +75,7 @@ After submissions close, community votes. Plan:
 
 ---
 
-## Pitch deck ↔ rubric map (12 slides)
+## Pitch deck ↔ rubric map (13 slides)
 
 | Slide | Rubric weight it serves |
 |-------|-------------------------|
@@ -83,12 +83,13 @@ After submissions close, community votes. Plan:
 | 3–4 Gap + Solution | 25% Fit + 20% Innovation |
 | 5 Functionality | 10% Execution + 25% Usefulness |
 | 6 Use of AI | 20% Innovation + AI Explorer |
-| 7 Impact | 25% Usefulness |
-| 8 Business | Usefulness / sustainability (supporting) |
-| 9 Live + demo | Usefulness + Execution |
-| 10 Team | Credibility |
-| 11 Roadmap / ask | Traction intent |
-| 12 Thank you | Close |
+| 7 Tools used | Execution (Meta · Gemini · Antigravity · Cursor) |
+| 8 Impact | 25% Usefulness |
+| 9 Business | Usefulness / sustainability (supporting) |
+| 10 Live + demo | Usefulness + Execution |
+| 11 Team | Credibility |
+| 12 Roadmap / ask | Traction intent |
+| 13 Thank you | Close |
 
 ---
 
