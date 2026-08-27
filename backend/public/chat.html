@@ -149,7 +149,7 @@
                     </button>
                     <div class="profile-menu__divider" role="separator"></div>
                     <button type="button" class="profile-row" role="menuitem" data-open-settings="team">
-                      <span class="profile-row__label">Team &amp; BuildFest</span>
+                      <span class="profile-row__label">Credits</span>
                     </button>
                   </div>
                 </div>
@@ -508,50 +508,94 @@
 
           <section class="settings__pane settings__pane--copy" id="settings-about" data-settings-pane="about" hidden>
             <p class="settings__lead">
-              Reca helps WAEC &amp; JAMB students explain topics, quiz themselves, and come back to what they missed — on web and WhatsApp.
+              Reca is a WAEC &amp; JAMB study companion. Explain a topic, take a short quiz, and come back to what you missed — on web and WhatsApp.
             </p>
-            <ul class="settings__list">
+            <ul class="settings__list settings__list--features">
               <li><strong>Learn</strong> — ask any syllabus topic in plain language.</li>
-              <li><strong>Revise</strong> — short quizzes, graded one question at a time.</li>
-              <li><strong>Progress</strong> — see what’s weak and when to revisit.</li>
+              <li><strong>Revise</strong> — short quizzes, one question at a time.</li>
+              <li><strong>Progress</strong> — see weak topics and when to revisit.</li>
             </ul>
-            <p class="settings__hint">
-              Most chat apps wait for you to return. Reca comes to you first.
-            </p>
+            <p class="settings__tagline">Most chat apps wait for you to return. Reca comes to you first.</p>
+
+            <div class="settings__meta" aria-label="App information">
+              <dl class="settings__meta-grid">
+                <div class="settings__meta-row">
+                  <dt>Version</dt>
+                  <dd id="settingsAppVersion">1.0.0</dd>
+                </div>
+                <div class="settings__meta-row">
+                  <dt>Built by</dt>
+                  <dd>Talodabioluwa Paul &amp; Folarin Oyewole</dd>
+                </div>
+                <div class="settings__meta-row">
+                  <dt>Event</dt>
+                  <dd>
+                    <a
+                      class="settings__meta-link"
+                      href="https://hack-ai-thon.10alyticsbusiness.ca/buildfest"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >AI BuildFest 2026</a>
+                    · Track 3 · BF-0933
+                  </dd>
+                </div>
+                <div class="settings__meta-row">
+                  <dt>Organizer</dt>
+                  <dd>
+                    <a
+                      class="settings__meta-link"
+                      href="https://10alyticsbusiness.ca"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >10Alytics</a>
+                  </dd>
+                </div>
+              </dl>
+            </div>
           </section>
 
           <section class="settings__pane settings__pane--copy" id="settings-how" data-settings-pane="how" hidden>
-            <p class="settings__lead">How Reca works</p>
+            <p class="settings__lead">Four steps — same on web and WhatsApp.</p>
             <ol class="settings__steps">
               <li>
                 <strong>Ask</strong>
-                <span>Open Learn and type a question — Reca explains.</span>
+                <span>Open Learn and type a question. Reca explains in exam language.</span>
               </li>
               <li>
                 <strong>Quiz</strong>
-                <span>Try 2 quick questions from Learn, or open Revise for 5.</span>
+                <span>Tap <em>Try 2 quick questions</em> from Learn, or open Revise for five.</span>
               </li>
               <li>
                 <strong>Track misses</strong>
-                <span>Wrong answers show up in Progress when they’re due again.</span>
+                <span>Wrong answers show in Progress when they need another look.</span>
               </li>
               <li>
                 <strong>Come back first</strong>
-                <span>Reca reminds you on web and WhatsApp — you don’t have to open the app first.</span>
+                <span>Reca reminds you on web — and on WhatsApp when your number is linked.</span>
               </li>
             </ol>
           </section>
 
           <section class="settings__pane settings__pane--copy" id="settings-help" data-settings-pane="help" hidden>
-            <p class="settings__lead">Try Reca fast</p>
-            <ul class="settings__list">
-              <li>Ask Reca to explain <strong>Photosynthesis</strong> on Learn.</li>
-              <li>Tap <strong>Try 2 quick questions</strong> — miss one on purpose.</li>
-              <li>Open <strong>Progress</strong> to see what needs work.</li>
-              <li>When a reminder appears, tap <strong>Answer now</strong>.</li>
-              <li>Link WhatsApp in Settings so Progress follows your phone.</li>
-            </ul>
-            <p class="settings__hint">Sidebar should say Online when Reca is connected.</p>
+            <p class="settings__lead">Try this in under two minutes.</p>
+            <ol class="settings__steps settings__steps--compact">
+              <li>
+                <strong>Guest</strong>
+                <span>From signup, tap <em>Continue as guest</em> — no code needed.</span>
+              </li>
+              <li>
+                <strong>Learn</strong>
+                <span>Ask <em>Explain photosynthesis simply</em>.</span>
+              </li>
+              <li>
+                <strong>Quiz</strong>
+                <span>Tap <em>Try 2 quick questions</em> and miss one on purpose.</span>
+              </li>
+              <li>
+                <strong>Progress</strong>
+                <span>Open Progress to see what Reca remembered.</span>
+              </li>
+            </ol>
             <div class="settings__actions">
               <button type="button" class="settings__ghost-btn" id="settingsHelpLearn" data-settings-go="learn">
                 Go to Learn
@@ -563,28 +607,31 @@
           </section>
 
           <section class="settings__pane settings__pane--copy" id="settings-privacy" data-settings-pane="privacy" hidden>
-            <p class="settings__lead">What Reca stores (honest limits)</p>
+            <p class="settings__lead">What Reca stores — plain and honest.</p>
             <ul class="settings__list">
-              <li>Your <strong>WhatsApp number</strong> is your account ID — no password.</li>
-              <li>Name, exam date, and theme stay in this browser until you Sign out.</li>
-              <li>Quiz attempts / Progress sync to the shared student record for that number.</li>
-              <li>There is no “forgot password.” Need in again? Returning → code on WhatsApp.</li>
-              <li>Lost number recovery isn’t in this build — Progress stays on the old WhatsApp.</li>
+              <li>Your <strong>phone number</strong> is your account ID when you sign in.</li>
+              <li>Name, exam date, and theme stay in this browser until you sign out.</li>
+              <li>Quiz attempts and Progress sync to the record tied to that number.</li>
+              <li>Guest sessions are temporary until you link a number.</li>
             </ul>
-            <p class="settings__hint">Don’t paste real secrets or school credentials into the demo.</p>
+            <p class="settings__hint">Don’t paste school passwords or exam PINs into Reca.</p>
           </section>
 
           <section class="settings__pane settings__pane--copy" id="settings-team" data-settings-pane="team" hidden>
-            <p class="settings__lead">
-              AI BuildFest 2026 · Track 3 · Case Study 2 — <strong>AI for Everyday Life</strong>
-            </p>
+            <p class="settings__lead">Built for AI BuildFest 2026 — Study Companions track.</p>
             <ul class="settings__list">
               <li><strong>Talodabioluwa Paul</strong> &amp; <strong>Folarin Oyewole</strong></li>
               <li>Participant ID <strong>BF-0933</strong></li>
-              <li>Product: <strong>Reca</strong> — WAEC/JAMB study companion (web + WhatsApp)</li>
-              <li>Focus: explain → quiz → remember misses → come back first</li>
+              <li>Track 3 · Case Study 2 — <strong>AI for Everyday Life</strong></li>
             </ul>
-            <p class="settings__hint">Personal study after school — not an in-school deploy for this build.</p>
+            <p class="settings__hint">
+              <a
+                class="settings__meta-link"
+                href="https://hack-ai-thon.10alyticsbusiness.ca/buildfest"
+                target="_blank"
+                rel="noopener noreferrer"
+              >hack-ai-thon.10alyticsbusiness.ca/buildfest</a>
+            </p>
           </section>
         </div>
       </div>
