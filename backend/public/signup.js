@@ -83,8 +83,8 @@
     if (introEl) {
       introEl.hidden = false;
       introEl.textContent = isSignin
-        ? "Enter your phone to get a code and open Reca on the web."
-        : "Use the web app now. WhatsApp reminders work on demo numbers only.";
+        ? "Enter your phone to get a code and open your AI study companion."
+        : "Reca is an AI-powered WAEC & JAMB companion — try it on the web, no signup needed.";
     }
     if (submitBtn) submitBtn.textContent = "Send code";
 
