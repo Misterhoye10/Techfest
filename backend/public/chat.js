@@ -97,6 +97,7 @@
   let quizLocked = false;
   let recaConfig = {
     whatsappNumber: "15556777893",
+    version: "1.0.0",
   };
 
   function continueOnWhatsAppUrl(topicLabel) {
@@ -112,6 +113,9 @@
       const res = await fetch("/api/config");
       const data = await res.json();
       if (data.whatsappNumber) recaConfig.whatsappNumber = data.whatsappNumber;
+      if (data.version) recaConfig.version = data.version;
+      const versionEl = document.getElementById("settingsAppVersion");
+      if (versionEl && data.version) versionEl.textContent = `v${data.version}`;
     } catch (_) {
       /* defaults */
     }
@@ -572,7 +576,7 @@
     how: "How Reca works",
     help: "Get help",
     privacy: "Privacy",
-    team: "Team & BuildFest",
+    team: "Credits",
   };
 
   function syncProfileMenuMeta() {

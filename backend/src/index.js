@@ -1,5 +1,6 @@
 require("dotenv").config();
 const path = require("path");
+const pkg = require("../package.json");
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
@@ -77,6 +78,7 @@ app.get("/health", async (_req, res) => {
 app.get("/api/config", (_req, res) => {
   res.json({
     ok: true,
+    version: pkg.version || "1.0.0",
     whatsappNumber: alerts.whatsappBusinessDigits(),
     continueExample: alerts.continueOnWhatsAppUrl("photosynthesis"),
   });
