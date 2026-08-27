@@ -22,7 +22,10 @@
         </a>
 
         <div class="auth__body">
-          <h1 class="auth__title" id="authTitle">Continue with WhatsApp</h1>
+          <h1 class="auth__title" id="authTitle">Start studying</h1>
+          <p class="auth__intro" id="authIntro">
+            Use the web app now. WhatsApp reminders work on demo numbers only.
+          </p>
 
           <div class="auth__modes" role="tablist" aria-label="Account">
             <button type="button" class="auth__mode is-active" role="tab" aria-selected="true" data-mode="signup" id="modeSignup">
@@ -47,7 +50,7 @@
             </label>
 
             <label class="auth__field">
-              <span class="auth__label">WhatsApp</span>
+              <span class="auth__label">Phone</span>
               <div class="auth__phone">
                 <span class="auth__phone-prefix" aria-hidden="true">+234</span>
                 <input
@@ -69,7 +72,7 @@
 
           <form class="auth__otp" id="otpForm" hidden novalidate>
             <h1 class="auth__title auth__title--sm" id="otpHeading">Enter code</h1>
-            <p class="auth__otp-lead" id="otpLead">We’ll send a code to your WhatsApp.</p>
+            <p class="auth__otp-lead" id="otpLead">Enter the code shown below or sent to your phone.</p>
             <label class="auth__field">
               <span class="auth__label">Code</span>
               <input
@@ -95,9 +98,14 @@
 
           <div class="auth__sync" id="syncCard" hidden>
             <h1 class="auth__title auth__title--sm" id="syncHeading">You’re in</h1>
-            <p class="auth__sync-lead">You’re set. Open Reca to start studying.</p>
+            <p class="auth__sync-lead">
+              Study on the web — Learn, quiz, and Progress work here without WhatsApp.
+            </p>
             <button type="button" class="auth__primary" id="syncContinue">Open Reca</button>
-            <a class="auth__wa" id="syncWaLink" href="#" target="_blank" rel="noopener">Open WhatsApp</a>
+            <p class="auth__sync-note" id="syncWaNote">
+              WhatsApp reminders need an allow-listed demo number in Meta.
+            </p>
+            <a class="auth__wa-link" id="syncWaLink" href="#" hidden>Open WhatsApp (demo)</a>
           </div>
 
           <a class="auth__guest" id="authGuest" href="/chat.html?guest=1">Continue as guest</a>

@@ -16,14 +16,17 @@
   const otpLead = document.getElementById("otpLead");
   const syncCard = document.getElementById("syncCard");
   const syncWaLink = document.getElementById("syncWaLink");
+  const syncWaNote = document.getElementById("syncWaNote");
   const syncContinue = document.getElementById("syncContinue");
   const titleEl = document.getElementById("authTitle");
+  const introEl = document.getElementById("authIntro");
   const modeSignup = document.getElementById("modeSignup");
   const modeSignin = document.getElementById("modeSignin");
   const modesEl = document.querySelector(".auth__modes");
   const guestLink = document.getElementById("authGuest");
 
   const params = new URLSearchParams(location.search);
+  const showWaCta = params.get("wa") === "1";
   let mode = params.get("mode") === "signin" ? "signin" : "signup";
   let pendingPhone = null;
   let pendingName = null;
@@ -67,7 +70,13 @@
     if (nameInput) nameInput.required = !isSignin;
     if (titleEl) {
       titleEl.hidden = false;
-      titleEl.textContent = isSignin ? "Welcome back" : "Continue with WhatsApp";
+      titleEl.textContent = isSignin ? "Welcome back" : "Start studying";
+    }
+    if (introEl) {
+      introEl.hidden = false;
+      introEl.textContent = isSignin
+        ? "Enter your phone to get a code and open Reca on the web."
+        : "Use the web app now. WhatsApp reminders work on demo numbers only.";
     }
     if (submitBtn) submitBtn.textContent = "Send code";
 
@@ -109,19 +118,20 @@
     form.hidden = true;
     if (modesEl) modesEl.hidden = true;
     if (titleEl) titleEl.hidden = true;
+    if (introEl) introEl.hidden = true;
     otpForm.hidden = false;
     syncCard.hidden = true;
     if (guestLink) guestLink.hidden = true;
     pendingPhone = phone;
     if (otpLead) {
       otpLead.textContent = phone
-        ? `Code sent to ${phone}. Enter it below.`
-        : "Enter the code from WhatsApp.";
+        ? `Code for ${phone}. If WhatsApp doesn’t arrive, use the demo code below.`
+        : "Enter the code shown below.";
     }
     if (otpDev) {
       if (devCode) {
         otpDev.hidden = false;
-        otpDev.textContent = `Demo: ${devCode}`;
+        otpDev.textContent = `Your code: ${devCode}`;
       } else {
         otpDev.hidden = true;
       }
@@ -134,6 +144,7 @@
     form.hidden = false;
     if (modesEl) modesEl.hidden = false;
     if (titleEl) titleEl.hidden = false;
+    if (introEl) introEl.hidden = false;
     otpForm.hidden = true;
     syncCard.hidden = true;
     if (guestLink) guestLink.hidden = false;
@@ -147,17 +158,33 @@
     otpForm.hidden = true;
     if (modesEl) modesEl.hidden = true;
     if (titleEl) titleEl.hidden = true;
+    if (introEl) introEl.hidden = true;
     syncCard.hidden = false;
     if (guestLink) guestLink.hidden = true;
+
     const biz =
       (whatsappFrom || "").replace(/\D/g, "") ||
       (continueUrl || "").match(/wa\.me\/(\d+)/)?.[1] ||
-      "15556777893";
+      "";
+
+    // WhatsApp CTA is opt-in only (?wa=1) — Meta allow-list blocks most numbers
     if (syncWaLink) {
-      syncWaLink.href =
-        continueUrl ||
-        `https://wa.me/${biz}?text=${encodeURIComponent("Hey Reca, let's start studying!")}`;
-      syncWaLink.textContent = "Open WhatsApp";
+      if (showWaCta && biz) {
+        syncWaLink.hidden = false;
+        syncWaLink.href =
+          continueUrl ||
+          `https://wa.me/${biz}?text=${encodeURIComponent("Hey Reca, let's start studying!")}`;
+        syncWaLink.textContent = "Open WhatsApp (demo)";
+      } else {
+        syncWaLink.hidden = true;
+        syncWaLink.removeAttribute("href");
+      }
+    }
+    if (syncWaNote) {
+      syncWaNote.hidden = false;
+      syncWaNote.textContent = showWaCta
+        ? "Only works if this number is allow-listed in Meta Business Suite."
+        : "WhatsApp reminders need an allow-listed demo number in Meta — judges use the web app.";
     }
     syncContinue?.focus();
   }
