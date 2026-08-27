@@ -399,6 +399,27 @@ Format your response as a clean WhatsApp message.`;
   }
 });
 
+// ========== OMNICHANNEL API (Web App Connection) ==========
+/**
+ * POST /api/send-alert
+ * Triggers a WhatsApp message from the Web App to a student
+ */
+app.post('/api/send-alert', async (req, res) => {
+  const { phone, message } = req.body;
+  if (!phone || !message) {
+    return res.status(400).json({ error: 'Missing phone or message parameter' });
+  }
+
+  try {
+    console.log(`✉️ Triggering custom alert from Web App to: ${phone}`);
+    await sendMetaWhatsAppMessage(phone, message);
+    res.json({ success: true, message: 'Alert sent successfully' });
+  } catch (error) {
+    console.error('❌ Error sending trigger alert:', error.message);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // ========== ERROR HANDLING ==========
 app.use((err, req, res, next) => {
   console.error('❌ Error:', err);
