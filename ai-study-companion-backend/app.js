@@ -391,7 +391,7 @@ Format your response as a clean WhatsApp message.`;
     } else {
       // For other messages, send a guide
       try {
-        await sendMetaWhatsAppMessage(senderPhone, `📝 You said: "${userMessage}"\n\nTry: "explain photosynthesis" to get started!`);
+        await sendMetaWhatsAppMessage(senderPhone, `📝 You said: "${userMessage}"\n\nTry: "explain genetics" to get started!`);
       } catch (error) {
         console.error('❌ Error sending guide:', error.message);
       }
