@@ -1,64 +1,76 @@
 # Reca backend
 
-Study companion — **preset-first**. Demo via **web chat** (primary when Meta/Twilio blocked). WhatsApp webhook optional.
+Study companion — **preset-first**, optional Gemini. Demo via **WhatsApp (Meta)** with **web chat** backup.
 
-## Run (web chat demo)
+## Run locally
 
 ```powershell
 cd backend
 copy .env.example .env
-# Recommended while WhatsApp is blocked:
-# DRY_RUN=true
+# Fill META_* / GEMINI_API_KEY as needed
+# DRY_RUN=true skips WhatsApp send while testing UI
 npm install
 npm run dev
 ```
 
-Open **http://localhost:3000/chat.html**
+Open **http://localhost:3000/chat.html** (or `/signup.html`).
 
-### Live demo path
+## Live demo path (WhatsApp hero)
 
-1. `explain photosynthesis`  
-2. Q1: `mitochondria`  
+1. From allow-listed phone: `explain photosynthesis`  
+2. Q1: answer `mitochondria` (wrong on purpose)  
 3. Q2: `glucose and oxygen`  
-4. Click **Resurface now**  
-5. `chloroplast`  
+4. **Teammate fires** (no UI button):
+
+```powershell
+$env:RECA_URL="https://reca-study-companion.onrender.com"
+$env:DEMO_SECRET="your-secret"
+npm run resurface -- +2348012345678
+```
+
+Or curl with header `x-demo-secret`. Requires Render: `ENABLE_DEMO=true` + matching `DEMO_SECRET`.
+
+5. Phone receives unprompted recall → answer `chloroplast`  
 6. Optional: `how am I doing in Biology?`
+
+Web backup: same loop in `/chat.html`; after fire, outbox nudge appears within ~4s.
 
 ## APIs
 
 | Route | Use |
 |-------|-----|
-| `GET /chat.html` | Judge-facing chat UI |
+| `GET /chat.html` | Student web UI |
 | `GET /api/config` | Public WhatsApp number + continue link |
-| `POST /api/session` | Start session |
+| `POST /api/session` | Start session (mints `guest_*` if needed) |
 | `POST /api/chat` | Send message |
-| `POST /api/send-alert` | Proxy → Render Meta alert API |
-| `GET /api/events` | Poll resurface |
-| `POST /demo/resurface` | Manual aha |
+| `POST /api/send-alert` | Gated alert proxy (`x-demo-secret`) |
+| `GET /api/events` | Poll resurface / briefing |
+| `POST /demo/resurface` | Manual aha (gated) |
+| `POST /demo/briefing` | Manual daily briefing (gated) |
 | `GET/POST /webhook` | Meta WhatsApp Cloud API |
 
 ## Env
 
-See `.env.example`. **Never commit `.env`.**
+See `.env.example` and [docs/reca/security.md](../docs/reca/security.md). **Never commit `.env`.**
 
-| Key | Required |
-|-----|----------|
-| `DATABASE_URL` | Shared Supabase — phone is student unique ID |
-| `RECA_WHATSAPP_NUMBER` | Business number for `wa.me` (default `15556777893`) |
-| `RECA_ALERT_URL` | Render alert endpoint |
-| `META_*` / `GEMINI_API_KEY` | Optional on web if Render owns Meta+Gemini |
-| `RESURFACE_MINUTES` | `2` for live demo |
-| `OTP_ECHO=true` | Local only — shows OTP when WhatsApp can’t deliver |
-| `DRY_RUN=true` | Local dry-run (skips WhatsApp send) |
+| Key | Notes |
+|-----|--------|
+| `ENABLE_DEMO` + `DEMO_SECRET` | Required on production for stage fire |
+| `META_*` + `META_APP_SECRET` | WhatsApp send + signed webhooks |
+| `GEMINI_API_KEY` | Optional — empty = preset bank only (safer for scripted demo) |
+| `RESURFACE_MINUTES` | `1`–`2` for live demo |
+| `DATABASE_URL` | Supabase — student upsert by phone (attempts still in-memory) |
+| `DRY_RUN` / `OTP_ECHO` | Local only — never `true` on public host |
 
-### Backend-team contract (web vs Render)
+## Hosting note
 
-- **Web:** signup with WhatsApp phone → store in Supabase · Continue on WhatsApp · `POST /api/send-alert`
-- **Render:** Meta WhatsApp + Gemini · `https://reca-study-companion.onrender.com/api/send-alert`
-- Click-to-chat: `https://wa.me/15556777893?text=explain%20[TOPIC]`
+Use **Render** (or Railway) for the hero. In-process cron + memory do **not** survive Vercel serverless well — keep `vercel.json` for experiments only.
 
 ## Docs
 
+- [docs/reca/demo-script.md](../docs/reca/demo-script.md)  
+- [docs/reca/WHATSAPP-SETUP.md](../docs/reca/WHATSAPP-SETUP.md)  
+- [docs/reca/security.md](../docs/reca/security.md)  
 - [docs/reca/WEB-CHAT-SETUP.md](../docs/reca/WEB-CHAT-SETUP.md)  
 - [docs/reca/conversation-copy.md](../docs/reca/conversation-copy.md)  
 - [docs/reca/demo-topics.md](../docs/reca/demo-topics.md)  

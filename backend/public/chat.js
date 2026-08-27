@@ -158,16 +158,20 @@
   }
 
   function syncProgressBadge(extraDue = 0) {
-    const badge = document.getElementById("progressBadge");
-    if (!badge) return;
+    const badges = [
+      document.getElementById("progressBadge"),
+      document.getElementById("mobileProgressBadge"),
+    ].filter(Boolean);
     const n = Math.max(unreadCount(), extraDue);
-    if (n > 0) {
-      badge.hidden = false;
-      badge.textContent = n > 9 ? "9+" : String(n);
-    } else {
-      badge.hidden = true;
-      badge.textContent = "0";
-    }
+    badges.forEach((badge) => {
+      if (n > 0) {
+        badge.hidden = false;
+        badge.textContent = n > 9 ? "9+" : String(n);
+      } else {
+        badge.hidden = true;
+        badge.textContent = "0";
+      }
+    });
   }
 
   function clearUnreadNudges() {
@@ -953,6 +957,13 @@
 
   function closeMobileNav() {
     app.classList.remove("is-nav-open");
+    if (mobileMenuBtn) mobileMenuBtn.setAttribute("aria-expanded", "false");
+  }
+
+  function toggleMobileNav() {
+    const open = !app.classList.contains("is-nav-open");
+    app.classList.toggle("is-nav-open", open);
+    if (mobileMenuBtn) mobileMenuBtn.setAttribute("aria-expanded", String(open));
   }
 
   function scrollThread() {
@@ -977,7 +988,7 @@
   }
 
   function setNavActive(name) {
-    document.querySelectorAll(".nav-item").forEach((btn) => {
+    document.querySelectorAll(".nav-item, .mobile-tab").forEach((btn) => {
       btn.classList.toggle("is-active", btn.dataset.nav === name);
     });
   }
@@ -1338,54 +1349,80 @@
     });
   }
 
-  const COLLAPSE_KEY = "reca.side.collapsed";
+  const EXPAND_KEY = "reca.side.expanded";
 
-  function loadCollapsedSubjects() {
+  function loadExpandedSubjects() {
     try {
-      return JSON.parse(localStorage.getItem(COLLAPSE_KEY) || "{}") || {};
+      return JSON.parse(localStorage.getItem(EXPAND_KEY) || "{}") || {};
     } catch {
       return {};
     }
   }
 
-  function saveCollapsedSubjects(map) {
-    localStorage.setItem(COLLAPSE_KEY, JSON.stringify(map));
+  function saveExpandedSubjects(map) {
+    localStorage.setItem(EXPAND_KEY, JSON.stringify(map));
+  }
+
+  function topicsForSidebar(mode) {
+    const query = mode === "revise" ? reviseQuery : learnQuery;
+    const filter = mode === "revise" ? reviseFilter : learnFilter;
+    if (mode === "progress") {
+      let list = (window.__progressWeak || []).map((t) => {
+        const match = TOPICS.find((x) => x.id === t.topicId);
+        return (
+          match || {
+            id: t.topicId,
+            label: t.label,
+            subject: t.subject,
+            icon: "quiz-03",
+          }
+        );
+      });
+      if (!list.length) {
+        // Show a sample across every subject so Progress empty still teaches the syllabus map
+        list = balancedTopicSample(filtered("All", ""), 2);
+      }
+      return list;
+    }
+    const list = filtered(filter, query);
+    // No search/filter: sample per subject so English/Agric/languages aren't buried under Biology
+    if (!query && filter === "All") return balancedTopicSample(list, 8);
+    return list;
+  }
+
+  /** Keep every subject visible — take up to `perSubject` topics from each. */
+  function balancedTopicSample(list, perSubject) {
+    const by = {};
+    list.forEach((t) => {
+      (by[t.subject] ||= []).push(t);
+    });
+    const out = [];
+    Object.keys(by)
+      .sort()
+      .forEach((subject) => {
+        out.push(...by[subject].slice(0, perSubject));
+      });
+    return out;
   }
 
   function renderSideTopics(mode) {
     sideTopics.innerHTML = "";
+    const list = topicsForSidebar(mode);
     const query = mode === "revise" ? reviseQuery : learnQuery;
-    const filter = mode === "revise" ? reviseFilter : learnFilter;
-    let list =
-      mode === "progress"
-        ? (window.__progressWeak || []).map((t) => {
-            const match = TOPICS.find((x) => x.id === t.topicId);
-            return (
-              match || {
-                id: t.topicId,
-                label: t.label,
-                subject: t.subject,
-                icon: "quiz-03",
-              }
-            );
-          })
-        : filtered(filter, query);
-
-    if (mode === "progress" && !list.length) {
-      list = filtered("All", "").slice(0, 12);
-    }
+    const searching = Boolean(String(query || "").trim());
 
     const bySubject = {};
     list.forEach((t) => {
       (bySubject[t.subject] ||= []).push(t);
     });
-    const collapsed = loadCollapsedSubjects();
+    const expanded = loadExpandedSubjects();
     Object.keys(bySubject)
       .sort()
       .forEach((subject) => {
         const group = document.createElement("div");
         group.className = "side-group";
-        const isCollapsed = Boolean(collapsed[subject]);
+        // Default closed. Search opens matching subjects so results aren't hidden.
+        const isCollapsed = searching ? false : !expanded[subject];
         if (isCollapsed) group.classList.add("is-collapsed");
 
         const toggle = document.createElement("button");
@@ -1396,13 +1433,13 @@
         const chev = iconEl("arrow-down-01", "side-group__chev");
         toggle.appendChild(chev);
         toggle.addEventListener("click", () => {
-          const next = !group.classList.contains("is-collapsed");
-          group.classList.toggle("is-collapsed", next);
-          toggle.setAttribute("aria-expanded", String(!next));
-          const map = loadCollapsedSubjects();
-          if (next) map[subject] = true;
-          else delete map[subject];
-          saveCollapsedSubjects(map);
+          const willCollapse = !group.classList.contains("is-collapsed");
+          group.classList.toggle("is-collapsed", willCollapse);
+          toggle.setAttribute("aria-expanded", String(!willCollapse));
+          const map = loadExpandedSubjects();
+          if (willCollapse) delete map[subject];
+          else map[subject] = true;
+          saveExpandedSubjects(map);
         });
         group.appendChild(toggle);
 
@@ -2053,7 +2090,7 @@
 
   async function loadTopics() {
     try {
-      const res = await fetch("/api/topics?limit=400");
+      const res = await fetch("/api/topics?limit=1000");
       const data = await res.json();
       if (data.topics?.length) TOPICS = data.topics;
     } catch (_) {
@@ -2069,11 +2106,15 @@
       lastEventId = "";
       seen.clear();
     }
+    // Drop invalid / shared-bucket leftovers so the server can mint guest_*
+    const saved = String(phone || localStorage.getItem("reca_phone") || "").trim();
+    const validSaved =
+      /^\+\d{10,15}$/.test(saved) || /^guest_[a-zA-Z0-9_-]{8,64}$/.test(saved);
     const res = await fetch("/api/session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        phone: phone || undefined,
+        phone: validSaved ? saved : undefined,
         name: localStorage.getItem("reca_display_name") || undefined,
         examDate: localStorage.getItem("reca_exam_date") || undefined,
       }),
@@ -2081,6 +2122,7 @@
     const data = await res.json();
     phone = data.phone;
     localStorage.setItem("reca_phone", phone);
+    if (data.guest) localStorage.setItem("reca_guest", "1");
     if (data.examDate) {
       localStorage.setItem("reca_exam_date", data.examDate);
       if (profileExamDate) profileExamDate.value = data.examDate;
@@ -2192,7 +2234,7 @@
     syncProgressBadge();
   }
 
-  document.querySelectorAll(".nav-item").forEach((btn) => {
+  document.querySelectorAll(".nav-item, .mobile-tab").forEach((btn) => {
     btn.addEventListener("click", () => setFeature(btn.dataset.nav));
   });
 
@@ -2211,10 +2253,20 @@
     });
   }
 
-  mobileMenuBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    app.classList.toggle("is-nav-open");
-  });
+  if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleMobileNav();
+    });
+  }
+
+  const sideCloseBtn = document.getElementById("sideCloseBtn");
+  if (sideCloseBtn) {
+    sideCloseBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      closeMobileNav();
+    });
+  }
 
   document.addEventListener("click", (e) => {
     if (!app.classList.contains("is-nav-open")) return;

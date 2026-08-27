@@ -14,7 +14,7 @@ Open: **http://localhost:3000/chat.html**
 ## What was removed (on purpose)
 
 - Demo sidebar / cheat answer chips
-- “Resurface now” button
+- “Resurface now” button (stage fire is CLI/curl with `x-demo-secret` — see [demo-script.md](./demo-script.md))
 - Judge notes about WhatsApp being blocked
 
 For the pitch/demo video: record the student flow. Narrate the aha when Reca messages first.
@@ -33,6 +33,8 @@ RESURFACE_MINUTES=1
 DRY_RUN=true
 ```
 
+On production, set `ENABLE_DEMO=true` + `DEMO_SECRET` and fire with `npm run resurface -- +234…`.
+
 ## Judge line (spoken, not on screen)
 
-> This is what the student sees. Production ships on WhatsApp — same memory loop. We’re showing the product UI because messaging sandboxes blocked us.
+> This is what the student sees on the web. Production ships on WhatsApp — same memory loop.

@@ -39,13 +39,14 @@ If a teammate wants a paid tool, they must propose a free alternative first — 
 | Risk | What to do |
 |------|------------|
 | Render/Railway free service sleeps | Hit the health URL 5–10 min before demo |
-| Twilio sandbox only talks to joined numbers | Join judges’ / demo phones to the sandbox ahead of time |
+| Meta test number only talks to allow-listed phones | Add demo + backup phones in Meta dashboard ahead of time |
 | Supabase free limits | Tiny schema; don’t store media |
-| LLM credit burn | Short prompts; 2 questions max; pre-test demo topics |
+| LLM credit burn | Short prompts; 2 questions max; pre-test demo topics; preset bank is offline backup |
 | ngrok free URL changes | Prefer deployed webhook URL for the actual demo |
+| Production demo fire blocked | Set `ENABLE_DEMO=true` **and** `DEMO_SECRET` on Render |
 
 ---
 
 ## Pitch line (optional)
 
-> Built end-to-end on a free stack — WhatsApp sandbox, Supabase, free hosting, and existing AI credits — so it’s real to ship, not a paid prototype.
+> Built end-to-end on a free stack — Meta WhatsApp test number, Gemini free tier, Supabase, and free hosting — so it’s real to ship, not a paid prototype.
