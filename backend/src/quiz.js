@@ -123,7 +123,7 @@ function answerQuiz(phone, answer) {
       : question.correction || `Not quite. The answer is ${question.correctAnswer}.`,
     memoryPromise: correct
       ? null
-      : "I'll remember this one for you — I'll check again soon. Watch Progress for what's due.",
+      : "I'll remember this one — we'll come back to it soon. Check Progress for what's due.",
   };
 
   const nextIndex = qi + 1;
