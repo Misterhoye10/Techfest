@@ -43,7 +43,7 @@
               <img class="brand__mark" src="/assets/reca-mark.svg" width="36" height="36" alt="" />
               <span class="brand__name">Reca</span>
             </a>
-            <button type="button" class="side__close" id="sideCloseBtn" aria-label="Close topics">
+            <button type="button" class="side__close" id="sideCloseBtn" aria-label="Close menu">
               <span data-icon="cancel-01" aria-hidden="true"></span>
             </button>
           </div>
@@ -175,12 +175,12 @@
             type="button"
             class="main__menu-mobile"
             id="mobileMenuBtn"
-            aria-label="Open topics"
+            aria-label="Open menu"
             aria-controls="sideDrawer"
             aria-expanded="false"
           >
-            <span data-icon="bookmark-01" aria-hidden="true"></span>
-            <span class="main__menu-label">Topics</span>
+            <span data-icon="menu-01" aria-hidden="true"></span>
+            <span class="main__menu-label">Menu</span>
           </button>
           <div class="main__bar-copy">
             <p class="main__eyebrow" id="mainEyebrow">Learn</p>
@@ -356,21 +356,8 @@
         </div>
       </section>
 
-      <nav class="mobile-tabs" id="mobileTabs" aria-label="Primary">
-        <button type="button" class="mobile-tab is-active" data-nav="learn">
-          <span data-icon="book-open-01" class="mobile-tab__ico" aria-hidden="true"></span>
-          <span class="mobile-tab__label">Learn</span>
-        </button>
-        <button type="button" class="mobile-tab" data-nav="revise">
-          <span data-icon="quiz-03" class="mobile-tab__ico" aria-hidden="true"></span>
-          <span class="mobile-tab__label">Revise</span>
-        </button>
-        <button type="button" class="mobile-tab" data-nav="progress">
-          <span data-icon="analytics-01" class="mobile-tab__ico" aria-hidden="true"></span>
-          <span class="mobile-tab__label">Progress</span>
-          <span class="mobile-tab__badge" id="mobileProgressBadge" hidden>0</span>
-        </button>
-      </nav>
+      <!-- Primary nav lives in the left drawer on phone/tablet (ChatGPT-style) -->
+      <nav class="mobile-tabs" id="mobileTabs" hidden aria-hidden="true"></nav>
     </div>
 
     <!-- Claude-style main Settings modal — edits live here, not in the small menu -->
