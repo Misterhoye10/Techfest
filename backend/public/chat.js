@@ -1172,7 +1172,13 @@
 
   /** Structure Learn replies: spelling note → explanation → quick-check callout */
   function formatTeachBody(text) {
-    const raw = String(text || "").trim();
+    let raw = String(text || "").trim();
+    raw = raw
+      .replace(
+        /\n\nYou['’]re on [\s\S]+?Reca will answer\.?\s*$/i,
+        ""
+      )
+      .trim();
     const wrap = document.createElement("div");
     wrap.className = "msg__teach";
 
@@ -1257,11 +1263,25 @@
     el.appendChild(figure);
   }
 
+  function outgoingLabel(text, meta = {}) {
+    const custom = String(meta.displayText || "").trim();
+    if (custom) return custom;
+    const raw = String(text || "").trim();
+    const explain = raw.match(/^explain\s+(.+)$/i);
+    if (explain) {
+      const topic = explain[1].replace(/\s+simply$/i, "").trim();
+      return topic ? `Explain ${topic.charAt(0).toUpperCase()}${topic.slice(1)}` : raw;
+    }
+    return raw;
+  }
+
   function addBubble(raw, role = "in", meta = {}) {
     if (meta.id && seen.has(meta.id)) return;
     if (meta.id) seen.add(meta.id);
 
     const { text, image } = normalizeReply(raw);
+    if (role === "out" && !String(meta.displayText || text || "").trim()) return;
+
     const turn = document.createElement("div");
     turn.className = role === "out" ? "turn turn--out" : "turn turn--in";
 
@@ -1284,7 +1304,7 @@
       if (isTeach) {
         const badge = document.createElement("div");
         badge.className = "msg__badge";
-        badge.append(iconEl("book-open-01"), document.createTextNode(" Explanation"));
+        badge.textContent = "Explanation";
         el.appendChild(badge);
         el.appendChild(formatTeachBody(text));
       } else {
@@ -1295,7 +1315,7 @@
       const body = document.createElement("div");
       body.className = "msg__body";
       const p = document.createElement("p");
-      p.textContent = text;
+      p.textContent = outgoingLabel(text, meta);
       body.appendChild(p);
       el.appendChild(body);
       appendMedia(el, image || meta.image);
@@ -1832,7 +1852,7 @@
       learnTopic: item,
       topicId: item.id,
       fresh: true,
-      hideOutgoing: true,
+      displayText: `Explain ${item.label}`,
     });
   }
 
@@ -1841,26 +1861,23 @@
     const cta = document.createElement("div");
     cta.className = "learn-cta";
 
-    const row = document.createElement("div");
-    row.className = "learn-cta__row";
-
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "learn-cta__btn learn-cta__btn--primary";
     btn.append(iconEl("quiz-03"), document.createTextNode(" Try 2 quick questions"));
     btn.addEventListener("click", () => topic && startRevise(topic, { limit: 2 }));
 
-    const wa = makeContinueWaButton(topic?.label || topic?.id || "photosynthesis");
-    wa.className = "learn-cta__link";
-    wa.textContent = "Continue on WhatsApp";
+    cta.append(btn);
 
-    row.append(btn, wa);
+    const linked =
+      !isGuestSession() && /^\+\d{10,15}$/.test(String(phone || localStorage.getItem("reca_phone") || ""));
+    if (linked) {
+      const wa = makeContinueWaButton(topic?.label || topic?.id || "photosynthesis");
+      wa.className = "learn-cta__link";
+      wa.textContent = "Continue on WhatsApp";
+      cta.append(wa);
+    }
 
-    const hint = document.createElement("p");
-    hint.className = "learn-cta__hint";
-    hint.textContent = "Short check on this topic — End anytime. Misses go to Progress.";
-
-    cta.append(row, hint);
     thread.appendChild(cta);
     scrollThread();
   }
@@ -1880,7 +1897,7 @@
     showOnly(thread);
     if (!thread.childNodes.length || opts.freshThread) thread.innerHTML = "";
 
-    if (!opts.hideOutgoing) addBubble(text, "out");
+    if (!opts.hideOutgoing) addBubble(text, "out", { displayText: opts.displayText });
     input.value = "";
     const topicHint = opts.learnTopic?.label || lastLearnTopic?.label || "";
     showThinking({
@@ -2130,11 +2147,13 @@
     toLearn.textContent = "Back to Learn";
     toLearn.addEventListener("click", () => setFeature("learn"));
 
-    const onWa = makeContinueWaButton(summary.topicLabel || summary.topicId || "photosynthesis");
-    onWa.className = "learn-cta__link";
-    onWa.textContent = "Continue on WhatsApp";
-
-    links.append(toLearn, onWa);
+    links.append(toLearn);
+    if (!isGuestSession() && /^\+\d{10,15}$/.test(String(phone || ""))) {
+      const onWa = makeContinueWaButton(summary.topicLabel || summary.topicId || "photosynthesis");
+      onWa.className = "learn-cta__link";
+      onWa.textContent = "Continue on WhatsApp";
+      links.append(onWa);
+    }
     actions.append(toProgress, again, links);
     quizSummary.append(badge, h, actions);
     mainDock.hidden = true;

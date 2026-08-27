@@ -334,9 +334,9 @@ body {
 }
 
 .nav-item.is-active {
-  background: color-mix(in srgb, white 10%, transparent);
+  background: color-mix(in srgb, var(--primary) 18%, transparent);
   color: #fff;
-  box-shadow: inset 3px 0 0 var(--accent);
+  box-shadow: inset 3px 0 0 var(--primary);
 }
 
 .nav-item__badge {
@@ -2604,7 +2604,7 @@ body {
 }
 
 .msg--in {
-  background: var(--white);
+  background: var(--card);
   border: 1px solid var(--line);
   border-top-left-radius: 6px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
@@ -2667,6 +2667,11 @@ body {
   max-width: min(100%, 28rem);
 }
 
+.msg--out .msg__body,
+.msg--out .msg__body p {
+  color: #fff;
+}
+
 .msg--out .msg__meta,
 .msg--out .msg__time,
 .msg--out .msg__sent {
@@ -2700,13 +2705,11 @@ body {
 }
 
 .msg__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  margin-bottom: 0.55rem;
+  display: block;
+  margin-bottom: 0.65rem;
   font-size: 0.68rem;
   font-weight: 650;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent);
 }
@@ -3703,9 +3706,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.4rem;
-  padding: 0.15rem 0 0.25rem;
-  margin: 0.1rem 0 0.25rem 2.65rem;
+  gap: 0.55rem;
+  padding: 0.35rem 0 0.15rem;
+  margin: 0.15rem 0 0.35rem 2.65rem;
   max-width: min(100%, 26rem);
   border: 0;
   background: transparent;
@@ -4673,4 +4676,143 @@ body {
 
 [data-theme="dark"] .progress__error {
   color: #ffb4a8;
+}
+
+/* --- Production polish: chat layout, hierarchy, surfaces --- */
+
+.frame[data-mode="chat"] .main__title {
+  font-family: var(--font-ui);
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.frame[data-mode="chat"] .main__bar {
+  padding: 1rem 1.5rem 0.85rem;
+}
+
+.frame[data-mode="chat"] .main__body {
+  padding: 0.85rem 1.25rem 1rem;
+}
+
+.frame[data-mode="chat"] .thread {
+  width: min(100%, 44rem);
+  margin: 0 auto;
+  gap: 1.15rem;
+}
+
+.msg--teach {
+  padding: 0.95rem 1.05rem 0.85rem;
+}
+
+.msg__teach .msg__body p {
+  font-size: 0.94rem;
+  line-height: 1.58;
+}
+
+.turn--out .turn__stack {
+  max-width: min(100%, 28rem);
+}
+
+.composer {
+  max-width: 44rem;
+  margin: 0 auto;
+  width: 100%;
+  border: 1px solid color-mix(in srgb, var(--line) 90%, transparent);
+  box-shadow: 0 4px 18px color-mix(in srgb, #000 6%, transparent);
+}
+
+.composer input::placeholder {
+  color: color-mix(in srgb, var(--muted) 78%, transparent);
+}
+
+.main__dock {
+  padding: 0.75rem 1.25rem max(1rem, env(safe-area-inset-bottom));
+  background: color-mix(in srgb, var(--surface) 96%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+}
+
+.side__label {
+  font-size: 0.62rem;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--side-muted);
+}
+
+.side-topic {
+  border-radius: 10px;
+  font-size: 0.84rem;
+}
+
+.recommend {
+  border: 1px solid color-mix(in srgb, var(--primary) 22%, var(--line));
+  background: color-mix(in srgb, var(--primary) 6%, var(--card));
+  transition:
+    border-color var(--motion-fast) var(--ease),
+    background var(--motion-fast) var(--ease),
+    transform var(--motion-fast) var(--ease);
+}
+
+.recommend:hover {
+  border-color: color-mix(in srgb, var(--primary) 40%, var(--line));
+  background: color-mix(in srgb, var(--primary) 10%, var(--card));
+}
+
+.quiz__shell {
+  width: min(100%, 44rem);
+  margin: 0 auto;
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--line) 88%, transparent);
+  box-shadow: 0 8px 28px color-mix(in srgb, #000 8%, transparent);
+}
+
+.progress__empty,
+.progress__body {
+  width: min(100%, 44rem);
+  margin: 0 auto;
+}
+
+.progress__cta {
+  min-height: 44px;
+}
+
+.thinking {
+  border-radius: 16px;
+  border: 1px solid color-mix(in srgb, var(--line) 88%, transparent);
+  background: var(--card);
+}
+
+[data-theme="dark"] .msg--recall {
+  background: var(--card);
+  border-color: color-mix(in srgb, var(--accent) 32%, var(--line));
+}
+
+[data-theme="dark"] .msg--recall .msg__prompt {
+  background: color-mix(in srgb, var(--accent) 12%, var(--card));
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--line));
+}
+
+[data-theme="dark"] .learn-cta__link {
+  color: color-mix(in srgb, var(--muted) 92%, transparent);
+}
+
+[data-theme="dark"] .composer {
+  box-shadow: 0 6px 24px color-mix(in srgb, #000 28%, transparent);
+}
+
+@media (max-width: 640px) {
+  .frame[data-mode="chat"] .main__body {
+    padding: 0.65rem 0.85rem 0.85rem;
+  }
+
+  .learn-cta {
+    margin-left: 0;
+    padding-left: 0.15rem;
+  }
+
+  .frame[data-mode="chat"] .main__title {
+    font-size: 1.12rem;
+  }
 }
