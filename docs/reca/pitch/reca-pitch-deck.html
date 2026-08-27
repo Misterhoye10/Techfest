@@ -3,28 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Reca — Pitch Deck · AI BuildFest 2026</title>
+    <title>Reca — AI BuildFest 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
-        --ink: #f4f6fb;
-        --muted: #9aa3b5;
-        --line: rgba(255, 255, 255, 0.12);
+        --ink: #f6f4f1;
+        --muted: #8e96a8;
+        --line: rgba(246, 244, 241, 0.11);
         --bg: #07090f;
-        --panel: #0e121b;
+        --surface: #0f131c;
+        --surface-2: #151a26;
         --primary: #225aeb;
+        --primary-dim: rgba(34, 90, 235, 0.14);
         --accent: #fb735b;
+        --accent-dim: rgba(251, 115, 91, 0.12);
         --wa: #25d366;
         --font-display: "Gilda Display", Georgia, serif;
-        --font-ui: Inter, system-ui, sans-serif;
+        --font-ui: "Plus Jakarta Sans", system-ui, sans-serif;
+        --pad-x: clamp(2rem, 5vw, 4rem);
+        --pad-y: clamp(1.75rem, 4vw, 2.75rem);
       }
 
-      * {
+      *,
+      *::before,
+      *::after {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
@@ -33,31 +40,32 @@
       html,
       body {
         height: 100%;
-        background: #000;
+        background: #030407;
         color: var(--ink);
         font-family: var(--font-ui);
         -webkit-font-smoothing: antialiased;
       }
 
+      /* ── Deck shell ── */
       .deck {
         width: min(100vw, calc(100vh * 16 / 9));
         height: min(100vh, calc(100vw * 9 / 16));
         margin: auto;
         position: relative;
-        background: var(--bg);
         overflow: hidden;
-        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
+        background: var(--bg);
+        box-shadow: 0 0 0 1px var(--line);
       }
 
       .slide {
         position: absolute;
         inset: 0;
-        padding: clamp(1.5rem, 4.5vw, 3.25rem) clamp(1.75rem, 5vw, 3.75rem);
         display: none;
         flex-direction: column;
+        padding: var(--pad-y) var(--pad-x);
         background:
-          radial-gradient(ellipse 70% 55% at 100% 0%, color-mix(in srgb, var(--primary) 18%, transparent), transparent 55%),
-          radial-gradient(ellipse 50% 40% at 0% 100%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 50%),
+          radial-gradient(ellipse 55% 45% at 92% 8%, var(--primary-dim), transparent 60%),
+          radial-gradient(ellipse 40% 35% at 4% 96%, var(--accent-dim), transparent 55%),
           var(--bg);
       }
 
@@ -65,252 +73,789 @@
         display: flex;
       }
 
-      .slide--title {
-        justify-content: flex-end;
-        padding-bottom: clamp(2.5rem, 8vh, 4.5rem);
+      .slide::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+        pointer-events: none;
+        opacity: 0.6;
+      }
+
+      .slide > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ── Slide chrome ── */
+      .chrome {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: clamp(1.25rem, 3vh, 2rem);
+        flex-shrink: 0;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+
+      .brand__mark {
+        width: 2.1rem;
+        height: 2.1rem;
+        border-radius: 0.55rem;
+        background: var(--accent);
+        display: grid;
+        place-items: center;
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        color: #fff;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+      }
+
+      .brand__name {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        letter-spacing: -0.02em;
+      }
+
+      .fest-badge {
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0.35rem 0.75rem;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .fest-badge strong {
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .slide-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
       }
 
       .eyebrow {
-        font-size: 0.72rem;
-        font-weight: 650;
-        letter-spacing: 0.12em;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
         text-transform: uppercase;
         color: var(--accent);
-        margin-bottom: 0.85rem;
+        margin-bottom: 0.65rem;
       }
 
       h1 {
         font-family: var(--font-display);
         font-weight: 400;
-        font-size: clamp(2.4rem, 5.5vw, 4.1rem);
-        line-height: 1.08;
-        letter-spacing: -0.02em;
-        max-width: 16ch;
+        font-size: clamp(2.5rem, 5.8vw, 4.25rem);
+        line-height: 1.04;
+        letter-spacing: -0.025em;
+        max-width: 14ch;
       }
 
       h2 {
         font-family: var(--font-display);
         font-weight: 400;
-        font-size: clamp(1.85rem, 3.8vw, 2.85rem);
-        line-height: 1.15;
+        font-size: clamp(1.75rem, 3.5vw, 2.65rem);
+        line-height: 1.12;
         letter-spacing: -0.02em;
-        max-width: 22ch;
-        margin-bottom: 1.25rem;
+        max-width: 20ch;
+        margin-bottom: 0.85rem;
       }
 
       .lead {
-        font-size: clamp(1rem, 1.7vw, 1.2rem);
-        line-height: 1.5;
-        color: color-mix(in srgb, var(--ink) 82%, var(--muted));
-        max-width: 42rem;
+        font-size: clamp(0.95rem, 1.55vw, 1.12rem);
+        line-height: 1.55;
+        color: color-mix(in srgb, var(--ink) 78%, var(--muted));
+        max-width: 38rem;
       }
 
-      .meta {
-        margin-top: 1.5rem;
-        font-size: 0.85rem;
-        color: var(--muted);
+      .accent-line {
+        color: var(--accent);
+        font-weight: 600;
       }
 
-      .brand-row {
+      .slide-foot {
+        margin-top: auto;
+        padding-top: 1rem;
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        gap: 0.65rem;
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--muted);
+        flex-shrink: 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .slide-foot__num {
+        font-variant-numeric: tabular-nums;
+        color: color-mix(in srgb, var(--ink) 55%, var(--muted));
+      }
+
+      /* ── Title slides ── */
+      .slide--title .slide-body {
+        justify-content: flex-end;
+        padding-bottom: 0.5rem;
+      }
+
+      .slide--title .chrome {
         margin-bottom: auto;
       }
 
-      .brand-mark {
-        width: 2rem;
-        height: 2rem;
-        border-radius: 0.55rem;
+      .pulse {
+        position: absolute;
+        top: 18%;
+        right: 8%;
+        width: clamp(7rem, 18vw, 11rem);
+        height: clamp(7rem, 18vw, 11rem);
+        opacity: 0.55;
+      }
+
+      .pulse svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      .title-meta {
+        margin-top: 1.25rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem 1.25rem;
+        align-items: center;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        padding: 0.4rem 0.75rem;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--muted);
+      }
+
+      .pill--wa {
+        border-color: color-mix(in srgb, var(--wa) 35%, var(--line));
+        color: color-mix(in srgb, var(--wa) 85%, white);
+      }
+
+      .pill__dot {
+        width: 0.45rem;
+        height: 0.45rem;
+        border-radius: 50%;
+        background: var(--wa);
+      }
+
+      .live-url {
+        margin-top: 1.1rem;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--primary);
+        text-decoration: none;
+        letter-spacing: 0.01em;
+      }
+
+      /* ── Layout helpers ── */
+      .split {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: clamp(1.25rem, 3vw, 2.5rem);
+        align-items: start;
+        flex: 1;
+        min-height: 0;
+      }
+
+      .split--equal {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stack {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      /* ── Stats ── */
+      .stat-card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 1rem 1.15rem;
+        border-left: 3px solid var(--primary);
+      }
+
+      .stat-card__n {
+        font-family: var(--font-display);
+        font-size: clamp(1.75rem, 3.2vw, 2.35rem);
+        line-height: 1;
+        letter-spacing: -0.03em;
+      }
+
+      .stat-card__l {
+        margin-top: 0.4rem;
+        font-size: 0.78rem;
+        line-height: 1.4;
+        color: var(--muted);
+        max-width: 22ch;
+      }
+
+      /* ── Compare ── */
+      .compare {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.85rem;
+        flex: 1;
+        min-height: 0;
+        margin-top: 0.5rem;
+      }
+
+      .compare__col {
+        border-radius: 18px;
+        padding: 1.35rem 1.4rem;
+        border: 1px solid var(--line);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .compare__col--passive {
+        background: color-mix(in srgb, var(--surface) 90%, transparent);
+        opacity: 0.88;
+      }
+
+      .compare__col--active {
+        background: linear-gradient(145deg, color-mix(in srgb, var(--accent) 10%, var(--surface)), var(--surface-2));
+        border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+        box-shadow: 0 0 48px color-mix(in srgb, var(--accent) 12%, transparent);
+      }
+
+      .compare__label {
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 1rem;
+      }
+
+      .compare__col--active .compare__label {
+        color: var(--accent);
+      }
+
+      .compare__list {
+        list-style: none;
+        display: grid;
+        gap: 0.65rem;
+      }
+
+      .compare__list li {
+        font-size: 0.92rem;
+        line-height: 1.45;
+        padding-left: 1.1rem;
+        position: relative;
+        color: color-mix(in srgb, var(--ink) 88%, var(--muted));
+      }
+
+      .compare__list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.55em;
+        width: 0.35rem;
+        height: 0.35rem;
+        border-radius: 50%;
+        background: var(--muted);
+      }
+
+      .compare__col--active .compare__list li::before {
         background: var(--accent);
-        color: #fff;
+      }
+
+      /* ── Chat mock ── */
+      .chat-mock {
+        background: #0b141a;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 1.1rem;
+        max-width: 22rem;
+        margin-top: auto;
+        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+      }
+
+      .chat-mock__bar {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.85rem;
+        padding-bottom: 0.65rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .chat-mock__avatar {
+        width: 1.75rem;
+        height: 1.75rem;
+        border-radius: 50%;
+        background: var(--accent);
         display: grid;
         place-items: center;
         font-family: var(--font-display);
-        font-size: 1.15rem;
-        line-height: 1;
+        font-size: 0.85rem;
+        color: #fff;
       }
 
-      .brand-name {
-        font-family: var(--font-display);
-        font-size: 1.35rem;
-        letter-spacing: -0.02em;
+      .chat-mock__name {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: #e9edef;
+      }
+
+      .chat-mock__tag {
+        margin-left: auto;
+        font-size: 0.58rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--wa);
+        background: rgba(37, 211, 102, 0.12);
+        padding: 0.2rem 0.45rem;
+        border-radius: 4px;
+      }
+
+      .bubble {
+        max-width: 92%;
+        padding: 0.55rem 0.7rem;
+        border-radius: 10px;
+        font-size: 0.72rem;
+        line-height: 1.45;
+        margin-bottom: 0.45rem;
+      }
+
+      .bubble--in {
+        background: #1f2c34;
+        color: #e9edef;
+        border-top-left-radius: 2px;
+        margin-right: auto;
+      }
+
+      .bubble--out {
+        background: #005c4b;
+        color: #e9edef;
+        border-top-right-radius: 2px;
+        margin-left: auto;
+      }
+
+      .bubble--hero {
+        background: linear-gradient(135deg, #1a2744, #1f2c34);
+        border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+        box-shadow: 0 0 20px color-mix(in srgb, var(--accent) 15%, transparent);
+      }
+
+      .bubble__badge {
+        display: inline-block;
+        font-size: 0.55rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.25rem;
+      }
+
+      /* ── Timeline loop ── */
+      .timeline {
+        display: flex;
+        align-items: stretch;
+        gap: 0;
+        margin-top: 0.75rem;
+        position: relative;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        right: 5%;
+        height: 2px;
+        background: linear-gradient(90deg, var(--line), var(--primary), var(--accent), var(--line));
+        transform: translateY(-50%);
+        z-index: 0;
+      }
+
+      .timeline__step {
+        flex: 1;
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        padding: 0 0.35rem;
+      }
+
+      .timeline__node {
+        width: 2.5rem;
+        height: 2.5rem;
+        margin: 0 auto 0.55rem;
+        border-radius: 50%;
+        background: var(--surface-2);
+        border: 2px solid var(--line);
+        display: grid;
+        place-items: center;
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+      }
+
+      .timeline__step--hero .timeline__node {
+        width: 3rem;
+        height: 3rem;
+        background: color-mix(in srgb, var(--accent) 18%, var(--surface-2));
+        border-color: var(--accent);
+        color: var(--accent);
+        box-shadow: 0 0 24px color-mix(in srgb, var(--accent) 30%, transparent);
+      }
+
+      .timeline__label {
+        font-size: 0.72rem;
+        font-weight: 600;
+        line-height: 1.25;
+        color: color-mix(in srgb, var(--ink) 85%, var(--muted));
+      }
+
+      .timeline__step--hero .timeline__label {
+        color: var(--ink);
+        font-weight: 700;
+      }
+
+      /* ── Cards ── */
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 1.1rem 1.2rem;
+      }
+
+      .card h3 {
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.5rem;
+      }
+
+      .card p {
+        font-size: 0.88rem;
+        line-height: 1.48;
+        color: color-mix(in srgb, var(--ink) 86%, var(--muted));
       }
 
       .grid-2 {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 1.25rem;
-        margin-top: 0.5rem;
-        width: 100%;
-        max-width: 56rem;
+        gap: 0.85rem;
       }
 
       .grid-3 {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 0.85rem;
-        margin-top: 0.5rem;
-        width: 100%;
-        max-width: 56rem;
+        gap: 0.75rem;
       }
 
-      .person-name {
-        font-family: var(--font-display);
-        font-size: 1.45rem;
-        letter-spacing: -0.02em;
-        color: #fff;
-        margin: 0.15rem 0 0.55rem;
+      .grid-4 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
       }
 
-      .card--person p:last-child {
-        font-size: 0.92rem;
-        color: var(--muted);
-      }
-
-      .card {
-        background: color-mix(in srgb, var(--panel) 88%, transparent);
+      /* ── Tools ── */
+      .tool {
+        background: var(--surface);
         border: 1px solid var(--line);
         border-radius: 16px;
-        padding: 1.15rem 1.2rem 1.25rem;
-      }
-
-      .card h3 {
-        font-size: 0.78rem;
-        font-weight: 650;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 0.55rem;
-      }
-
-      .card p,
-      .card li {
-        font-size: 0.98rem;
-        line-height: 1.45;
-        color: color-mix(in srgb, var(--ink) 88%, var(--muted));
-      }
-
-      .card ul {
-        list-style: none;
-        display: grid;
-        gap: 0.45rem;
-      }
-
-      .card li::before {
-        content: "";
-        display: inline-block;
-        width: 0.4rem;
-        height: 0.4rem;
-        border-radius: 50%;
-        background: var(--primary);
-        margin-right: 0.55rem;
-        vertical-align: 0.15rem;
-      }
-
-      .vs .card:first-child {
-        border-color: color-mix(in srgb, var(--muted) 35%, transparent);
-      }
-
-      .vs .card:last-child {
-        border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
-        background: color-mix(in srgb, var(--accent) 8%, var(--panel));
-      }
-
-      .loop {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 0.55rem;
-        margin-top: 1rem;
-        width: 100%;
-        max-width: 56rem;
-      }
-
-      .loop__step {
-        background: var(--panel);
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        padding: 0.9rem 0.75rem;
-        text-align: center;
-        min-height: 5.5rem;
+        padding: 1.15rem 1.2rem;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        gap: 0.35rem;
+        gap: 0.45rem;
+        min-height: 6.5rem;
       }
 
-      .loop__step.is-hero {
-        border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
-        box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 25%, transparent);
+      .tool__name {
+        font-family: var(--font-display);
+        font-size: 1.15rem;
+        letter-spacing: -0.02em;
+        color: var(--ink);
       }
 
-      .loop__n {
-        font-size: 0.68rem;
+      .tool__role {
+        font-size: 0.65rem;
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--accent);
+        color: var(--primary);
       }
 
-      .loop__label {
-        font-size: 0.88rem;
-        font-weight: 600;
-        line-height: 1.25;
-      }
-
-      .stats {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.85rem;
-        margin-top: 1.1rem;
-        width: 100%;
-        max-width: 52rem;
-      }
-
-      .stat {
-        border-left: 2px solid var(--primary);
-        padding: 0.35rem 0 0.35rem 0.9rem;
-      }
-
-      .stat__n {
-        font-family: var(--font-display);
-        font-size: clamp(1.6rem, 3vw, 2.2rem);
-        line-height: 1.1;
-        letter-spacing: -0.02em;
-      }
-
-      .stat__l {
-        margin-top: 0.35rem;
-        font-size: 0.82rem;
+      .tool p {
+        font-size: 0.8rem;
+        line-height: 1.45;
         color: var(--muted);
-        line-height: 1.35;
-        max-width: 18ch;
-      }
-
-      .link {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.45rem;
-        margin-top: 1.25rem;
-        color: #fff;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 0.95rem;
-        border-bottom: 1px solid color-mix(in srgb, var(--primary) 70%, transparent);
-        padding-bottom: 0.15rem;
-      }
-
-      .footer-row {
         margin-top: auto;
-        padding-top: 1.25rem;
+      }
+
+      /* ── Checklist ── */
+      .checks {
+        display: grid;
+        gap: 0.7rem;
+        margin-top: 0.5rem;
+      }
+
+      .checks li {
+        list-style: none;
+        display: grid;
+        grid-template-columns: 1.75rem 1fr;
+        gap: 0.65rem;
+        align-items: start;
+        font-size: 0.95rem;
+        line-height: 1.45;
+      }
+
+      .checks__icon {
+        width: 1.75rem;
+        height: 1.75rem;
+        border-radius: 50%;
+        background: rgba(37, 211, 102, 0.12);
+        color: var(--wa);
+        display: grid;
+        place-items: center;
+        font-size: 0.75rem;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      /* ── Team ── */
+      .person-name {
+        font-family: var(--font-display);
+        font-size: 1.35rem;
+        letter-spacing: -0.02em;
+        margin: 0.2rem 0 0.45rem;
+      }
+
+      /* ── Demo block ── */
+      .demo-block {
+        margin-top: 1rem;
+        background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 12%, var(--surface)), var(--surface));
+        border: 1px solid color-mix(in srgb, var(--primary) 30%, var(--line));
+        border-radius: 18px;
+        padding: 1.35rem 1.5rem;
+        max-width: 36rem;
+      }
+
+      .demo-block__url {
+        font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+        font-weight: 700;
+        color: var(--primary);
+        word-break: break-all;
+        text-decoration: none;
+      }
+
+      .demo-block__script {
+        margin-top: 0.85rem;
+        font-size: 0.82rem;
+        line-height: 1.5;
+        color: var(--muted);
+      }
+
+      .demo-block__script strong {
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      /* ── Portal strip ── */
+      .portal-strip {
         display: flex;
-        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+        margin-top: 0.85rem;
+      }
+
+      .portal-strip span {
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.3rem 0.55rem;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--line);
+        color: var(--muted);
+      }
+
+      .portal-strip span.is-done {
+        border-color: color-mix(in srgb, var(--wa) 35%, var(--line));
+        color: color-mix(in srgb, var(--wa) 90%, white);
+      }
+
+      /* ── Cover ── */
+      .slide--cover {
+        justify-content: center;
         align-items: center;
-        font-size: 0.72rem;
+        text-align: center;
+        padding: clamp(2rem, 5vw, 3.5rem);
+      }
+
+      .slide--cover .chrome {
+        position: absolute;
+        top: var(--pad-y);
+        left: var(--pad-x);
+        right: var(--pad-x);
+        margin-bottom: 0;
+      }
+
+      .slide--cover .slide-body {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        max-width: 46rem;
+        margin: 0 auto;
+      }
+
+      .cover__mark {
+        width: 4.5rem;
+        height: 4.5rem;
+        border-radius: 1.1rem;
+        background: var(--accent);
+        display: grid;
+        place-items: center;
+        font-family: var(--font-display);
+        font-size: 2.4rem;
+        color: #fff;
+        margin: 0 auto 1.25rem;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 24px 48px rgba(251, 115, 91, 0.18);
+      }
+
+      .cover__name {
+        font-family: var(--font-display);
+        font-size: clamp(2.8rem, 6vw, 4.5rem);
+        letter-spacing: -0.03em;
+        line-height: 1;
+        margin-bottom: 1.1rem;
+      }
+
+      .cover__tagline {
+        font-size: clamp(1.05rem, 1.85vw, 1.28rem);
+        line-height: 1.55;
+        color: color-mix(in srgb, var(--ink) 88%, var(--muted));
+        max-width: 36rem;
+        margin: 0 auto;
+      }
+
+      .cover__tagline em {
+        font-style: normal;
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      .cover__meta {
+        margin-top: 1.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        font-size: 0.78rem;
         color: var(--muted);
         letter-spacing: 0.04em;
       }
 
+      .cover__meta strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      .slide--cover .slide-foot {
+        position: absolute;
+        bottom: var(--pad-y);
+        left: var(--pad-x);
+        right: var(--pad-x);
+        border-top: none;
+        padding-top: 0;
+      }
+
+      /* ── Persona ── */
+      .persona {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 1.15rem 1.25rem 1.2rem;
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+      }
+
+      .persona--hero {
+        border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+        background: linear-gradient(145deg, color-mix(in srgb, var(--accent) 8%, var(--surface)), var(--surface-2));
+      }
+
+      .persona__badge {
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.45rem;
+      }
+
+      .persona__name {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.15rem;
+      }
+
+      .persona__role {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: 0.65rem;
+      }
+
+      .persona__detail {
+        font-size: 0.8rem;
+        line-height: 1.45;
+        color: var(--muted);
+        margin-bottom: 0.55rem;
+      }
+
+      .persona__detail strong {
+        color: color-mix(in srgb, var(--ink) 75%, var(--muted));
+        font-weight: 600;
+      }
+
+      .persona__quote {
+        margin-top: auto;
+        padding-top: 0.65rem;
+        border-top: 1px solid var(--line);
+        font-family: var(--font-display);
+        font-size: 0.92rem;
+        line-height: 1.45;
+        font-style: italic;
+        color: color-mix(in srgb, var(--ink) 90%, var(--muted));
+      }
+
+      /* ── Nav ── */
       .nav {
         position: fixed;
         bottom: 1rem;
@@ -318,13 +863,13 @@
         transform: translateX(-50%);
         z-index: 20;
         display: flex;
-        gap: 0.4rem;
+        gap: 0.35rem;
         align-items: center;
-        background: rgba(7, 9, 15, 0.85);
+        background: rgba(7, 9, 15, 0.92);
         border: 1px solid var(--line);
         border-radius: 999px;
-        padding: 0.35rem 0.45rem;
-        backdrop-filter: blur(10px);
+        padding: 0.3rem 0.4rem;
+        backdrop-filter: blur(12px);
       }
 
       .nav button {
@@ -332,9 +877,9 @@
         background: transparent;
         color: var(--ink);
         font: inherit;
-        font-size: 0.8rem;
+        font-size: 0.78rem;
         font-weight: 600;
-        padding: 0.45rem 0.75rem;
+        padding: 0.4rem 0.7rem;
         border-radius: 999px;
         cursor: pointer;
       }
@@ -344,32 +889,11 @@
       }
 
       .nav__count {
-        min-width: 3.5rem;
+        min-width: 3.25rem;
         text-align: center;
-        font-size: 0.75rem;
+        font-size: 0.72rem;
         color: var(--muted);
         font-variant-numeric: tabular-nums;
-      }
-
-      .checklist {
-        display: grid;
-        gap: 0.55rem;
-        margin-top: 0.75rem;
-        max-width: 40rem;
-      }
-
-      .checklist li {
-        list-style: none;
-        display: flex;
-        gap: 0.65rem;
-        align-items: flex-start;
-        font-size: 1.02rem;
-        line-height: 1.4;
-      }
-
-      .checklist li span {
-        color: var(--wa);
-        font-weight: 700;
       }
 
       @media print {
@@ -390,8 +914,6 @@
           width: 13.333in;
           height: auto;
           box-shadow: none;
-          max-width: none;
-          max-height: none;
         }
         .slide {
           position: relative;
@@ -409,291 +931,570 @@
   </head>
   <body>
     <div class="deck" id="deck">
-      <!-- 1 Title -->
-      <section class="slide slide--title is-active" data-slide="1">
-        <div class="brand-row">
-          <div class="brand-mark" aria-hidden="true">R</div>
-          <div class="brand-name">Reca</div>
-        </div>
-        <p class="eyebrow">AI BuildFest 2026 · Track 3 · Case Study 2</p>
-        <h1>ChatGPT waits for you.<br />Reca comes first.</h1>
-        <p class="lead" style="margin-top: 1rem">
-          The active memory companion for WAEC &amp; JAMB students — on WhatsApp.
-        </p>
-        <p class="meta">Live · https://reca-study-companion.vercel.app</p>
-        <div class="footer-row"><span>Reca</span><span>01 / 13</span></div>
-      </section>
-
-      <!-- 2 Problem -->
-      <section class="slide" data-slide="2">
-        <p class="eyebrow">The problem</p>
-        <h2>Students study hard. Then they forget what mattered.</h2>
-        <p class="lead">
-          Millions of Nigerian candidates prepare alone after school. They reread notes —
-          but they don’t know what they’ve actually lost.
-        </p>
-        <div class="stats">
-          <div class="stat">
-            <div class="stat__n">~1.95M</div>
-            <div class="stat__l">WASSCE candidates (2026 cycle)</div>
+      <!-- 1 Cover -->
+      <section class="slide slide--cover is-active" data-slide="1">
+        <header class="chrome">
+          <div class="brand">
+            <div class="brand__mark">R</div>
+            <span class="brand__name">Reca</span>
           </div>
-          <div class="stat">
-            <div class="stat__n">~2.24M</div>
-            <div class="stat__l">JAMB UTME registrations</div>
-          </div>
-          <div class="stat">
-            <div class="stat__n">61.5%</div>
-            <div class="stat__l">credit pass incl. Eng + Maths — pressure, not certainty</div>
+          <span class="fest-badge">AI BuildFest 2026 · <strong>BF-0933</strong></span>
+        </header>
+        <div class="slide-body">
+          <div class="cover__mark" aria-hidden="true">R</div>
+          <h1 class="cover__name">Reca</h1>
+          <p class="cover__tagline">
+            An AI-powered WAEC/JAMB study companion —
+            <em>active AI memory</em>, not another chatbot that waits.
+          </p>
+          <div class="cover__meta">
+            <span><strong>Track 3</strong> · AI for Everyday Life · Case Study 2</span>
+            <span>Talodabioluwa Paul · Folarin Oyewole</span>
+            <span>reca-study-companion.vercel.app</span>
           </div>
         </div>
-        <div class="footer-row"><span>Impact starts with retention</span><span>02 / 13</span></div>
+        <footer class="slide-foot">
+          <span>Submission deck</span>
+          <span class="slide-foot__num">01 / 15</span>
+        </footer>
       </section>
 
-      <!-- 3 Gap -->
+      <!-- 2 Hook -->
+      <section class="slide slide--title" data-slide="2">
+        <div class="pulse" aria-hidden="true">
+          <svg viewBox="0 0 120 120" fill="none">
+            <circle cx="60" cy="60" r="18" stroke="#FB735B" stroke-width="1.5" opacity="0.9" />
+            <circle cx="60" cy="60" r="32" stroke="#FB735B" stroke-width="1" opacity="0.45" />
+            <circle cx="60" cy="60" r="48" stroke="#225AEB" stroke-width="0.75" opacity="0.25" />
+          </svg>
+        </div>
+        <header class="chrome">
+          <div class="brand">
+            <div class="brand__mark">R</div>
+            <span class="brand__name">Reca</span>
+          </div>
+          <span class="fest-badge">Pitch hook</span>
+        </header>
+        <div class="slide-body">
+          <p class="eyebrow">The difference in one line</p>
+          <h1>ChatGPT waits.<br />Reca comes first.</h1>
+          <p class="lead" style="margin-top: 1rem">
+            WhatsApp-native · explain → quiz → grade → unprompted resurface · live product
+          </p>
+          <div class="title-meta">
+            <span class="pill pill--wa"><span class="pill__dot"></span> WhatsApp-native</span>
+            <span class="pill">Active memory</span>
+            <span class="pill">Free stack</span>
+          </div>
+        </div>
+        <footer class="slide-foot">
+          <span>Reca · Study companions</span>
+          <span class="slide-foot__num">02 / 15</span>
+        </footer>
+      </section>
+
+      <!-- 3 Persona -->
       <section class="slide" data-slide="3">
-        <p class="eyebrow">Why not “just use ChatGPT”?</p>
-        <h2>Passive memory is not enough.</h2>
-        <div class="grid-2 vs">
-          <div class="card">
-            <h3>Claude / ChatGPT</h3>
-            <ul>
-              <li>Explain when you ask</li>
-              <li>Remember when you return</li>
-              <li>You open another app</li>
-              <li>No exam-triggered follow-up</li>
-            </ul>
+        <header class="chrome">
+          <div class="brand">
+            <div class="brand__mark">R</div>
+            <span class="brand__name">Reca</span>
           </div>
-          <div class="card">
-            <h3>Reca</h3>
-            <ul>
-              <li>Explain → quiz → grade</li>
-              <li>Remembers what you got wrong</li>
-              <li>Messages you first on WhatsApp</li>
-              <li>WAEC/JAMB-framed practice</li>
-            </ul>
+          <span class="fest-badge">User persona</span>
+        </header>
+        <div class="slide-body">
+          <p class="eyebrow">Who we built for</p>
+          <h2>After-school study on their own phone.</h2>
+          <div class="grid-2" style="margin-top: 0.35rem; flex: 1">
+            <div class="persona persona--hero">
+              <span class="persona__badge">Primary · demo persona</span>
+              <p class="persona__name">Chiamaka</p>
+              <p class="persona__role">SS3 · 17 · WASSCE candidate · Lagos</p>
+              <p class="persona__detail">
+                <strong>Context:</strong> Public school. Photocopied notes + shared textbook. Studies after school on WhatsApp.
+              </p>
+              <p class="persona__detail">
+                <strong>Goal:</strong> Credits in 5 subjects incl. English &amp; Maths — proceed to university.
+              </p>
+              <p class="persona__detail">
+                <strong>Frustration:</strong> Rereads for hours but can't tell what's actually sticking.
+              </p>
+              <p class="persona__quote">"I read it and it makes sense — but past questions, I freeze. I don't know what I don't know."</p>
+            </div>
+            <div class="persona">
+              <span class="persona__badge" style="color: var(--primary)">Secondary persona</span>
+              <p class="persona__name">Tobi</p>
+              <p class="persona__role">19 · JAMB repeat candidate · part-time work</p>
+              <p class="persona__detail">
+                <strong>Context:</strong> Finished SS3. Retaking UTME alone — no teacher to ask.
+              </p>
+              <p class="persona__detail">
+                <strong>Goal:</strong> Raise score for Computer Science at target university.
+              </p>
+              <p class="persona__detail">
+                <strong>Frustration:</strong> Loses track of weak subjects as exam date nears.
+              </p>
+              <p class="persona__quote">"By the time I return to a topic, I've forgotten half of it and start over."</p>
+            </div>
           </div>
         </div>
-        <div class="footer-row"><span>Active vs passive memory</span><span>03 / 13</span></div>
+        <footer class="slide-foot">
+          <span>Out-of-school · personal phone · everyday life</span>
+          <span class="slide-foot__num">03 / 15</span>
+        </footer>
       </section>
 
-      <!-- 4 Solution -->
+      <!-- 4 Problem -->
       <section class="slide" data-slide="4">
-        <p class="eyebrow">The solution</p>
-        <h2>Reca — study companion that returns on its own.</h2>
-        <p class="lead">
-          A student sends a topic (or a past-question photo). Reca explains in plain exam language,
-          asks two quick questions, grades instantly — then resurfaces weak spots unprompted.
-        </p>
-        <p class="lead" style="margin-top: 0.85rem; color: var(--accent)">
-          No new app. No dashboard homework. WhatsApp is already the habit.
-        </p>
-        <div class="footer-row"><span>WhatsApp-native · free stack</span><span>04 / 13</span></div>
+        <header class="chrome">
+          <div class="brand">
+            <div class="brand__mark">R</div>
+            <span class="brand__name">Reca</span>
+          </div>
+          <span class="fest-badge">Problem · <strong>25% fit</strong></span>
+        </header>
+        <div class="slide-body split">
+          <div>
+            <p class="eyebrow">The problem</p>
+            <h2>Students study hard. Then forget what mattered.</h2>
+            <p class="lead">
+              Millions of Nigerian candidates prepare alone after school. They reread notes — but
+              they don't know what they've actually lost until exam day.
+            </p>
+          </div>
+          <div class="stack">
+            <div class="stat-card">
+              <div class="stat-card__n">~1.95M</div>
+              <div class="stat-card__l">WASSCE candidates — 2026 cycle</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__n">~2.24M</div>
+              <div class="stat-card__l">JAMB UTME registrations</div>
+            </div>
+            <div class="stat-card" style="border-left-color: var(--accent)">
+              <div class="stat-card__n">61.5%</div>
+              <div class="stat-card__l">Credit pass incl. English + Maths — pressure, not certainty</div>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-foot">
+          <span>Retention is the gap</span>
+          <span class="slide-foot__num">04 / 15</span>
+        </footer>
       </section>
 
-      <!-- 5 Loop / functionality -->
+      <!-- 5 Gap -->
       <section class="slide" data-slide="5">
-        <p class="eyebrow">Functionality &amp; execution</p>
-        <h2>One loop. Built end-to-end.</h2>
-        <div class="loop">
-          <div class="loop__step">
-            <div class="loop__n">01</div>
-            <div class="loop__label">Capture</div>
+        <header class="chrome">
+          <div class="brand">
+            <div class="brand__mark">R</div>
+            <span class="brand__name">Reca</span>
           </div>
-          <div class="loop__step">
-            <div class="loop__n">02</div>
-            <div class="loop__label">Explain</div>
-          </div>
-          <div class="loop__step">
-            <div class="loop__n">03</div>
-            <div class="loop__label">Quiz + grade</div>
-          </div>
-          <div class="loop__step is-hero">
-            <div class="loop__n">Hero</div>
-            <div class="loop__label">Unprompted resurface</div>
-          </div>
-          <div class="loop__step">
-            <div class="loop__n">05</div>
-            <div class="loop__label">Recap / briefing</div>
+          <span class="fest-badge">Innovation · <strong>20%</strong></span>
+        </header>
+        <div class="slide-body">
+          <p class="eyebrow">Why not "just use ChatGPT"?</p>
+          <h2>Passive memory is not enough.</h2>
+          <div class="compare">
+            <div class="compare__col compare__col--passive">
+              <div class="compare__label">ChatGPT / Claude</div>
+              <ul class="compare__list">
+                <li>Explains when you ask</li>
+                <li>Remembers when you return</li>
+                <li>You open another app</li>
+                <li>No exam-triggered follow-up</li>
+              </ul>
+            </div>
+            <div class="compare__col compare__col--active">
+              <div class="compare__label">Reca</div>
+              <ul class="compare__list">
+                <li>Explain → quiz → grade</li>
+                <li>Remembers what you got wrong</li>
+                <li>Messages you first on WhatsApp</li>
+                <li>WAEC/JAMB-framed practice</li>
+              </ul>
+            </div>
           </div>
         </div>
-        <p class="lead" style="margin-top: 1.25rem; font-size: 0.95rem">
-          Web + WhatsApp sync · Learn / Revise / Progress · 10 subjects · photo past-question path ·
-          shipped on Meta Cloud API + Gemini with preset fallback.
-        </p>
-        <div class="footer-row"><span>Working product, not a mock</span><span>05 / 13</span></div>
+        <footer class="slide-foot">
+          <span>Active vs passive memory</span>
+          <span class="slide-foot__num">05 / 15</span>
+        </footer>
       </section>
 
-      <!-- 6 AI -->
+      <!-- 6 Solution -->
       <section class="slide" data-slide="6">
-        <p class="eyebrow">Use of AI</p>
-        <h2>AI that teaches — then remembers.</h2>
-        <div class="grid-2">
-          <div class="card">
-            <h3>Generation</h3>
-            <p>
-              Gemini explains WAEC/JAMB topics in plain language, builds 2 practice questions,
-              grades answers, and can read a past-question photo.
+        <header class="chrome">
+          <div class="brand">
+            <div class="brand__mark">R</div>
+            <span class="brand__name">Reca</span>
+          </div>
+          <span class="fest-badge">Solution</span>
+        </header>
+        <div class="slide-body split split--equal">
+          <div>
+            <p class="eyebrow">The solution</p>
+            <h2>Study companion that returns on its own.</h2>
+            <p class="lead">
+              A student sends a topic or past-question photo. Reca explains in plain exam language,
+              asks two quick questions, grades instantly — then resurfaces weak spots
+              <span class="accent-line">unprompted</span>.
+            </p>
+            <p class="lead" style="margin-top: 0.75rem">
+              No new app. No dashboard homework. WhatsApp is already the habit.
             </p>
           </div>
-          <div class="card">
-            <h3>Memory decision</h3>
-            <p>
-              Wrong answers schedule a follow-up. Reca decides <em>when</em> to return —
-              the student doesn’t open the chat to dig it up.
-            </p>
+          <div class="chat-mock">
+            <div class="chat-mock__bar">
+              <div class="chat-mock__avatar">R</div>
+              <span class="chat-mock__name">Reca</span>
+              <span class="chat-mock__tag">Unprompted</span>
+            </div>
+            <div class="bubble bubble--out">Explain photosynthesis</div>
+            <div class="bubble bubble--in">Here's the short version… Quick Q: where does light reaction happen?</div>
+            <div class="bubble bubble--out">Mitochondria</div>
+            <div class="bubble bubble--in">Not quite — chloroplast. I'll bring this back.</div>
+            <div class="bubble bubble--hero bubble--in">
+              <div class="bubble__badge">Reca comes first</div>
+              Quick check — where does the light reaction happen? 🌱
+            </div>
           </div>
         </div>
-        <p class="lead" style="margin-top: 1rem; font-size: 0.95rem">
-          Preset curriculum bank keeps the demo reliable if the model is offline. AI is the teacher;
-          spaced recall is the product.
-        </p>
-        <div class="footer-row"><span>LLM + correctness-triggered memory</span><span>06 / 13</span></div>
+        <footer class="slide-foot">
+          <span>WhatsApp-native · zero download</span>
+          <span class="slide-foot__num">06 / 15</span>
+        </footer>
       </section>
 
-      <!-- 7 Tools used -->
+      <!-- 7 Loop -->
       <section class="slide" data-slide="7">
-        <p class="eyebrow">Tools used</p>
-        <h2>What we built Reca with.</h2>
-        <div class="grid-2">
-          <div class="card">
-            <h3>Meta Business Suite</h3>
-            <p>WhatsApp Cloud API setup, phone number, and messaging for OTP + unprompted resurface.</p>
+        <header class="chrome">
+          <div class="brand">
+            <div class="brand__mark">R</div>
+            <span class="brand__name">Reca</span>
           </div>
-          <div class="card">
-            <h3>Google Gemini</h3>
-            <p>Explain, quiz, grade, and photo past-questions — the teaching brain of Reca.</p>
+          <span class="fest-badge">Execution · <strong>10%</strong></span>
+        </header>
+        <div class="slide-body">
+          <p class="eyebrow">Functionality</p>
+          <h2>One loop. Built end-to-end.</h2>
+          <div class="timeline">
+            <div class="timeline__step">
+              <div class="timeline__node">01</div>
+              <div class="timeline__label">Capture topic or photo</div>
+            </div>
+            <div class="timeline__step">
+              <div class="timeline__node">02</div>
+              <div class="timeline__label">Explain plainly</div>
+            </div>
+            <div class="timeline__step">
+              <div class="timeline__node">03</div>
+              <div class="timeline__label">Quiz + grade</div>
+            </div>
+            <div class="timeline__step timeline__step--hero">
+              <div class="timeline__node">★</div>
+              <div class="timeline__label">Unprompted resurface</div>
+            </div>
+            <div class="timeline__step">
+              <div class="timeline__node">05</div>
+              <div class="timeline__label">Daily briefing</div>
+            </div>
           </div>
-          <div class="card">
-            <h3>Antigravity</h3>
-            <p>AI coding agent for scaffolding and shipping the product loop faster.</p>
-          </div>
-          <div class="card">
-            <h3>Cursor</h3>
-            <p>IDE for product design, UX polish, security harden, and deck/handoff work.</p>
-          </div>
+          <p class="lead" style="margin-top: 1.5rem; font-size: 0.88rem; max-width: 52rem">
+            Web + WhatsApp sync · Learn / Revise / Progress · 10 subjects · photo past-questions ·
+            preset curriculum fallback · shipped and live.
+          </p>
         </div>
-        <div class="footer-row"><span>Portal checklist: tools used</span><span>07 / 13</span></div>
+        <footer class="slide-foot">
+          <span>Working product — not a mock</span>
+          <span class="slide-foot__num">07 / 15</span>
+        </footer>
       </section>
 
-      <!-- 8 Impact -->
+      <!-- 8 AI -->
       <section class="slide" data-slide="8">
-        <p class="eyebrow">Impact &amp; usefulness</p>
-        <h2>Built for how Nigerian students already study.</h2>
-        <ul class="checklist">
-          <li><span>✓</span> After-school phone habit — not an in-school laptop fantasy</li>
-          <li><span>✓</span> Zero download friction on the channel they already use</li>
-          <li><span>✓</span> Turns “I read it” into “I still know it”</li>
-          <li><span>✓</span> Free-tier stack so a pilot doesn’t require paid infrastructure day one</li>
-        </ul>
-        <div class="footer-row"><span>Everyday life · exam calendar demand</span><span>08 / 13</span></div>
+        <header class="chrome">
+          <div class="brand">
+            <div class="brand__mark">R</div>
+            <span class="brand__name">Reca</span>
+          </div>
+          <span class="fest-badge">AI solution</span>
+        </header>
+        <div class="slide-body">
+          <p class="eyebrow">Use of AI</p>
+          <h2>AI that teaches — then remembers.</h2>
+          <div class="grid-2" style="margin-top: 0.35rem">
+            <div class="card">
+              <h3>Generation</h3>
+              <p>
+                Gemini explains WAEC/JAMB topics in plain language, builds 2 practice questions,
+                grades answers, and reads past-question photos.
+              </p>
+            </div>
+            <div class="card" style="border-color: color-mix(in srgb, var(--accent) 35%, var(--line))">
+              <h3 style="color: var(--accent)">Memory decision</h3>
+              <p>
+                Wrong answers schedule a follow-up. Reca decides <em>when</em> to return — the student
+                doesn't open the chat to dig it up.
+              </p>
+            </div>
+          </div>
+          <p class="lead" style="margin-top: 1rem; font-size: 0.88rem">
+            Preset curriculum bank keeps the demo reliable offline. AI is the teacher; spaced recall
+            is the product.
+          </p>
+        </div>
+        <footer class="slide-foot">
+          <span>LLM + correctness-triggered memory</span>
+          <span class="slide-foot__num">08 / 15</span>
+        </footer>
       </section>
 
-      <!-- 9 Business -->
+      <!-- 9 Tools -->
       <section class="slide" data-slide="9">
-        <p class="eyebrow">Business model</p>
-        <h2>Free for students first. Paid where schools need visibility.</h2>
-        <div class="grid-3">
-          <div class="card">
-            <h3>Freemium</h3>
-            <p>Individual students stay free — low marginal AI cost per interaction.</p>
+        <header class="chrome">
+          <div class="brand">
+            <div class="brand__mark">R</div>
+            <span class="brand__name">Reca</span>
           </div>
-          <div class="card">
-            <h3>B2B2C</h3>
-            <p>Private schools &amp; tutorial centres — per-student / cohort plans + teacher progress view.</p>
+          <span class="fest-badge">Tools used · <strong>required</strong></span>
+        </header>
+        <div class="slide-body">
+          <p class="eyebrow">Build stack</p>
+          <h2>What we built Reca with.</h2>
+          <div class="grid-4" style="margin-top: 0.5rem">
+            <div class="tool">
+              <span class="tool__role">Messaging</span>
+              <span class="tool__name">Meta Business Suite</span>
+              <p>WhatsApp Cloud API — phone, OTP, unprompted resurface.</p>
+            </div>
+            <div class="tool">
+              <span class="tool__role">AI</span>
+              <span class="tool__name">Google Gemini</span>
+              <p>Explain, quiz, grade, photo past-questions.</p>
+            </div>
+            <div class="tool">
+              <span class="tool__role">Build agent</span>
+              <span class="tool__name">Antigravity</span>
+              <p>Scaffolding and shipping the product loop faster.</p>
+            </div>
+            <div class="tool">
+              <span class="tool__role">IDE</span>
+              <span class="tool__name">Cursor</span>
+              <p>UX polish, security harden, deck and handoff.</p>
+            </div>
           </div>
-          <div class="card">
-            <h3>Sponsored access</h3>
-            <p>Exam-prep sponsors, NGOs, or telcos subsidise public-school students (zero-rated data).</p>
+          <div class="portal-strip">
+            <span class="is-done">Problem</span>
+            <span class="is-done">AI solution</span>
+            <span class="is-done">Tools used</span>
+            <span class="is-done">Business impact</span>
           </div>
         </div>
-        <p class="lead" style="margin-top: 1.1rem; font-size: 0.95rem">
-          Moat: attempt history + WhatsApp distribution + WAEC/JAMB curriculum — not “another generic chat.”
-        </p>
-        <div class="footer-row"><span>Post-fest roadmap</span><span>09 / 13</span></div>
+        <footer class="slide-foot">
+          <span>Portal checklist complete</span>
+          <span class="slide-foot__num">09 / 15</span>
+        </footer>
       </section>
 
-      <!-- 10 Live + demo -->
+      <!-- 10 Impact -->
       <section class="slide" data-slide="10">
-        <p class="eyebrow">Live link &amp; demo</p>
-        <h2>Try the product. Watch the aha.</h2>
-        <p class="lead">
-          Web companion (same memory loop): open Learn → ask a topic → miss one question →
-          Reca comes back. WhatsApp is the stage hero — Reca messages first.
-        </p>
-        <a class="link" href="https://reca-study-companion.vercel.app/signup.html" target="_blank" rel="noopener">
-          https://reca-study-companion.vercel.app/signup.html →
-        </a>
-        <p class="meta" style="margin-top: 1.5rem">
-          Demo script: explain photosynthesis → wrong Q1 → unprompted resurface → chloroplast
-        </p>
-        <div class="footer-row"><span>Guest mode available</span><span>10 / 13</span></div>
+        <header class="chrome">
+          <div class="brand">
+            <div class="brand__mark">R</div>
+            <span class="brand__name">Reca</span>
+          </div>
+          <span class="fest-badge">Usefulness · <strong>25%</strong></span>
+        </header>
+        <div class="slide-body split">
+          <div>
+            <p class="eyebrow">Business impact</p>
+            <h2>Built for how Nigerian students already study.</h2>
+            <p class="lead">Everyday life means after-school phone time — not another app to install.</p>
+          </div>
+          <ul class="checks">
+            <li><span class="checks__icon">✓</span> After-school phone habit — not an in-school laptop fantasy</li>
+            <li><span class="checks__icon">✓</span> Zero download friction on the channel they already use</li>
+            <li><span class="checks__icon">✓</span> Turns "I read it" into "I still know it"</li>
+            <li><span class="checks__icon">✓</span> Free-tier stack — pilot without paid infra day one</li>
+          </ul>
+        </div>
+        <footer class="slide-foot">
+          <span>Everyday life · exam calendar demand</span>
+          <span class="slide-foot__num">10 / 15</span>
+        </footer>
       </section>
 
-      <!-- 11 Team -->
+      <!-- 11 Business -->
       <section class="slide" data-slide="11">
-        <p class="eyebrow">The team</p>
-        <h2>Who built Reca.</h2>
-        <div class="grid-2">
-          <div class="card card--person">
-            <h3>Product design &amp; UX</h3>
-            <p class="person-name">Talodabioluwa Paul</p>
-            <p>Experience, copy, flows, and the student-facing product system.</p>
+        <header class="chrome">
+          <div class="brand">
+            <div class="brand__mark">R</div>
+            <span class="brand__name">Reca</span>
           </div>
-          <div class="card card--person">
-            <h3>Engineering &amp; WhatsApp</h3>
-            <p class="person-name">Folarin Oyewole</p>
-            <p>Backend, Meta Cloud API, memory loop, and deploy.</p>
+          <span class="fest-badge">Business model</span>
+        </header>
+        <div class="slide-body">
+          <p class="eyebrow">Sustainability</p>
+          <h2>Free for students. Paid where schools need visibility.</h2>
+          <div class="grid-3" style="margin-top: 0.35rem">
+            <div class="card">
+              <h3>Freemium</h3>
+              <p>Individual students stay free — low marginal AI cost per interaction.</p>
+            </div>
+            <div class="card">
+              <h3>B2B2C</h3>
+              <p>Schools &amp; tutorial centres — cohort plans + teacher progress view.</p>
+            </div>
+            <div class="card">
+              <h3>Sponsored</h3>
+              <p>NGOs, telcos, exam-prep brands subsidise public-school access.</p>
+            </div>
           </div>
+          <p class="lead" style="margin-top: 1rem; font-size: 0.88rem">
+            Moat: attempt history + WhatsApp distribution + WAEC/JAMB curriculum — not another generic chat.
+          </p>
         </div>
-        <p class="meta" style="margin-top: 1.25rem">
-          AI BuildFest 2026 · Track 3 · Case Study 2 · Participant ID <strong style="color:#fff">BF-0933</strong>
-        </p>
-        <div class="footer-row"><span>Built in two days on a free stack</span><span>11 / 13</span></div>
+        <footer class="slide-foot">
+          <span>Post-fest roadmap</span>
+          <span class="slide-foot__num">11 / 15</span>
+        </footer>
       </section>
 
-      <!-- 12 Roadmap / ask -->
+      <!-- 12 Live -->
       <section class="slide" data-slide="12">
-        <p class="eyebrow">What’s next</p>
-        <h2>Pilot with real students. Expand the syllabus. Keep coming first.</h2>
-        <div class="grid-2">
-          <div class="card">
-            <h3>Now</h3>
-            <p>Working loop on WhatsApp + web. Live link ready for judges.</p>
+        <header class="chrome">
+          <div class="brand">
+            <div class="brand__mark">R</div>
+            <span class="brand__name">Reca</span>
           </div>
-          <div class="card">
-            <h3>Next 90 days</h3>
-            <p>2–3 school / tutorial pilots · teacher progress view · broader WAEC subject coverage.</p>
+          <span class="fest-badge">Live demo</span>
+        </header>
+        <div class="slide-body">
+          <p class="eyebrow">Try it now</p>
+          <h2>Watch the aha moment.</h2>
+          <p class="lead">
+            Web companion runs the same memory loop. WhatsApp is the stage hero — Reca messages first.
+          </p>
+          <div class="demo-block">
+            <a
+              class="demo-block__url"
+              href="https://reca-study-companion.vercel.app/signup.html"
+              target="_blank"
+              rel="noopener"
+              >https://reca-study-companion.vercel.app/signup.html</a
+            >
+            <p class="demo-block__script">
+              <strong>Demo script:</strong> Explain photosynthesis → wrong Q1 (mitochondria) → unprompted
+              resurface → chloroplast. Guest mode available.
+            </p>
           </div>
         </div>
-        <p class="lead" style="margin-top: 1.25rem; font-size: 0.98rem">
-          <strong style="color:#fff">The ask:</strong> recognition and support to pilot Reca with real students
-          for the next WAEC/JAMB cycle.
-        </p>
-        <div class="footer-row"><span>Case Study 2 · AI for Everyday Life</span><span>12 / 13</span></div>
+        <footer class="slide-foot">
+          <span>GitHub · github.com/Misterhoye10/Techfest</span>
+          <span class="slide-foot__num">12 / 15</span>
+        </footer>
       </section>
 
-      <!-- 13 Thank you -->
-      <section class="slide slide--title" data-slide="13">
-        <div class="brand-row">
-          <div class="brand-mark" aria-hidden="true">R</div>
-          <div class="brand-name">Reca</div>
+      <!-- 13 Team -->
+      <section class="slide" data-slide="13">
+        <header class="chrome">
+          <div class="brand">
+            <div class="brand__mark">R</div>
+            <span class="brand__name">Reca</span>
+          </div>
+          <span class="fest-badge">The team</span>
+        </header>
+        <div class="slide-body">
+          <p class="eyebrow">Built in two days</p>
+          <h2>Who built Reca.</h2>
+          <div class="grid-2" style="margin-top: 0.35rem">
+            <div class="card">
+              <h3>Product design &amp; UX</h3>
+              <p class="person-name">Talodabioluwa Paul</p>
+              <p>Experience, copy, flows, and the student-facing product system.</p>
+            </div>
+            <div class="card">
+              <h3>Engineering &amp; WhatsApp</h3>
+              <p class="person-name">Folarin Oyewole</p>
+              <p>Backend, Meta Cloud API, memory loop, and deploy.</p>
+            </div>
+          </div>
+          <p class="lead" style="margin-top: 1rem; font-size: 0.82rem; color: var(--muted)">
+            AI BuildFest 2026 · Track 3 · Case Study 2 · Participant ID <strong style="color: var(--ink)">BF-0933</strong>
+          </p>
         </div>
-        <p class="eyebrow">Thank you</p>
-        <h1>Claude waits for you.<br />Reca comes first.</h1>
-        <p class="lead" style="margin-top: 1rem">
-          Questions welcome — try the live product or ask about the resurface demo.
-        </p>
-        <a class="link" href="https://reca-study-companion.vercel.app/signup.html" target="_blank" rel="noopener">
-          https://reca-study-companion.vercel.app/signup.html →
-        </a>
-        <p class="meta">Talodabioluwa Paul · Folarin Oyewole · BF-0933</p>
-        <div class="footer-row"><span>AI BuildFest 2026</span><span>13 / 13</span></div>
+        <footer class="slide-foot">
+          <span>Design + engineering</span>
+          <span class="slide-foot__num">13 / 15</span>
+        </footer>
+      </section>
+
+      <!-- 14 Roadmap -->
+      <section class="slide" data-slide="14">
+        <header class="chrome">
+          <div class="brand">
+            <div class="brand__mark">R</div>
+            <span class="brand__name">Reca</span>
+          </div>
+          <span class="fest-badge">What's next</span>
+        </header>
+        <div class="slide-body">
+          <p class="eyebrow">The ask</p>
+          <h2>Pilot with real students. Keep coming first.</h2>
+          <div class="grid-2" style="margin-top: 0.35rem">
+            <div class="card">
+              <h3>Now</h3>
+              <p>Working loop on WhatsApp + web. Live link ready for judges.</p>
+            </div>
+            <div class="card">
+              <h3>Next 90 days</h3>
+              <p>2–3 school pilots · teacher progress view · broader WAEC coverage.</p>
+            </div>
+          </div>
+          <p class="lead" style="margin-top: 1.1rem">
+            <span class="accent-line">The ask:</span> recognition and support to pilot Reca with real students
+            for the next WAEC/JAMB cycle.
+          </p>
+        </div>
+        <footer class="slide-foot">
+          <span>Case Study 2 · AI for Everyday Life</span>
+          <span class="slide-foot__num">14 / 15</span>
+        </footer>
+      </section>
+
+      <!-- 15 Thank you -->
+      <section class="slide slide--title" data-slide="15">
+        <header class="chrome">
+          <div class="brand">
+            <div class="brand__mark">R</div>
+            <span class="brand__name">Reca</span>
+          </div>
+          <span class="fest-badge">Thank you · <strong>BF-0933</strong></span>
+        </header>
+        <div class="slide-body">
+          <p class="eyebrow">Questions welcome</p>
+          <h1>ChatGPT waits.<br />Reca comes first.</h1>
+          <p class="lead" style="margin-top: 1rem">
+            An AI-powered WAEC/JAMB study companion — active AI memory, not another chatbot that waits.
+          </p>
+          <a class="live-url" href="https://reca-study-companion.vercel.app/signup.html"
+            >reca-study-companion.vercel.app →</a
+          >
+          <p class="lead" style="margin-top: 1rem; font-size: 0.82rem; color: var(--muted)">
+            Talodabioluwa Paul · Folarin Oyewole · BF-0933
+          </p>
+        </div>
+        <footer class="slide-foot">
+          <span>AI BuildFest 2026</span>
+          <span class="slide-foot__num">15 / 15</span>
+        </footer>
       </section>
     </div>
 
     <nav class="nav" aria-label="Slides">
       <button type="button" id="prev">←</button>
-      <span class="nav__count" id="count">1 / 13</span>
+      <span class="nav__count" id="count">1 / 15</span>
       <button type="button" id="next">→</button>
     </nav>
 
@@ -708,7 +1509,10 @@
       document.getElementById("prev").onclick = () => show(i - 1);
       document.getElementById("next").onclick = () => show(i + 1);
       document.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowRight" || e.key === " ") show(i + 1);
+        if (e.key === "ArrowRight" || e.key === " ") {
+          e.preventDefault();
+          show(i + 1);
+        }
         if (e.key === "ArrowLeft") show(i - 1);
       });
     </script>

@@ -24,22 +24,24 @@
 
 Also required for points: working build submit · **demo video upload** · community · early submit.
 
-## 13-slide map
+## 15-slide map (v3)
 
-| # | Slide | Covers |
-|---|--------|--------|
-| 1 | Title | One-liner |
-| 2 | Problem | Scale / forgetting → **25% fit** |
-| 3 | Why not ChatGPT | Passive vs active → **20% innovation** |
-| 4 | Solution | Reca on WhatsApp |
-| 5 | Functionality | Full loop → **10% execution** |
-| 6 | Use of AI | Generation + memory |
-| 7 | Tools used | Meta Business Suite · Gemini · Antigravity · Cursor |
-| 8 | Impact | Everyday usefulness → **25% useful** |
-| 9 | Business | Freemium · B2B2C · sponsored |
-| 10 | Live + demo | URL + demo path |
-| 11 | Team | Talodabioluwa Paul · Folarin Oyewole · BF-0933 |
-| 12 | Roadmap / ask | Next 90 days + ask |
-| 13 | Thank you | Close + contacts |
+| # | Slide | Portal / rubric |
+|---|--------|-----------------|
+| 1 | **Cover** | Official one-liner + BF-0933 + team |
+| 2 | Hook | ChatGPT waits · Reca comes first |
+| 3 | **User persona** | Chiamaka (primary) · Tobi (secondary) |
+| 4 | Problem | **25% fit** |
+| 5 | Why not ChatGPT | **20% innovation** |
+| 6 | Solution + chat mock | Product |
+| 7 | Functionality loop | **10% execution** |
+| 8 | Use of AI | AI solution |
+| 9 | Tools used | Meta · Gemini · Antigravity · Cursor |
+| 10 | Impact | **25% usefulness** |
+| 11 | Business | Sustainability |
+| 12 | Live + demo | URL + script |
+| 13 | Team | BF-0933 |
+| 14 | Roadmap / ask | Next 90 days |
+| 15 | Thank you | Close + one-liner |
 
-If more teammates should appear on slide 11, send names + roles and we’ll update.
+**Regenerate:** `node docs/reca/pitch/generate-pptx.js` · `node docs/reca/pitch/export-pdf.js`
