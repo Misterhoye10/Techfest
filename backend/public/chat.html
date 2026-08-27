@@ -36,12 +36,17 @@
   </head>
   <body>
     <div class="frame" id="app" data-feature="learn" data-mode="welcome">
-      <aside class="side" aria-label="Reca navigation">
+      <aside class="side" id="sideDrawer" aria-label="Reca navigation">
         <div class="side__top">
-          <a class="brand" href="/chat.html" aria-label="Reca home">
-            <img class="brand__mark" src="/assets/reca-mark.svg" width="36" height="36" alt="" />
-            <span class="brand__name">Reca</span>
-          </a>
+          <div class="side__brand-row">
+            <a class="brand" href="/chat.html" aria-label="Reca home">
+              <img class="brand__mark" src="/assets/reca-mark.svg" width="36" height="36" alt="" />
+              <span class="brand__name">Reca</span>
+            </a>
+            <button type="button" class="side__close" id="sideCloseBtn" aria-label="Close topics">
+              <span data-icon="cancel-01" aria-hidden="true"></span>
+            </button>
+          </div>
 
           <nav class="side__nav" aria-label="Primary">
             <button type="button" class="nav-item is-active" data-nav="learn">
@@ -166,14 +171,21 @@
       <section class="main" aria-label="Reca workspace">
         <div class="main__scrim" id="profileScrim" hidden></div>
         <header class="main__bar">
-          <div>
+          <button
+            type="button"
+            class="main__menu-mobile"
+            id="mobileMenuBtn"
+            aria-label="Open topics"
+            aria-controls="sideDrawer"
+            aria-expanded="false"
+          >
+            <span data-icon="bookmark-01" aria-hidden="true"></span>
+            <span class="main__menu-label">Topics</span>
+          </button>
+          <div class="main__bar-copy">
             <p class="main__eyebrow" id="mainEyebrow">Learn · Ask anything</p>
             <h1 class="main__title" id="mainTitle">Ask Reca</h1>
           </div>
-          <button type="button" class="main__menu-mobile" id="mobileMenuBtn" aria-label="Open menu">
-            <span data-icon="menu-01" aria-hidden="true"></span>
-            Menu
-          </button>
         </header>
 
         <div class="main__body">
@@ -330,6 +342,22 @@
           </form>
         </div>
       </section>
+
+      <nav class="mobile-tabs" id="mobileTabs" aria-label="Primary">
+        <button type="button" class="mobile-tab is-active" data-nav="learn">
+          <span data-icon="book-open-01" class="mobile-tab__ico" aria-hidden="true"></span>
+          <span class="mobile-tab__label">Learn</span>
+        </button>
+        <button type="button" class="mobile-tab" data-nav="revise">
+          <span data-icon="quiz-03" class="mobile-tab__ico" aria-hidden="true"></span>
+          <span class="mobile-tab__label">Revise</span>
+        </button>
+        <button type="button" class="mobile-tab" data-nav="progress">
+          <span data-icon="analytics-01" class="mobile-tab__ico" aria-hidden="true"></span>
+          <span class="mobile-tab__label">Progress</span>
+          <span class="mobile-tab__badge" id="mobileProgressBadge" hidden>0</span>
+        </button>
+      </nav>
     </div>
 
     <!-- Claude-style main Settings modal — edits live here, not in the small menu -->
