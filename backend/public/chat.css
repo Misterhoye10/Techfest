@@ -888,6 +888,7 @@ body {
 }
 
 .settings__field input,
+.settings__field select,
 .settings__wa input {
   width: 100%;
   box-sizing: border-box;
@@ -903,12 +904,14 @@ body {
 }
 
 [data-theme="light"] .settings__field input,
+[data-theme="light"] .settings__field select,
 [data-theme="light"] .settings__wa input {
   border-color: var(--line);
   background: var(--surface);
 }
 
 .settings__field input:focus-visible,
+.settings__field select:focus-visible,
 .settings__wa input:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 1px;
@@ -919,6 +922,24 @@ body {
   font-size: 0.78rem;
   line-height: 1.45;
   opacity: 0.55;
+}
+
+.settings__check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  margin: 0.85rem 0 0.5rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.settings__check input {
+  margin-top: 0.15rem;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  accent-color: var(--primary);
 }
 
 .settings__stat {

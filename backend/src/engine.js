@@ -11,6 +11,7 @@ const {
 } = require("./topics");
 const store = require("./store");
 const llm = require("./llm");
+const uniData = require("./data/uni-updates");
 
 const resurfaceMinutes = Number(process.env.RESURFACE_MINUTES || 2);
 
@@ -426,8 +427,39 @@ function prepareDailyBriefing(phone) {
   return message;
 }
 
+/** Unprompted Nigerian university admin update — POST-UTME, CAPS, admission deadlines */
+function prepareUniAdminUpdate(phone) {
+  const student = store.getStudent(phone);
+  if (student.uniUpdatesEnabled === false) return null;
+
+  let update = uniData.nextUpdateForStudent(
+    student.targetUniversity,
+    student.deliveredUniUpdateIds || []
+  );
+
+  if (!update) {
+    store.resetUniUpdateCycle(phone);
+    update = uniData.nextUpdateForStudent(student.targetUniversity, []);
+  }
+  if (!update) return null;
+
+  const uni =
+    uniData.universityById(update.universityId) ||
+    uniData.universityById(student.targetUniversity);
+  const universityName = uni?.shortName || uni?.name || "JAMB";
+
+  const message = copy.uniAdminUpdate({
+    update,
+    name: student.displayName || null,
+    universityName,
+  });
+  store.markUniUpdateDelivered(phone, update.id);
+  return { message, update, universityName };
+}
+
 module.exports = {
   handleIncoming,
   prepareResurface,
   prepareDailyBriefing,
+  prepareUniAdminUpdate,
 };

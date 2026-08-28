@@ -388,7 +388,7 @@
           </button>
           <button type="button" class="settings__nav-item" data-settings-nav="exam">
             <span data-icon="bookmark-01" aria-hidden="true"></span>
-            Exam
+            Exam &amp; uni
           </button>
           <button type="button" class="settings__nav-item" data-settings-nav="whatsapp">
             <span data-icon="sent" aria-hidden="true"></span>
@@ -464,6 +464,19 @@
             </label>
             <p class="settings__stat" id="settingsExamStat">Set your date</p>
             <p class="settings__hint">Powers the daily briefing — Reca comes to you first.</p>
+            <label class="settings__field">
+              <span class="settings__field-label">Target university</span>
+              <select id="profileTargetUniversity" aria-describedby="settingsUniHint">
+                <option value="">JAMB &amp; general only</option>
+              </select>
+            </label>
+            <p class="settings__hint" id="settingsUniHint">
+              Reca drops POST-UTME, CAPS, and admission reminders for your school — plus JAMB-wide updates.
+            </p>
+            <label class="settings__check">
+              <input id="profileUniUpdates" type="checkbox" checked />
+              <span>University admin updates from Reca</span>
+            </label>
             <p class="settings__save" id="settingsExamSave" hidden aria-live="polite"></p>
             <div class="settings__actions">
               <button type="button" class="settings__text-btn" id="settingsExamClear" hidden>Clear date</button>
@@ -514,6 +527,7 @@
               <li><strong>Learn</strong> — AI explains any syllabus topic in exam language.</li>
               <li><strong>Revise</strong> — AI-graded quizzes, one question at a time.</li>
               <li><strong>Progress</strong> — AI memory tracks weak topics and when to revisit.</li>
+              <li><strong>Uni updates</strong> — AI drops POST-UTME, CAPS, and admission reminders for your target school.</li>
             </ul>
             <p class="settings__tagline">ChatGPT waits for you to return. Reca’s active AI memory comes to you first.</p>
 
@@ -571,7 +585,11 @@
               </li>
               <li>
                 <strong>Come back first</strong>
-                <span>Reca’s AI nudges you on web — and on WhatsApp when your number is linked.</span>
+                <span>Reca’s AI nudges you on web — study briefings, missed questions, and uni admin updates.</span>
+              </li>
+              <li>
+                <strong>Uni admin drops</strong>
+                <span>Set your target university under Settings → Exam &amp; uni. Reca surfaces POST-UTME and CAPS deadlines — always verify on the official portal.</span>
               </li>
             </ol>
           </section>

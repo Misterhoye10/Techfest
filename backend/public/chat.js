@@ -61,6 +61,8 @@
   const profilePopover = document.getElementById("profilePopover");
   const profileName = document.getElementById("profileName");
   const profileExamDate = document.getElementById("profileExamDate");
+  const profileTargetUniversity = document.getElementById("profileTargetUniversity");
+  const profileUniUpdates = document.getElementById("profileUniUpdates");
   const profileWrap = document.getElementById("profileWrap");
 
   const progressPanel = document.getElementById("progressPanel");
@@ -232,29 +234,44 @@
 
     activeNudge = nudge;
     const isBriefing = nudge.type === "briefing";
+    const isUniUpdate = nudge.type === "uni-update";
     if (eyeEl) {
-      eyeEl.textContent = isBriefing ? "Today’s plan" : "Time to revisit";
+      eyeEl.textContent = isUniUpdate
+        ? "University update"
+        : isBriefing
+          ? "Today’s plan"
+          : "Time to revisit";
     }
     if (titleEl) {
-      titleEl.textContent = isBriefing
-        ? nudge.title || "Today’s focus"
+      titleEl.textContent = isBriefing || isUniUpdate
+        ? nudge.title || (isUniUpdate ? "Admin update" : "Today’s focus")
         : nudge.topicLabel
           ? nudge.topicLabel
           : nudge.title || "Quick check";
     }
     if (textEl) {
-      textEl.textContent = isBriefing
+      textEl.textContent = isBriefing || isUniUpdate
         ? String(nudge.text || "").split("\n").filter(Boolean)[0] || nudge.text
         : questionFromNudge(nudge);
     }
     if (metaEl) {
-      metaEl.textContent = isBriefing
-        ? "Reca picked today’s focus from your weak spots."
-        : "You missed this earlier. Answer to clear it.";
+      metaEl.textContent = isUniUpdate
+        ? `Reca dropped this for ${nudge.universityName || "your school"} — verify on the official portal.`
+        : isBriefing
+          ? "Reca picked today’s focus from your weak spots."
+          : "You missed this earlier. Answer to clear it.";
     }
-    if (cta) cta.textContent = isBriefing ? "Start focus" : "Answer now";
+    if (cta) {
+      cta.textContent = isUniUpdate ? "Got it" : isBriefing ? "Start focus" : "Answer now";
+    }
     bar.hidden = false;
-    announce(isBriefing ? "Daily briefing from Reca" : "Reminder from Reca");
+    announce(
+      isUniUpdate
+        ? "University update from Reca"
+        : isBriefing
+          ? "Daily briefing from Reca"
+          : "Reminder from Reca"
+    );
   }
 
   function hideNudge() {
@@ -355,6 +372,9 @@
       topicLabel: msg.topicLabel || null,
       title: msg.title || null,
       questionText: msg.questionText || null,
+      updateId: msg.updateId || null,
+      universityName: msg.universityName || null,
+      category: msg.category || null,
       at: msg.at || Date.now(),
     };
     const list = loadUnreadNudges().filter((n) => n.id !== nudge.id);
@@ -570,7 +590,7 @@
   const SETTINGS_TITLES = {
     general: "Profile",
     appearance: "Appearance",
-    exam: "Exam",
+    exam: "Exam & uni",
     whatsapp: "WhatsApp",
     about: "About Reca",
     how: "How Reca works",
@@ -713,7 +733,10 @@
     syncSettingsAccountUi();
 
     if (key === "general") profileName?.focus();
-    if (key === "exam") profileExamDate?.focus();
+    if (key === "exam") {
+      profileExamDate?.focus();
+      loadUniversities();
+    }
     if (key === "whatsapp") {
       refreshWhatsAppStatus();
       waPhone?.focus();
@@ -913,6 +936,80 @@
       profileExamDate.value = "";
       saveExam("");
     });
+  }
+
+  let universitiesLoaded = false;
+
+  async function loadUniversities() {
+    if (!profileTargetUniversity || universitiesLoaded) return;
+    try {
+      const res = await fetch("/api/universities");
+      const data = await res.json();
+      const list = data.universities || [];
+      const saved = localStorage.getItem("reca_target_university") || "";
+      profileTargetUniversity.innerHTML =
+        '<option value="">JAMB &amp; general only</option>' +
+        list
+          .map(
+            (u) =>
+              `<option value="${u.id}"${saved === u.id ? " selected" : ""}>${u.name}</option>`
+          )
+          .join("");
+      universitiesLoaded = true;
+    } catch (_) {
+      /* keep default option */
+    }
+  }
+
+  function syncUniSettingsUi() {
+    if (profileTargetUniversity) {
+      const saved = localStorage.getItem("reca_target_university") || "";
+      profileTargetUniversity.value = saved;
+    }
+    if (profileUniUpdates) {
+      profileUniUpdates.checked = localStorage.getItem("reca_uni_updates") !== "0";
+    }
+  }
+
+  async function saveUniProfile(partial = {}) {
+    const saveEl = document.getElementById("settingsExamSave");
+    const targetUniversity =
+      partial.targetUniversity !== undefined
+        ? partial.targetUniversity
+        : profileTargetUniversity?.value || "";
+    const uniUpdatesEnabled =
+      partial.uniUpdatesEnabled !== undefined
+        ? partial.uniUpdatesEnabled
+        : profileUniUpdates?.checked !== false;
+
+    if (targetUniversity) localStorage.setItem("reca_target_university", targetUniversity);
+    else localStorage.removeItem("reca_target_university");
+    localStorage.setItem("reca_uni_updates", uniUpdatesEnabled ? "1" : "0");
+
+    flashSave(saveEl, "University settings saved");
+    if (!phone) return;
+    try {
+      await fetch("/api/profile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone, targetUniversity, uniUpdatesEnabled }),
+      });
+    } catch (_) {
+      flashSave(saveEl, "Couldn’t sync university settings", true);
+    }
+  }
+
+  if (profileTargetUniversity) {
+    syncUniSettingsUi();
+    loadUniversities();
+    profileTargetUniversity.addEventListener("change", () =>
+      saveUniProfile({ targetUniversity: profileTargetUniversity.value })
+    );
+  }
+  if (profileUniUpdates) {
+    profileUniUpdates.addEventListener("change", () =>
+      saveUniProfile({ uniUpdatesEnabled: profileUniUpdates.checked })
+    );
   }
 
   (function syncProfileAccount() {
@@ -2335,6 +2432,8 @@
         phone: validSaved ? saved : undefined,
         name: localStorage.getItem("reca_display_name") || undefined,
         examDate: localStorage.getItem("reca_exam_date") || undefined,
+        targetUniversity: localStorage.getItem("reca_target_university") || undefined,
+        uniUpdatesEnabled: localStorage.getItem("reca_uni_updates") !== "0",
       }),
     });
     const data = await res.json();
@@ -2351,6 +2450,15 @@
       if (profileName) profileName.value = data.displayName;
       syncDisplayName();
     }
+    if (data.targetUniversity) {
+      localStorage.setItem("reca_target_university", data.targetUniversity);
+    }
+    if (data.uniUpdatesEnabled === false) {
+      localStorage.setItem("reca_uni_updates", "0");
+    } else if (data.uniUpdatesEnabled) {
+      localStorage.setItem("reca_uni_updates", "1");
+    }
+    syncUniSettingsUi();
     setStatus("Online", true);
   }
 
@@ -2367,7 +2475,7 @@
         if (!m?.id || seen.has(m.id)) continue;
         seen.add(m.id);
         lastEventId = m.id;
-        const proactive = m.type === "resurface" || m.type === "briefing";
+        const proactive = m.type === "resurface" || m.type === "briefing" || m.type === "uni-update";
         if (proactive) {
           enqueueNudge(m);
         } else {
@@ -2398,6 +2506,13 @@
       const nudge = activeNudge;
       if (!nudge) return;
       hideNudge();
+      if (nudge.type === "uni-update") {
+        if (nudge.id) {
+          saveUnreadNudges(loadUnreadNudges().filter((n) => n.id !== nudge.id));
+          syncProgressBadge();
+        }
+        return;
+      }
       if (nudge.type === "briefing") {
         if (nudge.id) {
           saveUnreadNudges(loadUnreadNudges().filter((n) => n.id !== nudge.id));

@@ -8,7 +8,8 @@
     "start": "node src/index.js",
     "dev": "node --watch src/index.js",
     "resurface": "node src/fire-resurface.js",
-    "briefing": "node src/fire-briefing.js"
+    "briefing": "node src/fire-briefing.js",
+    "uni-update": "node src/fire-uni-update.js"
   },
   "engines": {
     "node": ">=18"

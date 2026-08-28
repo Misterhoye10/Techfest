@@ -5,7 +5,7 @@ const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
 const cron = require("node-cron");
-const { handleIncoming, prepareResurface, prepareDailyBriefing } = require("./engine");
+const { handleIncoming, prepareResurface, prepareDailyBriefing, prepareUniAdminUpdate } = require("./engine");
 const { startQuiz, answerQuiz, currentQuiz, endQuiz } = require("./quiz");
 const { sendWhatsApp, parseInbound, isConfigured, displayNumber, verifyToken } = require("./whatsapp");
 const store = require("./store");
@@ -16,6 +16,7 @@ const db = require("./db");
 const alerts = require("./alerts");
 const { getDiagram } = require("./diagrams");
 const security = require("./security");
+const { UNIVERSITIES } = require("./data/uni-updates");
 
 const app = express();
 
@@ -582,6 +583,12 @@ app.post("/api/session", (req, res) => {
       /* keep default */
     }
   }
+  if (req.body.targetUniversity !== undefined) {
+    store.setTargetUniversity(phone, req.body.targetUniversity || null);
+  }
+  if (req.body.uniUpdatesEnabled !== undefined) {
+    store.setUniUpdatesEnabled(phone, req.body.uniUpdatesEnabled !== false);
+  }
   res.json({
     ok: true,
     phone,
@@ -592,6 +599,15 @@ app.post("/api/session", (req, res) => {
     examLabel: student.examLabel,
     daysToExam: store.daysUntilExam(student.examDate),
     displayName: student.displayName,
+    targetUniversity: student.targetUniversity || null,
+    uniUpdatesEnabled: student.uniUpdatesEnabled !== false,
+  });
+});
+
+app.get("/api/universities", (_req, res) => {
+  res.json({
+    ok: true,
+    universities: UNIVERSITIES.filter((u) => u.id !== "general-jamb"),
   });
 });
 
@@ -610,6 +626,12 @@ app.post("/api/profile", (req, res) => {
     if (req.body.examLabel) {
       student.examLabel = String(req.body.examLabel).trim().slice(0, 24) || student.examLabel;
     }
+    if (req.body.targetUniversity !== undefined) {
+      store.setTargetUniversity(phone, req.body.targetUniversity || null);
+    }
+    if (req.body.uniUpdatesEnabled !== undefined) {
+      store.setUniUpdatesEnabled(phone, req.body.uniUpdatesEnabled !== false);
+    }
     res.json({
       ok: true,
       phone,
@@ -617,6 +639,8 @@ app.post("/api/profile", (req, res) => {
       examDate: student.examDate,
       examLabel: student.examLabel,
       daysToExam: store.daysUntilExam(student.examDate),
+      targetUniversity: student.targetUniversity || null,
+      uniUpdatesEnabled: student.uniUpdatesEnabled !== false,
     });
   } catch (err) {
     res.status(err.status || 400).json({ error: err.message || "Profile update failed" });
@@ -759,6 +783,51 @@ app.post("/demo/briefing", security.requireDemoAccess, async (req, res) => {
   });
 });
 
+/**
+ * Manual university admin update for live demo / judges.
+ * Drops a curated POST-UTME / CAPS / admission reminder to web (+ WhatsApp if linked).
+ */
+app.post("/demo/uni-update", security.requireDemoAccess, async (req, res) => {
+  const phone = normalizePhone(req.body.phone || req.query.phone);
+  if (!phone) {
+    return res.status(400).json({ error: "Valid phone required" });
+  }
+  const student = store.getStudent(phone);
+  // Allow re-fire on stage even if already dropped today
+  student.lastUniUpdateDay = null;
+
+  const prepared = prepareUniAdminUpdate(phone);
+  if (!prepared) {
+    return res.status(404).json({
+      error: "No university updates available — pick a target university in Settings → Exam.",
+    });
+  }
+
+  const { message, update, universityName } = prepared;
+  store.pushOutbox(phone, message, "bot", {
+    type: "uni-update",
+    title: update.headline,
+    updateId: update.id,
+    universityName,
+    category: update.category,
+  });
+
+  let whatsapp = null;
+  try {
+    await sendWhatsApp(phone, message);
+    whatsapp = "sent";
+  } catch (err) {
+    whatsapp = `skipped: ${err.message}`;
+  }
+
+  res.json({
+    ok: true,
+    message,
+    update: { id: update.id, headline: update.headline, universityName },
+    channel: { web: true, whatsapp },
+  });
+});
+
 app.post("/debug/chat", security.requireDemoAccess, async (req, res) => {
   const phone = normalizePhone(req.body.phone);
   if (!phone) return res.status(400).json({ error: "Valid phone required" });
@@ -826,14 +895,47 @@ cron.schedule(
   { timezone: process.env.BRIEFING_TZ || "Africa/Lagos" }
 );
 
+/** Weekday university admin updates — POST-UTME, CAPS, admission (Africa/Lagos morning). */
+const uniUpdateCron = process.env.UNI_UPDATE_CRON || "0 8 * * 1-5";
+cron.schedule(
+  uniUpdateCron,
+  async () => {
+    const candidates = store.listUniUpdateCandidates();
+    for (const student of candidates) {
+      try {
+        const prepared = prepareUniAdminUpdate(student.phone);
+        if (!prepared) continue;
+        const { message, update, universityName } = prepared;
+        store.pushOutbox(student.phone, message, "bot", {
+          type: "uni-update",
+          title: update.headline,
+          updateId: update.id,
+          universityName,
+          category: update.category,
+        });
+        try {
+          await sendWhatsApp(student.phone, message);
+        } catch (_) {
+          /* web still gets it */
+        }
+        console.log(`🎓 uni update → ${student.phone} (${universityName})`);
+      } catch (err) {
+        console.error("cron uni-update failed", err.message);
+      }
+    }
+  },
+  { timezone: process.env.UNI_UPDATE_TZ || process.env.BRIEFING_TZ || "Africa/Lagos" }
+);
+
 if (!process.env.VERCEL) {
   const port = Number(process.env.PORT || 3000);
   app.listen(port, () => {
     console.log(`Reca listening on :${port}`);
     console.log(`Web chat:  http://localhost:${port}/chat.html`);
     console.log(`Signup:    http://localhost:${port}/signup.html`);
-    console.log(`Demo fire: POST /demo/resurface | POST /demo/briefing (header x-demo-secret)`);
+    console.log(`Demo fire: POST /demo/resurface | POST /demo/briefing | POST /demo/uni-update (header x-demo-secret)`);
     console.log(`Briefing cron: ${briefingCron} (${process.env.BRIEFING_TZ || "Africa/Lagos"})`);
+    console.log(`Uni updates cron: ${uniUpdateCron} (${process.env.UNI_UPDATE_TZ || process.env.BRIEFING_TZ || "Africa/Lagos"})`);
   });
 }
 

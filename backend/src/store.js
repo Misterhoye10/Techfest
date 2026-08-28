@@ -94,6 +94,10 @@ function getStudent(phone) {
       examLabel: process.env.EXAM_LABEL || "WAEC",
       displayName: null,
       lastBriefingDay: null,
+      targetUniversity: null,
+      uniUpdatesEnabled: true,
+      deliveredUniUpdateIds: [],
+      lastUniUpdateDay: null,
     });
   }
   const s = students.get(phone);
@@ -157,6 +161,51 @@ function markBriefed(phone, now = new Date()) {
   return s;
 }
 
+function setTargetUniversity(phone, universityId) {
+  const s = getStudent(phone);
+  const raw = String(universityId || "").trim();
+  if (!raw) {
+    s.targetUniversity = null;
+    return s;
+  }
+  s.targetUniversity = raw.slice(0, 32);
+  return s;
+}
+
+function setUniUpdatesEnabled(phone, enabled) {
+  const s = getStudent(phone);
+  s.uniUpdatesEnabled = enabled !== false;
+  return s;
+}
+
+/** Students eligible for a weekday admin update drop */
+function listUniUpdateCandidates(now = new Date()) {
+  const day = todayKey(now);
+  const out = [];
+  for (const student of students.values()) {
+    if (student.uniUpdatesEnabled === false) continue;
+    if (student.lastUniUpdateDay === day) continue;
+    out.push(student);
+  }
+  return out;
+}
+
+function markUniUpdateDelivered(phone, updateId, now = new Date()) {
+  const s = getStudent(phone);
+  if (!Array.isArray(s.deliveredUniUpdateIds)) s.deliveredUniUpdateIds = [];
+  if (updateId && !s.deliveredUniUpdateIds.includes(updateId)) {
+    s.deliveredUniUpdateIds.push(updateId);
+  }
+  s.lastUniUpdateDay = todayKey(now);
+  return s;
+}
+
+function resetUniUpdateCycle(phone) {
+  const s = getStudent(phone);
+  s.deliveredUniUpdateIds = [];
+  return s;
+}
+
 function pushOutbox(phone, text, kind = "bot", meta = {}) {
   if (!outbox.has(phone)) outbox.set(phone, []);
   const item = {
@@ -169,6 +218,9 @@ function pushOutbox(phone, text, kind = "bot", meta = {}) {
     topicLabel: meta.topicLabel || null,
     title: meta.title || null,
     questionText: meta.questionText || null,
+    updateId: meta.updateId || null,
+    universityName: meta.universityName || null,
+    category: meta.category || null,
   };
   outbox.get(phone).push(item);
   return item;
@@ -342,6 +394,11 @@ module.exports = {
   setDisplayName,
   listBriefingCandidates,
   markBriefed,
+  setTargetUniversity,
+  setUniUpdatesEnabled,
+  listUniUpdateCandidates,
+  markUniUpdateDelivered,
+  resetUniUpdateCycle,
   defaultExamDate,
   _students: students,
   _accounts: accounts,

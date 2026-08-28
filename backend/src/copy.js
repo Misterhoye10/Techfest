@@ -89,6 +89,24 @@ Open Revise and pick ${focus}.`;
 Open Revise and pick ${focus}.`;
   },
 
+  /**
+   * Proactive Nigerian university admin update — admission, POST-UTME, CAPS.
+   */
+  uniAdminUpdate({ update, name, universityName }) {
+    const who = name ? `${name} — ` : "";
+    const school = universityName || update?.universityName || "your school";
+    const headline = update?.headline || "University admin update";
+    const detail = update?.detail || "";
+    const hint = update?.actionHint || "Verify on the official portal before you pay.";
+    return `${who}${headline} (${school})
+
+${detail}
+
+${hint}
+
+Always confirm on the school's official site — Reca reminds; it doesn't replace the portal.`;
+  },
+
   recap({ subject, strong, cleared, needsWork, nextWeak, answered, correct, accuracy }) {
     const line = (label, list) =>
       list.length ? `${label}: ${list.join(", ")}` : null;
