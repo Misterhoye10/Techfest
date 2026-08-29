@@ -323,6 +323,58 @@ Return ONLY JSON:
   }
 }
 
+/**
+ * Summarize official university / JAMB page text into a student admin update.
+ * Returns { hasUpdate, headline, detail, actionHint, category } — hasUpdate false if nothing admission-relevant.
+ */
+async function summarizeUniAdmin({ universityName, shortName, sourceUrl, pageText }) {
+  const system = `You extract Nigerian university admission admin updates for WAEC/JAMB students.
+Rules:
+- ONLY use facts explicitly present in the page text. Never invent dates, fees, links, or deadlines.
+- If there is no clear admission, POST-UTME, screening, CAPS, registration, or result news, set hasUpdate to false.
+- Write plain, short copy for WhatsApp — no markdown.
+- category must be one of: admission, screening, results, deadline
+Return ONLY JSON.`;
+
+  const user = `University: ${universityName} (${shortName || universityName})
+Official source: ${sourceUrl}
+
+Page text (may be noisy HTML extraction):
+"""
+${String(pageText || "").slice(0, 12000)}
+"""
+
+Return JSON:
+{
+  "hasUpdate": boolean,
+  "headline": "short headline under 80 chars",
+  "detail": "2-3 sentences max — only facts from the page",
+  "actionHint": "one practical next step for the student",
+  "category": "admission|screening|results|deadline"
+}`;
+
+  const data = await generateJson(system, user);
+  if (!data || data.hasUpdate !== true) {
+    return { hasUpdate: false };
+  }
+
+  const headline = String(data.headline || "").trim();
+  const detail = String(data.detail || "").trim();
+  if (!headline || !detail) {
+    return { hasUpdate: false };
+  }
+
+  return {
+    hasUpdate: true,
+    headline: headline.slice(0, 120),
+    detail: detail.slice(0, 500),
+    actionHint: String(data.actionHint || "Confirm on the official portal before you pay.")
+      .trim()
+      .slice(0, 200),
+    category: String(data.category || "admission").trim().slice(0, 24),
+  };
+}
+
 module.exports = {
   isEnabled,
   providerLabel,
@@ -330,4 +382,5 @@ module.exports = {
   gradeAnswerLlm,
   learnReply,
   explainFromImage,
+  summarizeUniAdmin,
 };

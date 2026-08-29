@@ -98,11 +98,15 @@ Open Revise and pick ${focus}.`;
     const headline = update?.headline || "University admin update";
     const detail = update?.detail || "";
     const hint = update?.actionHint || "Verify on the official portal before you pay.";
-    return `${who}${headline} (${school})
+    const sourceLine = update?.sourceUrl
+      ? `\n\nSource: ${update.sourceUrl}`
+      : "";
+    const aiTag = update?.source === "ai-feed" ? " (AI summary from official page)" : "";
+    return `${who}${headline} (${school})${aiTag}
 
 ${detail}
 
-${hint}
+${hint}${sourceLine}
 
 Always confirm on the school's official site — Reca reminds; it doesn't replace the portal.`;
   },

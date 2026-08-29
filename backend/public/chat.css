@@ -888,7 +888,6 @@ body {
 }
 
 .settings__field input,
-.settings__field select,
 .settings__wa input {
   width: 100%;
   box-sizing: border-box;
@@ -903,18 +902,178 @@ body {
   color-scheme: inherit;
 }
 
+.settings__field input[type="date"] {
+  color-scheme: dark;
+}
+
+[data-theme="light"] .settings__field input[type="date"] {
+  color-scheme: light;
+}
+
 [data-theme="light"] .settings__field input,
-[data-theme="light"] .settings__field select,
 [data-theme="light"] .settings__wa input {
   border-color: var(--line);
   background: var(--surface);
 }
 
 .settings__field input:focus-visible,
-.settings__field select:focus-visible,
 .settings__wa input:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 1px;
+}
+
+/* Custom university picker — avoids native select theming bugs */
+.uni-select__root {
+  position: relative;
+}
+
+.uni-select__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: inherit;
+  border-radius: 10px;
+  padding: 0.65rem 0.75rem;
+  font: inherit;
+  font-size: 0.92rem;
+  min-height: 42px;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    border-color var(--motion-fast) var(--ease),
+    background var(--motion-fast) var(--ease);
+}
+
+.uni-select__trigger:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.uni-select__trigger[aria-expanded="true"],
+.uni-select__trigger:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+  border-color: color-mix(in srgb, var(--primary) 42%, transparent);
+}
+
+.uni-select__value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.uni-select__chev {
+  display: grid;
+  place-items: center;
+  width: 1rem;
+  height: 1rem;
+  opacity: 0.55;
+  flex-shrink: 0;
+  transition: transform var(--motion-fast) var(--ease);
+}
+
+.uni-select__chev .ico,
+.uni-select__chev svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.uni-select__trigger[aria-expanded="true"] .uni-select__chev {
+  transform: rotate(180deg);
+}
+
+.uni-select__menu {
+  position: absolute;
+  z-index: 24;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0.35rem;
+  list-style: none;
+  max-height: 14rem;
+  overflow-y: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #222;
+  color: #f2f0ed;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.48);
+  animation: uniSelectIn var(--motion-fast) var(--ease) both;
+}
+
+.uni-select__menu[hidden] {
+  display: none !important;
+}
+
+.uni-select__option {
+  padding: 0.58rem 0.68rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  line-height: 1.35;
+  cursor: pointer;
+  color: color-mix(in srgb, #f2f0ed 94%, transparent);
+}
+
+.uni-select__option:hover,
+.uni-select__option.is-focused {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.uni-select__option.is-selected {
+  background: color-mix(in srgb, var(--primary) 20%, transparent);
+  color: var(--primary);
+  font-weight: 550;
+}
+
+[data-theme="light"] .uni-select__trigger {
+  border-color: var(--line);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+[data-theme="light"] .uni-select__trigger:hover {
+  border-color: color-mix(in srgb, var(--primary) 24%, var(--line));
+  background: color-mix(in srgb, var(--primary) 4%, var(--surface));
+}
+
+[data-theme="light"] .uni-select__menu {
+  background: var(--white);
+  color: var(--ink);
+  border-color: var(--line);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .uni-select__option {
+  color: color-mix(in srgb, var(--ink) 92%, transparent);
+}
+
+[data-theme="light"] .uni-select__option:hover,
+[data-theme="light"] .uni-select__option.is-focused {
+  background: color-mix(in srgb, var(--primary) 8%, var(--surface));
+}
+
+@keyframes uniSelectIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .uni-select__menu {
+    animation: none;
+  }
 }
 
 .settings__hint {

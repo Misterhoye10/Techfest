@@ -62,6 +62,9 @@
   const profileName = document.getElementById("profileName");
   const profileExamDate = document.getElementById("profileExamDate");
   const profileTargetUniversity = document.getElementById("profileTargetUniversity");
+  const profileTargetUniversityTrigger = document.getElementById("profileTargetUniversityTrigger");
+  const profileTargetUniversityList = document.getElementById("profileTargetUniversityList");
+  const profileTargetUniversityLabel = document.getElementById("profileTargetUniversityLabel");
   const profileUniUpdates = document.getElementById("profileUniUpdates");
   const profileWrap = document.getElementById("profileWrap");
 
@@ -256,13 +259,21 @@
     }
     if (metaEl) {
       metaEl.textContent = isUniUpdate
-        ? `Reca dropped this for ${nudge.universityName || "your school"} — verify on the official portal.`
+        ? nudge.sourceUrl
+          ? `AI summary from ${nudge.universityName || "official page"} — tap View source, then confirm on the portal.`
+          : `Reca dropped this for ${nudge.universityName || "your school"} — verify on the official portal.`
         : isBriefing
           ? "Reca picked today’s focus from your weak spots."
           : "You missed this earlier. Answer to clear it.";
     }
     if (cta) {
-      cta.textContent = isUniUpdate ? "Got it" : isBriefing ? "Start focus" : "Answer now";
+      cta.textContent = isUniUpdate
+        ? nudge.sourceUrl
+          ? "View source"
+          : "Got it"
+        : isBriefing
+          ? "Start focus"
+          : "Answer now";
     }
     bar.hidden = false;
     announce(
@@ -375,6 +386,8 @@
       updateId: msg.updateId || null,
       universityName: msg.universityName || null,
       category: msg.category || null,
+      sourceUrl: msg.sourceUrl || null,
+      source: msg.source || null,
       at: msg.at || Date.now(),
     };
     const list = loadUnreadNudges().filter((n) => n.id !== nudge.id);
@@ -734,7 +747,7 @@
 
     if (key === "general") profileName?.focus();
     if (key === "exam") {
-      profileExamDate?.focus();
+      closeUniSelect();
       loadUniversities();
     }
     if (key === "whatsapp") {
@@ -778,6 +791,7 @@
   }
 
   function closeSettingsModal() {
+    closeUniSelect();
     if (!settingsModal) return;
     settingsModal.hidden = true;
     document.body.style.overflow = "";
@@ -939,32 +953,115 @@
   }
 
   let universitiesLoaded = false;
+  const DEFAULT_UNI_LABEL = "JAMB & general only";
+  let uniSelectFocusIndex = -1;
+
+  function closeUniSelect() {
+    if (!profileTargetUniversityTrigger || !profileTargetUniversityList) return;
+    profileTargetUniversityTrigger.setAttribute("aria-expanded", "false");
+    profileTargetUniversityList.hidden = true;
+    uniSelectFocusIndex = -1;
+    profileTargetUniversityList.querySelectorAll(".uni-select__option.is-focused").forEach((el) => {
+      el.classList.remove("is-focused");
+    });
+  }
+
+  function openUniSelect() {
+    if (!profileTargetUniversityTrigger || !profileTargetUniversityList) return;
+    profileTargetUniversityTrigger.setAttribute("aria-expanded", "true");
+    profileTargetUniversityList.hidden = false;
+    const selected = profileTargetUniversityList.querySelector(".uni-select__option.is-selected");
+    uniSelectFocusIndex = selected
+      ? Array.from(profileTargetUniversityList.children).indexOf(selected)
+      : 0;
+    focusUniOption(uniSelectFocusIndex);
+  }
+
+  function toggleUniSelect() {
+    if (profileTargetUniversityList?.hidden) openUniSelect();
+    else closeUniSelect();
+  }
+
+  function focusUniOption(index) {
+    if (!profileTargetUniversityList) return;
+    const items = profileTargetUniversityList.querySelectorAll(".uni-select__option");
+    if (!items.length) return;
+    const i = Math.max(0, Math.min(index, items.length - 1));
+    uniSelectFocusIndex = i;
+    items.forEach((el, idx) => el.classList.toggle("is-focused", idx === i));
+    items[i].scrollIntoView({ block: "nearest" });
+  }
+
+  function selectUniversity(value, label, { save = true } = {}) {
+    if (profileTargetUniversity) profileTargetUniversity.value = value || "";
+    const displayLabel = label || DEFAULT_UNI_LABEL;
+    if (profileTargetUniversityLabel) {
+      profileTargetUniversityLabel.textContent = displayLabel;
+    }
+    if (value) {
+      localStorage.setItem("reca_target_university", value);
+      localStorage.setItem("reca_target_university_label", displayLabel);
+    } else {
+      localStorage.removeItem("reca_target_university");
+      localStorage.removeItem("reca_target_university_label");
+    }
+    if (profileTargetUniversityList) {
+      profileTargetUniversityList.querySelectorAll(".uni-select__option").forEach((el) => {
+        el.classList.toggle("is-selected", el.dataset.value === (value || ""));
+        el.setAttribute("aria-selected", el.dataset.value === (value || "") ? "true" : "false");
+      });
+    }
+    closeUniSelect();
+    if (save) saveUniProfile({ targetUniversity: value || "" });
+  }
+
+  function renderUniOptions(list) {
+    if (!profileTargetUniversityList) return;
+    const saved = localStorage.getItem("reca_target_university") || "";
+    const options = [{ id: "", name: DEFAULT_UNI_LABEL }, ...list];
+    profileTargetUniversityList.innerHTML = options
+      .map(
+        (u) =>
+          `<li class="uni-select__option${saved === u.id ? " is-selected" : ""}" role="option" data-value="${u.id}" aria-selected="${saved === u.id ? "true" : "false"}" tabindex="-1">${u.name}</li>`
+      )
+      .join("");
+    const current = options.find((u) => u.id === saved) || options[0];
+    if (profileTargetUniversity) profileTargetUniversity.value = current.id;
+    if (profileTargetUniversityLabel) profileTargetUniversityLabel.textContent = current.name;
+  }
 
   async function loadUniversities() {
-    if (!profileTargetUniversity || universitiesLoaded) return;
+    if (!profileTargetUniversityList || universitiesLoaded) return;
     try {
       const res = await fetch("/api/universities");
       const data = await res.json();
-      const list = data.universities || [];
-      const saved = localStorage.getItem("reca_target_university") || "";
-      profileTargetUniversity.innerHTML =
-        '<option value="">JAMB &amp; general only</option>' +
-        list
-          .map(
-            (u) =>
-              `<option value="${u.id}"${saved === u.id ? " selected" : ""}>${u.name}</option>`
-          )
-          .join("");
+      renderUniOptions(data.universities || []);
       universitiesLoaded = true;
     } catch (_) {
-      /* keep default option */
+      renderUniOptions([]);
+      universitiesLoaded = true;
     }
   }
 
   function syncUniSettingsUi() {
-    if (profileTargetUniversity) {
-      const saved = localStorage.getItem("reca_target_university") || "";
-      profileTargetUniversity.value = saved;
+    const saved = localStorage.getItem("reca_target_university") || "";
+    const savedLabel = localStorage.getItem("reca_target_university_label") || DEFAULT_UNI_LABEL;
+    if (profileTargetUniversity) profileTargetUniversity.value = saved;
+    if (profileTargetUniversityList?.children.length) {
+      profileTargetUniversityList.querySelectorAll(".uni-select__option").forEach((el) => {
+        const on = el.dataset.value === saved;
+        el.classList.toggle("is-selected", on);
+        el.setAttribute("aria-selected", on ? "true" : "false");
+      });
+      const selected = profileTargetUniversityList.querySelector(
+        `.uni-select__option[data-value="${CSS.escape(saved)}"]`
+      );
+      if (profileTargetUniversityLabel) {
+        profileTargetUniversityLabel.textContent =
+          selected?.textContent?.trim() || savedLabel;
+      }
+    } else if (profileTargetUniversityLabel) {
+      profileTargetUniversityLabel.textContent = saved ? savedLabel : DEFAULT_UNI_LABEL;
     }
     if (profileUniUpdates) {
       profileUniUpdates.checked = localStorage.getItem("reca_uni_updates") !== "0";
@@ -999,12 +1096,56 @@
     }
   }
 
-  if (profileTargetUniversity) {
+  if (profileTargetUniversityTrigger && profileTargetUniversityList) {
     syncUniSettingsUi();
     loadUniversities();
-    profileTargetUniversity.addEventListener("change", () =>
-      saveUniProfile({ targetUniversity: profileTargetUniversity.value })
-    );
+    profileTargetUniversityTrigger.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleUniSelect();
+    });
+    profileTargetUniversityList.addEventListener("click", (e) => {
+      const opt = e.target.closest(".uni-select__option");
+      if (!opt) return;
+      selectUniversity(opt.dataset.value || "", opt.textContent.trim());
+    });
+    profileTargetUniversityList.addEventListener("keydown", (e) => {
+      const items = profileTargetUniversityList.querySelectorAll(".uni-select__option");
+      if (!items.length) return;
+      if (e.key === "Escape") {
+        e.preventDefault();
+        closeUniSelect();
+        profileTargetUniversityTrigger.focus();
+        return;
+      }
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        focusUniOption(uniSelectFocusIndex + 1);
+        return;
+      }
+      if (e.key === "ArrowUp") {
+        e.preventDefault();
+        focusUniOption(uniSelectFocusIndex - 1);
+        return;
+      }
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        const focused = items[uniSelectFocusIndex];
+        if (focused) selectUniversity(focused.dataset.value || "", focused.textContent.trim());
+      }
+    });
+    profileTargetUniversityTrigger.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openUniSelect();
+        profileTargetUniversityList.focus();
+      }
+      if (e.key === "Escape") closeUniSelect();
+    });
+    document.addEventListener("click", (e) => {
+      if (profileTargetUniversityList?.hidden) return;
+      if (e.target.closest("#profileTargetUniversityWrap")) return;
+      closeUniSelect();
+    });
   }
   if (profileUniUpdates) {
     profileUniUpdates.addEventListener("change", () =>
@@ -2507,6 +2648,9 @@
       if (!nudge) return;
       hideNudge();
       if (nudge.type === "uni-update") {
+        if (nudge.sourceUrl) {
+          window.open(nudge.sourceUrl, "_blank", "noopener,noreferrer");
+        }
         if (nudge.id) {
           saveUnreadNudges(loadUnreadNudges().filter((n) => n.id !== nudge.id));
           syncProgressBadge();
