@@ -1218,8 +1218,38 @@
     if (mobileMenuBtn) mobileMenuBtn.setAttribute("aria-expanded", String(open));
   }
 
-  function scrollThread() {
-    thread.scrollTop = thread.scrollHeight;
+  function getThreadScroller() {
+    // `.main__body` is the overflow scroller; `#thread` grows with content
+    return document.querySelector(".main__body") || thread?.parentElement || thread;
+  }
+
+  function scrollThread(opts = {}) {
+    const scroller = getThreadScroller();
+    if (!scroller) return;
+
+    const run = () => {
+      const last =
+        opts.el ||
+        thread?.querySelector(".turn:last-child, .learn-cta:last-child");
+      if (last && typeof last.scrollIntoView === "function") {
+        last.scrollIntoView({
+          block: "end",
+          inline: "nearest",
+          behavior: opts.smooth ? "smooth" : "auto",
+        });
+      } else {
+        scroller.scrollTop = scroller.scrollHeight;
+      }
+    };
+
+    // Wait for layout (teach bubbles / images) before scrolling
+    requestAnimationFrame(() => {
+      requestAnimationFrame(run);
+      if (opts.settle !== false) {
+        setTimeout(run, 80);
+        setTimeout(run, 220);
+      }
+    });
   }
 
   function syncSendEnabled() {
@@ -1309,7 +1339,7 @@
       bubble.append(pulse, copy);
       thinkingEl.append(avatar, bubble);
       thread.appendChild(thinkingEl);
-      scrollThread();
+      scrollThread({ el: thinkingEl, settle: false });
       thinkingSecondaryTimer = setTimeout(() => {
         secondary.classList.add("is-visible");
       }, 1200);
@@ -1573,7 +1603,7 @@
     stack.appendChild(el);
     turn.appendChild(stack);
     thread.appendChild(turn);
-    scrollThread();
+    scrollThread({ el: turn, smooth: role === "in" });
   }
 
   function addErrorBubble(message, onRetry) {
@@ -2121,7 +2151,7 @@
     }
 
     thread.appendChild(cta);
-    scrollThread();
+    scrollThread({ el: cta, smooth: true });
   }
 
   async function sendMessage(text, opts = {}) {
