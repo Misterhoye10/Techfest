@@ -6,6 +6,7 @@
 const fs = require("fs");
 const path = require("path");
 const { EXTRA_SEEDS } = require("./subject-seeds-extra");
+const { EXTRA_SEEDS_ARTS_COMMERCE } = require("./subject-seeds-arts-commerce");
 
 function slug(s) {
   return String(s)
@@ -795,6 +796,10 @@ for (const seed of EXTRA_SEEDS) {
   SEEDS.push(seed);
 }
 
+for (const seed of EXTRA_SEEDS_ARTS_COMMERCE) {
+  SEEDS.push(seed);
+}
+
 function buildQuestion(item, index) {
   const answer = String(item.answer).trim();
   const flatDistractors = (item.distractors || [])
@@ -861,12 +866,30 @@ const SUBJECTS = [
   "Yoruba",
   "Igbo",
   "Hausa",
+  "Government",
+  "Commerce",
+  "Economics",
+  "Accounting",
+  "Marketing",
+  "History",
+  "Geography",
+  "Fine Arts",
+  "Creative Arts",
+  "Food and Nutrition",
+  "Home Management",
+  "French",
+  "Islamic Religious Studies",
+  "Christian Religious Knowledge",
+  "Computer Studies",
+  "Literature in English",
+  "Music",
 ];
 
 function subjectIcon(subject) {
   switch (subject) {
     case "Biology":
     case "Agriculture":
+    case "Food and Nutrition":
       return "leaf-01";
     case "Chemistry":
       return "chemistry-01";
@@ -874,12 +897,29 @@ function subjectIcon(subject) {
       return "flash";
     case "Mathematics":
     case "Further Mathematics":
+    case "Accounting":
+    case "Economics":
+    case "Commerce":
+    case "Marketing":
+    case "Computer Studies":
       return "calculator-01";
     case "English Language":
+    case "Literature in English":
     case "Yoruba":
     case "Igbo":
     case "Hausa":
+    case "French":
+    case "History":
+    case "Government":
+    case "Islamic Religious Studies":
+    case "Christian Religious Knowledge":
+    case "Geography":
+    case "Home Management":
       return "book-open-01";
+    case "Fine Arts":
+    case "Creative Arts":
+    case "Music":
+      return "bookmark-01";
     default:
       return "book-01";
   }
