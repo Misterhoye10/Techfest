@@ -25,12 +25,15 @@
   const modesEl = document.querySelector(".auth__modes");
   const guestLink = document.getElementById("authGuest");
   const guestNote = document.getElementById("authGuestNote");
-  const authDivider = document.getElementById("authDivider");
 
   function setGuestPromoVisible(show) {
+    const guestBlock = document.getElementById("authGuestBlock");
+    const signinBlock = document.getElementById("authSigninBlock");
+    if (guestBlock) guestBlock.hidden = !show;
     if (guestLink) guestLink.hidden = !show;
     if (guestNote) guestNote.hidden = !show;
-    if (authDivider) authDivider.hidden = !show;
+    if (signinBlock && !show) signinBlock.hidden = true;
+    else if (signinBlock && show) signinBlock.hidden = false;
   }
 
   const params = new URLSearchParams(location.search);
@@ -123,8 +126,12 @@
   }
 
   function showOtpStep({ phone, devCode }) {
+    const authHead = document.getElementById("authHead");
+    const signinBlock = document.getElementById("authSigninBlock");
     form.hidden = true;
     if (modesEl) modesEl.hidden = true;
+    if (signinBlock) signinBlock.hidden = true;
+    if (authHead) authHead.hidden = true;
     if (titleEl) titleEl.hidden = true;
     if (introEl) introEl.hidden = true;
     otpForm.hidden = false;
@@ -149,8 +156,12 @@
   }
 
   function showPhoneStep() {
+    const authHead = document.getElementById("authHead");
+    const signinBlock = document.getElementById("authSigninBlock");
     form.hidden = false;
     if (modesEl) modesEl.hidden = false;
+    if (signinBlock) signinBlock.hidden = false;
+    if (authHead) authHead.hidden = false;
     if (titleEl) titleEl.hidden = false;
     if (introEl) introEl.hidden = false;
     otpForm.hidden = true;
@@ -162,9 +173,13 @@
   }
 
   function showSyncStep({ continueUrl, whatsappFrom }) {
+    const authHead = document.getElementById("authHead");
+    const signinBlock = document.getElementById("authSigninBlock");
     form.hidden = true;
     otpForm.hidden = true;
     if (modesEl) modesEl.hidden = true;
+    if (signinBlock) signinBlock.hidden = true;
+    if (authHead) authHead.hidden = true;
     if (titleEl) titleEl.hidden = true;
     if (introEl) introEl.hidden = true;
     syncCard.hidden = false;
