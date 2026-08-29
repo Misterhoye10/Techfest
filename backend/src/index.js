@@ -17,6 +17,7 @@ const alerts = require("./alerts");
 const { getDiagram } = require("./diagrams");
 const security = require("./security");
 const { UNIVERSITIES } = require("./data/uni-updates");
+const uniFeed = require("./uni-feed");
 
 const app = express();
 
@@ -796,10 +797,16 @@ app.post("/demo/uni-update", security.requireDemoAccess, async (req, res) => {
   // Allow re-fire on stage even if already dropped today
   student.lastUniUpdateDay = null;
 
+  // Refresh AI feed for student's target uni (or JAMB) before dropping
+  const refreshTarget = student.targetUniversity || "general-jamb";
+  const refreshResult = await uniFeed.refreshForUniversity(refreshTarget);
+  await uniFeed.refreshForUniversity("general-jamb");
+
   const prepared = prepareUniAdminUpdate(phone);
   if (!prepared) {
     return res.status(404).json({
       error: "No university updates available — pick a target university in Settings → Exam.",
+      feed: refreshResult,
     });
   }
 
@@ -810,6 +817,8 @@ app.post("/demo/uni-update", security.requireDemoAccess, async (req, res) => {
     updateId: update.id,
     universityName,
     category: update.category,
+    sourceUrl: update.sourceUrl || null,
+    source: update.source || null,
   });
 
   let whatsapp = null;
@@ -823,9 +832,31 @@ app.post("/demo/uni-update", security.requireDemoAccess, async (req, res) => {
   res.json({
     ok: true,
     message,
-    update: { id: update.id, headline: update.headline, universityName },
+    update: {
+      id: update.id,
+      headline: update.headline,
+      universityName,
+      source: update.source || "curated",
+      sourceUrl: update.sourceUrl || null,
+    },
+    feed: refreshResult,
     channel: { web: true, whatsapp },
   });
+});
+
+/**
+ * Refresh AI university feed from official sources (demo / admin).
+ */
+app.post("/demo/uni-feed-refresh", security.requireDemoAccess, async (req, res) => {
+  const universityId = String(req.body.universityId || req.query.universityId || "").trim();
+  const results = universityId
+    ? [await uniFeed.refreshForUniversity(universityId)]
+    : await uniFeed.refreshAllSources();
+  res.json({ ok: true, results, status: uniFeed.feedStatus() });
+});
+
+app.get("/demo/uni-feed-status", security.requireDemoAccess, (_req, res) => {
+  res.json({ ok: true, status: uniFeed.feedStatus() });
 });
 
 app.post("/debug/chat", security.requireDemoAccess, async (req, res) => {
@@ -912,6 +943,8 @@ cron.schedule(
           updateId: update.id,
           universityName,
           category: update.category,
+          sourceUrl: update.sourceUrl || null,
+          source: update.source || null,
         });
         try {
           await sendWhatsApp(student.phone, message);
@@ -927,15 +960,38 @@ cron.schedule(
   { timezone: process.env.UNI_UPDATE_TZ || process.env.BRIEFING_TZ || "Africa/Lagos" }
 );
 
+/** Fetch official admission pages + AI summarize (before weekday student drops). */
+const uniFeedCron = process.env.UNI_FEED_CRON || "0 6 * * *";
+cron.schedule(
+  uniFeedCron,
+  async () => {
+    try {
+      const results = await uniFeed.refreshAllSources();
+      const fresh = results.filter((r) => r.hasUpdate).length;
+      const changed = results.filter((r) => r.changed).length;
+      console.log(`📡 uni feed refresh — ${changed} changed, ${fresh} new AI updates`);
+    } catch (err) {
+      console.error("cron uni-feed failed", err.message);
+    }
+  },
+  { timezone: process.env.UNI_FEED_TZ || process.env.BRIEFING_TZ || "Africa/Lagos" }
+);
+
 if (!process.env.VERCEL) {
   const port = Number(process.env.PORT || 3000);
   app.listen(port, () => {
     console.log(`Reca listening on :${port}`);
     console.log(`Web chat:  http://localhost:${port}/chat.html`);
     console.log(`Signup:    http://localhost:${port}/signup.html`);
-    console.log(`Demo fire: POST /demo/resurface | POST /demo/briefing | POST /demo/uni-update (header x-demo-secret)`);
+    console.log(`Demo fire: POST /demo/resurface | POST /demo/briefing | POST /demo/uni-update | POST /demo/uni-feed-refresh (header x-demo-secret)`);
     console.log(`Briefing cron: ${briefingCron} (${process.env.BRIEFING_TZ || "Africa/Lagos"})`);
+    console.log(`Uni feed cron: ${uniFeedCron} (${process.env.UNI_FEED_TZ || process.env.BRIEFING_TZ || "Africa/Lagos"})`);
     console.log(`Uni updates cron: ${uniUpdateCron} (${process.env.UNI_UPDATE_TZ || process.env.BRIEFING_TZ || "Africa/Lagos"})`);
+    if (uniFeed.isEnabled() && llm.isEnabled()) {
+      uniFeed.refreshAllSources().catch((err) => {
+        console.warn("Startup uni feed refresh skipped:", err.message);
+      });
+    }
   });
 }
 

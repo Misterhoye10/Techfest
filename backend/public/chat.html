@@ -464,12 +464,32 @@
             </label>
             <p class="settings__stat" id="settingsExamStat">Set your date</p>
             <p class="settings__hint">Powers the daily briefing — Reca comes to you first.</p>
-            <label class="settings__field">
-              <span class="settings__field-label">Target university</span>
-              <select id="profileTargetUniversity" aria-describedby="settingsUniHint">
-                <option value="">JAMB &amp; general only</option>
-              </select>
-            </label>
+            <div class="settings__field uni-select" id="profileTargetUniversityWrap">
+              <span class="settings__field-label" id="profileTargetUniversityFieldLabel">Target university</span>
+              <div class="uni-select__root">
+                <button
+                  type="button"
+                  class="uni-select__trigger"
+                  id="profileTargetUniversityTrigger"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                  aria-labelledby="profileTargetUniversityFieldLabel profileTargetUniversityLabel"
+                  aria-describedby="settingsUniHint"
+                >
+                  <span class="uni-select__value" id="profileTargetUniversityLabel">JAMB &amp; general only</span>
+                  <span class="uni-select__chev" data-icon="arrow-down-01" aria-hidden="true"></span>
+                </button>
+                <ul
+                  class="uni-select__menu"
+                  id="profileTargetUniversityList"
+                  role="listbox"
+                  tabindex="-1"
+                  hidden
+                  aria-label="Target university"
+                ></ul>
+                <input type="hidden" id="profileTargetUniversity" value="" />
+              </div>
+            </div>
             <p class="settings__hint" id="settingsUniHint">
               Reca drops POST-UTME, CAPS, and admission reminders for your school — plus JAMB-wide updates.
             </p>
@@ -527,7 +547,7 @@
               <li><strong>Learn</strong> — AI explains any syllabus topic in exam language.</li>
               <li><strong>Revise</strong> — AI-graded quizzes, one question at a time.</li>
               <li><strong>Progress</strong> — AI memory tracks weak topics and when to revisit.</li>
-              <li><strong>Uni updates</strong> — AI drops POST-UTME, CAPS, and admission reminders for your target school.</li>
+              <li><strong>Uni updates</strong> — AI reads official admission pages and drops POST-UTME, CAPS, and deadline reminders for your target school.</li>
             </ul>
             <p class="settings__tagline">ChatGPT waits for you to return. Reca’s active AI memory comes to you first.</p>
 
@@ -589,7 +609,7 @@
               </li>
               <li>
                 <strong>Uni admin drops</strong>
-                <span>Set your target university under Settings → Exam &amp; uni. Reca surfaces POST-UTME and CAPS deadlines — always verify on the official portal.</span>
+                <span>Set your target university under Settings → Exam &amp; uni. Reca’s AI monitors official pages, summarizes what changed, and drops it with a source link — always verify on the portal.</span>
               </li>
             </ol>
           </section>

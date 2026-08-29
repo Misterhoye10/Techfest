@@ -221,6 +221,8 @@ function pushOutbox(phone, text, kind = "bot", meta = {}) {
     updateId: meta.updateId || null,
     universityName: meta.universityName || null,
     category: meta.category || null,
+    sourceUrl: meta.sourceUrl || null,
+    source: meta.source || null,
   };
   outbox.get(phone).push(item);
   return item;
