@@ -161,7 +161,7 @@ function getGlobalLexicon() {
     add(topic.id.replace(/-/g, " "));
     (topic.aliases || []).forEach(add);
   });
-  ["Biology", "Chemistry", "Physics", "Mathematics", "Maths", "Math", "Further Mathematics", "English Language", "English", "Agriculture", "Yoruba", "Igbo", "Hausa"].forEach(add);
+  ["Biology", "Chemistry", "Physics", "Mathematics", "Maths", "Math", "Further Mathematics", "English Language", "English", "Agriculture", "Yoruba", "Igbo", "Hausa", "Government", "Commerce", "Economics", "Accounting", "Accounts", "Marketing", "History", "Geography", "Fine Arts", "Creative Arts", "Food and Nutrition", "Home Management", "French", "Islamic Religious Studies", "IRS", "Christian Religious Knowledge", "CRK", "CRS", "Computer Studies", "Literature in English", "Literature", "Music"].forEach(add);
   globalLexicon = map;
   return map;
 }
