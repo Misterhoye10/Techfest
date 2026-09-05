@@ -327,6 +327,22 @@ app.post('/webhook', async (req, res) => {
 
       await sendMetaWhatsAppMessage(senderPhone, response);
       console.log('✅ Explanation sent');
+
+      // 40-second Active Recall Inactivity Nudge (Demo feature)
+      setTimeout(async () => {
+        try {
+          const currentSession = userSessions[senderPhone];
+          // Check if user still hasn't answered this quiz session
+          if (currentSession && currentSession.topic === topic) {
+            console.log(`🔔 Sending 40s active recall nudge for ${topic} to ${senderPhone}...`);
+            const nudgeText = `💡 *Reca Study Nudge:* Hey study buddy! Don't forget to answer the 2 practice questions for *${topic}* to test your recall and keep your streak alive! 🎯\n\n(Whenever you're ready, reply with your answers right here!)`;
+            await sendMetaWhatsAppMessage(senderPhone, nudgeText);
+            console.log(`✅ 40s active recall nudge sent to ${senderPhone}`);
+          }
+        } catch (nudgeErr) {
+          console.error('❌ Error sending 40s nudge:', nudgeErr.message);
+        }
+      }, 40000);
     } catch (error) {
       console.error('❌ Error in explain flow:', error.message);
       await sendMetaWhatsAppMessage(senderPhone, '❌ Sorry, something went wrong. Try again later.');
