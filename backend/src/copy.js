@@ -52,19 +52,19 @@ Want another topic? Try: ${nextHint}`;
   },
 
   resurface(questionText) {
-    return `Quick recall — ${questionText}`;
+    return `Quick recall: ${questionText}`;
   },
 
   resurfaceCleared(topicLabel = "Photosynthesis") {
-    return `Correct. Cleared: ${topicLabel} ✓
+    return `Correct. Cleared: ${topicLabel}.
 
 You've got this one now. Want another topic? Try: explain osmosis`;
   },
 
   resurfaceMiss(correctAnswer) {
-    return `Not quite — it's ${correctAnswer}.
+    return `Not quite. The answer is ${correctAnswer}.
 
-I'll remember it and check again later. You're building it.`;
+I'll remember it and check again later.`;
   },
 
   /**

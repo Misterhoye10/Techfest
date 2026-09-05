@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Reca</title>
+    <title>Reca · Start studying</title>
     <link rel="icon" href="/assets/reca-mark.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,7 +16,7 @@
   <body>
     <main class="auth">
       <section class="auth__panel" aria-labelledby="authTitle">
-        <a class="auth__brand" href="/signup.html" aria-label="Reca">
+        <a class="auth__brand" href="/signup.html" aria-label="Reca home">
           <img class="auth__mark" src="/assets/reca-mark.svg" width="32" height="32" alt="" />
           <span class="auth__brand-name">Reca</span>
         </a>
@@ -25,33 +25,58 @@
           <header class="auth__head" id="authHead">
             <h1 class="auth__title" id="authTitle">Start studying</h1>
             <p class="auth__intro" id="authIntro">
-              Reca is an AI-powered WAEC &amp; JAMB companion — try it on the web, no signup needed.
+              WAEC &amp; JAMB explanations, quizzes, and Progress. Short and exam-ready.
             </p>
           </header>
 
+          <!-- Primary path: try the product (Claude-style one CTA) -->
           <div class="auth__guest-block" id="authGuestBlock">
             <a
-              class="auth__primary auth__primary--guest"
+              class="auth__primary auth__primary--solid"
               id="authGuest"
               href="/chat.html?guest=1"
               aria-describedby="authGuestNote"
             >
-              Continue as guest
+              Start studying
             </a>
             <p class="auth__guest-note" id="authGuestNote">
-              No phone number needed — AI explanations, quizzes, and Progress in one tap.
+              No account needed. You can link WhatsApp later to save Progress.
             </p>
           </div>
 
-          <section class="auth__signin-block" id="authSigninBlock" aria-labelledby="authSigninLabel">
-            <h2 class="auth__section-label" id="authSigninLabel">Sign in with phone</h2>
+          <div class="auth__or" id="authOr" role="separator" aria-label="Or">
+            <span>or</span>
+          </div>
 
-            <div class="auth__modes" role="tablist" aria-label="Account">
-              <button type="button" class="auth__mode is-active" role="tab" aria-selected="true" data-mode="signup" id="modeSignup">
-                New
+          <!-- Secondary path: link WhatsApp / return -->
+          <section class="auth__signin-block" id="authSigninBlock" aria-labelledby="authSigninLabel">
+            <div class="auth__signin-head">
+              <h2 class="auth__section-label" id="authSigninLabel">Link WhatsApp</h2>
+              <p class="auth__section-desc" id="authSigninDesc">
+                Keep Progress across web and phone.
+              </p>
+            </div>
+
+            <div class="auth__modes" role="tablist" aria-label="Account type">
+              <button
+                type="button"
+                class="auth__mode is-active"
+                role="tab"
+                aria-selected="true"
+                data-mode="signup"
+                id="modeSignup"
+              >
+                I’m new
               </button>
-              <button type="button" class="auth__mode" role="tab" aria-selected="false" data-mode="signin" id="modeSignin">
-                Returning
+              <button
+                type="button"
+                class="auth__mode"
+                role="tab"
+                aria-selected="false"
+                data-mode="signin"
+                id="modeSignin"
+              >
+                I’ve linked before
               </button>
             </div>
 
@@ -69,15 +94,15 @@
               </label>
 
               <label class="auth__field">
-                <span class="auth__label">Phone</span>
+                <span class="auth__label">WhatsApp number</span>
                 <div class="auth__phone">
                   <span class="auth__phone-prefix" aria-hidden="true">+234</span>
                   <input
                     id="authPhone"
                     name="phone"
                     type="tel"
-                    inputmode="tel"
-                    autocomplete="tel"
+                    inputmode="numeric"
+                    autocomplete="tel-national"
                     placeholder="801 234 5678"
                     required
                   />
@@ -88,6 +113,10 @@
 
               <button type="submit" class="auth__secondary" id="authSubmit">Send code</button>
             </form>
+
+            <p class="auth__legal" id="authLegal">
+              We’ll text a one-time code. Demo builds show the code on screen if WhatsApp is delayed.
+            </p>
           </section>
 
           <form class="auth__otp" id="otpForm" hidden novalidate>
@@ -109,7 +138,9 @@
             </label>
             <p class="auth__error" id="otpError" hidden role="alert"></p>
             <p class="auth__dev" id="otpDev" hidden></p>
-            <button type="submit" class="auth__primary" id="otpSubmit">Continue</button>
+            <button type="submit" class="auth__primary auth__primary--solid" id="otpSubmit">
+              Continue
+            </button>
             <div class="auth__otp-actions">
               <button type="button" class="auth__text" id="otpResend">Resend</button>
               <button type="button" class="auth__text" id="otpBack">Change number</button>
@@ -119,15 +150,16 @@
           <div class="auth__sync" id="syncCard" hidden>
             <h1 class="auth__title auth__title--sm" id="syncHeading">You’re in</h1>
             <p class="auth__sync-lead">
-              Study on the web — Learn, quiz, and Progress work here without WhatsApp.
+              Study on the web. Learn, quiz, and Progress work here without WhatsApp.
             </p>
-            <button type="button" class="auth__primary" id="syncContinue">Open Reca</button>
+            <button type="button" class="auth__primary auth__primary--solid" id="syncContinue">
+              Open Reca
+            </button>
             <p class="auth__sync-note" id="syncWaNote">
               WhatsApp reminders need an allow-listed demo number in Meta.
             </p>
             <a class="auth__wa-link" id="syncWaLink" href="#" hidden>Open WhatsApp (demo)</a>
           </div>
-
         </div>
       </section>
 

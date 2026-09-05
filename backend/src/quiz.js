@@ -120,10 +120,11 @@ function answerQuiz(phone, answer) {
     correction: correct ? null : question.correction,
     message: correct
       ? "Correct — well done."
-      : question.correction || `Not quite. The answer is ${question.correctAnswer}.`,
+      : question.correction ||
+        `Not quite. The answer is ${question.correctAnswer}. Remember that for next time.`,
     memoryPromise: correct
       ? null
-      : "I'll remember this one — we'll come back to it soon. Check Progress for what's due.",
+      : "Saved to Progress. Reca will bring this back later.",
   };
 
   const nextIndex = qi + 1;
@@ -143,8 +144,8 @@ function answerQuiz(phone, answer) {
         total,
         message:
           score === total
-            ? `Nice — ${score}/${total} correct. You've got this topic for now.`
-            : `${score}/${total} correct. I'll remember the ${missed} you missed and bring them back later.`,
+            ? `Perfect — ${score}/${total}. You’ve got this topic for now.`
+            : `${score}/${total} correct. Missed ones are saved in Progress.`,
       },
       question: null,
     };

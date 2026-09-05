@@ -3,11 +3,15 @@ const {
   findTopic,
   findTopicById,
   resolveLearnQuery,
+  conceptExplanation,
+  teachExplanation,
+  followUpIntent,
   topicLabel,
   isRecap,
   isHelp,
   gradeAnswer,
   normalize,
+  topics,
 } = require("./topics");
 const store = require("./store");
 const llm = require("./llm");
@@ -29,7 +33,7 @@ function spellingPreface(corrections) {
   if (!corrections?.length) return "";
   const bits = corrections
     .slice(0, 4)
-    .map((c) => `you wrote “${c.typed}” — it’s spelled “${c.correct}”`);
+    .map((c) => `you wrote “${c.typed}”. It’s spelled “${c.correct}”`);
   return `Spelling check: ${bits.join("; ")}.`;
 }
 
@@ -60,6 +64,8 @@ async function gradeWithFallback(question, text) {
 /** Learn follow-up while staying on the focused topic. */
 async function learnFollowUp(student, topic, text, corrections) {
   const label = topicLabel(topic);
+  const intent = followUpIntent(text);
+  const depth = student.learnDepth || 0;
 
   if (llm.isEnabled()) {
     const ai = await llm.learnReply({
@@ -67,29 +73,18 @@ async function learnFollowUp(student, topic, text, corrections) {
       subject: topic.subject,
       explanation: topic.explanation,
       studentAsk: text,
+      intent,
+      depth,
     });
     if (ai?.reply) {
-      student.learnDepth = (student.learnDepth || 0) + 1;
+      student.learnDepth = depth + 1;
       return [withSpelling(corrections, ai.reply)];
     }
   }
 
-  const depth = student.learnDepth || 0;
   student.learnDepth = depth + 1;
-  const bite = teachBite(topic, depth);
-  const parts = [
-    `Still on ${label} — here’s more on what you asked.`,
-    "",
-    topic.explanation,
-  ];
-  if (bite) {
-    parts.push("", bite);
-  }
-  parts.push(
-    "",
-    "Keep asking about this or any other topic — or let Reca’s AI quiz you when you’re ready."
-  );
-  return [withSpelling(corrections, parts.join("\n"))];
+  const body = teachExplanation(topic, { mode: intent, depth });
+  return [withSpelling(corrections, body)];
 }
 
 async function handleIncoming(phone, body, opts = {}) {
@@ -118,7 +113,7 @@ async function handleIncoming(phone, body, opts = {}) {
         return [
           withSpelling(
             corrections,
-            "I couldn’t lock onto a syllabus topic yet. Ask again with the topic name — even if the spelling’s off (e.g. “what is osmosiss?” or “photosyntesis”). Reca will correct it and explain."
+            "I couldn’t lock onto a syllabus topic yet. Ask again with the topic name, even if the spelling’s off (e.g. “what is osmosiss?” or “photosyntesis”). Reca will correct it and explain."
           ),
         ];
       }
@@ -129,7 +124,12 @@ async function handleIncoming(phone, body, opts = {}) {
       student.learnFocusId = topic.id;
       if (fresh) {
         student.learnDepth = 0;
-        let explanation = topic.explanation;
+        let explanation = conceptExplanation(topic, text) || topic.explanation;
+        // Teen-readable Learn: expand short bank blurbs with exam lock-ins
+        explanation = teachExplanation(
+          { ...topic, explanation },
+          { mode: "fresh", depth: 0 }
+        );
 
         if (llm.isEnabled()) {
           const ai = await llm.learnReply({
@@ -137,6 +137,8 @@ async function handleIncoming(phone, body, opts = {}) {
             subject: topic.subject,
             explanation: topic.explanation,
             studentAsk: text,
+            intent: "fresh",
+            depth: 0,
           });
           if (ai?.reply) explanation = ai.reply;
         }
@@ -203,6 +205,7 @@ async function handleIncoming(phone, body, opts = {}) {
 
     let explanation = topic.explanation;
     let questions = topic.questions;
+    let usedLlm = false;
 
     if (llm.isEnabled()) {
       const ai = await llm.explainAndQuiz({
@@ -213,7 +216,16 @@ async function handleIncoming(phone, body, opts = {}) {
       if (ai) {
         explanation = ai.explanation;
         questions = ai.questions;
+        usedLlm = true;
       }
+    }
+
+    // Same teen teach path as web Learn when bank copy is the source
+    if (!usedLlm) {
+      explanation = teachExplanation(
+        { ...topic, explanation },
+        { mode: "fresh", depth: 0, channel: "wa" }
+      );
     }
 
     student.pending = {
@@ -368,7 +380,41 @@ async function handleResurfaceAnswer(student, text) {
   const ok = pending.accept.some((a) => {
     const n = normalize(a);
     const ans = normalize(text);
-    return ans === n || ans.includes(n) || n.includes(ans);
+    const nTight = n.replace(/\s+/g, "");
+    const ansTight = ans.replace(/\s+/g, "");
+    if (
+      ans === n ||
+      ans.includes(n) ||
+      n.includes(ans) ||
+      ansTight === nTight ||
+      ansTight.includes(nTight) ||
+      nTight.includes(ansTight)
+    ) {
+      return true;
+    }
+    // Lenient on short exam spellings (e.g. chorophyll → chlorophyll)
+    if (Math.abs(ansTight.length - nTight.length) > 2) return false;
+    if (ansTight.length < 4 || nTight.length < 4) return false;
+    let i = 0;
+    let j = 0;
+    let misses = 0;
+    while (i < ansTight.length && j < nTight.length) {
+      if (ansTight[i] === nTight[j]) {
+        i += 1;
+        j += 1;
+        continue;
+      }
+      misses += 1;
+      if (misses > 2) return false;
+      if (ansTight.length > nTight.length) i += 1;
+      else if (nTight.length > ansTight.length) j += 1;
+      else {
+        i += 1;
+        j += 1;
+      }
+    }
+    misses += ansTight.length - i + (nTight.length - j);
+    return misses <= 2;
   });
 
   if (ok) {
@@ -405,6 +451,93 @@ function prepareResurface(phone, attempt, index) {
   };
   store.markSurfaced(phone, index);
   return copy.resurface(attempt.questionText);
+}
+
+/**
+ * Grade a web Quick Recall answer. Re-arms awaitingResurface from attempts
+ * or from the nudge payload when the toast was restored after refresh/restart.
+ */
+async function answerResurface(phone, text, meta = {}) {
+  const student = store.getStudent(phone);
+  const answer = String(text || "").trim();
+  if (!answer) {
+    return { error: "Type a short answer, then try again.", status: 400 };
+  }
+
+  function armFromMeta() {
+    let correctAnswer = meta.correctAnswer ? String(meta.correctAnswer) : "";
+    let accept = Array.isArray(meta.accept) ? meta.accept.filter(Boolean) : [];
+    const qRaw = String(meta.questionText || "").trim();
+
+    if ((!correctAnswer && !accept.length) && qRaw) {
+      const qNorm = normalize(qRaw);
+      for (const topic of topics) {
+        for (const q of topic.questions || []) {
+          const qt = normalize(q.text || "");
+          if (
+            qt === qNorm ||
+            qt.includes(qNorm.slice(0, 36)) ||
+            qNorm.includes(qt.slice(0, 36))
+          ) {
+            correctAnswer = q.correctAnswer || "";
+            accept = q.accept || [correctAnswer].filter(Boolean);
+            break;
+          }
+        }
+        if (correctAnswer || accept.length) break;
+      }
+    }
+
+    if (!qRaw || (!correctAnswer && !accept.length)) return false;
+
+    const acceptList = accept.length ? accept : [correctAnswer].filter(Boolean);
+    student.awaitingResurface = {
+      attemptIndex: -1,
+      questionText: qRaw.slice(0, 500),
+      correctAnswer: String(correctAnswer || acceptList[0] || "").slice(0, 200),
+      accept: acceptList,
+      topicLabel: String(meta.topicLabel || "this topic").slice(0, 120),
+    };
+    return true;
+  }
+
+  if (!student.awaitingResurface) {
+    const qNorm = normalize(String(meta.questionText || ""));
+    let index = student.attempts.findIndex(
+      (a) =>
+        !a.cleared &&
+        !a.isCorrect &&
+        (meta.topicId ? a.topicId === meta.topicId : true) &&
+        (qNorm
+          ? normalize(a.questionText || "").includes(qNorm.slice(0, 40)) ||
+            qNorm.includes(normalize(a.questionText || "").slice(0, 40))
+          : true)
+    );
+    if (index < 0) {
+      index = student.attempts.findIndex((a) => !a.cleared && !a.isCorrect);
+    }
+    if (index >= 0) {
+      prepareResurface(phone, student.attempts[index], index);
+    } else if (!armFromMeta()) {
+      return {
+        error:
+          "This recall expired after a refresh. Close it, miss a quiz question again, then use Send a test nudge.",
+        status: 404,
+      };
+    }
+  }
+
+  const pending = student.awaitingResurface;
+  const replies = await handleResurfaceAnswer(student, answer);
+  const message = Array.isArray(replies) ? replies[0] : String(replies || "");
+  const correct = /correct|cleared/i.test(String(message));
+  return {
+    ok: true,
+    correct,
+    message,
+    correctAnswer: correct ? null : pending?.correctAnswer || null,
+    topicLabel: pending?.topicLabel || meta.topicLabel || null,
+  };
 }
 
 /** Unprompted daily study plan — weakest topic + days to exam */
@@ -464,6 +597,7 @@ function prepareUniAdminUpdate(phone) {
 module.exports = {
   handleIncoming,
   prepareResurface,
+  answerResurface,
   prepareDailyBriefing,
   prepareUniAdminUpdate,
 };

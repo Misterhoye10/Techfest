@@ -5,7 +5,7 @@ const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
 const cron = require("node-cron");
-const { handleIncoming, prepareResurface, prepareDailyBriefing, prepareUniAdminUpdate } = require("./engine");
+const { handleIncoming, prepareResurface, answerResurface, prepareDailyBriefing, prepareUniAdminUpdate } = require("./engine");
 const { startQuiz, answerQuiz, currentQuiz, endQuiz } = require("./quiz");
 const { sendWhatsApp, parseInbound, isConfigured, displayNumber, verifyToken } = require("./whatsapp");
 const store = require("./store");
@@ -103,7 +103,7 @@ async function handleRequestOtp(req, res) {
     const phone = store.normalizePhoneE164(req.body.phone);
     if (!phone) {
       return res.status(400).json({
-        error: "Enter a valid WhatsApp number — e.g. +2348012345678",
+        error: "Enter a valid WhatsApp number, e.g. +2348012345678",
       });
     }
 
@@ -151,7 +151,7 @@ async function handleRequestOtp(req, res) {
       whatsappFrom: whatsappFromNumber() || null,
       message: delivered
         ? `Code sent to WhatsApp on ${phone}.`
-        : "Couldn’t reach WhatsApp yet — allow-list this number in Meta, then Resend.",
+        : "Couldn’t reach WhatsApp yet. Allow-list this number in Meta, then Resend.",
     };
 
     if (shouldEchoOtp()) payload.devCode = issued.code;
@@ -182,7 +182,7 @@ app.post("/api/auth/verify-otp", security.authLimiter, async (req, res) => {
     const phone = store.normalizePhoneE164(req.body.phone);
     if (!phone) {
       return res.status(400).json({
-        error: "Enter a valid WhatsApp number — e.g. +2348012345678",
+        error: "Enter a valid WhatsApp number, e.g. +2348012345678",
       });
     }
 
@@ -216,7 +216,7 @@ app.post("/api/auth/verify-otp", security.authLimiter, async (req, res) => {
       progress: store.progressFor(account.phone),
       next:
         verified.purpose === "signup"
-          ? "You’re in. Message Reca on WhatsApp anytime — Progress stays in sync."
+          ? "You’re in. Message Reca on WhatsApp anytime. Progress stays in sync."
           : "Welcome back. Your Progress is ready.",
     });
   } catch (err) {
@@ -309,14 +309,18 @@ app.post("/api/chat", security.chatLimiter, async (req, res) => {
   const fresh = Boolean(req.body.fresh);
   const replies = await handleIncoming(phone, checked.body, { mode, topicId, fresh });
   const student = store.getStudent(phone);
+  const { findTopicById, topicLabel } = require("./topics");
+  const focus = student.learnFocusId ? findTopicById(student.learnFocusId) : null;
   res.json({
     ok: true,
     phone,
     replies: enrichReplies(replies, student),
     revise: reviseSnapshot(student),
     learnFocusId: student.learnFocusId || null,
+    learnFocusLabel: focus ? topicLabel(focus) : null,
+    learnFocusSubject: focus?.subject || null,
     diagram: student.learnFocusId
-      ? getDiagram(student.learnFocusId, student.pending?.subject)
+      ? getDiagram(student.learnFocusId, focus?.subject || student.pending?.subject)
       : null,
     llm: llm.providerLabel(),
   });
@@ -380,7 +384,7 @@ app.post("/api/learn/upload", security.uploadLimiter, async (req, res) => {
     const diagram = getDiagram(parsed.topicTitle, parsed.subject);
     const replies = enrichReplies(
       [
-        `${parsed.explanation}\n\nQuick check — Q1: ${parsed.questions[0].text}`,
+        `${parsed.explanation}\n\nQuick check. Q1: ${parsed.questions[0].text}`,
       ],
       { learnFocusId: topicId, pending: { subject: parsed.subject, topicId } }
     );
@@ -428,6 +432,40 @@ app.post("/api/quiz/end", security.chatLimiter, (req, res) => {
   const phone = studentFromReq(req, res);
   if (!phone) return;
   res.json(endQuiz(phone));
+});
+
+/** Quick Recall (nudge toast) — grade a miss without treating it as free chat */
+app.post("/api/recall/answer", security.chatLimiter, async (req, res) => {
+  const phone = studentFromReq(req, res);
+  if (!phone) return;
+  const checked = security.validateChatBody(req.body.answer || req.body.body);
+  if (!checked.ok) return res.status(400).json({ error: checked.error });
+  try {
+    const result = await answerResurface(phone, checked.body, {
+      topicId: req.body.topicId ? String(req.body.topicId).slice(0, 80) : null,
+      topicLabel: req.body.topicLabel
+        ? String(req.body.topicLabel).slice(0, 120)
+        : null,
+      questionText: req.body.questionText
+        ? String(req.body.questionText).slice(0, 500)
+        : null,
+      correctAnswer: req.body.correctAnswer
+        ? String(req.body.correctAnswer).slice(0, 200)
+        : null,
+      accept: Array.isArray(req.body.accept)
+        ? req.body.accept.map((a) => String(a).slice(0, 120)).slice(0, 12)
+        : null,
+    });
+    if (result.error) {
+      return res.status(result.status || 400).json({ error: result.error });
+    }
+    res.json(result);
+  } catch (err) {
+    console.error("recall answer failed", err);
+    res.status(500).json({
+      error: security.publicError(err, "Couldn’t check that answer. Try again."),
+    });
+  }
 });
 
 app.get("/api/quiz/current", (req, res) => {
@@ -519,7 +557,12 @@ app.get("/api/topics", (req, res) => {
   const { topics, stats } = require("./topics");
   const q = String(req.query.q || "").trim().toLowerCase();
   const subject = String(req.query.subject || "").trim();
+  const includeSets = String(req.query.sets || "") === "1";
   let list = topics;
+  // Hub/picker: skip “· set 2” clones so every subject fits and titles stay clean
+  if (!includeSets) {
+    list = list.filter((t) => !/·\s*set\s*\d+/i.test(t.title || ""));
+  }
   if (subject && subject !== "All") {
     list = list.filter((t) => t.subject.toLowerCase() === subject.toLowerCase());
   }
@@ -532,7 +575,7 @@ app.get("/api/topics", (req, res) => {
         (t.aliases || []).some((a) => a.includes(q))
     );
   }
-  const limit = Math.min(Number(req.query.limit) || 600, 1000);
+  const limit = Math.min(Number(req.query.limit) || 800, 2000);
   const offset = Math.max(0, Number(req.query.offset) || 0);
   const slice = list.slice(offset, offset + limit);
   const subjects = [...new Set(list.map((t) => t.subject))].sort();
@@ -700,6 +743,147 @@ app.get("/webhook/whatsapp", security.webhookLimiter, handleMetaWebhookGet);
 app.post("/webhook/whatsapp", security.webhookLimiter, handleMetaWebhookPost);
 
 /**
+ * In-app test nudge for the open session (web toast via /api/events).
+ * Same payloads as /demo/* — guest_* and E.164 both work. Dev/demo only.
+ */
+app.post("/api/nudge/test", security.chatLimiter, async (req, res) => {
+  if (!security.demoEnabled()) {
+    return res.status(404).json({ error: "Not found" });
+  }
+  const phone = normalizePhone(req.body.phone || req.query.phone);
+  if (!phone) {
+    return res.status(400).json({ error: "Open Reca first so we know which session to nudge." });
+  }
+
+  const kindWanted = String(req.body.kind || "auto").toLowerCase();
+  const student = store.getStudent(phone);
+  const order =
+    kindWanted === "resurface" || kindWanted === "briefing" || kindWanted === "uni-update"
+      ? [kindWanted]
+      : ["resurface", "briefing", "uni-update"];
+
+  const attempts = [];
+
+  for (const kind of order) {
+    if (kind === "resurface") {
+      const idx = student.attempts.findIndex((a) => !a.isCorrect && !a.cleared);
+      if (idx < 0) {
+        attempts.push({ kind, ok: false, error: "No weak attempts yet. Miss a quiz question first." });
+        continue;
+      }
+      const attempt = student.attempts[idx];
+      const message = prepareResurface(phone, attempt, idx);
+      store.pushOutbox(phone, message, "bot", {
+        type: "resurface",
+        title: "Quick recall",
+        topicId: attempt.topicId,
+        topicLabel: capitalizeTopic(attempt.topicId),
+        questionText: attempt.questionText,
+        correctAnswer: attempt.correctAnswer,
+        accept: attempt.accept,
+      });
+      let whatsapp = null;
+      try {
+        await sendWhatsApp(phone, message);
+        whatsapp = "sent";
+      } catch (err) {
+        whatsapp = `skipped: ${err.message}`;
+      }
+      return res.json({
+        ok: true,
+        kind: "resurface",
+        message,
+        channel: { web: true, whatsapp },
+        attempts,
+      });
+    }
+
+    if (kind === "briefing") {
+      if (!student.attempts.length) {
+        attempts.push({
+          kind,
+          ok: false,
+          error: "No quiz attempts yet. Revise a topic first.",
+        });
+        continue;
+      }
+      student.lastBriefingDay = null;
+      const progress = store.progressFor(phone);
+      const focus = progress.nextWeakTopic || progress.dueForRecall?.[0] || null;
+      const message = prepareDailyBriefing(phone);
+      store.pushOutbox(phone, message, "bot", {
+        type: "briefing",
+        title: "Today's focus",
+        topicId: focus?.topicId || null,
+        topicLabel: focus?.label || progress.nextWeak || null,
+      });
+      let whatsapp = null;
+      try {
+        await sendWhatsApp(phone, message);
+        whatsapp = "sent";
+      } catch (err) {
+        whatsapp = `skipped: ${err.message}`;
+      }
+      return res.json({
+        ok: true,
+        kind: "briefing",
+        message,
+        channel: { web: true, whatsapp },
+        attempts,
+      });
+    }
+
+    if (kind === "uni-update") {
+      student.lastUniUpdateDay = null;
+      const refreshTarget = student.targetUniversity || "general-jamb";
+      await uniFeed.refreshForUniversity(refreshTarget);
+      await uniFeed.refreshForUniversity("general-jamb");
+      const prepared = prepareUniAdminUpdate(phone);
+      if (!prepared) {
+        attempts.push({
+          kind,
+          ok: false,
+          error: "No university update available. Turn updates on under Exam & university.",
+        });
+        continue;
+      }
+      const { message, update, universityName } = prepared;
+      store.pushOutbox(phone, message, "bot", {
+        type: "uni-update",
+        title: update.headline,
+        updateId: update.id,
+        universityName,
+        category: update.category,
+        sourceUrl: update.sourceUrl || null,
+        source: update.source || null,
+      });
+      let whatsapp = null;
+      try {
+        await sendWhatsApp(phone, message);
+        whatsapp = "sent";
+      } catch (err) {
+        whatsapp = `skipped: ${err.message}`;
+      }
+      return res.json({
+        ok: true,
+        kind: "uni-update",
+        message,
+        channel: { web: true, whatsapp },
+        attempts,
+      });
+    }
+  }
+
+  return res.status(404).json({
+    ok: false,
+    error:
+      attempts.map((a) => a.error).filter(Boolean).join(" ") ||
+      "Couldn’t build a test nudge. Miss a quiz question, then try again.",
+    attempts,
+  });
+});
+
+/**
  * Manual hero trigger for live demo.
  * Always queues to web outbox; WhatsApp send is best-effort.
  * Requires DEMO_SECRET (header x-demo-secret) when set.
@@ -717,7 +901,7 @@ app.post("/demo/resurface", security.requireDemoAccess, async (req, res) => {
 
   if (!target) {
     return res.status(404).json({
-      error: "No weak attempts to resurface — answer a question wrong first (e.g. mitochondria)",
+      error: "No weak attempts to resurface. Answer a question wrong first (e.g. mitochondria)",
     });
   }
 
@@ -728,6 +912,8 @@ app.post("/demo/resurface", security.requireDemoAccess, async (req, res) => {
     topicId: target.attempt.topicId,
     topicLabel: capitalizeTopic(target.attempt.topicId),
     questionText: target.attempt.questionText,
+    correctAnswer: target.attempt.correctAnswer,
+    accept: target.attempt.accept,
   });
 
   let whatsapp = null;
@@ -753,7 +939,7 @@ app.post("/demo/briefing", security.requireDemoAccess, async (req, res) => {
   const student = store.getStudent(phone);
   if (!student.attempts.length) {
     return res.status(404).json({
-      error: "No attempts yet — revise a topic first so Reca knows a weak focus.",
+      error: "No attempts yet. Revise a topic first so Reca knows a weak focus.",
     });
   }
   // Allow re-fire on stage even if already briefed today
@@ -805,7 +991,7 @@ app.post("/demo/uni-update", security.requireDemoAccess, async (req, res) => {
   const prepared = prepareUniAdminUpdate(phone);
   if (!prepared) {
     return res.status(404).json({
-      error: "No university updates available — pick a target university in Settings → Exam.",
+      error: "No university updates available. Pick a primary university in Settings → Exam & university.",
       feed: refreshResult,
     });
   }
@@ -882,6 +1068,8 @@ cron.schedule("* * * * *", async () => {
         topicId: item.attempt.topicId,
         topicLabel: capitalizeTopic(item.attempt.topicId),
         questionText: item.attempt.questionText,
+        correctAnswer: item.attempt.correctAnswer,
+        accept: item.attempt.accept,
       });
       try {
         await sendWhatsApp(item.phone, message);

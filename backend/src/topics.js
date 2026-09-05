@@ -4,8 +4,6 @@
  */
 const bank = require("./data/curriculum-bank");
 
-const topics = bank.topics;
-
 const STOP = new Set([
   "what",
   "whats",
@@ -82,6 +80,24 @@ function normalize(text) {
     .trim();
 }
 
+/** Drop toxic aliases like "what" that steal every “what is …?” ask. */
+function sanitizeAliases(aliases) {
+  return (aliases || []).filter((raw) => {
+    const n = normalize(raw);
+    if (!n || n.length < 3) return false;
+    if (STOP.has(n)) return false;
+    if (!n.includes(" ") && ["what", "which", "when", "where", "mean", "means"].includes(n)) {
+      return false;
+    }
+    return true;
+  });
+}
+
+const topics = bank.topics.map((t) => ({
+  ...t,
+  aliases: sanitizeAliases(t.aliases),
+}));
+
 function topicLabel(topic) {
   if (!topic) return "";
   return (
@@ -126,10 +142,10 @@ function topicTerms(topic) {
   const terms = new Set();
   const add = (raw) => {
     const n = normalize(raw);
-    if (!n) return;
+    if (!n || STOP.has(n)) return;
     terms.add(n);
     n.split(" ").forEach((w) => {
-      if (w.length > 2) terms.add(w);
+      if (w.length > 2 && !STOP.has(w)) terms.add(w);
     });
   };
   add(topic.title);
@@ -160,10 +176,35 @@ function getGlobalLexicon() {
     add(topic.title);
     add(topic.id.replace(/-/g, " "));
     (topic.aliases || []).forEach(add);
+    (topic.questions || []).slice(0, 40).forEach((q) => {
+      add(q.correctAnswer);
+      (q.accept || []).forEach(add);
+    });
   });
-  ["Biology", "Chemistry", "Physics", "Mathematics", "Maths", "Math", "Further Mathematics", "English Language", "English", "Agriculture", "Yoruba", "Igbo", "Hausa", "Government", "Commerce", "Economics", "Accounting", "Accounts", "Marketing", "History", "Geography", "Fine Arts", "Creative Arts", "Food and Nutrition", "Home Management", "French", "Islamic Religious Studies", "IRS", "Christian Religious Knowledge", "CRK", "CRS", "Computer Studies", "Literature in English", "Literature", "Music"].forEach(add);
+  ["Biology", "Chemistry", "Physics", "Mathematics", "Maths", "Math", "Further Mathematics", "English Language", "English", "Agriculture", "Agric", "Farming", "Yoruba", "Igbo", "Hausa", "Government", "Commerce", "Economics", "Accounting", "Accounts", "Marketing", "History", "Geography", "Fine Arts", "Creative Arts", "Food and Nutrition", "Nutrition", "Home Management", "French", "Islamic Religious Studies", "IRS", "Christian Religious Knowledge", "CRK", "CRS", "Computer Studies", "Computer Science", "Computing", "Science", "ICT", "Literature in English", "Literature", "Music"].forEach(add);
+  [
+    "computer science",
+    "comp science",
+    "info tech",
+    "information technology",
+    "photosynthesis",
+    "respiration",
+    "osmosis",
+    "diffusion",
+    "agriculture",
+    "biology",
+    "chemistry",
+    "physics",
+    "chloroplast",
+    "chlorophyll",
+    "mitochondria",
+    "mitochondrion",
+    "nucleus",
+    "cytoplasm",
+    "ribosome",
+  ].forEach(add);
   globalLexicon = map;
-  return map;
+  return globalLexicon;
 }
 
 function closestLexeme(word, lexicon) {
@@ -226,20 +267,51 @@ function findTopicExact(message) {
   const m = normalize(message);
   if (!m) return null;
 
+  let best = null;
+  let bestScore = 0;
+
   for (const topic of topics) {
+    if (/·\s*set\s*\d+/i.test(topic.title || "")) continue;
+
+    let score = 0;
+    const title = normalize(topic.title || "");
+    const idWords = normalize(topic.id.replace(/-/g, " "));
+    const isIntro = /^what is\b/i.test(topic.title || "");
+
+    if (title && m === title) score = Math.max(score, 100);
+    if (title && m.includes(title) && title.length > 3) score = Math.max(score, 80 + Math.min(title.length, 20));
+    if (idWords && m.includes(idWords) && idWords.length > 3) score = Math.max(score, 70);
+
     for (const alias of topic.aliases || []) {
-      if (m.includes(normalize(alias))) return topic;
+      const a = normalize(alias);
+      if (!a || a.length < 3 || STOP.has(a)) continue;
+      if (m === a) score = Math.max(score, 90);
+      else if (m.includes(a)) score = Math.max(score, 40 + Math.min(a.length, 30));
     }
-    if (m.includes(normalize(topic.title || ""))) return topic;
-    if (m.includes(normalize(topic.id.replace(/-/g, " ")))) return topic;
+
+    // Only boost intros when the student asked about that subject card itself
+    if (isIntro && score > 0) {
+      const subject = normalize(topic.subject || "");
+      if (subject && (m === subject || m === title || m.endsWith(` ${subject}`) && /^(what|define|explain)/.test(m))) {
+        score += 15;
+      }
+    }
+
+    if (score > bestScore) {
+      bestScore = score;
+      best = topic;
+    }
   }
+
+  if (bestScore >= 40) return best;
 
   const words = m.split(" ").filter((w) => w.length > 3 && !STOP.has(w));
   if (!words.length) return null;
 
-  let best = null;
-  let bestScore = 0;
+  best = null;
+  bestScore = 0;
   for (const topic of topics) {
+    if (/·\s*set\s*\d+/i.test(topic.title || "")) continue;
     const hay = normalize(
       [topic.title || "", topic.id.replace(/-/g, " "), ...(topic.aliases || [])].join(" ")
     );
@@ -250,6 +322,194 @@ function findTopicExact(message) {
     }
   }
   return bestScore > 0 ? best : null;
+}
+
+function extractAskObject(message) {
+  const m = normalize(message);
+  if (!m) return null;
+  const patterns = [
+    /^(?:what(?:\s+is|\s+are)|whats|define|explain|describe|meaning of)\s+(.+)$/,
+    /^(?:tell me about|teach me)\s+(.+)$/,
+  ];
+  for (const re of patterns) {
+    const hit = m.match(re);
+    if (!hit) continue;
+    let obj = hit[1].replace(/\?+$/, "").trim();
+    obj = obj.replace(/\s+in\s+[a-z][a-z\s]*$/, "").trim();
+    obj = obj.replace(/^(?:a|an|the)\s+/, "").trim();
+    if (obj && !STOP.has(obj)) return obj;
+  }
+  return null;
+}
+
+function askIsAboutSubject(message, subject) {
+  const m = normalize(message);
+  const s = normalize(subject);
+  if (!m || !s) return false;
+  if (m === s || m === `about ${s}`) return true;
+  const esc = s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return new RegExp(
+    `^(?:what(?:\\s+is|\\s+are)|whats|define|explain|describe|meaning of)\\s+${esc}\\s*$`
+  ).test(m);
+}
+
+/** Match “what is chloroplast” to the topic that teaches that concept (answers/explanation). */
+function findTopicByConcept(message) {
+  const obj = extractAskObject(message);
+  const terms = [];
+  if (obj) {
+    terms.push(obj);
+    obj.split(" ").forEach((w) => {
+      if (w.length > 3 && !STOP.has(w)) terms.push(w);
+    });
+  } else {
+    normalize(message)
+      .split(" ")
+      .filter((w) => w.length > 3 && !STOP.has(w))
+      .forEach((w) => terms.push(w));
+  }
+  if (!terms.length) return null;
+
+  let best = null;
+  let bestScore = 0;
+
+  for (const topic of topics) {
+    if (/·\s*set\s*\d+/i.test(topic.title || "")) continue;
+    let score = 0;
+    const title = normalize(topic.title || "");
+    const isIntro = /^what is\b/i.test(topic.title || "");
+    const expl = normalize(topic.explanation || "");
+
+    for (const term of terms) {
+      if (term.length < 4) continue;
+      if (title === term) score += 100;
+      else if (title.includes(term)) score += 45;
+      for (const alias of topic.aliases || []) {
+        const a = normalize(alias);
+        if (a === term) score += 80;
+        else if (a.includes(term) && term.length >= 5) score += 25;
+      }
+      if (expl.includes(term)) score += 12;
+      for (const q of topic.questions || []) {
+        if (normalize(q.correctAnswer) === term) score += 28;
+        for (const acc of q.accept || []) {
+          if (normalize(acc) === term) score += 22;
+        }
+        const qText = normalize(q.text || q.prompt || "");
+        if (qText.includes(term) && term.length >= 5) score += 6;
+      }
+    }
+
+    // Subject intros must not win concept asks like “what is chloroplast”
+    if (isIntro) score = Math.floor(score * 0.15);
+
+    if (score > bestScore) {
+      bestScore = score;
+      best = topic;
+    }
+  }
+
+  return bestScore >= 12 ? best : null;
+}
+
+/** Short lead when the student named a concept that appears as an answer. */
+function conceptExplanation(topic, message) {
+  if (!topic) return "";
+  const obj = extractAskObject(message);
+  if (!obj || obj.length < 4) return topic.explanation || "";
+
+  const term = normalize(obj);
+  const display = obj.charAt(0).toUpperCase() + obj.slice(1);
+  const hit = (topic.questions || []).find(
+    (q) =>
+      normalize(q.correctAnswer) === term ||
+      (q.accept || []).some((a) => normalize(a) === term)
+  );
+
+  if (hit) {
+    const prompt = String(hit.text || hit.prompt || "").replace(/\?+$/, "").trim();
+    if (prompt) {
+      let lead;
+      if (/^which\b/i.test(prompt)) {
+        const rest = prompt.replace(/^which\s+/i, "").trim();
+        const restThat = rest.replace(/^(\S+)\s+/, "$1 that ");
+        lead = `A ${display.toLowerCase()} is the ${restThat}.`;
+      } else if (/^what\b/i.test(prompt)) {
+        lead = `${display}: ${prompt.replace(/^what\s+/i, "").trim()}.`;
+      } else {
+        lead = `${display}: ${prompt}.`;
+      }
+      return `${lead}\n\n${topic.explanation || ""}`.trim();
+    }
+  }
+
+  return topic.explanation || "";
+}
+
+function findSubjectMention(message) {
+  const m = normalize(message);
+  if (!m) return null;
+  const catalog = [
+    ["further mathematics", "Further Mathematics"],
+    ["further maths", "Further Mathematics"],
+    ["english language", "English Language"],
+    ["literature in english", "Literature in English"],
+    ["christian religious knowledge", "Christian Religious Knowledge"],
+    ["islamic religious studies", "Islamic Religious Studies"],
+    ["food and nutrition", "Food and Nutrition"],
+    ["home management", "Home Management"],
+    ["computer studies", "Computer Studies"],
+    ["fine arts", "Fine Arts"],
+    ["creative arts", "Creative Arts"],
+    ["computer studies", "Computer Studies"],
+    ["computer science", "Computer Studies"],
+    ["comp science", "Computer Studies"],
+    ["computing", "Computer Studies"],
+    ["information technology", "Computer Studies"],
+    ["agriculture", "Agriculture"],
+    ["agric", "Agriculture"],
+    ["farming", "Agriculture"],
+    ["biology", "Biology"],
+    ["chemistry", "Chemistry"],
+    ["physics", "Physics"],
+    ["mathematics", "Mathematics"],
+    ["maths", "Mathematics"],
+    ["yoruba", "Yoruba"],
+    ["igbo", "Igbo"],
+    ["hausa", "Hausa"],
+    ["government", "Government"],
+    ["commerce", "Commerce"],
+    ["economics", "Economics"],
+    ["accounting", "Accounting"],
+    ["accounts", "Accounting"],
+    ["marketing", "Marketing"],
+    ["history", "History"],
+    ["geography", "Geography"],
+    ["french", "French"],
+    ["literature", "Literature in English"],
+    ["music", "Music"],
+    ["english", "English Language"],
+    ["crk", "Christian Religious Knowledge"],
+    ["crs", "Christian Religious Knowledge"],
+    ["irs", "Islamic Religious Studies"],
+    ["ict", "Computer Studies"],
+    ["computer", "Computer Studies"],
+  ];
+  for (const [alias, subject] of catalog) {
+    if (m.includes(alias)) return subject;
+  }
+  return null;
+}
+
+function findSubjectIntroTopic(subject) {
+  const list = topics.filter(
+    (t) => t.subject === subject && !/·\s*set\s*\d+/i.test(t.title || "")
+  );
+  return (
+    list.find((t) => /^what is\b/i.test(t.title || "")) ||
+    list[0] ||
+    null
+  );
 }
 
 function findTopicFuzzy(message) {
@@ -312,7 +572,13 @@ function resolveLearnQuery(message, focusTopicId = null) {
   let corrections = spellcheckMessage(message, focused);
   const corrected = applyCorrections(message, corrections);
 
-  let topic = findTopicExact(corrected) || findTopicExact(message) || null;
+  // Concept asks (“what is chloroplast”) beat subject intros and fuzzy noise
+  let topic =
+    findTopicByConcept(corrected) ||
+    findTopicByConcept(message) ||
+    findTopicExact(corrected) ||
+    findTopicExact(message) ||
+    null;
 
   if (!topic) {
     const fuzzy = findTopicFuzzy(corrected) || findTopicFuzzy(message);
@@ -327,6 +593,14 @@ function resolveLearnQuery(message, focusTopicId = null) {
     }
   }
 
+  const mentioned = findSubjectMention(corrected) || findSubjectMention(message);
+  // Only swap to subject intro when they asked about the subject itself
+  if (mentioned && askIsAboutSubject(corrected, mentioned)) {
+    const intro = findSubjectIntroTopic(mentioned);
+    if (intro) topic = intro;
+  }
+
+  // Keep focus only if they didn't name a different concept/subject
   if (!topic && focused) topic = focused;
 
   if (topic) {
@@ -379,6 +653,132 @@ function shuffle(list) {
   return arr;
 }
 
+function isSubjectIntroTopic(topic) {
+  return /^what is\b/i.test(String(topic?.title || ""));
+}
+
+/** Turn Q&A bank into short teaching lines for teens (Learn, not Revise spoilers as quiz UI). */
+function teachingPoints(topic, offset = 0, count = 3) {
+  const qs = topic?.questions || [];
+  const out = [];
+  if (!qs.length) return out;
+  for (let i = 0; i < qs.length && out.length < count; i++) {
+    const q = qs[(offset + i) % qs.length];
+    const ans = String(q.correctAnswer || (q.accept && q.accept[0]) || "").trim();
+    if (!ans || ans.length < 3) continue;
+    const line = ans.charAt(0).toUpperCase() + ans.slice(1);
+    if (out.some((x) => x.toLowerCase() === line.toLowerCase())) continue;
+    out.push(line.endsWith(".") ? line : `${line}.`);
+  }
+  return out;
+}
+
+/**
+ * Teen-friendly Learn copy: definition + exam lock-ins.
+ * Follow-up modes: further | example | exam
+ */
+function teachExplanation(topic, opts = {}) {
+  const mode = opts.mode || "fresh";
+  const depth = Number(opts.depth) || 0;
+  const label = topicLabel(topic);
+  const subject = String(topic.subject || "").trim();
+  const base = String(topic.explanation || "").trim();
+  const shortName = label.replace(/^what is\s+/i, "").trim() || subject || label;
+
+  if (mode === "example") {
+    const points = teachingPoints(topic, depth * 2, 2);
+    const bits = [
+      `Here’s a simple picture for ${shortName}.`,
+      "",
+      `Imagine you’re explaining it to a friend in SS2: ${points[0] || base.split(/\. /)[0] + "."}`,
+      "",
+    ];
+    if (points[1]) {
+      bits.push(`Another angle: ${points[1]}`);
+      bits.push("");
+    }
+    bits.push(
+      "If that clicks, ask “key exam points” or try 2 quick questions. If not, ask “explain further”."
+    );
+    return bits.join("\n");
+  }
+
+  if (mode === "exam") {
+    const points = teachingPoints(topic, depth * 3, 5);
+    const bits = [
+      `For WAEC/JAMB on ${shortName}, lock these in:`,
+      "",
+      ...(points.length ? points.map((p) => `• ${p}`) : [base]),
+      "",
+      "Examiners love clear definitions and one clean example. Ask “give an example” if you want that next.",
+    ];
+    return bits.join("\n");
+  }
+
+  if (mode === "further") {
+    const points = teachingPoints(topic, depth * 3 + 1, 4);
+    const sentences = base
+      .split(/(?<=\.)\s+/)
+      .map((s) => s.trim())
+      .filter(Boolean);
+    const bits = [`Let’s go slower on ${shortName}.`, ""];
+    if (sentences.length) {
+      sentences.forEach((s) => bits.push(s, ""));
+    } else {
+      bits.push(base, "");
+    }
+    if (points.length) {
+      bits.push("Also remember:");
+      points.forEach((p) => bits.push(`• ${p}`));
+      bits.push("");
+    }
+    bits.push("Still unclear? Ask for an example. Ready to check yourself? Try 2 quick questions.");
+    return bits.join("\n").replace(/\n{3,}/g, "\n\n");
+  }
+
+  // fresh — all preset topics get teen framing + exam lock-ins
+  const points = teachingPoints(topic, 0, isSubjectIntroTopic(topic) ? 5 : 4);
+  const bits = [];
+  if (isSubjectIntroTopic(topic)) {
+    bits.push(
+      `${shortName} is one of your exam subjects. Here’s the idea in plain language for SS students.`
+    );
+    bits.push("");
+  } else {
+    bits.push(`Here’s ${shortName} in plain language.`);
+    bits.push("");
+  }
+  bits.push(base);
+  if (points.length) {
+    bits.push("");
+    bits.push("Lock these in:");
+    points.forEach((p) => bits.push(`• ${p}`));
+  }
+  bits.push("");
+  if (opts.channel === "wa") {
+    bits.push("Ask me to explain further, give an example, or say quiz me for 2 quick questions.");
+  } else {
+    bits.push(
+      "Tap Explain further or Give an example if any line is fuzzy. When you’re ready, try 2 quick questions."
+    );
+  }
+  return bits.join("\n");
+}
+
+function followUpIntent(text) {
+  const t = String(text || "").toLowerCase();
+  if (/\b(example|for instance|real life|everyday)\b/.test(t)) return "example";
+  if (/\b(exam|waec|jamb|key point|remember|revise point)\b/.test(t)) return "exam";
+  if (
+    /\b(further|simpler|simple|don'?t understand|confused|break( it)? down|more detail|go deeper|again|explain more)\b/.test(
+      t
+    )
+  ) {
+    return "further";
+  }
+  return "further";
+}
+
 function stats() {
   return {
     topics: topics.length,
@@ -392,8 +792,15 @@ module.exports = {
   findTopic,
   findTopicById,
   findTopicExact,
+  findTopicByConcept,
   resolveLearnQuery,
   spellcheckMessage,
+  conceptExplanation,
+  teachExplanation,
+  followUpIntent,
+  teachingPoints,
+  isSubjectIntroTopic,
+  extractAskObject,
   topicLabel,
   isRecap,
   isHelp,

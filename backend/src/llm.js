@@ -193,14 +193,26 @@ Student answer: ${studentAnswer}`;
  * Learn-mode answer grounded on a syllabus topic.
  * Returns { reply } or null.
  */
-async function learnReply({ topicTitle, subject, explanation, studentAsk }) {
-  const system = `You are Reca on WhatsApp. Answer the student's question about this syllabus topic.
-Keep it to 4–6 short sentences. WAEC/JAMB level. No markdown headings.
-End by inviting them to ask more or take a quiz.
+async function learnReply({ topicTitle, subject, explanation, studentAsk, intent = "fresh", depth = 0 }) {
+  const intentGuide =
+    intent === "example"
+      ? "Give ONE everyday SS-student example, then tie it back to the syllabus idea. 5–8 short sentences."
+      : intent === "exam"
+        ? "List 4–6 clear exam lock-in points SS students must remember. Plain language. No jargon without a quick gloss."
+        : intent === "further"
+          ? "Explain more slowly for a teenager who said they need it clearer. Define terms. 6–10 short sentences. Do NOT repeat the first answer word-for-word."
+          : "Teach a curious SS2/SS3 student. 6–10 short sentences. Define the idea, why it matters for WAEC/JAMB, and 2–3 lock-in facts.";
+
+  const system = `You are Reca, a WAEC/JAMB study companion for Nigerian teenagers.
+${intentGuide}
+No markdown headings. No bullet symbols except simple "• " lines if listing exam points.
+End by inviting them to ask for an example, ask further, or take a short quiz.
 Return ONLY JSON: { "reply": "string" }`;
 
   const user = `Subject: ${subject}
 Topic: ${topicTitle}
+Depth: ${depth}
+Intent: ${intent}
 Syllabus notes: ${explanation}
 Student asked: ${studentAsk}`;
 

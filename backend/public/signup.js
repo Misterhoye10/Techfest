@@ -25,41 +25,50 @@
   const modesEl = document.querySelector(".auth__modes");
   const guestLink = document.getElementById("authGuest");
   const guestNote = document.getElementById("authGuestNote");
-
-  function setGuestPromoVisible(show) {
-    const guestBlock = document.getElementById("authGuestBlock");
-    const signinBlock = document.getElementById("authSigninBlock");
-    if (guestBlock) guestBlock.hidden = !show;
-    if (guestLink) guestLink.hidden = !show;
-    if (guestNote) guestNote.hidden = !show;
-    if (signinBlock && !show) signinBlock.hidden = true;
-    else if (signinBlock && show) signinBlock.hidden = false;
-  }
+  const signinLabel = document.getElementById("authSigninLabel");
+  const signinDesc = document.getElementById("authSigninDesc");
+  const authOr = document.getElementById("authOr");
+  const guestBlock = document.getElementById("authGuestBlock");
+  const signinBlock = document.getElementById("authSigninBlock");
 
   const params = new URLSearchParams(location.search);
   const showWaCta = params.get("wa") === "1";
-  let mode = params.get("mode") === "signin" ? "signin" : "signup";
+  const forceLink = params.get("force") === "1";
+  let mode = params.get("mode") === "signin" || forceLink ? "signin" : "signup";
+  // Entry intent is fixed: landing shows guest+link; deep-link/force is phone-only (#2)
+  const entryLinkOnly = forceLink || params.get("mode") === "signin";
   let pendingPhone = null;
   let pendingName = null;
+
+  function isRealPhone(value) {
+    return /^\+\d{10,15}$/.test(String(value || "").trim());
+  }
+
+  function isGuestToken(value) {
+    return /^guest_[a-zA-Z0-9_-]{8,64}$/.test(String(value || "").trim());
+  }
 
   function hasActiveSession() {
     const signed = localStorage.getItem(SESSION_KEY) === "1";
     const phone = (localStorage.getItem("reca_phone") || "").trim();
-    return signed && /^\+\d{10,15}$/.test(phone);
+    return signed && isRealPhone(phone);
   }
 
-  if (hasActiveSession() && params.get("force") !== "1") {
+  if (hasActiveSession() && !forceLink) {
     location.replace("/chat.html");
     return;
   }
 
-  if (params.get("force") === "1") mode = "signin";
-
   const savedName = (localStorage.getItem("reca_display_name") || "").trim();
   const savedPhone = (localStorage.getItem("reca_phone") || "").trim();
   if (savedName && nameInput) nameInput.value = savedName;
-  if (savedPhone && phoneInput) {
-    phoneInput.value = savedPhone.replace(/^\+234/, "").replace(/^\+/, "");
+  // Never put guest_* session tokens in the phone field (#6)
+  if (phoneInput) {
+    if (isRealPhone(savedPhone)) {
+      phoneInput.value = savedPhone.replace(/^\+234/, "").replace(/^\+/, "");
+    } else {
+      phoneInput.value = "";
+    }
   }
 
   function showError(el, msg) {
@@ -68,9 +77,25 @@
     el.textContent = msg || "";
   }
 
+  function setLandingChrome(showGuestPath) {
+    if (guestBlock) guestBlock.hidden = !showGuestPath;
+    if (guestLink) guestLink.hidden = !showGuestPath;
+    if (guestNote) guestNote.hidden = !showGuestPath;
+    if (authOr) authOr.hidden = !showGuestPath;
+    document.body.classList.toggle("is-link-only", !showGuestPath);
+  }
+
+  function syncSubmitStyle(isPrimary) {
+    if (!submitBtn) return;
+    submitBtn.classList.toggle("auth__primary", isPrimary);
+    submitBtn.classList.toggle("auth__primary--solid", isPrimary);
+    submitBtn.classList.toggle("auth__secondary", !isPrimary);
+  }
+
   function setMode(next) {
     mode = next === "signin" ? "signin" : "signup";
     const isSignin = mode === "signin";
+    const linkOnly = entryLinkOnly;
 
     modeSignup?.classList.toggle("is-active", !isSignin);
     modeSignin?.classList.toggle("is-active", isSignin);
@@ -79,22 +104,52 @@
 
     if (nameField) nameField.hidden = isSignin;
     if (nameInput) nameInput.required = !isSignin;
+
+    // Landing: guest is primary. Link-only deep-link: phone is primary.
+    setLandingChrome(!linkOnly);
+
     if (titleEl) {
       titleEl.hidden = false;
-      titleEl.textContent = isSignin ? "Welcome back" : "Start studying";
+      if (forceLink) titleEl.textContent = "Link WhatsApp";
+      else if (linkOnly) titleEl.textContent = "Welcome back";
+      else titleEl.textContent = "Start studying";
     }
     if (introEl) {
       introEl.hidden = false;
-      introEl.textContent = isSignin
-        ? "Enter your phone to get a code and open your AI study companion."
-        : "Reca is an AI-powered WAEC & JAMB companion — try it on the web, no signup needed.";
+      if (forceLink) {
+        introEl.textContent = "Save Progress across web and phone with one code.";
+      } else if (linkOnly) {
+        introEl.textContent = "Enter the WhatsApp number you linked. We’ll send a code.";
+      } else {
+        introEl.textContent =
+          "WAEC & JAMB explanations, quizzes, and Progress. Short and exam-ready.";
+      }
     }
+
+    if (signinLabel) {
+      signinLabel.textContent = linkOnly
+        ? isSignin
+          ? "Sign in"
+          : "Create link"
+        : "Link WhatsApp";
+    }
+    if (signinDesc) {
+      signinDesc.textContent = linkOnly
+        ? "We’ll text a one-time code to this number."
+        : "Optional: keep Progress across web and phone.";
+    }
+
     if (submitBtn) submitBtn.textContent = "Send code";
+    syncSubmitStyle(linkOnly);
 
     const url = new URL(location.href);
-    if (isSignin) url.searchParams.set("mode", "signin");
+    if (linkOnly || isSignin) url.searchParams.set("mode", isSignin ? "signin" : "signup");
     else url.searchParams.delete("mode");
-    if (params.get("force") === "1") url.searchParams.set("force", "1");
+    if (forceLink) url.searchParams.set("force", "1");
+    // Keep landing bookmark clean when guest path is showing
+    if (!linkOnly) {
+      url.searchParams.delete("mode");
+    }
     history.replaceState({}, "", url);
   }
 
@@ -107,6 +162,7 @@
       .trim()
       .replace(/[\s\-().]/g, "");
     if (!s) return null;
+    if (isGuestToken(s)) return null;
     if (s.startsWith("+")) return /^\+\d{10,15}$/.test(s) ? s : null;
     if (s.startsWith("00")) s = s.slice(2);
     if (s.startsWith("234") && s.length >= 12) return `+${s}`;
@@ -127,7 +183,6 @@
 
   function showOtpStep({ phone, devCode }) {
     const authHead = document.getElementById("authHead");
-    const signinBlock = document.getElementById("authSigninBlock");
     form.hidden = true;
     if (modesEl) modesEl.hidden = true;
     if (signinBlock) signinBlock.hidden = true;
@@ -136,7 +191,7 @@
     if (introEl) introEl.hidden = true;
     otpForm.hidden = false;
     syncCard.hidden = true;
-    setGuestPromoVisible(false);
+    setLandingChrome(false);
     pendingPhone = phone;
     if (otpLead) {
       otpLead.textContent = phone
@@ -157,7 +212,6 @@
 
   function showPhoneStep() {
     const authHead = document.getElementById("authHead");
-    const signinBlock = document.getElementById("authSigninBlock");
     form.hidden = false;
     if (modesEl) modesEl.hidden = false;
     if (signinBlock) signinBlock.hidden = false;
@@ -166,7 +220,6 @@
     if (introEl) introEl.hidden = false;
     otpForm.hidden = true;
     syncCard.hidden = true;
-    setGuestPromoVisible(true);
     pendingPhone = null;
     showError(otpError, "");
     setMode(mode);
@@ -174,7 +227,6 @@
 
   function showSyncStep({ continueUrl, whatsappFrom }) {
     const authHead = document.getElementById("authHead");
-    const signinBlock = document.getElementById("authSigninBlock");
     form.hidden = true;
     otpForm.hidden = true;
     if (modesEl) modesEl.hidden = true;
@@ -183,14 +235,13 @@
     if (titleEl) titleEl.hidden = true;
     if (introEl) introEl.hidden = true;
     syncCard.hidden = false;
-    setGuestPromoVisible(false);
+    setLandingChrome(false);
 
     const biz =
       (whatsappFrom || "").replace(/\D/g, "") ||
       (continueUrl || "").match(/wa\.me\/(\d+)/)?.[1] ||
       "";
 
-    // WhatsApp CTA is opt-in only (?wa=1) — Meta allow-list blocks most numbers
     if (syncWaLink) {
       if (showWaCta && biz) {
         syncWaLink.hidden = false;
@@ -207,7 +258,7 @@
       syncWaNote.hidden = false;
       syncWaNote.textContent = showWaCta
         ? "Only works if this number is allow-listed in Meta Business Suite."
-        : "WhatsApp reminders need an allow-listed demo number in Meta — judges use the web app.";
+        : "WhatsApp reminders need an allow-listed demo number in Meta. Judges use the web app.";
     }
     syncContinue?.focus();
   }
@@ -217,12 +268,12 @@
     const phone = toE164(phoneInput?.value);
 
     if (mode === "signup" && !name) {
-      showError(errorEl, "Enter your name.");
+      showError(errorEl, "Enter your name so Reca can greet you.");
       nameInput?.focus();
       return;
     }
     if (!phone) {
-      showError(errorEl, "Enter a valid WhatsApp number.");
+      showError(errorEl, "Enter a valid WhatsApp number (e.g. 801 234 5678).");
       phoneInput?.focus();
       return;
     }
@@ -278,7 +329,7 @@
     showError(otpError, "");
     const code = (otpCode?.value || "").trim();
     if (!/^\d{4,6}$/.test(code)) {
-      showError(otpError, "Enter the code from WhatsApp.");
+      showError(otpError, "Enter the 4–6 digit code.");
       otpCode?.focus();
       return;
     }
@@ -314,7 +365,7 @@
         body: JSON.stringify({ phone: linked, name: data.name || pendingName }),
       }).catch(() => {});
 
-      if (data.purpose === "signin" || mode === "signin") {
+      if (data.purpose === "signin" || mode === "signin" || forceLink) {
         location.assign("/chat.html");
         return;
       }

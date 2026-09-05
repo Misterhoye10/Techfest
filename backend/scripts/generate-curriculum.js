@@ -7,6 +7,7 @@ const fs = require("fs");
 const path = require("path");
 const { EXTRA_SEEDS } = require("./subject-seeds-extra");
 const { EXTRA_SEEDS_ARTS_COMMERCE } = require("./subject-seeds-arts-commerce");
+const { SUBJECT_INTROS } = require("./subject-intros");
 
 function slug(s) {
   return String(s)
@@ -58,7 +59,7 @@ const SEEDS = [
       "Osmosis is the movement of water across a selectively permeable membrane from a dilute solution (high water potential) to a concentrated solution (low water potential).",
     items: [
       q("In osmosis, what substance moves across the membrane?", "water", ["salt", "sugar", "protein"]),
-      q("Water in osmosis moves from dilute to concentrated solution — true or false?", "true", ["false", "only at night", "never"]),
+      q("Water in osmosis moves from dilute to concentrated solution (true or false)?", "true", ["false", "only at night", "never"]),
       q("A membrane that lets some substances through is called?", "selectively permeable", ["fully permeable", "impermeable", "magnetic"]),
       q("Plant cells in pure water become?", "turgid", ["plasmolysed", "dead immediately", "frozen"]),
       q("Plant cells in strong salt solution may become?", "plasmolysed", ["turgid", "photosynthetic", "woody"]),
@@ -145,7 +146,7 @@ const SEEDS = [
     subject: "Biology",
     title: "Enzymes",
     explanation:
-      "Enzymes are biological catalysts — usually proteins — that speed up chemical reactions in living things without being used up. Each enzyme works best at an optimum temperature and pH.",
+      "Enzymes are biological catalysts (usually proteins) that speed up chemical reactions in living things without being used up. Each enzyme works best at an optimum temperature and pH.",
     items: [
       q("Enzymes are mainly made of?", "protein", ["fat only", "starch only", "DNA only"]),
       q("Enzymes speed up reactions as?", "catalysts", ["substrates", "hormones only", "vitamins only"]),
@@ -155,7 +156,7 @@ const SEEDS = [
       q("Amylase digests?", "starch", ["protein", "fat", "vitamins"]),
       q("Protease digests?", "protein", ["starch", "oil only", "cellulose only"]),
       q("Lipase digests?", "fats/lipids", ["starch", "DNA", "water"], ["fats", "lipids", "fat"]),
-      q("Enzymes are used up in the reaction — true or false?", "false", ["true", "sometimes always", "only in plants"]),
+      q("Enzymes are used up in the reaction (true or false)?", "false", ["true", "sometimes always", "only in plants"]),
       q("Optimum means the?", "best condition", ["worst condition", "average only", "random point"]),
     ],
   },
@@ -580,7 +581,7 @@ const FACT_PACKS = [
       `${name} matters in plant biology for WAEC/JAMB. Focus on structure, function, and how it helps the plant survive.`,
     facts: [
       ["Root hairs increase?", "surface area for absorption", ["leaf area only", "flower colour", "seed size only"]],
-      ["Xylem is dead at maturity — often?", "true for vessels", ["false always", "only in animals", "only in fungi"]],
+      ["Xylem is dead at maturity, often?", "true for vessels", ["false always", "only in animals", "only in fungi"]],
       ["Meristems are regions of?", "cell division/growth", ["excretion", "photosynthesis only", "transpiration only"]],
       ["Phototropism is growth towards?", "light", ["gravity", "water only", "touch only"]],
       ["Geotropism is response to?", "gravity", ["light", "sound", "colour"]],
@@ -800,14 +801,51 @@ for (const seed of EXTRA_SEEDS_ARTS_COMMERCE) {
   SEEDS.push(seed);
 }
 
+// Subject intros first so “what is Agriculture?” etc. resolve cleanly.
+for (const intro of [...SUBJECT_INTROS].reverse()) {
+  SEEDS.unshift(intro);
+}
+
+function isWeakDistractor(d) {
+  const s = String(d || "").toLowerCase().trim();
+  if (!s) return true;
+  return (
+    /^only\b/.test(s) ||
+    /only always$/.test(s) ||
+    /forever$/.test(s) ||
+    /^not /.test(s)
+  );
+}
+
+function fallbackDistractors(answer) {
+  const a = String(answer || "").trim();
+  return [
+    `not ${a}`,
+    "none of these",
+    "all of these",
+    "cannot be determined",
+  ].filter((d) => normalizeLoose(d) !== normalizeLoose(a));
+}
+
+function normalizeLoose(s) {
+  return String(s || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
 function buildQuestion(item, index) {
   const answer = String(item.answer).trim();
   const flatDistractors = (item.distractors || [])
     .flat(Infinity)
     .map((d) => String(d).trim())
-    .filter(Boolean);
-  const options = uniq([answer, ...flatDistractors]).slice(0, 4);
-  while (options.length < 4) options.push(`Not ${answer}`);
+    .filter(Boolean)
+    .filter((d) => !isWeakDistractor(d))
+    .filter((d) => normalizeLoose(d) !== normalizeLoose(answer));
+  const options = uniq([answer, ...flatDistractors, ...fallbackDistractors(answer)]).slice(0, 4);
+  while (options.length < 4) {
+    options.push(fallbackDistractors(answer)[options.length % 4] || `none of these`);
+  }
   const accept = uniq(
     [answer, ...(item.extraAccept || [])].flat(Infinity).map((a) => String(a).trim()).filter(Boolean)
   );
@@ -821,20 +859,15 @@ function buildQuestion(item, index) {
   };
 }
 
-const VARIANT_SUFFIXES = [
-  "",
-  " — pick the best answer.",
-  " — true or false?",
-  " (exam-style recall)",
-  " — which option is correct?",
-  " — choose carefully.",
-  " — one-line answer.",
-  " — WAEC/JAMB style.",
-  " — what fits best?",
-  " — confirm the fact.",
+/** Mild rephrases only — never glue “true or false?” onto fact questions. */
+const VARIANT_PREFIXES = [
+  null,
+  "In one line: ",
+  "Recall: ",
+  "Exam check: ",
 ];
 
-/** Expand a topic's seed items to exactly N Q&As by cycling variants. */
+/** Expand a topic's seed items to exactly N Q&As by cycling mild variants. */
 function expandToN(items, n) {
   if (!items.length) return [];
   const questions = [];
@@ -842,11 +875,11 @@ function expandToN(items, n) {
   while (questions.length < n) {
     const base = items[i % items.length];
     const round = Math.floor(i / items.length);
-    const suffix = VARIANT_SUFFIXES[round % VARIANT_SUFFIXES.length];
+    const prefix = VARIANT_PREFIXES[round % VARIANT_PREFIXES.length];
     const prompt =
-      round === 0 || !suffix
+      round === 0 || !prefix
         ? base.prompt
-        : `${String(base.prompt).replace(/\?\s*$/, "")}${suffix}`;
+        : `${prefix}${String(base.prompt).replace(/^\s+/, "")}`;
     questions.push(buildQuestion({ ...base, prompt }, questions.length));
     i += 1;
   }
@@ -960,7 +993,7 @@ function padSeedsToSubjectTarget(seeds) {
         explanation:
           set === 1
             ? src.explanation
-            : `${src.explanation} Practice set ${set} — same ideas, more exam-style checks.`,
+            : `${src.explanation} Practice set ${set}. Same ideas, more exam-style checks.`,
         items: src.items,
       });
       i += 1;
@@ -974,17 +1007,52 @@ function buildBank() {
   const padded = padSeedsToSubjectTarget(SEEDS);
   const topics = padded.map((seed) => {
     const id = seed.idHint || slug(seed.title);
+    const subject = seed.subject;
+    const isIntro = /^what is\b/i.test(seed.title);
+    const extraSubject = {
+      Agriculture: ["agriculture", "agric", "farming"],
+      Biology: ["biology", "bio"],
+      Chemistry: ["chemistry", "chem"],
+      Physics: ["physics"],
+      Mathematics: ["mathematics", "maths", "math"],
+      "Further Mathematics": ["further mathematics", "further maths"],
+      "English Language": ["english language", "english"],
+      Yoruba: ["yoruba"],
+      Igbo: ["igbo"],
+      Hausa: ["hausa"],
+      Government: ["government"],
+      Commerce: ["commerce"],
+      Economics: ["economics"],
+      Accounting: ["accounting", "accounts"],
+      Marketing: ["marketing"],
+      History: ["history"],
+      Geography: ["geography"],
+      "Fine Arts": ["fine arts", "fine art"],
+      "Creative Arts": ["creative arts", "creative art"],
+      "Food and Nutrition": ["food and nutrition", "nutrition"],
+      "Home Management": ["home management"],
+      French: ["french"],
+      "Islamic Religious Studies": ["islamic religious studies", "irs"],
+      "Christian Religious Knowledge": ["christian religious knowledge", "crk", "crs"],
+      "Computer Studies": ["computer studies", "computer science", "computing", "ict", "science"],
+      "Literature in English": ["literature in english", "literature"],
+      Music: ["music"],
+    };
     return {
       id,
-      subject: seed.subject,
+      subject,
       title: seed.title,
       aliases: uniq([
         seed.title.toLowerCase(),
         id.replace(/-/g, " "),
-        ...seed.title.toLowerCase().split(/\s+/).filter((w) => w.length > 3),
+        ...seed.title
+          .toLowerCase()
+          .split(/\s+/)
+          .filter((w) => w.length > 3 && !["what", "which", "when", "where", "with", "from", "that", "this"].includes(w)),
+        ...(isIntro ? extraSubject[subject] || [subject.toLowerCase()] : []),
       ]),
       explanation: seed.explanation,
-      icon: subjectIcon(seed.subject),
+      icon: subjectIcon(subject),
       questions: expandToN(seed.items, QUESTIONS_PER_TOPIC),
     };
   });

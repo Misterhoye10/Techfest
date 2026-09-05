@@ -218,6 +218,8 @@ function pushOutbox(phone, text, kind = "bot", meta = {}) {
     topicLabel: meta.topicLabel || null,
     title: meta.title || null,
     questionText: meta.questionText || null,
+    correctAnswer: meta.correctAnswer || null,
+    accept: Array.isArray(meta.accept) ? meta.accept.slice(0, 12) : null,
     updateId: meta.updateId || null,
     universityName: meta.universityName || null,
     category: meta.category || null,

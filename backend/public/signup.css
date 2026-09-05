@@ -207,27 +207,70 @@ body {
   color: var(--muted);
 }
 
-/* Sign-in — visually secondary, grouped (#20 lightest overlay) */
+/* Claude-style OR separator between try vs link */
+.auth__or {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin: var(--space-6) 0;
+  color: color-mix(in srgb, var(--muted) 88%, transparent);
+  font-size: 0.75rem;
+  font-weight: 550;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.auth__or::before,
+.auth__or::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: color-mix(in srgb, var(--line) 90%, transparent);
+}
+
+.auth__or[hidden] {
+  display: none !important;
+}
+
+/* Sign-in — visually secondary unless link-only (#2, #12) */
 .auth__signin-block {
-  margin-top: var(--space-8);
+  margin-top: 0;
   padding: var(--space-5) var(--space-4) var(--space-5);
-  border-radius: var(--radius-surface);
+  border-radius: 16px;
   border: 1px solid color-mix(in srgb, var(--line) 85%, transparent);
-  background: color-mix(in srgb, white 2.5%, transparent);
+  background: color-mix(in srgb, white 3%, transparent);
+}
+
+body.is-link-only .auth__signin-block {
+  margin-top: var(--space-6);
+  padding: 0;
+  border: 0;
+  background: transparent;
 }
 
 .auth__signin-block[hidden] {
   display: none !important;
 }
 
+.auth__signin-head {
+  margin-bottom: var(--space-4);
+}
+
 .auth__section-label {
-  margin: 0 0 var(--space-4);
+  margin: 0;
   font-family: var(--font-ui);
-  font-size: 0.8125rem;
+  font-size: 0.9375rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--muted) 88%, var(--ink));
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--ink);
+}
+
+.auth__section-desc {
+  margin: 0.35rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--muted);
 }
 
 .auth__divider {
@@ -246,9 +289,11 @@ body {
 .auth__guest[hidden],
 .auth__guest-note[hidden],
 .auth__divider[hidden],
+.auth__or[hidden],
 .auth__error[hidden],
 .auth__dev[hidden],
-.auth__field[hidden] {
+.auth__field[hidden],
+.auth__legal[hidden] {
   display: none !important;
 }
 
@@ -270,20 +315,20 @@ body {
 }
 
 .auth__mode {
-  min-height: 44px;
+  min-height: 42px;
   border: 0;
   border-radius: 10px;
   background: transparent;
   color: var(--muted);
   font: inherit;
-  font-size: 0.875rem;
+  font-size: 0.84rem;
   font-weight: 550;
   cursor: pointer;
   transition: background var(--motion-fast) var(--ease), color var(--motion-fast) var(--ease);
 }
 
 .auth__mode.is-active {
-  background: color-mix(in srgb, white 90%, transparent);
+  background: color-mix(in srgb, white 92%, transparent);
   color: #0b1220;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
 }
@@ -410,7 +455,26 @@ body {
   box-shadow: 0 1px 0 color-mix(in srgb, white 18%, transparent) inset,
     0 8px 24px color-mix(in srgb, var(--primary) 28%, transparent);
   transition: transform var(--motion-fast) var(--ease), background var(--motion-fast) var(--ease),
-    box-shadow var(--motion-fast) var(--ease), opacity var(--motion-fast) var(--ease);
+    box-shadow var(--motion-fast) var(--ease), opacity var(--motion-fast) var(--ease),
+    color var(--motion-fast) var(--ease);
+}
+
+/* Claude-style high-contrast CTA on dark — unmistakable primary (#2, #12) */
+.auth__primary--solid {
+  background: #f2f0ed;
+  color: #0b1220;
+  box-shadow: none;
+}
+
+.auth__primary--solid:hover {
+  background: #fff;
+  color: #0b1220;
+  box-shadow: 0 8px 24px color-mix(in srgb, #000 28%, transparent);
+}
+
+.auth__primary--solid:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
 }
 
 .auth__secondary {
@@ -430,8 +494,8 @@ body {
 }
 
 .auth__secondary:hover {
-  border-color: color-mix(in srgb, var(--primary) 35%, var(--line));
-  background: color-mix(in srgb, var(--primary) 6%, transparent);
+  border-color: color-mix(in srgb, white 28%, transparent);
+  background: color-mix(in srgb, white 6%, transparent);
   color: var(--ink);
 }
 
@@ -461,6 +525,11 @@ body {
   background: color-mix(in srgb, var(--primary) 90%, black);
   box-shadow: 0 1px 0 color-mix(in srgb, white 14%, transparent) inset,
     0 10px 28px color-mix(in srgb, var(--primary) 34%, transparent);
+}
+
+.auth__primary--solid:hover {
+  background: #fff;
+  box-shadow: 0 8px 24px color-mix(in srgb, #000 28%, transparent);
 }
 
 .auth__primary:active {
@@ -634,6 +703,14 @@ body {
 }
 
 .auth__legal {
+  margin: var(--space-4) 0 0;
+  max-width: 40ch;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--muted) 88%, transparent);
+}
+
+.auth__legal[hidden] {
   display: none !important;
 }
 
@@ -764,9 +841,18 @@ body {
     margin-top: 1.1rem;
   }
 
+  .auth__or {
+    margin: 1.25rem 0;
+  }
+
   .auth__signin-block {
-    margin-top: 1.35rem;
+    margin-top: 0;
     padding: 1rem 0.9rem 1.1rem;
+  }
+
+  body.is-link-only .auth__signin-block {
+    margin-top: 1.1rem;
+    padding: 0;
   }
 }
 

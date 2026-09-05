@@ -60,6 +60,13 @@ async function sendWhatsApp(to, body) {
     return { messages: [{ id: "dry-run" }] };
   }
 
+  // Guest web sessions have no WhatsApp destination — web outbox still delivers toasts
+  if (/^guest_/i.test(String(to || ""))) {
+    const err = new Error("WhatsApp needs a linked phone — web toast still delivered");
+    err.code = "WA_GUEST_SKIP";
+    throw err;
+  }
+
   const id = phoneNumberId();
   const token = accessToken();
   if (!id || !token) {
