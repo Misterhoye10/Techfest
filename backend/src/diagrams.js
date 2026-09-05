@@ -1,32 +1,38 @@
 /**
- * Teaching diagrams for Learn / Revise — only when they clarify the concept.
+ * Teaching diagrams for Learn / Revise - only when they clarify the concept.
  * Served from /assets/diagrams (local = reliable on demo Wi‑Fi).
+ * Labelled exam packs live in ./data/diagram-packs.js (curated keys - never LLM-invented).
  */
+
+const {
+  findPackById,
+  resolveDiagramPack,
+} = require("./data/diagram-packs");
 
 const BY_KEY = {
   photosynthesis: {
     src: "/assets/diagrams/photosynthesis.svg",
-    caption: "Photosynthesis — light energy → glucose + oxygen",
+    caption: "Photosynthesis - light energy → glucose + oxygen",
     alt: "Simple diagram of photosynthesis in a leaf",
   },
   osmosis: {
     src: "/assets/diagrams/osmosis.svg",
-    caption: "Osmosis — water moves across a membrane",
+    caption: "Osmosis - water moves across a membrane",
     alt: "Simple diagram of osmosis across a selectively permeable membrane",
   },
   "aerobic-respiration": {
     src: "/assets/diagrams/respiration.svg",
-    caption: "Aerobic respiration — glucose + oxygen → energy",
+    caption: "Aerobic respiration - glucose + oxygen → energy",
     alt: "Simple diagram of aerobic respiration",
   },
   "anaerobic-respiration": {
     src: "/assets/diagrams/respiration.svg",
-    caption: "Respiration — releasing energy from food",
+    caption: "Respiration - releasing energy from food",
     alt: "Simple diagram of respiration",
   },
   respiration: {
     src: "/assets/diagrams/respiration.svg",
-    caption: "Respiration — releasing energy from food",
+    caption: "Respiration - releasing energy from food",
     alt: "Simple diagram of respiration",
   },
   "acids-bases": {
@@ -56,46 +62,46 @@ const BY_KEY = {
   },
   enzyme: {
     src: "/assets/diagrams/enzyme.svg",
-    caption: "Enzyme — lock and key with substrate",
+    caption: "Enzyme - lock and key with substrate",
     alt: "Simple lock-and-key enzyme diagram",
   },
   enzymes: {
     src: "/assets/diagrams/enzyme.svg",
-    caption: "Enzyme — lock and key with substrate",
+    caption: "Enzyme - lock and key with substrate",
     alt: "Simple lock-and-key enzyme diagram",
   },
   diffusion: {
     src: "/assets/diagrams/diffusion.svg",
-    caption: "Diffusion — particles spread from high to low concentration",
+    caption: "Diffusion - particles spread from high to low concentration",
     alt: "Simple diagram of diffusion",
   },
   "cell-structure": {
     src: "/assets/diagrams/cell.svg",
-    caption: "Animal cell — key parts",
+    caption: "Animal cell - key parts",
     alt: "Simple animal cell diagram",
   },
   cell: {
     src: "/assets/diagrams/cell.svg",
-    caption: "Animal cell — key parts",
+    caption: "Animal cell - key parts",
     alt: "Simple animal cell diagram",
   },
   genetics: {
     src: "/assets/diagrams/cell.svg",
-    caption: "Cell — where genetic material lives",
+    caption: "Cell - where genetic material lives",
     alt: "Simple animal cell diagram",
   },
   chromosome: {
     src: "/assets/diagrams/cell.svg",
-    caption: "Cell — where genetic material lives",
+    caption: "Cell - where genetic material lives",
     alt: "Simple animal cell diagram",
   },
 };
 
-/** Subject fallbacks — only when a real diagram exists for that subject family */
+/** Subject fallbacks - only when a real diagram exists for that subject family */
 const BY_SUBJECT = {
   biology: {
     src: "/assets/diagrams/cell.svg",
-    caption: "Animal cell — key parts",
+    caption: "Animal cell - key parts",
     alt: "Simple animal cell diagram",
   },
   chemistry: {
@@ -111,6 +117,17 @@ function getDiagram(topicId, subject) {
     .replace(/\s+/g, "-");
   if (!id) return null;
 
+  const pack = findPackById(id);
+  if (pack) {
+    return {
+      src: pack.src,
+      caption: pack.title,
+      alt: pack.alt || pack.title,
+      topicId: pack.id,
+      labelled: true,
+    };
+  }
+
   if (BY_KEY[id]) return { ...BY_KEY[id], topicId: id };
 
   // Prefer longer keys first so "acids-and-bases" wins over "acid"
@@ -125,4 +142,20 @@ function getDiagram(topicId, subject) {
   return null;
 }
 
-module.exports = { getDiagram, BY_KEY };
+/** Resolve a labelled pack from free text (Learn / WhatsApp). */
+function getLabelledDiagramFromAsk(text, subject) {
+  const { pack, wantedButMissing } = resolveDiagramPack(text, subject);
+  if (!pack) return { pack: null, wantedButMissing };
+  return {
+    pack,
+    wantedButMissing: false,
+    image: {
+      src: pack.src,
+      caption: pack.title,
+      alt: pack.alt || pack.title,
+      labelled: true,
+    },
+  };
+}
+
+module.exports = { getDiagram, getLabelledDiagramFromAsk, BY_KEY };

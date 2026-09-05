@@ -1,6 +1,6 @@
 /**
  * In-memory store for hackathon MVP.
- * Swap for Supabase later — same shape.
+ * Swap for Supabase later - same shape.
  *
  * Identity = WhatsApp number (E.164). Web + WhatsApp share the same student key.
  */
@@ -44,7 +44,7 @@ function upsertAccount({ phone, name, email }) {
   const key = normalizePhoneE164(phone);
   if (!key) {
     const err = new Error(
-      "Enter your WhatsApp number in international format — e.g. +2348012345678"
+      "Enter your WhatsApp number in international format - e.g. +2348012345678"
     );
     err.status = 400;
     throw err;

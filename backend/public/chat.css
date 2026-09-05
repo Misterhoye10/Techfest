@@ -2881,13 +2881,21 @@ body {
 }
 
 .start__title {
-  margin: 0 0 0.35rem;
-  font-family: var(--font-display);
-  font-size: clamp(1.45rem, 2.8vw, 1.85rem);
-  font-weight: 400;
-  letter-spacing: -0.025em;
-  line-height: 1.15;
+  margin: 0 0 0.45rem;
+  font-family: var(--font-ui);
+  font-size: clamp(1.35rem, 2.4vw, 1.65rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.3;
   color: var(--ink);
+  overflow: visible;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+.start--revise .start__title {
+  min-height: 1.7em;
+  padding: 0.1rem 0;
 }
 
 .start__hint {
@@ -2896,6 +2904,10 @@ body {
   font-size: 0.9rem;
   line-height: 1.45;
   color: var(--muted);
+}
+
+.start--revise .start__hint {
+  margin-bottom: 0.65rem;
 }
 
 .start__loop {
@@ -3014,6 +3026,133 @@ body {
 
 .start__row--primary:hover {
   background: color-mix(in srgb, var(--primary) 14%, transparent);
+}
+
+/* Revise: exam body — Hick’s (2 choices), quiet segment, no glow */
+.exam-seg {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  margin: 0.15rem 0 1rem;
+  padding: 3px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--line) 92%, transparent);
+  background: color-mix(in srgb, var(--ink) 4%, transparent);
+}
+
+.exam-seg__btn {
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.45rem 1.15rem;
+  min-height: 40px;
+  min-width: 4.5rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background var(--motion-fast) var(--ease),
+    color var(--motion-fast) var(--ease),
+    box-shadow var(--motion-fast) var(--ease);
+}
+
+.exam-seg__btn:hover {
+  color: var(--ink);
+}
+
+.exam-seg__btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.exam-seg__btn[aria-checked="true"] {
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.revise-foot {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.45rem;
+  margin-top: 0.85rem;
+  width: 100%;
+}
+
+.revise-snap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.7rem 1rem;
+  min-height: 48px;
+  border: 1px solid color-mix(in srgb, var(--line) 92%, transparent);
+  border-radius: 14px;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 550;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition:
+    background var(--motion-fast) var(--ease),
+    border-color var(--motion-fast) var(--ease);
+}
+
+.revise-snap__ico {
+  width: 1.05rem;
+  height: 1.05rem;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.revise-snap:hover {
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
+  border-color: color-mix(in srgb, var(--ink) 18%, var(--line));
+}
+
+.revise-snap:hover .revise-snap__ico {
+  color: var(--ink);
+}
+
+.revise-snap:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.revise-foot__hint {
+  margin: 0;
+  text-align: center;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: color-mix(in srgb, var(--muted) 92%, transparent);
+}
+
+[data-theme="dark"] .exam-seg {
+  background: color-mix(in srgb, white 6%, transparent);
+  border-color: color-mix(in srgb, white 12%, transparent);
+}
+
+[data-theme="dark"] .exam-seg__btn[aria-checked="true"] {
+  background: color-mix(in srgb, white 10%, var(--card));
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="dark"] .revise-snap {
+  border-color: color-mix(in srgb, white 14%, transparent);
+  color: color-mix(in srgb, #fff 90%, transparent);
+}
+
+[data-theme="dark"] .revise-snap:hover {
+  background: color-mix(in srgb, white 7%, transparent);
 }
 
 .start__row-meta {
@@ -4038,12 +4177,27 @@ body {
   animation-delay: 80ms;
 }
 
+.msg__media--labelled {
+  margin: 0.35rem 0 0.75rem;
+}
+
+.msg__media.is-broken img {
+  display: none;
+}
+
+.msg__media-fallback {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
 .msg__media img {
   display: block;
   width: 100%;
   height: auto;
   min-height: 140px;
-  max-height: 240px;
+  max-height: 280px;
   aspect-ratio: 16 / 9;
   object-fit: contain;
   background: color-mix(in srgb, var(--paper) 80%, white);
@@ -4715,8 +4869,9 @@ body {
   }
 
   .progress__empty .start__title {
-    font-family: var(--font-display);
-    font-size: 1.45rem;
+    font-family: var(--font-ui);
+    font-size: 1.35rem;
+    font-weight: 600;
   }
 
   .start__list {
@@ -6584,6 +6739,16 @@ body {
 
 [data-theme="light"] .start__row--primary:hover {
   background: color-mix(in srgb, var(--primary) 12%, white);
+}
+
+[data-theme="light"] .exam-seg {
+  background: color-mix(in srgb, var(--ink) 3%, #fff);
+  border-color: var(--line);
+}
+
+[data-theme="light"] .exam-seg__btn[aria-checked="true"] {
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
 }
 
 [data-theme="light"] .composer {

@@ -240,7 +240,7 @@ app.post("/api/send-alert", security.requireDemoAccess, security.authLimiter, as
   }
 });
 
-/** Student id: E.164 or guest_* — never a shared fallback phone. */
+/** Student id: E.164 or guest_* - never a shared fallback phone. */
 function normalizePhone(raw) {
   return security.resolveStudentId(raw);
 }
@@ -253,13 +253,23 @@ function capitalizeTopic(topicId) {
     .join(" ");
 }
 
+/** Strip fancy dashes so UI and WhatsApp stay ASCII-clean. */
+function cleanText(s) {
+  return String(s || "")
+    .replace(/\u2014/g, "-")
+    .replace(/\u2013/g, "-")
+    .replace(/\u2015/g, "-")
+    .replace(/\u2212/g, "-");
+}
+
 async function deliver(phone, text, { whatsapp = true } = {}) {
-  store.pushOutbox(phone, text, "bot");
+  const body = cleanText(text);
+  store.pushOutbox(phone, body, "bot");
   if (!whatsapp) return;
   const dry = String(process.env.DRY_RUN).toLowerCase() === "true";
   if (dry) return;
   try {
-    await sendWhatsApp(phone, text);
+    await sendWhatsApp(phone, body);
   } catch (err) {
     console.error("WhatsApp deliver skipped/failed:", err.message);
   }
@@ -273,13 +283,20 @@ function enrichReplies(rawReplies, student) {
 
   return list.map((item, i) => {
     if (item && typeof item === "object" && item.text != null) {
+      const image = item.image || (i === 0 ? diagram : null);
       return {
-        text: String(item.text),
-        image: item.image || (i === 0 ? diagram : null),
+        text: cleanText(item.text),
+        image: image
+          ? {
+              ...image,
+              caption: image.caption ? cleanText(image.caption) : image.caption,
+              alt: image.alt ? cleanText(image.alt) : image.alt,
+            }
+          : null,
       };
     }
     return {
-      text: String(item || ""),
+      text: cleanText(item || ""),
       image: i === 0 ? diagram : null,
     };
   });
@@ -310,7 +327,12 @@ app.post("/api/chat", security.chatLimiter, async (req, res) => {
   const replies = await handleIncoming(phone, checked.body, { mode, topicId, fresh });
   const student = store.getStudent(phone);
   const { findTopicById, topicLabel } = require("./topics");
-  const focus = student.learnFocusId ? findTopicById(student.learnFocusId) : null;
+  const { findPackById, packToTopic } = require("./data/diagram-packs");
+  const focus =
+    (student.learnFocusId && findTopicById(student.learnFocusId)) ||
+    (student.learnFocusId && findPackById(student.learnFocusId)
+      ? packToTopic(findPackById(student.learnFocusId))
+      : null);
   res.json({
     ok: true,
     phone,
@@ -413,7 +435,8 @@ app.post("/api/quiz/start", security.chatLimiter, (req, res) => {
   if (!phone) return;
   const limit = req.body.limit != null ? Number(req.body.limit) : undefined;
   const topicId = req.body.topicId ? String(req.body.topicId).slice(0, 80) : undefined;
-  const result = startQuiz(phone, topicId, { limit });
+  const examBody = req.body.examBody ? String(req.body.examBody).slice(0, 12) : undefined;
+  const result = startQuiz(phone, topicId, { limit, examBody });
   if (result.error) return res.status(400).json(result);
   res.json(result);
 });
@@ -425,6 +448,9 @@ app.post("/api/quiz/answer", security.chatLimiter, (req, res) => {
   if (!answer) return res.status(400).json({ error: "answer required" });
   const result = answerQuiz(phone, answer);
   if (result.error) return res.status(400).json(result);
+  if (result.feedback?.text) result.feedback.text = cleanText(result.feedback.text);
+  if (result.summary?.message) result.summary.message = cleanText(result.summary.message);
+  if (result.question?.text) result.question.text = cleanText(result.question.text);
   res.json(result);
 });
 
@@ -555,10 +581,11 @@ function reviseSnapshot(student) {
 
 app.get("/api/topics", (req, res) => {
   const { topics, stats } = require("./topics");
+  const { allPackTopics } = require("./data/diagram-packs");
   const q = String(req.query.q || "").trim().toLowerCase();
   const subject = String(req.query.subject || "").trim();
   const includeSets = String(req.query.sets || "") === "1";
-  let list = topics;
+  let list = [...allPackTopics(), ...topics];
   // Hub/picker: skip “· set 2” clones so every subject fits and titles stay clean
   if (!includeSets) {
     list = list.filter((t) => !/·\s*set\s*\d+/i.test(t.title || ""));
@@ -572,7 +599,7 @@ app.get("/api/topics", (req, res) => {
         t.title.toLowerCase().includes(q) ||
         t.id.includes(q) ||
         t.subject.toLowerCase().includes(q) ||
-        (t.aliases || []).some((a) => a.includes(q))
+        (t.aliases || []).some((a) => String(a).includes(q))
     );
   }
   const limit = Math.min(Number(req.query.limit) || 800, 2000);

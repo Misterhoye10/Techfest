@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-label="Leaf cross-section labelled diagram">
+  <rect width="640" height="400" fill="#f7f5f1"/>
+  <text x="320" y="32" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" font-weight="600" fill="#1a1a1a">Leaf cross-section (label the parts)</text>
+
+  <!-- leaf body -->
+  <rect x="180" y="70" width="280" height="260" rx="8" fill="#e8f5e9" stroke="#2f6b48" stroke-width="2"/>
+  <!-- cuticle -->
+  <rect x="180" y="70" width="280" height="14" fill="#c8e6c9"/>
+  <!-- upper epidermis -->
+  <rect x="180" y="84" width="280" height="22" fill="#a5d6a7"/>
+  <!-- palisade -->
+  <rect x="190" y="112" width="40" height="70" rx="4" fill="#66bb6a"/>
+  <rect x="240" y="112" width="40" height="70" rx="4" fill="#66bb6a"/>
+  <rect x="290" y="112" width="40" height="70" rx="4" fill="#66bb6a"/>
+  <rect x="340" y="112" width="40" height="70" rx="4" fill="#66bb6a"/>
+  <rect x="390" y="112" width="40" height="70" rx="4" fill="#66bb6a"/>
+  <!-- spongy -->
+  <circle cx="230" cy="230" r="18" fill="#81c784" opacity="0.9"/>
+  <circle cx="280" cy="245" r="22" fill="#81c784" opacity="0.85"/>
+  <circle cx="340" cy="225" r="20" fill="#81c784" opacity="0.9"/>
+  <circle cx="400" cy="250" r="16" fill="#81c784" opacity="0.85"/>
+  <circle cx="250" cy="280" r="14" fill="#a5d6a7"/>
+  <circle cx="370" cy="275" r="15" fill="#a5d6a7"/>
+  <!-- vein -->
+  <ellipse cx="320" cy="210" rx="55" ry="18" fill="#fff" stroke="#2f6b48" stroke-width="2"/>
+  <text x="320" y="214" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#2f6b48">vein</text>
+  <!-- lower epidermis + stoma -->
+  <rect x="180" y="310" width="280" height="20" fill="#a5d6a7"/>
+  <path d="M300 330 Q320 350 340 330" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+  <circle cx="308" cy="332" r="5" fill="#2f6b48"/>
+  <circle cx="332" cy="332" r="5" fill="#2f6b48"/>
+
+  <!-- number badges -->
+  <g font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#fff">
+    <circle cx="120" cy="78" r="14" fill="#1d4ed8"/><text x="120" y="83" text-anchor="middle">1</text>
+    <line x1="134" y1="78" x2="178" y2="78" stroke="#1d4ed8" stroke-width="2"/>
+    <circle cx="120" cy="95" r="14" fill="#1d4ed8"/><text x="120" y="100" text-anchor="middle">2</text>
+    <line x1="134" y1="95" x2="178" y2="95" stroke="#1d4ed8" stroke-width="2"/>
+    <circle cx="120" cy="145" r="14" fill="#1d4ed8"/><text x="120" y="150" text-anchor="middle">3</text>
+    <line x1="134" y1="145" x2="188" y2="145" stroke="#1d4ed8" stroke-width="2"/>
+    <circle cx="120" cy="245" r="14" fill="#1d4ed8"/><text x="120" y="250" text-anchor="middle">4</text>
+    <line x1="134" y1="245" x2="210" y2="245" stroke="#1d4ed8" stroke-width="2"/>
+    <circle cx="520" cy="210" r="14" fill="#1d4ed8"/><text x="520" y="215" text-anchor="middle">5</text>
+    <line x1="506" y1="210" x2="375" y2="210" stroke="#1d4ed8" stroke-width="2"/>
+    <circle cx="520" cy="340" r="14" fill="#1d4ed8"/><text x="520" y="345" text-anchor="middle">6</text>
+    <line x1="506" y1="340" x2="340" y2="335" stroke="#1d4ed8" stroke-width="2"/>
+  </g>
+</svg>

@@ -32,8 +32,8 @@
             desc: "Or type a question in the box below.",
           },
           revise: {
-            title: "Pick a topic to quiz",
-            desc: "Five questions. Stop whenever you want.",
+            title: "Past questions",
+            desc: "WAEC or JAMB · five questions · stop anytime.",
           },
         };
       })();
@@ -44,7 +44,7 @@
       href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/chat.css" />
+    <link rel="stylesheet" href="/chat.css?v=pq7" />
   </head>
   <body>
     <div class="frame" id="app" data-feature="learn" data-mode="welcome">
@@ -211,31 +211,31 @@
               </p>
               <ul class="start__list" id="learnAskHint" aria-label="Suggested topics">
                 <li>
-                  <button type="button" class="start__row" data-ask="Explain photosynthesis simply">
+                  <button type="button" class="start__row" data-ask="Label a leaf">
                     <span data-icon="leaf-01" class="start__row-ico" aria-hidden="true"></span>
-                    <span class="start__row-main">Photosynthesis</span>
+                    <span class="start__row-main">Label a leaf</span>
                     <span class="start__row-meta">Biology</span>
                   </button>
                 </li>
                 <li>
-                  <button type="button" class="start__row" data-ask="What is osmosis?">
-                    <span data-icon="droplet" class="start__row-ico" aria-hidden="true"></span>
-                    <span class="start__row-main">Osmosis</span>
+                  <button type="button" class="start__row" data-ask="Label the human body">
+                    <span data-icon="student" class="start__row-ico" aria-hidden="true"></span>
+                    <span class="start__row-main">Label the human body</span>
                     <span class="start__row-meta">Biology</span>
                   </button>
                 </li>
                 <li>
-                  <button type="button" class="start__row" data-ask="Explain genetics basics simply">
-                    <span data-icon="book-open-01" class="start__row-ico" aria-hidden="true"></span>
-                    <span class="start__row-main">Genetics</span>
-                    <span class="start__row-meta">Biology</span>
+                  <button type="button" class="start__row" data-ask="Label a pie chart">
+                    <span data-icon="analytics-01" class="start__row-ico" aria-hidden="true"></span>
+                    <span class="start__row-main">Label a pie chart</span>
+                    <span class="start__row-meta">Mathematics</span>
                   </button>
                 </li>
                 <li>
-                  <button type="button" class="start__row" data-ask="What is agriculture?">
-                    <span data-icon="mortarboard-01" class="start__row-ico" aria-hidden="true"></span>
-                    <span class="start__row-main">Agriculture</span>
-                    <span class="start__row-meta">Agriculture</span>
+                  <button type="button" class="start__row" data-ask="Label a right-angled triangle">
+                    <span data-icon="quiz-03" class="start__row-ico" aria-hidden="true"></span>
+                    <span class="start__row-main">Label a right-angled triangle</span>
+                    <span class="start__row-meta">Mathematics</span>
                   </button>
                 </li>
               </ul>
@@ -246,16 +246,41 @@
           <div class="welcome welcome--start" id="reviseWelcome" role="region" aria-labelledby="reviseTitle" hidden>
             <div class="start start--revise">
               <p class="start__greet" id="reviseGreet" hidden></p>
-              <h2 class="start__title" id="reviseTitle">Pick a topic to quiz</h2>
-              <p class="start__hint" id="reviseDesc">Five questions. Stop whenever you want.</p>
+              <h2 class="start__title" id="reviseTitle">Past questions</h2>
+              <p class="start__hint" id="reviseDesc">WAEC or JAMB · five questions · stop anytime.</p>
+              <div
+                class="exam-seg"
+                id="reviseExamSeg"
+                role="radiogroup"
+                aria-label="Exam"
+              >
+                <button
+                  type="button"
+                  class="exam-seg__btn"
+                  role="radio"
+                  aria-checked="true"
+                  data-exam="WAEC"
+                  id="reviseExamWaec"
+                >
+                  WAEC
+                </button>
+                <button
+                  type="button"
+                  class="exam-seg__btn"
+                  role="radio"
+                  aria-checked="false"
+                  data-exam="JAMB"
+                  id="reviseExamJamb"
+                >
+                  JAMB
+                </button>
+              </div>
               <ul class="start__list" aria-label="Suggested revise topics">
                 <li>
                   <button type="button" class="start__row start__row--primary" id="reviseRecommend">
                     <span data-icon="quiz-03" class="start__row-ico" aria-hidden="true"></span>
-                    <span class="start__row-main">
-                      Quiz <span id="reviseRecommendTitle">Photosynthesis</span>
-                    </span>
-                    <span class="start__row-meta" id="reviseRecommendMeta">Biology · 5</span>
+                    <span class="start__row-main" id="reviseRecommendTitle">Photosynthesis</span>
+                    <span class="start__row-meta" id="reviseRecommendMeta">WAEC · Biology · 5</span>
                   </button>
                 </li>
                 <li>
@@ -266,9 +291,9 @@
                   </button>
                 </li>
                 <li>
-                  <button type="button" class="start__row" data-revise="Photosynthesis">
-                    <span data-icon="leaf-01" class="start__row-ico" aria-hidden="true"></span>
-                    <span class="start__row-main">Photosynthesis</span>
+                  <button type="button" class="start__row" data-revise="Genetics basics">
+                    <span data-icon="book-open-01" class="start__row-ico" aria-hidden="true"></span>
+                    <span class="start__row-main">Genetics</span>
                     <span class="start__row-meta">Biology</span>
                   </button>
                 </li>
@@ -280,6 +305,13 @@
                   </button>
                 </li>
               </ul>
+              <div class="revise-foot">
+                <button type="button" class="revise-snap" id="reviseSnapBtn">
+                  <span data-icon="image-add-01" class="revise-snap__ico" aria-hidden="true"></span>
+                  Snap a past question
+                </button>
+                <p class="revise-foot__hint">Photo a real paper question. Reca explains, then you practise.</p>
+              </div>
               <p class="revise-tip" id="reviseTip" hidden role="status"></p>
               <details class="revise-browse" id="reviseBrowse" hidden>
                 <summary class="revise-browse__summary">Browse topics</summary>
@@ -626,7 +658,7 @@
             </p>
             <ul class="settings__list settings__list--features">
               <li><strong>Learn</strong>: AI explains any syllabus topic in exam language.</li>
-              <li><strong>Revise</strong>: AI-graded quizzes, one question at a time.</li>
+              <li><strong>Revise</strong>: WAEC- or JAMB-style practice, one question at a time. Or snap a past question.</li>
               <li><strong>Progress</strong>: AI memory tracks weak topics and when to revisit.</li>
               <li><strong>Uni updates</strong>: AI reads official admission pages and drops POST-UTME, CAPS, and deadline reminders for your target school.</li>
             </ul>
@@ -845,6 +877,6 @@
       </div>
     </div>
 
-    <script src="/chat.js"></script>
+    <script src="/chat.js?v=pq7"></script>
   </body>
 </html>

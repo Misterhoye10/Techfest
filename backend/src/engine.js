@@ -17,6 +17,14 @@ const store = require("./store");
 const llm = require("./llm");
 const uniData = require("./data/uni-updates");
 const uniFeed = require("./uni-feed");
+const {
+  resolveDiagramPack,
+  formatPackReply,
+  questionsFromPack,
+  packToTopic,
+  findPackById,
+  missingPackCopy,
+} = require("./data/diagram-packs");
 
 const resurfaceMinutes = Number(process.env.RESURFACE_MINUTES || 2);
 
@@ -41,6 +49,53 @@ function withSpelling(corrections, body) {
   const preface = spellingPreface(corrections);
   if (!preface) return body;
   return `${preface}\n\n${body}`;
+}
+
+function resolveTopicOrPack(id) {
+  if (!id) return null;
+  return findTopicById(id) || (findPackById(id) ? packToTopic(findPackById(id)) : null);
+}
+
+/** Serve curated labelled diagram. withQuiz arms pending Q1 (WhatsApp). Web uses Try 2 CTA. */
+function serveDiagramPack(student, pack, corrections, opts = {}) {
+  const withQuiz = Boolean(opts.withQuiz);
+  const topic = packToTopic(pack);
+  const questions = questionsFromPack(pack, 2);
+  student.learnFocusId = pack.id;
+  student.learnDepth = 0;
+
+  let body = formatPackReply(pack);
+  if (withQuiz && questions[0]) {
+    student.pending = {
+      kind: "diagram-pack",
+      topicId: pack.id,
+      subject: topic.subject,
+      step: "q1",
+      topic: {
+        ...topic,
+        questions,
+      },
+      q1Correct: null,
+      q2Correct: null,
+    };
+    body = `${body}\n\nQuick check 1/2: ${questions[0].text}`;
+  } else {
+    student.pending = null;
+    body = `${body}\n\nWhen you’re ready, try 2 quick questions on the labels.`;
+  }
+
+  const text = withSpelling(corrections, body);
+  return [
+    {
+      text,
+      image: {
+        src: pack.src,
+        caption: pack.title,
+        alt: pack.alt || pack.title,
+        labelled: true,
+      },
+    },
+  ];
 }
 
 async function gradeWithFallback(question, text) {
@@ -94,8 +149,23 @@ async function handleIncoming(phone, body, opts = {}) {
   try {
     // Learn asks always win — never grade a question as a recall answer
     if (opts.mode === "learn") {
-      student.pending = null;
       student.awaitingResurface = null;
+
+      // Continue labelled-diagram quiz if already armed
+      if (student.pending?.kind === "diagram-pack") {
+        return handlePendingAnswer(student, text);
+      }
+
+      student.pending = null;
+
+      // Labelled diagram packs before free-topic Learn (curated keys only)
+      const packHit = resolveDiagramPack(text);
+      if (packHit.pack) {
+        return serveDiagramPack(student, packHit.pack, []);
+      }
+      if (packHit.wantedButMissing) {
+        return [missingPackCopy()];
+      }
 
       const resolved = resolveLearnQuery(
         text,
@@ -104,9 +174,9 @@ async function handleIncoming(phone, body, opts = {}) {
       let topic = resolved.topic;
       const corrections = resolved.corrections || [];
 
-      if (!topic && opts.topicId) topic = findTopicById(opts.topicId);
+      if (!topic && opts.topicId) topic = resolveTopicOrPack(opts.topicId);
       if (!topic && student.learnFocusId) {
-        topic = findTopicById(student.learnFocusId);
+        topic = resolveTopicOrPack(student.learnFocusId);
       }
 
       if (!topic) {
@@ -116,6 +186,15 @@ async function handleIncoming(phone, body, opts = {}) {
             "I couldn’t lock onto a syllabus topic yet. Ask again with the topic name, even if the spelling’s off (e.g. “what is osmosiss?” or “photosyntesis”). Reca will correct it and explain."
           ),
         ];
+      }
+
+      // If they picked a pack topic from the hub list
+      const asPack = findPackById(topic.id);
+      if (asPack) {
+        const switchingPack = topic.id !== student.learnFocusId;
+        if (Boolean(opts.fresh) || switchingPack || !student.learnFocusId) {
+          return serveDiagramPack(student, asPack, corrections);
+        }
       }
 
       const switching = Boolean(topic.id !== student.learnFocusId);
@@ -131,7 +210,7 @@ async function handleIncoming(phone, body, opts = {}) {
           { mode: "fresh", depth: 0 }
         );
 
-        if (llm.isEnabled()) {
+        if (llm.isEnabled() && !topic.isDiagramPack) {
           const ai = await llm.learnReply({
             topicTitle: topicLabel(topic),
             subject: topic.subject,
@@ -170,6 +249,17 @@ async function handleIncoming(phone, body, opts = {}) {
 
     if (isHelp(text)) return [copy.welcome];
 
+    // WhatsApp / default chat: labelled packs before free explain
+    {
+      const packHit = resolveDiagramPack(text);
+      if (packHit.pack) {
+        return serveDiagramPack(student, packHit.pack, [], { withQuiz: true });
+      }
+      if (packHit.wantedButMissing) {
+        return [missingPackCopy()];
+      }
+    }
+
     if (isRecap(text)) {
       const lower = text.toLowerCase();
       const subject = lower.includes("further math")
@@ -202,6 +292,11 @@ async function handleIncoming(phone, body, opts = {}) {
 
     const topic = findTopic(text);
     if (!topic) return [copy.help];
+
+    if (topic.isDiagramPack) {
+      const pack = findPackById(topic.id);
+      if (pack) return serveDiagramPack(student, pack, []);
+    }
 
     let explanation = topic.explanation;
     let questions = topic.questions;

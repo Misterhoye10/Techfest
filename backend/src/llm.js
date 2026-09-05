@@ -1,5 +1,5 @@
 /**
- * Reca LLM layer — Gemini first (free tier), preset curriculum is the fallback.
+ * Reca LLM layer - Gemini first (free tier), preset curriculum is the fallback.
  * Never call this from the browser; keys stay in backend/.env only.
  */
 
@@ -103,10 +103,11 @@ async function generateJson(system, user) {
 async function explainAndQuiz({ topicTitle, subject, studentAsk }) {
   const system = `You are Reca, a WhatsApp study companion for Nigerian WAEC and JAMB students (SS2/SS3).
 Return ONLY valid JSON. No markdown.
-Tone: plain, warm, short — like a sharp classmate, not a textbook.
-Explanation: 3–5 sentences max.
+Tone: plain, warm, short - like a sharp classmate, not a textbook.
+Never use em dashes or en dashes. Use a hyphen (-) or a full stop.
+Explanation: 3-5 sentences max.
 Questions: exactly 2 short-answer items (not multiple choice). WAEC syllabus difficulty.
-Each question needs a clear correctAnswer and 2–5 accept strings (common phrasings / synonyms).
+Each question needs a clear correctAnswer and 2-5 accept strings (common phrasings / synonyms).
 correction: one short sentence if they get it wrong.`;
 
   const user = `Subject: ${subject || "Biology"}
@@ -152,7 +153,7 @@ Return JSON shape:
       accept: accept.length ? accept : [correct],
       correction:
         String(q.correction || "").trim() ||
-        (correct ? `Not quite — it's ${correct}.` : "Not quite."),
+        (correct ? `Not quite - it's ${correct}.` : "Not quite."),
       options: accept.slice(0, 4),
     };
   });
@@ -196,16 +197,17 @@ Student answer: ${studentAnswer}`;
 async function learnReply({ topicTitle, subject, explanation, studentAsk, intent = "fresh", depth = 0 }) {
   const intentGuide =
     intent === "example"
-      ? "Give ONE everyday SS-student example, then tie it back to the syllabus idea. 5–8 short sentences."
+      ? "Give ONE everyday SS-student example, then tie it back to the syllabus idea. 5-8 short sentences."
       : intent === "exam"
-        ? "List 4–6 clear exam lock-in points SS students must remember. Plain language. No jargon without a quick gloss."
+        ? "List 4-6 clear exam lock-in points SS students must remember. Plain language. No jargon without a quick gloss."
         : intent === "further"
-          ? "Explain more slowly for a teenager who said they need it clearer. Define terms. 6–10 short sentences. Do NOT repeat the first answer word-for-word."
-          : "Teach a curious SS2/SS3 student. 6–10 short sentences. Define the idea, why it matters for WAEC/JAMB, and 2–3 lock-in facts.";
+          ? "Explain more slowly for a teenager who said they need it clearer. Define terms. 6-10 short sentences. Do NOT repeat the first answer word-for-word."
+          : "Teach a curious SS2/SS3 student. 6-10 short sentences. Define the idea, why it matters for WAEC/JAMB, and 2-3 lock-in facts.";
 
   const system = `You are Reca, a WAEC/JAMB study companion for Nigerian teenagers.
 ${intentGuide}
 No markdown headings. No bullet symbols except simple "• " lines if listing exam points.
+Never use em dashes or en dashes. Use a hyphen (-) or a full stop.
 End by inviting them to ask for an example, ask further, or take a short quiz.
 Return ONLY JSON: { "reply": "string" }`;
 
@@ -235,7 +237,7 @@ Return ONLY JSON:
 {
   "topicTitle": "short topic name",
   "subject": "Biology|Chemistry|Physics|Mathematics|Further Mathematics|English Language|Agriculture|Yoruba|Igbo|Hausa|General",
-  "explanation": "3–5 plain sentences",
+  "explanation": "3-5 plain sentences",
   "questions": [
     { "id": "q1", "text": "...?", "correctAnswer": "...", "accept": ["..."], "correction": "..." },
     { "id": "q2", "text": "...?", "correctAnswer": "...", "accept": ["..."], "correction": "..." }
@@ -316,7 +318,7 @@ Return ONLY JSON:
         accept: accept.length ? accept : [correct],
         correction:
           String(q.correction || "").trim() ||
-          (correct ? `Not quite — it's ${correct}.` : "Not quite."),
+          (correct ? `Not quite - it's ${correct}.` : "Not quite."),
         options: accept.slice(0, 4),
       };
     });
@@ -337,14 +339,14 @@ Return ONLY JSON:
 
 /**
  * Summarize official university / JAMB page text into a student admin update.
- * Returns { hasUpdate, headline, detail, actionHint, category } — hasUpdate false if nothing admission-relevant.
+ * Returns { hasUpdate, headline, detail, actionHint, category } - hasUpdate false if nothing admission-relevant.
  */
 async function summarizeUniAdmin({ universityName, shortName, sourceUrl, pageText }) {
   const system = `You extract Nigerian university admission admin updates for WAEC/JAMB students.
 Rules:
 - ONLY use facts explicitly present in the page text. Never invent dates, fees, links, or deadlines.
 - If there is no clear admission, POST-UTME, screening, CAPS, registration, or result news, set hasUpdate to false.
-- Write plain, short copy for WhatsApp — no markdown.
+- Write plain, short copy for WhatsApp - no markdown.
 - category must be one of: admission, screening, results, deadline
 Return ONLY JSON.`;
 
@@ -360,7 +362,7 @@ Return JSON:
 {
   "hasUpdate": boolean,
   "headline": "short headline under 80 chars",
-  "detail": "2-3 sentences max — only facts from the page",
+  "detail": "2-3 sentences max - only facts from the page",
   "actionHint": "one practical next step for the student",
   "category": "admission|screening|results|deadline"
 }`;

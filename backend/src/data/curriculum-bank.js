@@ -1,4 +1,4 @@
-/** Auto-generated WAEC/JAMB preset bank — 67500 questions. Do not edit by hand; re-run scripts/generate-curriculum.js */
+/** Auto-generated WAEC/JAMB preset bank - 67500 questions. Do not edit by hand; re-run scripts/generate-curriculum.js */
 module.exports = {
   "generatedAt": "2026-09-05T02:14:49.046Z",
   "totalQuestions": 67500,
@@ -13,7 +13,7 @@ module.exports = {
         "biology",
         "bio"
       ],
-      "explanation": "Biology is the study of living things — plants, animals, and tiny organisms you need a microscope to see. It asks how life works: cells, food and energy (nutrition and respiration), growth, reproduction, and how living things share an environment.\n\nFor WAEC/JAMB you will define terms, describe processes step by step, and read labelled diagrams. If you can say what something is and how it works in plain English, you are already close to exam style.",
+      "explanation": "Biology is the study of living things - plants, animals, and tiny organisms you need a microscope to see. It asks how life works: cells, food and energy (nutrition and respiration), growth, reproduction, and how living things share an environment.\n\nFor WAEC/JAMB you will define terms, describe processes step by step, and read labelled diagrams. If you can say what something is and how it works in plain English, you are already close to exam style.",
       "icon": "leaf-01",
       "questions": [
         {
@@ -16975,7 +16975,7 @@ module.exports = {
         "biology",
         "bio"
       ],
-      "explanation": "Biology is the study of living things — plants, animals, and tiny organisms you need a microscope to see. It asks how life works: cells, food and energy (nutrition and respiration), growth, reproduction, and how living things share an environment.\n\nFor WAEC/JAMB you will define terms, describe processes step by step, and read labelled diagrams. If you can say what something is and how it works in plain English, you are already close to exam style. Practice set 2. Same ideas, more exam-style checks.",
+      "explanation": "Biology is the study of living things - plants, animals, and tiny organisms you need a microscope to see. It asks how life works: cells, food and energy (nutrition and respiration), growth, reproduction, and how living things share an environment.\n\nFor WAEC/JAMB you will define terms, describe processes step by step, and read labelled diagrams. If you can say what something is and how it works in plain English, you are already close to exam style. Practice set 2. Same ideas, more exam-style checks.",
       "icon": "leaf-01",
       "questions": [
         {
@@ -33967,7 +33967,7 @@ module.exports = {
         "biology",
         "bio"
       ],
-      "explanation": "Biology is the study of living things — plants, animals, and tiny organisms you need a microscope to see. It asks how life works: cells, food and energy (nutrition and respiration), growth, reproduction, and how living things share an environment.\n\nFor WAEC/JAMB you will define terms, describe processes step by step, and read labelled diagrams. If you can say what something is and how it works in plain English, you are already close to exam style. Practice set 3. Same ideas, more exam-style checks.",
+      "explanation": "Biology is the study of living things - plants, animals, and tiny organisms you need a microscope to see. It asks how life works: cells, food and energy (nutrition and respiration), growth, reproduction, and how living things share an environment.\n\nFor WAEC/JAMB you will define terms, describe processes step by step, and read labelled diagrams. If you can say what something is and how it works in plain English, you are already close to exam style. Practice set 3. Same ideas, more exam-style checks.",
       "icon": "leaf-01",
       "questions": [
         {
@@ -38615,7 +38615,7 @@ module.exports = {
         "chemistry",
         "chem"
       ],
-      "explanation": "Chemistry is the study of matter — what things are made of, how they change, and the energy in those changes. You will meet atoms, elements, compounds, mixtures, acids and bases, and chemical reactions.\n\nWAEC/JAMB Chemistry rewards clear definitions and careful equations. Think: what is this substance, what happens when it reacts, and how do I say that correctly in an answer.",
+      "explanation": "Chemistry is the study of matter - what things are made of, how they change, and the energy in those changes. You will meet atoms, elements, compounds, mixtures, acids and bases, and chemical reactions.\n\nWAEC/JAMB Chemistry rewards clear definitions and careful equations. Think: what is this substance, what happens when it reacts, and how do I say that correctly in an answer.",
       "icon": "chemistry-01",
       "questions": [
         {
@@ -48649,7 +48649,7 @@ module.exports = {
         "chemistry",
         "chem"
       ],
-      "explanation": "Chemistry is the study of matter — what things are made of, how they change, and the energy in those changes. You will meet atoms, elements, compounds, mixtures, acids and bases, and chemical reactions.\n\nWAEC/JAMB Chemistry rewards clear definitions and careful equations. Think: what is this substance, what happens when it reacts, and how do I say that correctly in an answer. Practice set 2. Same ideas, more exam-style checks.",
+      "explanation": "Chemistry is the study of matter - what things are made of, how they change, and the energy in those changes. You will meet atoms, elements, compounds, mixtures, acids and bases, and chemical reactions.\n\nWAEC/JAMB Chemistry rewards clear definitions and careful equations. Think: what is this substance, what happens when it reacts, and how do I say that correctly in an answer. Practice set 2. Same ideas, more exam-style checks.",
       "icon": "chemistry-01",
       "questions": [
         {
@@ -58696,7 +58696,7 @@ module.exports = {
         "chemistry",
         "chem"
       ],
-      "explanation": "Chemistry is the study of matter — what things are made of, how they change, and the energy in those changes. You will meet atoms, elements, compounds, mixtures, acids and bases, and chemical reactions.\n\nWAEC/JAMB Chemistry rewards clear definitions and careful equations. Think: what is this substance, what happens when it reacts, and how do I say that correctly in an answer. Practice set 3. Same ideas, more exam-style checks.",
+      "explanation": "Chemistry is the study of matter - what things are made of, how they change, and the energy in those changes. You will meet atoms, elements, compounds, mixtures, acids and bases, and chemical reactions.\n\nWAEC/JAMB Chemistry rewards clear definitions and careful equations. Think: what is this substance, what happens when it reacts, and how do I say that correctly in an answer. Practice set 3. Same ideas, more exam-style checks.",
       "icon": "chemistry-01",
       "questions": [
         {
@@ -68743,7 +68743,7 @@ module.exports = {
         "chemistry",
         "chem"
       ],
-      "explanation": "Chemistry is the study of matter — what things are made of, how they change, and the energy in those changes. You will meet atoms, elements, compounds, mixtures, acids and bases, and chemical reactions.\n\nWAEC/JAMB Chemistry rewards clear definitions and careful equations. Think: what is this substance, what happens when it reacts, and how do I say that correctly in an answer. Practice set 4. Same ideas, more exam-style checks.",
+      "explanation": "Chemistry is the study of matter - what things are made of, how they change, and the energy in those changes. You will meet atoms, elements, compounds, mixtures, acids and bases, and chemical reactions.\n\nWAEC/JAMB Chemistry rewards clear definitions and careful equations. Think: what is this substance, what happens when it reacts, and how do I say that correctly in an answer. Practice set 4. Same ideas, more exam-style checks.",
       "icon": "chemistry-01",
       "questions": [
         {
@@ -116393,13 +116393,13 @@ module.exports = {
           "id": "q2",
           "text": "An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -116544,13 +116544,13 @@ module.exports = {
           "id": "q12",
           "text": "In one line: An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -116695,13 +116695,13 @@ module.exports = {
           "id": "q22",
           "text": "Recall: An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -116846,13 +116846,13 @@ module.exports = {
           "id": "q32",
           "text": "Exam check: An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -116997,13 +116997,13 @@ module.exports = {
           "id": "q42",
           "text": "An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -117145,7 +117145,7 @@ module.exports = {
       "questions": [
         {
           "id": "q1",
-          "text": "Value of 7 + (−3)?",
+          "text": "Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -117161,7 +117161,7 @@ module.exports = {
         },
         {
           "id": "q2",
-          "text": "Value of (−5) × (−2)?",
+          "text": "Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -117177,23 +117177,23 @@ module.exports = {
         },
         {
           "id": "q3",
-          "text": "Value of 12 ÷ (−3)?",
+          "text": "Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q4",
-          "text": "Absolute value of −8?",
+          "text": "Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -117306,7 +117306,7 @@ module.exports = {
         },
         {
           "id": "q11",
-          "text": "In one line: Value of 7 + (−3)?",
+          "text": "In one line: Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -117322,7 +117322,7 @@ module.exports = {
         },
         {
           "id": "q12",
-          "text": "In one line: Value of (−5) × (−2)?",
+          "text": "In one line: Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -117338,23 +117338,23 @@ module.exports = {
         },
         {
           "id": "q13",
-          "text": "In one line: Value of 12 ÷ (−3)?",
+          "text": "In one line: Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q14",
-          "text": "In one line: Absolute value of −8?",
+          "text": "In one line: Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -117467,7 +117467,7 @@ module.exports = {
         },
         {
           "id": "q21",
-          "text": "Recall: Value of 7 + (−3)?",
+          "text": "Recall: Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -117483,7 +117483,7 @@ module.exports = {
         },
         {
           "id": "q22",
-          "text": "Recall: Value of (−5) × (−2)?",
+          "text": "Recall: Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -117499,23 +117499,23 @@ module.exports = {
         },
         {
           "id": "q23",
-          "text": "Recall: Value of 12 ÷ (−3)?",
+          "text": "Recall: Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q24",
-          "text": "Recall: Absolute value of −8?",
+          "text": "Recall: Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -117628,7 +117628,7 @@ module.exports = {
         },
         {
           "id": "q31",
-          "text": "Exam check: Value of 7 + (−3)?",
+          "text": "Exam check: Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -117644,7 +117644,7 @@ module.exports = {
         },
         {
           "id": "q32",
-          "text": "Exam check: Value of (−5) × (−2)?",
+          "text": "Exam check: Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -117660,23 +117660,23 @@ module.exports = {
         },
         {
           "id": "q33",
-          "text": "Exam check: Value of 12 ÷ (−3)?",
+          "text": "Exam check: Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q34",
-          "text": "Exam check: Absolute value of −8?",
+          "text": "Exam check: Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -117789,7 +117789,7 @@ module.exports = {
         },
         {
           "id": "q41",
-          "text": "Value of 7 + (−3)?",
+          "text": "Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -117805,7 +117805,7 @@ module.exports = {
         },
         {
           "id": "q42",
-          "text": "Value of (−5) × (−2)?",
+          "text": "Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -117821,23 +117821,23 @@ module.exports = {
         },
         {
           "id": "q43",
-          "text": "Value of 12 ÷ (−3)?",
+          "text": "Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q44",
-          "text": "Absolute value of −8?",
+          "text": "Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -117980,7 +117980,7 @@ module.exports = {
         },
         {
           "id": "q2",
-          "text": "Simplify 7a − 2a",
+          "text": "Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -118028,7 +118028,7 @@ module.exports = {
         },
         {
           "id": "q5",
-          "text": "If 3x − 3 = 12, x is?",
+          "text": "If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -118140,7 +118140,7 @@ module.exports = {
         },
         {
           "id": "q12",
-          "text": "In one line: Simplify 7a − 2a",
+          "text": "In one line: Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -118188,7 +118188,7 @@ module.exports = {
         },
         {
           "id": "q15",
-          "text": "In one line: If 3x − 3 = 12, x is?",
+          "text": "In one line: If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -118300,7 +118300,7 @@ module.exports = {
         },
         {
           "id": "q22",
-          "text": "Recall: Simplify 7a − 2a",
+          "text": "Recall: Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -118348,7 +118348,7 @@ module.exports = {
         },
         {
           "id": "q25",
-          "text": "Recall: If 3x − 3 = 12, x is?",
+          "text": "Recall: If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -118460,7 +118460,7 @@ module.exports = {
         },
         {
           "id": "q32",
-          "text": "Exam check: Simplify 7a − 2a",
+          "text": "Exam check: Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -118508,7 +118508,7 @@ module.exports = {
         },
         {
           "id": "q35",
-          "text": "Exam check: If 3x − 3 = 12, x is?",
+          "text": "Exam check: If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -118620,7 +118620,7 @@ module.exports = {
         },
         {
           "id": "q42",
-          "text": "Simplify 7a − 2a",
+          "text": "Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -118668,7 +118668,7 @@ module.exports = {
         },
         {
           "id": "q45",
-          "text": "If 3x − 3 = 12, x is?",
+          "text": "If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -121348,12 +121348,12 @@ module.exports = {
           "id": "q9",
           "text": "Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -121507,12 +121507,12 @@ module.exports = {
           "id": "q19",
           "text": "In one line: Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -121666,12 +121666,12 @@ module.exports = {
           "id": "q29",
           "text": "Recall: Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -121825,12 +121825,12 @@ module.exports = {
           "id": "q39",
           "text": "Exam check: Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -121984,12 +121984,12 @@ module.exports = {
           "id": "q49",
           "text": "Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -122099,7 +122099,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -122116,7 +122116,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -122160,7 +122160,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -122253,7 +122253,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -122270,7 +122270,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -122314,7 +122314,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -122407,7 +122407,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -122424,7 +122424,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -122468,7 +122468,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -122561,7 +122561,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -122578,7 +122578,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -122622,7 +122622,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -122715,7 +122715,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -122732,7 +122732,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -122776,7 +122776,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -123596,13 +123596,13 @@ module.exports = {
           "id": "q2",
           "text": "An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -123747,13 +123747,13 @@ module.exports = {
           "id": "q12",
           "text": "In one line: An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -123898,13 +123898,13 @@ module.exports = {
           "id": "q22",
           "text": "Recall: An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -124049,13 +124049,13 @@ module.exports = {
           "id": "q32",
           "text": "Exam check: An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -124200,13 +124200,13 @@ module.exports = {
           "id": "q42",
           "text": "An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -124349,7 +124349,7 @@ module.exports = {
       "questions": [
         {
           "id": "q1",
-          "text": "Value of 7 + (−3)?",
+          "text": "Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -124365,7 +124365,7 @@ module.exports = {
         },
         {
           "id": "q2",
-          "text": "Value of (−5) × (−2)?",
+          "text": "Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -124381,23 +124381,23 @@ module.exports = {
         },
         {
           "id": "q3",
-          "text": "Value of 12 ÷ (−3)?",
+          "text": "Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q4",
-          "text": "Absolute value of −8?",
+          "text": "Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -124510,7 +124510,7 @@ module.exports = {
         },
         {
           "id": "q11",
-          "text": "In one line: Value of 7 + (−3)?",
+          "text": "In one line: Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -124526,7 +124526,7 @@ module.exports = {
         },
         {
           "id": "q12",
-          "text": "In one line: Value of (−5) × (−2)?",
+          "text": "In one line: Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -124542,23 +124542,23 @@ module.exports = {
         },
         {
           "id": "q13",
-          "text": "In one line: Value of 12 ÷ (−3)?",
+          "text": "In one line: Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q14",
-          "text": "In one line: Absolute value of −8?",
+          "text": "In one line: Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -124671,7 +124671,7 @@ module.exports = {
         },
         {
           "id": "q21",
-          "text": "Recall: Value of 7 + (−3)?",
+          "text": "Recall: Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -124687,7 +124687,7 @@ module.exports = {
         },
         {
           "id": "q22",
-          "text": "Recall: Value of (−5) × (−2)?",
+          "text": "Recall: Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -124703,23 +124703,23 @@ module.exports = {
         },
         {
           "id": "q23",
-          "text": "Recall: Value of 12 ÷ (−3)?",
+          "text": "Recall: Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q24",
-          "text": "Recall: Absolute value of −8?",
+          "text": "Recall: Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -124832,7 +124832,7 @@ module.exports = {
         },
         {
           "id": "q31",
-          "text": "Exam check: Value of 7 + (−3)?",
+          "text": "Exam check: Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -124848,7 +124848,7 @@ module.exports = {
         },
         {
           "id": "q32",
-          "text": "Exam check: Value of (−5) × (−2)?",
+          "text": "Exam check: Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -124864,23 +124864,23 @@ module.exports = {
         },
         {
           "id": "q33",
-          "text": "Exam check: Value of 12 ÷ (−3)?",
+          "text": "Exam check: Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q34",
-          "text": "Exam check: Absolute value of −8?",
+          "text": "Exam check: Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -124993,7 +124993,7 @@ module.exports = {
         },
         {
           "id": "q41",
-          "text": "Value of 7 + (−3)?",
+          "text": "Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -125009,7 +125009,7 @@ module.exports = {
         },
         {
           "id": "q42",
-          "text": "Value of (−5) × (−2)?",
+          "text": "Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -125025,23 +125025,23 @@ module.exports = {
         },
         {
           "id": "q43",
-          "text": "Value of 12 ÷ (−3)?",
+          "text": "Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q44",
-          "text": "Absolute value of −8?",
+          "text": "Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -125185,7 +125185,7 @@ module.exports = {
         },
         {
           "id": "q2",
-          "text": "Simplify 7a − 2a",
+          "text": "Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -125233,7 +125233,7 @@ module.exports = {
         },
         {
           "id": "q5",
-          "text": "If 3x − 3 = 12, x is?",
+          "text": "If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -125345,7 +125345,7 @@ module.exports = {
         },
         {
           "id": "q12",
-          "text": "In one line: Simplify 7a − 2a",
+          "text": "In one line: Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -125393,7 +125393,7 @@ module.exports = {
         },
         {
           "id": "q15",
-          "text": "In one line: If 3x − 3 = 12, x is?",
+          "text": "In one line: If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -125505,7 +125505,7 @@ module.exports = {
         },
         {
           "id": "q22",
-          "text": "Recall: Simplify 7a − 2a",
+          "text": "Recall: Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -125553,7 +125553,7 @@ module.exports = {
         },
         {
           "id": "q25",
-          "text": "Recall: If 3x − 3 = 12, x is?",
+          "text": "Recall: If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -125665,7 +125665,7 @@ module.exports = {
         },
         {
           "id": "q32",
-          "text": "Exam check: Simplify 7a − 2a",
+          "text": "Exam check: Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -125713,7 +125713,7 @@ module.exports = {
         },
         {
           "id": "q35",
-          "text": "Exam check: If 3x − 3 = 12, x is?",
+          "text": "Exam check: If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -125825,7 +125825,7 @@ module.exports = {
         },
         {
           "id": "q42",
-          "text": "Simplify 7a − 2a",
+          "text": "Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -125873,7 +125873,7 @@ module.exports = {
         },
         {
           "id": "q45",
-          "text": "If 3x − 3 = 12, x is?",
+          "text": "If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -128557,12 +128557,12 @@ module.exports = {
           "id": "q9",
           "text": "Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -128716,12 +128716,12 @@ module.exports = {
           "id": "q19",
           "text": "In one line: Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -128875,12 +128875,12 @@ module.exports = {
           "id": "q29",
           "text": "Recall: Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -129034,12 +129034,12 @@ module.exports = {
           "id": "q39",
           "text": "Exam check: Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -129193,12 +129193,12 @@ module.exports = {
           "id": "q49",
           "text": "Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -129309,7 +129309,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -129326,7 +129326,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -129370,7 +129370,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -129463,7 +129463,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -129480,7 +129480,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -129524,7 +129524,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -129617,7 +129617,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -129634,7 +129634,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -129678,7 +129678,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -129771,7 +129771,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -129788,7 +129788,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -129832,7 +129832,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -129925,7 +129925,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -129942,7 +129942,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -129986,7 +129986,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -130807,13 +130807,13 @@ module.exports = {
           "id": "q2",
           "text": "An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -130958,13 +130958,13 @@ module.exports = {
           "id": "q12",
           "text": "In one line: An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -131109,13 +131109,13 @@ module.exports = {
           "id": "q22",
           "text": "Recall: An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -131260,13 +131260,13 @@ module.exports = {
           "id": "q32",
           "text": "Exam check: An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -131411,13 +131411,13 @@ module.exports = {
           "id": "q42",
           "text": "An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -131560,7 +131560,7 @@ module.exports = {
       "questions": [
         {
           "id": "q1",
-          "text": "Value of 7 + (−3)?",
+          "text": "Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -131576,7 +131576,7 @@ module.exports = {
         },
         {
           "id": "q2",
-          "text": "Value of (−5) × (−2)?",
+          "text": "Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -131592,23 +131592,23 @@ module.exports = {
         },
         {
           "id": "q3",
-          "text": "Value of 12 ÷ (−3)?",
+          "text": "Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q4",
-          "text": "Absolute value of −8?",
+          "text": "Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -131721,7 +131721,7 @@ module.exports = {
         },
         {
           "id": "q11",
-          "text": "In one line: Value of 7 + (−3)?",
+          "text": "In one line: Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -131737,7 +131737,7 @@ module.exports = {
         },
         {
           "id": "q12",
-          "text": "In one line: Value of (−5) × (−2)?",
+          "text": "In one line: Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -131753,23 +131753,23 @@ module.exports = {
         },
         {
           "id": "q13",
-          "text": "In one line: Value of 12 ÷ (−3)?",
+          "text": "In one line: Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q14",
-          "text": "In one line: Absolute value of −8?",
+          "text": "In one line: Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -131882,7 +131882,7 @@ module.exports = {
         },
         {
           "id": "q21",
-          "text": "Recall: Value of 7 + (−3)?",
+          "text": "Recall: Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -131898,7 +131898,7 @@ module.exports = {
         },
         {
           "id": "q22",
-          "text": "Recall: Value of (−5) × (−2)?",
+          "text": "Recall: Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -131914,23 +131914,23 @@ module.exports = {
         },
         {
           "id": "q23",
-          "text": "Recall: Value of 12 ÷ (−3)?",
+          "text": "Recall: Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q24",
-          "text": "Recall: Absolute value of −8?",
+          "text": "Recall: Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -132043,7 +132043,7 @@ module.exports = {
         },
         {
           "id": "q31",
-          "text": "Exam check: Value of 7 + (−3)?",
+          "text": "Exam check: Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -132059,7 +132059,7 @@ module.exports = {
         },
         {
           "id": "q32",
-          "text": "Exam check: Value of (−5) × (−2)?",
+          "text": "Exam check: Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -132075,23 +132075,23 @@ module.exports = {
         },
         {
           "id": "q33",
-          "text": "Exam check: Value of 12 ÷ (−3)?",
+          "text": "Exam check: Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q34",
-          "text": "Exam check: Absolute value of −8?",
+          "text": "Exam check: Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -132204,7 +132204,7 @@ module.exports = {
         },
         {
           "id": "q41",
-          "text": "Value of 7 + (−3)?",
+          "text": "Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -132220,7 +132220,7 @@ module.exports = {
         },
         {
           "id": "q42",
-          "text": "Value of (−5) × (−2)?",
+          "text": "Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -132236,23 +132236,23 @@ module.exports = {
         },
         {
           "id": "q43",
-          "text": "Value of 12 ÷ (−3)?",
+          "text": "Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q44",
-          "text": "Absolute value of −8?",
+          "text": "Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -132396,7 +132396,7 @@ module.exports = {
         },
         {
           "id": "q2",
-          "text": "Simplify 7a − 2a",
+          "text": "Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -132444,7 +132444,7 @@ module.exports = {
         },
         {
           "id": "q5",
-          "text": "If 3x − 3 = 12, x is?",
+          "text": "If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -132556,7 +132556,7 @@ module.exports = {
         },
         {
           "id": "q12",
-          "text": "In one line: Simplify 7a − 2a",
+          "text": "In one line: Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -132604,7 +132604,7 @@ module.exports = {
         },
         {
           "id": "q15",
-          "text": "In one line: If 3x − 3 = 12, x is?",
+          "text": "In one line: If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -132716,7 +132716,7 @@ module.exports = {
         },
         {
           "id": "q22",
-          "text": "Recall: Simplify 7a − 2a",
+          "text": "Recall: Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -132764,7 +132764,7 @@ module.exports = {
         },
         {
           "id": "q25",
-          "text": "Recall: If 3x − 3 = 12, x is?",
+          "text": "Recall: If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -132876,7 +132876,7 @@ module.exports = {
         },
         {
           "id": "q32",
-          "text": "Exam check: Simplify 7a − 2a",
+          "text": "Exam check: Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -132924,7 +132924,7 @@ module.exports = {
         },
         {
           "id": "q35",
-          "text": "Exam check: If 3x − 3 = 12, x is?",
+          "text": "Exam check: If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -133036,7 +133036,7 @@ module.exports = {
         },
         {
           "id": "q42",
-          "text": "Simplify 7a − 2a",
+          "text": "Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -133084,7 +133084,7 @@ module.exports = {
         },
         {
           "id": "q45",
-          "text": "If 3x − 3 = 12, x is?",
+          "text": "If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -135768,12 +135768,12 @@ module.exports = {
           "id": "q9",
           "text": "Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -135927,12 +135927,12 @@ module.exports = {
           "id": "q19",
           "text": "In one line: Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -136086,12 +136086,12 @@ module.exports = {
           "id": "q29",
           "text": "Recall: Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -136245,12 +136245,12 @@ module.exports = {
           "id": "q39",
           "text": "Exam check: Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -136404,12 +136404,12 @@ module.exports = {
           "id": "q49",
           "text": "Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -136520,7 +136520,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -136537,7 +136537,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -136581,7 +136581,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -136674,7 +136674,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -136691,7 +136691,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -136735,7 +136735,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -136828,7 +136828,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -136845,7 +136845,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -136889,7 +136889,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -136982,7 +136982,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -136999,7 +136999,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -137043,7 +137043,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -137136,7 +137136,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -137153,7 +137153,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -137197,7 +137197,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -138018,13 +138018,13 @@ module.exports = {
           "id": "q2",
           "text": "An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -138169,13 +138169,13 @@ module.exports = {
           "id": "q12",
           "text": "In one line: An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -138320,13 +138320,13 @@ module.exports = {
           "id": "q22",
           "text": "Recall: An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -138471,13 +138471,13 @@ module.exports = {
           "id": "q32",
           "text": "Exam check: An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -138622,13 +138622,13 @@ module.exports = {
           "id": "q42",
           "text": "An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -138771,7 +138771,7 @@ module.exports = {
       "questions": [
         {
           "id": "q1",
-          "text": "Value of 7 + (−3)?",
+          "text": "Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -138787,7 +138787,7 @@ module.exports = {
         },
         {
           "id": "q2",
-          "text": "Value of (−5) × (−2)?",
+          "text": "Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -138803,23 +138803,23 @@ module.exports = {
         },
         {
           "id": "q3",
-          "text": "Value of 12 ÷ (−3)?",
+          "text": "Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q4",
-          "text": "Absolute value of −8?",
+          "text": "Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -138932,7 +138932,7 @@ module.exports = {
         },
         {
           "id": "q11",
-          "text": "In one line: Value of 7 + (−3)?",
+          "text": "In one line: Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -138948,7 +138948,7 @@ module.exports = {
         },
         {
           "id": "q12",
-          "text": "In one line: Value of (−5) × (−2)?",
+          "text": "In one line: Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -138964,23 +138964,23 @@ module.exports = {
         },
         {
           "id": "q13",
-          "text": "In one line: Value of 12 ÷ (−3)?",
+          "text": "In one line: Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q14",
-          "text": "In one line: Absolute value of −8?",
+          "text": "In one line: Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -139093,7 +139093,7 @@ module.exports = {
         },
         {
           "id": "q21",
-          "text": "Recall: Value of 7 + (−3)?",
+          "text": "Recall: Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -139109,7 +139109,7 @@ module.exports = {
         },
         {
           "id": "q22",
-          "text": "Recall: Value of (−5) × (−2)?",
+          "text": "Recall: Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -139125,23 +139125,23 @@ module.exports = {
         },
         {
           "id": "q23",
-          "text": "Recall: Value of 12 ÷ (−3)?",
+          "text": "Recall: Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q24",
-          "text": "Recall: Absolute value of −8?",
+          "text": "Recall: Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -139254,7 +139254,7 @@ module.exports = {
         },
         {
           "id": "q31",
-          "text": "Exam check: Value of 7 + (−3)?",
+          "text": "Exam check: Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -139270,7 +139270,7 @@ module.exports = {
         },
         {
           "id": "q32",
-          "text": "Exam check: Value of (−5) × (−2)?",
+          "text": "Exam check: Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -139286,23 +139286,23 @@ module.exports = {
         },
         {
           "id": "q33",
-          "text": "Exam check: Value of 12 ÷ (−3)?",
+          "text": "Exam check: Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q34",
-          "text": "Exam check: Absolute value of −8?",
+          "text": "Exam check: Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -139415,7 +139415,7 @@ module.exports = {
         },
         {
           "id": "q41",
-          "text": "Value of 7 + (−3)?",
+          "text": "Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -139431,7 +139431,7 @@ module.exports = {
         },
         {
           "id": "q42",
-          "text": "Value of (−5) × (−2)?",
+          "text": "Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -139447,23 +139447,23 @@ module.exports = {
         },
         {
           "id": "q43",
-          "text": "Value of 12 ÷ (−3)?",
+          "text": "Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q44",
-          "text": "Absolute value of −8?",
+          "text": "Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -139607,7 +139607,7 @@ module.exports = {
         },
         {
           "id": "q2",
-          "text": "Simplify 7a − 2a",
+          "text": "Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -139655,7 +139655,7 @@ module.exports = {
         },
         {
           "id": "q5",
-          "text": "If 3x − 3 = 12, x is?",
+          "text": "If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -139767,7 +139767,7 @@ module.exports = {
         },
         {
           "id": "q12",
-          "text": "In one line: Simplify 7a − 2a",
+          "text": "In one line: Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -139815,7 +139815,7 @@ module.exports = {
         },
         {
           "id": "q15",
-          "text": "In one line: If 3x − 3 = 12, x is?",
+          "text": "In one line: If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -139927,7 +139927,7 @@ module.exports = {
         },
         {
           "id": "q22",
-          "text": "Recall: Simplify 7a − 2a",
+          "text": "Recall: Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -139975,7 +139975,7 @@ module.exports = {
         },
         {
           "id": "q25",
-          "text": "Recall: If 3x − 3 = 12, x is?",
+          "text": "Recall: If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -140087,7 +140087,7 @@ module.exports = {
         },
         {
           "id": "q32",
-          "text": "Exam check: Simplify 7a − 2a",
+          "text": "Exam check: Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -140135,7 +140135,7 @@ module.exports = {
         },
         {
           "id": "q35",
-          "text": "Exam check: If 3x − 3 = 12, x is?",
+          "text": "Exam check: If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -140247,7 +140247,7 @@ module.exports = {
         },
         {
           "id": "q42",
-          "text": "Simplify 7a − 2a",
+          "text": "Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -140295,7 +140295,7 @@ module.exports = {
         },
         {
           "id": "q45",
-          "text": "If 3x − 3 = 12, x is?",
+          "text": "If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -142979,12 +142979,12 @@ module.exports = {
           "id": "q9",
           "text": "Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -143138,12 +143138,12 @@ module.exports = {
           "id": "q19",
           "text": "In one line: Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -143297,12 +143297,12 @@ module.exports = {
           "id": "q29",
           "text": "Recall: Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -143456,12 +143456,12 @@ module.exports = {
           "id": "q39",
           "text": "Exam check: Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -143615,12 +143615,12 @@ module.exports = {
           "id": "q49",
           "text": "Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -143731,7 +143731,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -143748,7 +143748,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -143792,7 +143792,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -143885,7 +143885,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -143902,7 +143902,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -143946,7 +143946,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -144039,7 +144039,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -144056,7 +144056,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -144100,7 +144100,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -144193,7 +144193,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -144210,7 +144210,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -144254,7 +144254,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -144347,7 +144347,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -144364,7 +144364,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -144408,7 +144408,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -145229,13 +145229,13 @@ module.exports = {
           "id": "q2",
           "text": "An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -145380,13 +145380,13 @@ module.exports = {
           "id": "q12",
           "text": "In one line: An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -145531,13 +145531,13 @@ module.exports = {
           "id": "q22",
           "text": "Recall: An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -145682,13 +145682,13 @@ module.exports = {
           "id": "q32",
           "text": "Exam check: An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -145833,13 +145833,13 @@ module.exports = {
           "id": "q42",
           "text": "An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -145982,7 +145982,7 @@ module.exports = {
       "questions": [
         {
           "id": "q1",
-          "text": "Value of 7 + (−3)?",
+          "text": "Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -145998,7 +145998,7 @@ module.exports = {
         },
         {
           "id": "q2",
-          "text": "Value of (−5) × (−2)?",
+          "text": "Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -146014,23 +146014,23 @@ module.exports = {
         },
         {
           "id": "q3",
-          "text": "Value of 12 ÷ (−3)?",
+          "text": "Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q4",
-          "text": "Absolute value of −8?",
+          "text": "Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -146143,7 +146143,7 @@ module.exports = {
         },
         {
           "id": "q11",
-          "text": "In one line: Value of 7 + (−3)?",
+          "text": "In one line: Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -146159,7 +146159,7 @@ module.exports = {
         },
         {
           "id": "q12",
-          "text": "In one line: Value of (−5) × (−2)?",
+          "text": "In one line: Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -146175,23 +146175,23 @@ module.exports = {
         },
         {
           "id": "q13",
-          "text": "In one line: Value of 12 ÷ (−3)?",
+          "text": "In one line: Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q14",
-          "text": "In one line: Absolute value of −8?",
+          "text": "In one line: Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -146304,7 +146304,7 @@ module.exports = {
         },
         {
           "id": "q21",
-          "text": "Recall: Value of 7 + (−3)?",
+          "text": "Recall: Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -146320,7 +146320,7 @@ module.exports = {
         },
         {
           "id": "q22",
-          "text": "Recall: Value of (−5) × (−2)?",
+          "text": "Recall: Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -146336,23 +146336,23 @@ module.exports = {
         },
         {
           "id": "q23",
-          "text": "Recall: Value of 12 ÷ (−3)?",
+          "text": "Recall: Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q24",
-          "text": "Recall: Absolute value of −8?",
+          "text": "Recall: Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -146465,7 +146465,7 @@ module.exports = {
         },
         {
           "id": "q31",
-          "text": "Exam check: Value of 7 + (−3)?",
+          "text": "Exam check: Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -146481,7 +146481,7 @@ module.exports = {
         },
         {
           "id": "q32",
-          "text": "Exam check: Value of (−5) × (−2)?",
+          "text": "Exam check: Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -146497,23 +146497,23 @@ module.exports = {
         },
         {
           "id": "q33",
-          "text": "Exam check: Value of 12 ÷ (−3)?",
+          "text": "Exam check: Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q34",
-          "text": "Exam check: Absolute value of −8?",
+          "text": "Exam check: Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -146626,7 +146626,7 @@ module.exports = {
         },
         {
           "id": "q41",
-          "text": "Value of 7 + (−3)?",
+          "text": "Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -146642,7 +146642,7 @@ module.exports = {
         },
         {
           "id": "q42",
-          "text": "Value of (−5) × (−2)?",
+          "text": "Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -146658,23 +146658,23 @@ module.exports = {
         },
         {
           "id": "q43",
-          "text": "Value of 12 ÷ (−3)?",
+          "text": "Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q44",
-          "text": "Absolute value of −8?",
+          "text": "Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -146818,7 +146818,7 @@ module.exports = {
         },
         {
           "id": "q2",
-          "text": "Simplify 7a − 2a",
+          "text": "Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -146866,7 +146866,7 @@ module.exports = {
         },
         {
           "id": "q5",
-          "text": "If 3x − 3 = 12, x is?",
+          "text": "If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -146978,7 +146978,7 @@ module.exports = {
         },
         {
           "id": "q12",
-          "text": "In one line: Simplify 7a − 2a",
+          "text": "In one line: Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -147026,7 +147026,7 @@ module.exports = {
         },
         {
           "id": "q15",
-          "text": "In one line: If 3x − 3 = 12, x is?",
+          "text": "In one line: If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -147138,7 +147138,7 @@ module.exports = {
         },
         {
           "id": "q22",
-          "text": "Recall: Simplify 7a − 2a",
+          "text": "Recall: Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -147186,7 +147186,7 @@ module.exports = {
         },
         {
           "id": "q25",
-          "text": "Recall: If 3x − 3 = 12, x is?",
+          "text": "Recall: If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -147298,7 +147298,7 @@ module.exports = {
         },
         {
           "id": "q32",
-          "text": "Exam check: Simplify 7a − 2a",
+          "text": "Exam check: Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -147346,7 +147346,7 @@ module.exports = {
         },
         {
           "id": "q35",
-          "text": "Exam check: If 3x − 3 = 12, x is?",
+          "text": "Exam check: If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -147458,7 +147458,7 @@ module.exports = {
         },
         {
           "id": "q42",
-          "text": "Simplify 7a − 2a",
+          "text": "Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -147506,7 +147506,7 @@ module.exports = {
         },
         {
           "id": "q45",
-          "text": "If 3x − 3 = 12, x is?",
+          "text": "If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -150190,12 +150190,12 @@ module.exports = {
           "id": "q9",
           "text": "Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -150349,12 +150349,12 @@ module.exports = {
           "id": "q19",
           "text": "In one line: Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -150508,12 +150508,12 @@ module.exports = {
           "id": "q29",
           "text": "Recall: Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -150667,12 +150667,12 @@ module.exports = {
           "id": "q39",
           "text": "Exam check: Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -150826,12 +150826,12 @@ module.exports = {
           "id": "q49",
           "text": "Range is?",
           "accept": [
-            "highest − lowest"
+            "highest - lowest"
           ],
-          "correctAnswer": "highest − lowest",
-          "correction": "Not quite. The answer is highest − lowest.",
+          "correctAnswer": "highest - lowest",
+          "correction": "Not quite. The answer is highest - lowest.",
           "options": [
-            "highest − lowest",
+            "highest - lowest",
             "sum of values",
             "product",
             "average"
@@ -150942,7 +150942,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -150959,7 +150959,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -151003,7 +151003,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -151096,7 +151096,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -151113,7 +151113,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -151157,7 +151157,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -151250,7 +151250,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -151267,7 +151267,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -151311,7 +151311,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -151404,7 +151404,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -151421,7 +151421,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -151465,7 +151465,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -151558,7 +151558,7 @@ module.exports = {
             "0",
             "infinite",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -151575,7 +151575,7 @@ module.exports = {
             "undefined/infinite",
             "0",
             "1",
-            "−1"
+            "-1"
           ]
         },
         {
@@ -151619,7 +151619,7 @@ module.exports = {
           "options": [
             "x",
             "1/x",
-            "−x only",
+            "-x only",
             "not x"
           ]
         },
@@ -152440,13 +152440,13 @@ module.exports = {
           "id": "q2",
           "text": "An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -152591,13 +152591,13 @@ module.exports = {
           "id": "q12",
           "text": "In one line: An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -152742,13 +152742,13 @@ module.exports = {
           "id": "q22",
           "text": "Recall: An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -152893,13 +152893,13 @@ module.exports = {
           "id": "q32",
           "text": "Exam check: An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -153044,13 +153044,13 @@ module.exports = {
           "id": "q42",
           "text": "An integer is a?",
           "accept": [
-            "whole number (…−2,−1,0,1,2…)"
+            "whole number (…-2,-1,0,1,2…)"
           ],
-          "correctAnswer": "whole number (…−2,−1,0,1,2…)",
-          "correction": "Not quite. The answer is whole number (…−2,−1,0,1,2…).",
+          "correctAnswer": "whole number (…-2,-1,0,1,2…)",
+          "correction": "Not quite. The answer is whole number (…-2,-1,0,1,2…).",
           "options": [
-            "whole number (…−2,−1,0,1,2…)",
-            "not whole number (…−2,−1,0,1,2…)",
+            "whole number (…-2,-1,0,1,2…)",
+            "not whole number (…-2,-1,0,1,2…)",
             "none of these",
             "all of these"
           ]
@@ -153193,7 +153193,7 @@ module.exports = {
       "questions": [
         {
           "id": "q1",
-          "text": "Value of 7 + (−3)?",
+          "text": "Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -153209,7 +153209,7 @@ module.exports = {
         },
         {
           "id": "q2",
-          "text": "Value of (−5) × (−2)?",
+          "text": "Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -153225,23 +153225,23 @@ module.exports = {
         },
         {
           "id": "q3",
-          "text": "Value of 12 ÷ (−3)?",
+          "text": "Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q4",
-          "text": "Absolute value of −8?",
+          "text": "Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -153354,7 +153354,7 @@ module.exports = {
         },
         {
           "id": "q11",
-          "text": "In one line: Value of 7 + (−3)?",
+          "text": "In one line: Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -153370,7 +153370,7 @@ module.exports = {
         },
         {
           "id": "q12",
-          "text": "In one line: Value of (−5) × (−2)?",
+          "text": "In one line: Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -153386,23 +153386,23 @@ module.exports = {
         },
         {
           "id": "q13",
-          "text": "In one line: Value of 12 ÷ (−3)?",
+          "text": "In one line: Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q14",
-          "text": "In one line: Absolute value of −8?",
+          "text": "In one line: Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -153515,7 +153515,7 @@ module.exports = {
         },
         {
           "id": "q21",
-          "text": "Recall: Value of 7 + (−3)?",
+          "text": "Recall: Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -153531,7 +153531,7 @@ module.exports = {
         },
         {
           "id": "q22",
-          "text": "Recall: Value of (−5) × (−2)?",
+          "text": "Recall: Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -153547,23 +153547,23 @@ module.exports = {
         },
         {
           "id": "q23",
-          "text": "Recall: Value of 12 ÷ (−3)?",
+          "text": "Recall: Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q24",
-          "text": "Recall: Absolute value of −8?",
+          "text": "Recall: Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -153676,7 +153676,7 @@ module.exports = {
         },
         {
           "id": "q31",
-          "text": "Exam check: Value of 7 + (−3)?",
+          "text": "Exam check: Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -153692,7 +153692,7 @@ module.exports = {
         },
         {
           "id": "q32",
-          "text": "Exam check: Value of (−5) × (−2)?",
+          "text": "Exam check: Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -153708,23 +153708,23 @@ module.exports = {
         },
         {
           "id": "q33",
-          "text": "Exam check: Value of 12 ÷ (−3)?",
+          "text": "Exam check: Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q34",
-          "text": "Exam check: Absolute value of −8?",
+          "text": "Exam check: Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -153837,7 +153837,7 @@ module.exports = {
         },
         {
           "id": "q41",
-          "text": "Value of 7 + (−3)?",
+          "text": "Value of 7 + (-3)?",
           "accept": [
             "4",
             "four"
@@ -153853,7 +153853,7 @@ module.exports = {
         },
         {
           "id": "q42",
-          "text": "Value of (−5) × (−2)?",
+          "text": "Value of (-5) × (-2)?",
           "accept": [
             "10",
             "ten"
@@ -153869,23 +153869,23 @@ module.exports = {
         },
         {
           "id": "q43",
-          "text": "Value of 12 ÷ (−3)?",
+          "text": "Value of 12 ÷ (-3)?",
           "accept": [
-            "−4",
+            "-4",
             "-4"
           ],
-          "correctAnswer": "−4",
-          "correction": "Not quite. The answer is −4.",
+          "correctAnswer": "-4",
+          "correction": "Not quite. The answer is -4.",
           "options": [
-            "−4",
+            "-4",
             "9",
-            "−9",
-            "not −4"
+            "-9",
+            "not -4"
           ]
         },
         {
           "id": "q44",
-          "text": "Absolute value of −8?",
+          "text": "Absolute value of -8?",
           "accept": [
             "8",
             "eight"
@@ -154029,7 +154029,7 @@ module.exports = {
         },
         {
           "id": "q2",
-          "text": "Simplify 7a − 2a",
+          "text": "Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -154077,7 +154077,7 @@ module.exports = {
         },
         {
           "id": "q5",
-          "text": "If 3x − 3 = 12, x is?",
+          "text": "If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -154189,7 +154189,7 @@ module.exports = {
         },
         {
           "id": "q12",
-          "text": "In one line: Simplify 7a − 2a",
+          "text": "In one line: Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -154237,7 +154237,7 @@ module.exports = {
         },
         {
           "id": "q15",
-          "text": "In one line: If 3x − 3 = 12, x is?",
+          "text": "In one line: If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -154349,7 +154349,7 @@ module.exports = {
         },
         {
           "id": "q22",
-          "text": "Recall: Simplify 7a − 2a",
+          "text": "Recall: Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -154397,7 +154397,7 @@ module.exports = {
         },
         {
           "id": "q25",
-          "text": "Recall: If 3x − 3 = 12, x is?",
+          "text": "Recall: If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -154509,7 +154509,7 @@ module.exports = {
         },
         {
           "id": "q32",
-          "text": "Exam check: Simplify 7a − 2a",
+          "text": "Exam check: Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -154557,7 +154557,7 @@ module.exports = {
         },
         {
           "id": "q35",
-          "text": "Exam check: If 3x − 3 = 12, x is?",
+          "text": "Exam check: If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -154669,7 +154669,7 @@ module.exports = {
         },
         {
           "id": "q42",
-          "text": "Simplify 7a − 2a",
+          "text": "Simplify 7a - 2a",
           "accept": [
             "5a",
             "5*a"
@@ -154717,7 +154717,7 @@ module.exports = {
         },
         {
           "id": "q45",
-          "text": "If 3x − 3 = 12, x is?",
+          "text": "If 3x - 3 = 12, x is?",
           "accept": [
             "5",
             "five"
@@ -156455,7 +156455,7 @@ module.exports = {
         "further mathematics",
         "further maths"
       ],
-      "explanation": "Further Mathematics builds on core Maths with deeper tools: harder algebra, functions, calculus ideas (rates of change and areas), vectors, and related topics.\n\nIt still rewards the same habits as Maths — precise definitions and neat working — just with more advanced techniques. Read each question slowly and show every step.",
+      "explanation": "Further Mathematics builds on core Maths with deeper tools: harder algebra, functions, calculus ideas (rates of change and areas), vectors, and related topics.\n\nIt still rewards the same habits as Maths - precise definitions and neat working - just with more advanced techniques. Read each question slowly and show every step.",
       "icon": "calculator-01",
       "questions": [
         {
@@ -157294,7 +157294,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -157444,7 +157444,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -157594,7 +157594,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -157744,7 +157744,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -157894,7 +157894,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -158058,7 +158058,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -158111,12 +158111,12 @@ module.exports = {
           "id": "q9",
           "text": "Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -158209,7 +158209,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -158262,12 +158262,12 @@ module.exports = {
           "id": "q19",
           "text": "In one line: Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -158360,7 +158360,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -158413,12 +158413,12 @@ module.exports = {
           "id": "q29",
           "text": "Recall: Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -158511,7 +158511,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -158564,12 +158564,12 @@ module.exports = {
           "id": "q39",
           "text": "Exam check: Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -158662,7 +158662,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -158715,12 +158715,12 @@ module.exports = {
           "id": "q49",
           "text": "Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -158787,7 +158787,7 @@ module.exports = {
         },
         {
           "id": "q3",
-          "text": "nth term of AP: a + (n−1)d uses a as?",
+          "text": "nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -158804,20 +158804,20 @@ module.exports = {
           "id": "q4",
           "text": "Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q5",
-          "text": "nth term of GP: ar^(n−1) uses r as?",
+          "text": "nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -158834,15 +158834,15 @@ module.exports = {
           "id": "q6",
           "text": "If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -158937,7 +158937,7 @@ module.exports = {
         },
         {
           "id": "q13",
-          "text": "In one line: nth term of AP: a + (n−1)d uses a as?",
+          "text": "In one line: nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -158954,20 +158954,20 @@ module.exports = {
           "id": "q14",
           "text": "In one line: Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q15",
-          "text": "In one line: nth term of GP: ar^(n−1) uses r as?",
+          "text": "In one line: nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -158984,15 +158984,15 @@ module.exports = {
           "id": "q16",
           "text": "In one line: If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -159087,7 +159087,7 @@ module.exports = {
         },
         {
           "id": "q23",
-          "text": "Recall: nth term of AP: a + (n−1)d uses a as?",
+          "text": "Recall: nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -159104,20 +159104,20 @@ module.exports = {
           "id": "q24",
           "text": "Recall: Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q25",
-          "text": "Recall: nth term of GP: ar^(n−1) uses r as?",
+          "text": "Recall: nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -159134,15 +159134,15 @@ module.exports = {
           "id": "q26",
           "text": "Recall: If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -159237,7 +159237,7 @@ module.exports = {
         },
         {
           "id": "q33",
-          "text": "Exam check: nth term of AP: a + (n−1)d uses a as?",
+          "text": "Exam check: nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -159254,20 +159254,20 @@ module.exports = {
           "id": "q34",
           "text": "Exam check: Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q35",
-          "text": "Exam check: nth term of GP: ar^(n−1) uses r as?",
+          "text": "Exam check: nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -159284,15 +159284,15 @@ module.exports = {
           "id": "q36",
           "text": "Exam check: If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -159387,7 +159387,7 @@ module.exports = {
         },
         {
           "id": "q43",
-          "text": "nth term of AP: a + (n−1)d uses a as?",
+          "text": "nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -159404,20 +159404,20 @@ module.exports = {
           "id": "q44",
           "text": "Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q45",
-          "text": "nth term of GP: ar^(n−1) uses r as?",
+          "text": "nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -159434,15 +159434,15 @@ module.exports = {
           "id": "q46",
           "text": "If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -159516,20 +159516,20 @@ module.exports = {
         "differentiation",
         "basics"
       ],
-      "explanation": "Differentiation finds the rate of change and the gradient of a curve. For y = x^n, dy/dx = n x^(n−1). Applications include turning points and small changes, classic Further Maths territory.",
+      "explanation": "Differentiation finds the rate of change and the gradient of a curve. For y = x^n, dy/dx = n x^(n-1). Applications include turning points and small changes, classic Further Maths territory.",
       "icon": "calculator-01",
       "questions": [
         {
           "id": "q1",
           "text": "Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -159674,13 +159674,13 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -159825,13 +159825,13 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -159976,13 +159976,13 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -160127,13 +160127,13 @@ module.exports = {
           "id": "q41",
           "text": "Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -160285,12 +160285,12 @@ module.exports = {
         "integration",
         "basics"
       ],
-      "explanation": "Integration is the reverse of differentiation and also finds area under a curve. ∫ x^n dx = x^(n+1)/(n+1) + C (n ≠ −1). Definite integrals give a numeric area between limits.",
+      "explanation": "Integration is the reverse of differentiation and also finds area under a curve. ∫ x^n dx = x^(n+1)/(n+1) + C (n ≠ -1). Definite integrals give a numeric area between limits.",
       "icon": "calculator-01",
       "questions": [
         {
           "id": "q1",
-          "text": "∫ x^n dx (n≠−1) equals?",
+          "text": "∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -160299,7 +160299,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -160442,7 +160442,7 @@ module.exports = {
         },
         {
           "id": "q11",
-          "text": "In one line: ∫ x^n dx (n≠−1) equals?",
+          "text": "In one line: ∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -160451,7 +160451,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -160594,7 +160594,7 @@ module.exports = {
         },
         {
           "id": "q21",
-          "text": "Recall: ∫ x^n dx (n≠−1) equals?",
+          "text": "Recall: ∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -160603,7 +160603,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -160746,7 +160746,7 @@ module.exports = {
         },
         {
           "id": "q31",
-          "text": "Exam check: ∫ x^n dx (n≠−1) equals?",
+          "text": "Exam check: ∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -160755,7 +160755,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -160898,7 +160898,7 @@ module.exports = {
         },
         {
           "id": "q41",
-          "text": "∫ x^n dx (n≠−1) equals?",
+          "text": "∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -160907,7 +160907,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -161098,14 +161098,14 @@ module.exports = {
           "id": "q3",
           "text": "Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -161249,14 +161249,14 @@ module.exports = {
           "id": "q13",
           "text": "In one line: Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -161400,14 +161400,14 @@ module.exports = {
           "id": "q23",
           "text": "Recall: Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -161551,14 +161551,14 @@ module.exports = {
           "id": "q33",
           "text": "Exam check: Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -161702,14 +161702,14 @@ module.exports = {
           "id": "q43",
           "text": "Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -161834,7 +161834,7 @@ module.exports = {
         "further mathematics",
         "further maths"
       ],
-      "explanation": "Further Mathematics builds on core Maths with deeper tools: harder algebra, functions, calculus ideas (rates of change and areas), vectors, and related topics.\n\nIt still rewards the same habits as Maths — precise definitions and neat working — just with more advanced techniques. Read each question slowly and show every step. Practice set 2. Same ideas, more exam-style checks.",
+      "explanation": "Further Mathematics builds on core Maths with deeper tools: harder algebra, functions, calculus ideas (rates of change and areas), vectors, and related topics.\n\nIt still rewards the same habits as Maths - precise definitions and neat working - just with more advanced techniques. Read each question slowly and show every step. Practice set 2. Same ideas, more exam-style checks.",
       "icon": "calculator-01",
       "questions": [
         {
@@ -162674,7 +162674,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -162824,7 +162824,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -162974,7 +162974,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -163124,7 +163124,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -163274,7 +163274,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -163439,7 +163439,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -163492,12 +163492,12 @@ module.exports = {
           "id": "q9",
           "text": "Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -163590,7 +163590,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -163643,12 +163643,12 @@ module.exports = {
           "id": "q19",
           "text": "In one line: Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -163741,7 +163741,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -163794,12 +163794,12 @@ module.exports = {
           "id": "q29",
           "text": "Recall: Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -163892,7 +163892,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -163945,12 +163945,12 @@ module.exports = {
           "id": "q39",
           "text": "Exam check: Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -164043,7 +164043,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -164096,12 +164096,12 @@ module.exports = {
           "id": "q49",
           "text": "Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -164169,7 +164169,7 @@ module.exports = {
         },
         {
           "id": "q3",
-          "text": "nth term of AP: a + (n−1)d uses a as?",
+          "text": "nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -164186,20 +164186,20 @@ module.exports = {
           "id": "q4",
           "text": "Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q5",
-          "text": "nth term of GP: ar^(n−1) uses r as?",
+          "text": "nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -164216,15 +164216,15 @@ module.exports = {
           "id": "q6",
           "text": "If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -164319,7 +164319,7 @@ module.exports = {
         },
         {
           "id": "q13",
-          "text": "In one line: nth term of AP: a + (n−1)d uses a as?",
+          "text": "In one line: nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -164336,20 +164336,20 @@ module.exports = {
           "id": "q14",
           "text": "In one line: Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q15",
-          "text": "In one line: nth term of GP: ar^(n−1) uses r as?",
+          "text": "In one line: nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -164366,15 +164366,15 @@ module.exports = {
           "id": "q16",
           "text": "In one line: If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -164469,7 +164469,7 @@ module.exports = {
         },
         {
           "id": "q23",
-          "text": "Recall: nth term of AP: a + (n−1)d uses a as?",
+          "text": "Recall: nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -164486,20 +164486,20 @@ module.exports = {
           "id": "q24",
           "text": "Recall: Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q25",
-          "text": "Recall: nth term of GP: ar^(n−1) uses r as?",
+          "text": "Recall: nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -164516,15 +164516,15 @@ module.exports = {
           "id": "q26",
           "text": "Recall: If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -164619,7 +164619,7 @@ module.exports = {
         },
         {
           "id": "q33",
-          "text": "Exam check: nth term of AP: a + (n−1)d uses a as?",
+          "text": "Exam check: nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -164636,20 +164636,20 @@ module.exports = {
           "id": "q34",
           "text": "Exam check: Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q35",
-          "text": "Exam check: nth term of GP: ar^(n−1) uses r as?",
+          "text": "Exam check: nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -164666,15 +164666,15 @@ module.exports = {
           "id": "q36",
           "text": "Exam check: If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -164769,7 +164769,7 @@ module.exports = {
         },
         {
           "id": "q43",
-          "text": "nth term of AP: a + (n−1)d uses a as?",
+          "text": "nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -164786,20 +164786,20 @@ module.exports = {
           "id": "q44",
           "text": "Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q45",
-          "text": "nth term of GP: ar^(n−1) uses r as?",
+          "text": "nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -164816,15 +164816,15 @@ module.exports = {
           "id": "q46",
           "text": "If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -164899,20 +164899,20 @@ module.exports = {
         "differentiation",
         "basics"
       ],
-      "explanation": "Differentiation finds the rate of change and the gradient of a curve. For y = x^n, dy/dx = n x^(n−1). Applications include turning points and small changes, classic Further Maths territory. Practice set 2. Same ideas, more exam-style checks.",
+      "explanation": "Differentiation finds the rate of change and the gradient of a curve. For y = x^n, dy/dx = n x^(n-1). Applications include turning points and small changes, classic Further Maths territory. Practice set 2. Same ideas, more exam-style checks.",
       "icon": "calculator-01",
       "questions": [
         {
           "id": "q1",
           "text": "Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -165057,13 +165057,13 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -165208,13 +165208,13 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -165359,13 +165359,13 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -165510,13 +165510,13 @@ module.exports = {
           "id": "q41",
           "text": "Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -165669,12 +165669,12 @@ module.exports = {
         "integration",
         "basics"
       ],
-      "explanation": "Integration is the reverse of differentiation and also finds area under a curve. ∫ x^n dx = x^(n+1)/(n+1) + C (n ≠ −1). Definite integrals give a numeric area between limits. Practice set 2. Same ideas, more exam-style checks.",
+      "explanation": "Integration is the reverse of differentiation and also finds area under a curve. ∫ x^n dx = x^(n+1)/(n+1) + C (n ≠ -1). Definite integrals give a numeric area between limits. Practice set 2. Same ideas, more exam-style checks.",
       "icon": "calculator-01",
       "questions": [
         {
           "id": "q1",
-          "text": "∫ x^n dx (n≠−1) equals?",
+          "text": "∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -165683,7 +165683,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -165826,7 +165826,7 @@ module.exports = {
         },
         {
           "id": "q11",
-          "text": "In one line: ∫ x^n dx (n≠−1) equals?",
+          "text": "In one line: ∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -165835,7 +165835,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -165978,7 +165978,7 @@ module.exports = {
         },
         {
           "id": "q21",
-          "text": "Recall: ∫ x^n dx (n≠−1) equals?",
+          "text": "Recall: ∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -165987,7 +165987,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -166130,7 +166130,7 @@ module.exports = {
         },
         {
           "id": "q31",
-          "text": "Exam check: ∫ x^n dx (n≠−1) equals?",
+          "text": "Exam check: ∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -166139,7 +166139,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -166282,7 +166282,7 @@ module.exports = {
         },
         {
           "id": "q41",
-          "text": "∫ x^n dx (n≠−1) equals?",
+          "text": "∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -166291,7 +166291,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -166482,14 +166482,14 @@ module.exports = {
           "id": "q3",
           "text": "Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -166633,14 +166633,14 @@ module.exports = {
           "id": "q13",
           "text": "In one line: Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -166784,14 +166784,14 @@ module.exports = {
           "id": "q23",
           "text": "Recall: Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -166935,14 +166935,14 @@ module.exports = {
           "id": "q33",
           "text": "Exam check: Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -167086,14 +167086,14 @@ module.exports = {
           "id": "q43",
           "text": "Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -167218,7 +167218,7 @@ module.exports = {
         "further mathematics",
         "further maths"
       ],
-      "explanation": "Further Mathematics builds on core Maths with deeper tools: harder algebra, functions, calculus ideas (rates of change and areas), vectors, and related topics.\n\nIt still rewards the same habits as Maths — precise definitions and neat working — just with more advanced techniques. Read each question slowly and show every step. Practice set 3. Same ideas, more exam-style checks.",
+      "explanation": "Further Mathematics builds on core Maths with deeper tools: harder algebra, functions, calculus ideas (rates of change and areas), vectors, and related topics.\n\nIt still rewards the same habits as Maths - precise definitions and neat working - just with more advanced techniques. Read each question slowly and show every step. Practice set 3. Same ideas, more exam-style checks.",
       "icon": "calculator-01",
       "questions": [
         {
@@ -168058,7 +168058,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -168208,7 +168208,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -168358,7 +168358,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -168508,7 +168508,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -168658,7 +168658,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -168823,7 +168823,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -168876,12 +168876,12 @@ module.exports = {
           "id": "q9",
           "text": "Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -168974,7 +168974,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -169027,12 +169027,12 @@ module.exports = {
           "id": "q19",
           "text": "In one line: Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -169125,7 +169125,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -169178,12 +169178,12 @@ module.exports = {
           "id": "q29",
           "text": "Recall: Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -169276,7 +169276,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -169329,12 +169329,12 @@ module.exports = {
           "id": "q39",
           "text": "Exam check: Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -169427,7 +169427,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -169480,12 +169480,12 @@ module.exports = {
           "id": "q49",
           "text": "Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -169553,7 +169553,7 @@ module.exports = {
         },
         {
           "id": "q3",
-          "text": "nth term of AP: a + (n−1)d uses a as?",
+          "text": "nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -169570,20 +169570,20 @@ module.exports = {
           "id": "q4",
           "text": "Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q5",
-          "text": "nth term of GP: ar^(n−1) uses r as?",
+          "text": "nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -169600,15 +169600,15 @@ module.exports = {
           "id": "q6",
           "text": "If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -169703,7 +169703,7 @@ module.exports = {
         },
         {
           "id": "q13",
-          "text": "In one line: nth term of AP: a + (n−1)d uses a as?",
+          "text": "In one line: nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -169720,20 +169720,20 @@ module.exports = {
           "id": "q14",
           "text": "In one line: Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q15",
-          "text": "In one line: nth term of GP: ar^(n−1) uses r as?",
+          "text": "In one line: nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -169750,15 +169750,15 @@ module.exports = {
           "id": "q16",
           "text": "In one line: If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -169853,7 +169853,7 @@ module.exports = {
         },
         {
           "id": "q23",
-          "text": "Recall: nth term of AP: a + (n−1)d uses a as?",
+          "text": "Recall: nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -169870,20 +169870,20 @@ module.exports = {
           "id": "q24",
           "text": "Recall: Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q25",
-          "text": "Recall: nth term of GP: ar^(n−1) uses r as?",
+          "text": "Recall: nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -169900,15 +169900,15 @@ module.exports = {
           "id": "q26",
           "text": "Recall: If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -170003,7 +170003,7 @@ module.exports = {
         },
         {
           "id": "q33",
-          "text": "Exam check: nth term of AP: a + (n−1)d uses a as?",
+          "text": "Exam check: nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -170020,20 +170020,20 @@ module.exports = {
           "id": "q34",
           "text": "Exam check: Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q35",
-          "text": "Exam check: nth term of GP: ar^(n−1) uses r as?",
+          "text": "Exam check: nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -170050,15 +170050,15 @@ module.exports = {
           "id": "q36",
           "text": "Exam check: If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -170153,7 +170153,7 @@ module.exports = {
         },
         {
           "id": "q43",
-          "text": "nth term of AP: a + (n−1)d uses a as?",
+          "text": "nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -170170,20 +170170,20 @@ module.exports = {
           "id": "q44",
           "text": "Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q45",
-          "text": "nth term of GP: ar^(n−1) uses r as?",
+          "text": "nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -170200,15 +170200,15 @@ module.exports = {
           "id": "q46",
           "text": "If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -170283,20 +170283,20 @@ module.exports = {
         "differentiation",
         "basics"
       ],
-      "explanation": "Differentiation finds the rate of change and the gradient of a curve. For y = x^n, dy/dx = n x^(n−1). Applications include turning points and small changes, classic Further Maths territory. Practice set 3. Same ideas, more exam-style checks.",
+      "explanation": "Differentiation finds the rate of change and the gradient of a curve. For y = x^n, dy/dx = n x^(n-1). Applications include turning points and small changes, classic Further Maths territory. Practice set 3. Same ideas, more exam-style checks.",
       "icon": "calculator-01",
       "questions": [
         {
           "id": "q1",
           "text": "Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -170441,13 +170441,13 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -170592,13 +170592,13 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -170743,13 +170743,13 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -170894,13 +170894,13 @@ module.exports = {
           "id": "q41",
           "text": "Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -171053,12 +171053,12 @@ module.exports = {
         "integration",
         "basics"
       ],
-      "explanation": "Integration is the reverse of differentiation and also finds area under a curve. ∫ x^n dx = x^(n+1)/(n+1) + C (n ≠ −1). Definite integrals give a numeric area between limits. Practice set 3. Same ideas, more exam-style checks.",
+      "explanation": "Integration is the reverse of differentiation and also finds area under a curve. ∫ x^n dx = x^(n+1)/(n+1) + C (n ≠ -1). Definite integrals give a numeric area between limits. Practice set 3. Same ideas, more exam-style checks.",
       "icon": "calculator-01",
       "questions": [
         {
           "id": "q1",
-          "text": "∫ x^n dx (n≠−1) equals?",
+          "text": "∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -171067,7 +171067,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -171210,7 +171210,7 @@ module.exports = {
         },
         {
           "id": "q11",
-          "text": "In one line: ∫ x^n dx (n≠−1) equals?",
+          "text": "In one line: ∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -171219,7 +171219,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -171362,7 +171362,7 @@ module.exports = {
         },
         {
           "id": "q21",
-          "text": "Recall: ∫ x^n dx (n≠−1) equals?",
+          "text": "Recall: ∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -171371,7 +171371,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -171514,7 +171514,7 @@ module.exports = {
         },
         {
           "id": "q31",
-          "text": "Exam check: ∫ x^n dx (n≠−1) equals?",
+          "text": "Exam check: ∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -171523,7 +171523,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -171666,7 +171666,7 @@ module.exports = {
         },
         {
           "id": "q41",
-          "text": "∫ x^n dx (n≠−1) equals?",
+          "text": "∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -171675,7 +171675,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -171866,14 +171866,14 @@ module.exports = {
           "id": "q3",
           "text": "Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -172017,14 +172017,14 @@ module.exports = {
           "id": "q13",
           "text": "In one line: Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -172168,14 +172168,14 @@ module.exports = {
           "id": "q23",
           "text": "Recall: Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -172319,14 +172319,14 @@ module.exports = {
           "id": "q33",
           "text": "Exam check: Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -172470,14 +172470,14 @@ module.exports = {
           "id": "q43",
           "text": "Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -172602,7 +172602,7 @@ module.exports = {
         "further mathematics",
         "further maths"
       ],
-      "explanation": "Further Mathematics builds on core Maths with deeper tools: harder algebra, functions, calculus ideas (rates of change and areas), vectors, and related topics.\n\nIt still rewards the same habits as Maths — precise definitions and neat working — just with more advanced techniques. Read each question slowly and show every step. Practice set 4. Same ideas, more exam-style checks.",
+      "explanation": "Further Mathematics builds on core Maths with deeper tools: harder algebra, functions, calculus ideas (rates of change and areas), vectors, and related topics.\n\nIt still rewards the same habits as Maths - precise definitions and neat working - just with more advanced techniques. Read each question slowly and show every step. Practice set 4. Same ideas, more exam-style checks.",
       "icon": "calculator-01",
       "questions": [
         {
@@ -173442,7 +173442,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -173592,7 +173592,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -173742,7 +173742,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -173892,7 +173892,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -174042,7 +174042,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -174207,7 +174207,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -174260,12 +174260,12 @@ module.exports = {
           "id": "q9",
           "text": "Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -174358,7 +174358,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -174411,12 +174411,12 @@ module.exports = {
           "id": "q19",
           "text": "In one line: Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -174509,7 +174509,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -174562,12 +174562,12 @@ module.exports = {
           "id": "q29",
           "text": "Recall: Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -174660,7 +174660,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -174713,12 +174713,12 @@ module.exports = {
           "id": "q39",
           "text": "Exam check: Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -174811,7 +174811,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -174864,12 +174864,12 @@ module.exports = {
           "id": "q49",
           "text": "Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -174937,7 +174937,7 @@ module.exports = {
         },
         {
           "id": "q3",
-          "text": "nth term of AP: a + (n−1)d uses a as?",
+          "text": "nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -174954,20 +174954,20 @@ module.exports = {
           "id": "q4",
           "text": "Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q5",
-          "text": "nth term of GP: ar^(n−1) uses r as?",
+          "text": "nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -174984,15 +174984,15 @@ module.exports = {
           "id": "q6",
           "text": "If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -175087,7 +175087,7 @@ module.exports = {
         },
         {
           "id": "q13",
-          "text": "In one line: nth term of AP: a + (n−1)d uses a as?",
+          "text": "In one line: nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -175104,20 +175104,20 @@ module.exports = {
           "id": "q14",
           "text": "In one line: Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q15",
-          "text": "In one line: nth term of GP: ar^(n−1) uses r as?",
+          "text": "In one line: nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -175134,15 +175134,15 @@ module.exports = {
           "id": "q16",
           "text": "In one line: If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -175237,7 +175237,7 @@ module.exports = {
         },
         {
           "id": "q23",
-          "text": "Recall: nth term of AP: a + (n−1)d uses a as?",
+          "text": "Recall: nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -175254,20 +175254,20 @@ module.exports = {
           "id": "q24",
           "text": "Recall: Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q25",
-          "text": "Recall: nth term of GP: ar^(n−1) uses r as?",
+          "text": "Recall: nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -175284,15 +175284,15 @@ module.exports = {
           "id": "q26",
           "text": "Recall: If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -175387,7 +175387,7 @@ module.exports = {
         },
         {
           "id": "q33",
-          "text": "Exam check: nth term of AP: a + (n−1)d uses a as?",
+          "text": "Exam check: nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -175404,20 +175404,20 @@ module.exports = {
           "id": "q34",
           "text": "Exam check: Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q35",
-          "text": "Exam check: nth term of GP: ar^(n−1) uses r as?",
+          "text": "Exam check: nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -175434,15 +175434,15 @@ module.exports = {
           "id": "q36",
           "text": "Exam check: If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -175537,7 +175537,7 @@ module.exports = {
         },
         {
           "id": "q43",
-          "text": "nth term of AP: a + (n−1)d uses a as?",
+          "text": "nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -175554,20 +175554,20 @@ module.exports = {
           "id": "q44",
           "text": "Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q45",
-          "text": "nth term of GP: ar^(n−1) uses r as?",
+          "text": "nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -175584,15 +175584,15 @@ module.exports = {
           "id": "q46",
           "text": "If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -175667,20 +175667,20 @@ module.exports = {
         "differentiation",
         "basics"
       ],
-      "explanation": "Differentiation finds the rate of change and the gradient of a curve. For y = x^n, dy/dx = n x^(n−1). Applications include turning points and small changes, classic Further Maths territory. Practice set 4. Same ideas, more exam-style checks.",
+      "explanation": "Differentiation finds the rate of change and the gradient of a curve. For y = x^n, dy/dx = n x^(n-1). Applications include turning points and small changes, classic Further Maths territory. Practice set 4. Same ideas, more exam-style checks.",
       "icon": "calculator-01",
       "questions": [
         {
           "id": "q1",
           "text": "Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -175825,13 +175825,13 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -175976,13 +175976,13 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -176127,13 +176127,13 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -176278,13 +176278,13 @@ module.exports = {
           "id": "q41",
           "text": "Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -176437,12 +176437,12 @@ module.exports = {
         "integration",
         "basics"
       ],
-      "explanation": "Integration is the reverse of differentiation and also finds area under a curve. ∫ x^n dx = x^(n+1)/(n+1) + C (n ≠ −1). Definite integrals give a numeric area between limits. Practice set 4. Same ideas, more exam-style checks.",
+      "explanation": "Integration is the reverse of differentiation and also finds area under a curve. ∫ x^n dx = x^(n+1)/(n+1) + C (n ≠ -1). Definite integrals give a numeric area between limits. Practice set 4. Same ideas, more exam-style checks.",
       "icon": "calculator-01",
       "questions": [
         {
           "id": "q1",
-          "text": "∫ x^n dx (n≠−1) equals?",
+          "text": "∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -176451,7 +176451,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -176594,7 +176594,7 @@ module.exports = {
         },
         {
           "id": "q11",
-          "text": "In one line: ∫ x^n dx (n≠−1) equals?",
+          "text": "In one line: ∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -176603,7 +176603,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -176746,7 +176746,7 @@ module.exports = {
         },
         {
           "id": "q21",
-          "text": "Recall: ∫ x^n dx (n≠−1) equals?",
+          "text": "Recall: ∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -176755,7 +176755,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -176898,7 +176898,7 @@ module.exports = {
         },
         {
           "id": "q31",
-          "text": "Exam check: ∫ x^n dx (n≠−1) equals?",
+          "text": "Exam check: ∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -176907,7 +176907,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -177050,7 +177050,7 @@ module.exports = {
         },
         {
           "id": "q41",
-          "text": "∫ x^n dx (n≠−1) equals?",
+          "text": "∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -177059,7 +177059,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -177250,14 +177250,14 @@ module.exports = {
           "id": "q3",
           "text": "Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -177401,14 +177401,14 @@ module.exports = {
           "id": "q13",
           "text": "In one line: Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -177552,14 +177552,14 @@ module.exports = {
           "id": "q23",
           "text": "Recall: Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -177703,14 +177703,14 @@ module.exports = {
           "id": "q33",
           "text": "Exam check: Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -177854,14 +177854,14 @@ module.exports = {
           "id": "q43",
           "text": "Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -177986,7 +177986,7 @@ module.exports = {
         "further mathematics",
         "further maths"
       ],
-      "explanation": "Further Mathematics builds on core Maths with deeper tools: harder algebra, functions, calculus ideas (rates of change and areas), vectors, and related topics.\n\nIt still rewards the same habits as Maths — precise definitions and neat working — just with more advanced techniques. Read each question slowly and show every step. Practice set 5. Same ideas, more exam-style checks.",
+      "explanation": "Further Mathematics builds on core Maths with deeper tools: harder algebra, functions, calculus ideas (rates of change and areas), vectors, and related topics.\n\nIt still rewards the same habits as Maths - precise definitions and neat working - just with more advanced techniques. Read each question slowly and show every step. Practice set 5. Same ideas, more exam-style checks.",
       "icon": "calculator-01",
       "questions": [
         {
@@ -178826,7 +178826,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -178976,7 +178976,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -179126,7 +179126,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -179276,7 +179276,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -179426,7 +179426,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -179591,7 +179591,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -179644,12 +179644,12 @@ module.exports = {
           "id": "q9",
           "text": "Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -179742,7 +179742,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -179795,12 +179795,12 @@ module.exports = {
           "id": "q19",
           "text": "In one line: Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -179893,7 +179893,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -179946,12 +179946,12 @@ module.exports = {
           "id": "q29",
           "text": "Recall: Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -180044,7 +180044,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -180097,12 +180097,12 @@ module.exports = {
           "id": "q39",
           "text": "Exam check: Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -180195,7 +180195,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -180248,12 +180248,12 @@ module.exports = {
           "id": "q49",
           "text": "Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -180321,7 +180321,7 @@ module.exports = {
         },
         {
           "id": "q3",
-          "text": "nth term of AP: a + (n−1)d uses a as?",
+          "text": "nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -180338,20 +180338,20 @@ module.exports = {
           "id": "q4",
           "text": "Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q5",
-          "text": "nth term of GP: ar^(n−1) uses r as?",
+          "text": "nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -180368,15 +180368,15 @@ module.exports = {
           "id": "q6",
           "text": "If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -180471,7 +180471,7 @@ module.exports = {
         },
         {
           "id": "q13",
-          "text": "In one line: nth term of AP: a + (n−1)d uses a as?",
+          "text": "In one line: nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -180488,20 +180488,20 @@ module.exports = {
           "id": "q14",
           "text": "In one line: Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q15",
-          "text": "In one line: nth term of GP: ar^(n−1) uses r as?",
+          "text": "In one line: nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -180518,15 +180518,15 @@ module.exports = {
           "id": "q16",
           "text": "In one line: If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -180621,7 +180621,7 @@ module.exports = {
         },
         {
           "id": "q23",
-          "text": "Recall: nth term of AP: a + (n−1)d uses a as?",
+          "text": "Recall: nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -180638,20 +180638,20 @@ module.exports = {
           "id": "q24",
           "text": "Recall: Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q25",
-          "text": "Recall: nth term of GP: ar^(n−1) uses r as?",
+          "text": "Recall: nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -180668,15 +180668,15 @@ module.exports = {
           "id": "q26",
           "text": "Recall: If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -180771,7 +180771,7 @@ module.exports = {
         },
         {
           "id": "q33",
-          "text": "Exam check: nth term of AP: a + (n−1)d uses a as?",
+          "text": "Exam check: nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -180788,20 +180788,20 @@ module.exports = {
           "id": "q34",
           "text": "Exam check: Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q35",
-          "text": "Exam check: nth term of GP: ar^(n−1) uses r as?",
+          "text": "Exam check: nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -180818,15 +180818,15 @@ module.exports = {
           "id": "q36",
           "text": "Exam check: If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -180921,7 +180921,7 @@ module.exports = {
         },
         {
           "id": "q43",
-          "text": "nth term of AP: a + (n−1)d uses a as?",
+          "text": "nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -180938,20 +180938,20 @@ module.exports = {
           "id": "q44",
           "text": "Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q45",
-          "text": "nth term of GP: ar^(n−1) uses r as?",
+          "text": "nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -180968,15 +180968,15 @@ module.exports = {
           "id": "q46",
           "text": "If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -181051,20 +181051,20 @@ module.exports = {
         "differentiation",
         "basics"
       ],
-      "explanation": "Differentiation finds the rate of change and the gradient of a curve. For y = x^n, dy/dx = n x^(n−1). Applications include turning points and small changes, classic Further Maths territory. Practice set 5. Same ideas, more exam-style checks.",
+      "explanation": "Differentiation finds the rate of change and the gradient of a curve. For y = x^n, dy/dx = n x^(n-1). Applications include turning points and small changes, classic Further Maths territory. Practice set 5. Same ideas, more exam-style checks.",
       "icon": "calculator-01",
       "questions": [
         {
           "id": "q1",
           "text": "Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -181209,13 +181209,13 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -181360,13 +181360,13 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -181511,13 +181511,13 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -181662,13 +181662,13 @@ module.exports = {
           "id": "q41",
           "text": "Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -181821,12 +181821,12 @@ module.exports = {
         "integration",
         "basics"
       ],
-      "explanation": "Integration is the reverse of differentiation and also finds area under a curve. ∫ x^n dx = x^(n+1)/(n+1) + C (n ≠ −1). Definite integrals give a numeric area between limits. Practice set 5. Same ideas, more exam-style checks.",
+      "explanation": "Integration is the reverse of differentiation and also finds area under a curve. ∫ x^n dx = x^(n+1)/(n+1) + C (n ≠ -1). Definite integrals give a numeric area between limits. Practice set 5. Same ideas, more exam-style checks.",
       "icon": "calculator-01",
       "questions": [
         {
           "id": "q1",
-          "text": "∫ x^n dx (n≠−1) equals?",
+          "text": "∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -181835,7 +181835,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -181978,7 +181978,7 @@ module.exports = {
         },
         {
           "id": "q11",
-          "text": "In one line: ∫ x^n dx (n≠−1) equals?",
+          "text": "In one line: ∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -181987,7 +181987,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -182130,7 +182130,7 @@ module.exports = {
         },
         {
           "id": "q21",
-          "text": "Recall: ∫ x^n dx (n≠−1) equals?",
+          "text": "Recall: ∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -182139,7 +182139,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -182282,7 +182282,7 @@ module.exports = {
         },
         {
           "id": "q31",
-          "text": "Exam check: ∫ x^n dx (n≠−1) equals?",
+          "text": "Exam check: ∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -182291,7 +182291,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -182434,7 +182434,7 @@ module.exports = {
         },
         {
           "id": "q41",
-          "text": "∫ x^n dx (n≠−1) equals?",
+          "text": "∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -182443,7 +182443,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -182634,14 +182634,14 @@ module.exports = {
           "id": "q3",
           "text": "Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -182785,14 +182785,14 @@ module.exports = {
           "id": "q13",
           "text": "In one line: Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -182936,14 +182936,14 @@ module.exports = {
           "id": "q23",
           "text": "Recall: Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -183087,14 +183087,14 @@ module.exports = {
           "id": "q33",
           "text": "Exam check: Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -183238,14 +183238,14 @@ module.exports = {
           "id": "q43",
           "text": "Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -183370,7 +183370,7 @@ module.exports = {
         "further mathematics",
         "further maths"
       ],
-      "explanation": "Further Mathematics builds on core Maths with deeper tools: harder algebra, functions, calculus ideas (rates of change and areas), vectors, and related topics.\n\nIt still rewards the same habits as Maths — precise definitions and neat working — just with more advanced techniques. Read each question slowly and show every step. Practice set 6. Same ideas, more exam-style checks.",
+      "explanation": "Further Mathematics builds on core Maths with deeper tools: harder algebra, functions, calculus ideas (rates of change and areas), vectors, and related topics.\n\nIt still rewards the same habits as Maths - precise definitions and neat working - just with more advanced techniques. Read each question slowly and show every step. Practice set 6. Same ideas, more exam-style checks.",
       "icon": "calculator-01",
       "questions": [
         {
@@ -184210,7 +184210,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -184360,7 +184360,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -184510,7 +184510,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -184660,7 +184660,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -184810,7 +184810,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -184975,7 +184975,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -185028,12 +185028,12 @@ module.exports = {
           "id": "q9",
           "text": "Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -185126,7 +185126,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -185179,12 +185179,12 @@ module.exports = {
           "id": "q19",
           "text": "In one line: Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -185277,7 +185277,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -185330,12 +185330,12 @@ module.exports = {
           "id": "q29",
           "text": "Recall: Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -185428,7 +185428,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -185481,12 +185481,12 @@ module.exports = {
           "id": "q39",
           "text": "Exam check: Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -185579,7 +185579,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -185632,12 +185632,12 @@ module.exports = {
           "id": "q49",
           "text": "Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -185705,7 +185705,7 @@ module.exports = {
         },
         {
           "id": "q3",
-          "text": "nth term of AP: a + (n−1)d uses a as?",
+          "text": "nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -185722,20 +185722,20 @@ module.exports = {
           "id": "q4",
           "text": "Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q5",
-          "text": "nth term of GP: ar^(n−1) uses r as?",
+          "text": "nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -185752,15 +185752,15 @@ module.exports = {
           "id": "q6",
           "text": "If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -185855,7 +185855,7 @@ module.exports = {
         },
         {
           "id": "q13",
-          "text": "In one line: nth term of AP: a + (n−1)d uses a as?",
+          "text": "In one line: nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -185872,20 +185872,20 @@ module.exports = {
           "id": "q14",
           "text": "In one line: Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q15",
-          "text": "In one line: nth term of GP: ar^(n−1) uses r as?",
+          "text": "In one line: nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -185902,15 +185902,15 @@ module.exports = {
           "id": "q16",
           "text": "In one line: If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -186005,7 +186005,7 @@ module.exports = {
         },
         {
           "id": "q23",
-          "text": "Recall: nth term of AP: a + (n−1)d uses a as?",
+          "text": "Recall: nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -186022,20 +186022,20 @@ module.exports = {
           "id": "q24",
           "text": "Recall: Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q25",
-          "text": "Recall: nth term of GP: ar^(n−1) uses r as?",
+          "text": "Recall: nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -186052,15 +186052,15 @@ module.exports = {
           "id": "q26",
           "text": "Recall: If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -186155,7 +186155,7 @@ module.exports = {
         },
         {
           "id": "q33",
-          "text": "Exam check: nth term of AP: a + (n−1)d uses a as?",
+          "text": "Exam check: nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -186172,20 +186172,20 @@ module.exports = {
           "id": "q34",
           "text": "Exam check: Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q35",
-          "text": "Exam check: nth term of GP: ar^(n−1) uses r as?",
+          "text": "Exam check: nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -186202,15 +186202,15 @@ module.exports = {
           "id": "q36",
           "text": "Exam check: If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -186305,7 +186305,7 @@ module.exports = {
         },
         {
           "id": "q43",
-          "text": "nth term of AP: a + (n−1)d uses a as?",
+          "text": "nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -186322,20 +186322,20 @@ module.exports = {
           "id": "q44",
           "text": "Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q45",
-          "text": "nth term of GP: ar^(n−1) uses r as?",
+          "text": "nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -186352,15 +186352,15 @@ module.exports = {
           "id": "q46",
           "text": "If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -186435,20 +186435,20 @@ module.exports = {
         "differentiation",
         "basics"
       ],
-      "explanation": "Differentiation finds the rate of change and the gradient of a curve. For y = x^n, dy/dx = n x^(n−1). Applications include turning points and small changes, classic Further Maths territory. Practice set 6. Same ideas, more exam-style checks.",
+      "explanation": "Differentiation finds the rate of change and the gradient of a curve. For y = x^n, dy/dx = n x^(n-1). Applications include turning points and small changes, classic Further Maths territory. Practice set 6. Same ideas, more exam-style checks.",
       "icon": "calculator-01",
       "questions": [
         {
           "id": "q1",
           "text": "Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -186593,13 +186593,13 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -186744,13 +186744,13 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -186895,13 +186895,13 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -187046,13 +187046,13 @@ module.exports = {
           "id": "q41",
           "text": "Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -187205,12 +187205,12 @@ module.exports = {
         "integration",
         "basics"
       ],
-      "explanation": "Integration is the reverse of differentiation and also finds area under a curve. ∫ x^n dx = x^(n+1)/(n+1) + C (n ≠ −1). Definite integrals give a numeric area between limits. Practice set 6. Same ideas, more exam-style checks.",
+      "explanation": "Integration is the reverse of differentiation and also finds area under a curve. ∫ x^n dx = x^(n+1)/(n+1) + C (n ≠ -1). Definite integrals give a numeric area between limits. Practice set 6. Same ideas, more exam-style checks.",
       "icon": "calculator-01",
       "questions": [
         {
           "id": "q1",
-          "text": "∫ x^n dx (n≠−1) equals?",
+          "text": "∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -187219,7 +187219,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -187362,7 +187362,7 @@ module.exports = {
         },
         {
           "id": "q11",
-          "text": "In one line: ∫ x^n dx (n≠−1) equals?",
+          "text": "In one line: ∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -187371,7 +187371,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -187514,7 +187514,7 @@ module.exports = {
         },
         {
           "id": "q21",
-          "text": "Recall: ∫ x^n dx (n≠−1) equals?",
+          "text": "Recall: ∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -187523,7 +187523,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -187666,7 +187666,7 @@ module.exports = {
         },
         {
           "id": "q31",
-          "text": "Exam check: ∫ x^n dx (n≠−1) equals?",
+          "text": "Exam check: ∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -187675,7 +187675,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -187818,7 +187818,7 @@ module.exports = {
         },
         {
           "id": "q41",
-          "text": "∫ x^n dx (n≠−1) equals?",
+          "text": "∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -187827,7 +187827,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -188018,14 +188018,14 @@ module.exports = {
           "id": "q3",
           "text": "Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -188169,14 +188169,14 @@ module.exports = {
           "id": "q13",
           "text": "In one line: Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -188320,14 +188320,14 @@ module.exports = {
           "id": "q23",
           "text": "Recall: Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -188471,14 +188471,14 @@ module.exports = {
           "id": "q33",
           "text": "Exam check: Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -188622,14 +188622,14 @@ module.exports = {
           "id": "q43",
           "text": "Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -188754,7 +188754,7 @@ module.exports = {
         "further mathematics",
         "further maths"
       ],
-      "explanation": "Further Mathematics builds on core Maths with deeper tools: harder algebra, functions, calculus ideas (rates of change and areas), vectors, and related topics.\n\nIt still rewards the same habits as Maths — precise definitions and neat working — just with more advanced techniques. Read each question slowly and show every step. Practice set 7. Same ideas, more exam-style checks.",
+      "explanation": "Further Mathematics builds on core Maths with deeper tools: harder algebra, functions, calculus ideas (rates of change and areas), vectors, and related topics.\n\nIt still rewards the same habits as Maths - precise definitions and neat working - just with more advanced techniques. Read each question slowly and show every step. Practice set 7. Same ideas, more exam-style checks.",
       "icon": "calculator-01",
       "questions": [
         {
@@ -189594,7 +189594,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -189744,7 +189744,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -189894,7 +189894,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -190044,7 +190044,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -190194,7 +190194,7 @@ module.exports = {
             "f(g(x))",
             "g(f) only reversed always wrong",
             "f+g",
-            "f−g"
+            "f-g"
           ]
         },
         {
@@ -190359,7 +190359,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -190412,12 +190412,12 @@ module.exports = {
           "id": "q9",
           "text": "Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -190510,7 +190510,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -190563,12 +190563,12 @@ module.exports = {
           "id": "q19",
           "text": "In one line: Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -190661,7 +190661,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -190714,12 +190714,12 @@ module.exports = {
           "id": "q29",
           "text": "Recall: Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -190812,7 +190812,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -190865,12 +190865,12 @@ module.exports = {
           "id": "q39",
           "text": "Exam check: Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -190963,7 +190963,7 @@ module.exports = {
           "options": [
             "a² + 2ab + b²",
             "a² + b²",
-            "a² − b²",
+            "a² - b²",
             "2a + 2b"
           ]
         },
@@ -191016,12 +191016,12 @@ module.exports = {
           "id": "q49",
           "text": "Symmetry of binomial coefficients: nCr = ?",
           "accept": [
-            "nC(n−r)"
+            "nC(n-r)"
           ],
-          "correctAnswer": "nC(n−r)",
-          "correction": "Not quite. The answer is nC(n−r).",
+          "correctAnswer": "nC(n-r)",
+          "correction": "Not quite. The answer is nC(n-r).",
           "options": [
-            "nC(n−r)",
+            "nC(n-r)",
             "nCr+1 always",
             "r!",
             "n!"
@@ -191089,7 +191089,7 @@ module.exports = {
         },
         {
           "id": "q3",
-          "text": "nth term of AP: a + (n−1)d uses a as?",
+          "text": "nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -191106,20 +191106,20 @@ module.exports = {
           "id": "q4",
           "text": "Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q5",
-          "text": "nth term of GP: ar^(n−1) uses r as?",
+          "text": "nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -191136,15 +191136,15 @@ module.exports = {
           "id": "q6",
           "text": "If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -191239,7 +191239,7 @@ module.exports = {
         },
         {
           "id": "q13",
-          "text": "In one line: nth term of AP: a + (n−1)d uses a as?",
+          "text": "In one line: nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -191256,20 +191256,20 @@ module.exports = {
           "id": "q14",
           "text": "In one line: Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q15",
-          "text": "In one line: nth term of GP: ar^(n−1) uses r as?",
+          "text": "In one line: nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -191286,15 +191286,15 @@ module.exports = {
           "id": "q16",
           "text": "In one line: If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -191389,7 +191389,7 @@ module.exports = {
         },
         {
           "id": "q23",
-          "text": "Recall: nth term of AP: a + (n−1)d uses a as?",
+          "text": "Recall: nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -191406,20 +191406,20 @@ module.exports = {
           "id": "q24",
           "text": "Recall: Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q25",
-          "text": "Recall: nth term of GP: ar^(n−1) uses r as?",
+          "text": "Recall: nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -191436,15 +191436,15 @@ module.exports = {
           "id": "q26",
           "text": "Recall: If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -191539,7 +191539,7 @@ module.exports = {
         },
         {
           "id": "q33",
-          "text": "Exam check: nth term of AP: a + (n−1)d uses a as?",
+          "text": "Exam check: nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -191556,20 +191556,20 @@ module.exports = {
           "id": "q34",
           "text": "Exam check: Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q35",
-          "text": "Exam check: nth term of GP: ar^(n−1) uses r as?",
+          "text": "Exam check: nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -191586,15 +191586,15 @@ module.exports = {
           "id": "q36",
           "text": "Exam check: If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -191689,7 +191689,7 @@ module.exports = {
         },
         {
           "id": "q43",
-          "text": "nth term of AP: a + (n−1)d uses a as?",
+          "text": "nth term of AP: a + (n-1)d uses a as?",
           "accept": [
             "first term"
           ],
@@ -191706,20 +191706,20 @@ module.exports = {
           "id": "q44",
           "text": "Sum of first n terms of AP uses formula involving?",
           "accept": [
-            "n/2 [2a+(n−1)d]"
+            "n/2 [2a+(n-1)d]"
           ],
-          "correctAnswer": "n/2 [2a+(n−1)d]",
-          "correction": "Not quite. The answer is n/2 [2a+(n−1)d].",
+          "correctAnswer": "n/2 [2a+(n-1)d]",
+          "correction": "Not quite. The answer is n/2 [2a+(n-1)d].",
           "options": [
-            "n/2 [2a+(n−1)d]",
-            "not n/2 [2a+(n−1)d]",
+            "n/2 [2a+(n-1)d]",
+            "not n/2 [2a+(n-1)d]",
             "none of these",
             "all of these"
           ]
         },
         {
           "id": "q45",
-          "text": "nth term of GP: ar^(n−1) uses r as?",
+          "text": "nth term of GP: ar^(n-1) uses r as?",
           "accept": [
             "common ratio"
           ],
@@ -191736,15 +191736,15 @@ module.exports = {
           "id": "q46",
           "text": "If |r|<1, sum to infinity of GP is?",
           "accept": [
-            "a/(1−r)"
+            "a/(1-r)"
           ],
-          "correctAnswer": "a/(1−r)",
-          "correction": "Not quite. The answer is a/(1−r).",
+          "correctAnswer": "a/(1-r)",
+          "correction": "Not quite. The answer is a/(1-r).",
           "options": [
-            "a/(1−r)",
+            "a/(1-r)",
             "a/r",
             "ar",
-            "1−r"
+            "1-r"
           ]
         },
         {
@@ -191819,20 +191819,20 @@ module.exports = {
         "differentiation",
         "basics"
       ],
-      "explanation": "Differentiation finds the rate of change and the gradient of a curve. For y = x^n, dy/dx = n x^(n−1). Applications include turning points and small changes, classic Further Maths territory. Practice set 7. Same ideas, more exam-style checks.",
+      "explanation": "Differentiation finds the rate of change and the gradient of a curve. For y = x^n, dy/dx = n x^(n-1). Applications include turning points and small changes, classic Further Maths territory. Practice set 7. Same ideas, more exam-style checks.",
       "icon": "calculator-01",
       "questions": [
         {
           "id": "q1",
           "text": "Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -191977,13 +191977,13 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -192128,13 +192128,13 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -192279,13 +192279,13 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -192430,13 +192430,13 @@ module.exports = {
           "id": "q41",
           "text": "Derivative of x^n is?",
           "accept": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "nx^{n-1}"
           ],
-          "correctAnswer": "n x^(n−1)",
-          "correction": "Not quite. The answer is n x^(n−1).",
+          "correctAnswer": "n x^(n-1)",
+          "correction": "Not quite. The answer is n x^(n-1).",
           "options": [
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n x^n",
             "x/n"
@@ -192589,12 +192589,12 @@ module.exports = {
         "integration",
         "basics"
       ],
-      "explanation": "Integration is the reverse of differentiation and also finds area under a curve. ∫ x^n dx = x^(n+1)/(n+1) + C (n ≠ −1). Definite integrals give a numeric area between limits. Practice set 7. Same ideas, more exam-style checks.",
+      "explanation": "Integration is the reverse of differentiation and also finds area under a curve. ∫ x^n dx = x^(n+1)/(n+1) + C (n ≠ -1). Definite integrals give a numeric area between limits. Practice set 7. Same ideas, more exam-style checks.",
       "icon": "calculator-01",
       "questions": [
         {
           "id": "q1",
-          "text": "∫ x^n dx (n≠−1) equals?",
+          "text": "∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -192603,7 +192603,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -192746,7 +192746,7 @@ module.exports = {
         },
         {
           "id": "q11",
-          "text": "In one line: ∫ x^n dx (n≠−1) equals?",
+          "text": "In one line: ∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -192755,7 +192755,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -192898,7 +192898,7 @@ module.exports = {
         },
         {
           "id": "q21",
-          "text": "Recall: ∫ x^n dx (n≠−1) equals?",
+          "text": "Recall: ∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -192907,7 +192907,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -193050,7 +193050,7 @@ module.exports = {
         },
         {
           "id": "q31",
-          "text": "Exam check: ∫ x^n dx (n≠−1) equals?",
+          "text": "Exam check: ∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -193059,7 +193059,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -193202,7 +193202,7 @@ module.exports = {
         },
         {
           "id": "q41",
-          "text": "∫ x^n dx (n≠−1) equals?",
+          "text": "∫ x^n dx (n≠-1) equals?",
           "accept": [
             "x^(n+1)/(n+1) + C",
             "x^{n+1}/(n+1)+C"
@@ -193211,7 +193211,7 @@ module.exports = {
           "correction": "Not quite. The answer is x^(n+1)/(n+1) + C.",
           "options": [
             "x^(n+1)/(n+1) + C",
-            "n x^(n−1)",
+            "n x^(n-1)",
             "x^n",
             "n!"
           ]
@@ -193402,14 +193402,14 @@ module.exports = {
           "id": "q3",
           "text": "Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -193553,14 +193553,14 @@ module.exports = {
           "id": "q13",
           "text": "In one line: Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -193704,14 +193704,14 @@ module.exports = {
           "id": "q23",
           "text": "Recall: Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -193855,14 +193855,14 @@ module.exports = {
           "id": "q33",
           "text": "Exam check: Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -194006,14 +194006,14 @@ module.exports = {
           "id": "q43",
           "text": "Determinant of [[a,b],[c,d]] is?",
           "accept": [
-            "ad−bc",
+            "ad-bc",
             "ad-bc"
           ],
-          "correctAnswer": "ad−bc",
-          "correction": "Not quite. The answer is ad−bc.",
+          "correctAnswer": "ad-bc",
+          "correction": "Not quite. The answer is ad-bc.",
           "options": [
-            "ad−bc",
-            "ab−cd",
+            "ad-bc",
+            "ab-cd",
             "a+d",
             "ac+bd"
           ]
@@ -194138,7 +194138,7 @@ module.exports = {
         "further mathematics",
         "further maths"
       ],
-      "explanation": "Further Mathematics builds on core Maths with deeper tools: harder algebra, functions, calculus ideas (rates of change and areas), vectors, and related topics.\n\nIt still rewards the same habits as Maths — precise definitions and neat working — just with more advanced techniques. Read each question slowly and show every step. Practice set 8. Same ideas, more exam-style checks.",
+      "explanation": "Further Mathematics builds on core Maths with deeper tools: harder algebra, functions, calculus ideas (rates of change and areas), vectors, and related topics.\n\nIt still rewards the same habits as Maths - precise definitions and neat working - just with more advanced techniques. Read each question slowly and show every step. Practice set 8. Same ideas, more exam-style checks.",
       "icon": "calculator-01",
       "questions": [
         {
@@ -271506,7 +271506,7 @@ module.exports = {
         "what",
         "yoruba"
       ],
-      "explanation": "Yoruba is a Nigerian language with rich culture and orature (spoken literature). WAEC Yoruba checks vocabulary, greetings, grammar, comprehension, and culture — including proverbs (òwe) and everyday polite speech.\n\nLearn meaning and correct usage together. A greeting or proverb is not just words; it shows respect and cultural understanding.",
+      "explanation": "Yoruba is a Nigerian language with rich culture and orature (spoken literature). WAEC Yoruba checks vocabulary, greetings, grammar, comprehension, and culture - including proverbs (òwe) and everyday polite speech.\n\nLearn meaning and correct usage together. A greeting or proverb is not just words; it shows respect and cultural understanding.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -274595,7 +274595,7 @@ module.exports = {
         "culture",
         "orature"
       ],
-      "explanation": "Yoruba culture values respect for elders, community, and festivals. Orature is spoken literature — òwe (proverbs), oríkì (praise poetry), and folktales that teach morals. WAEC links language forms to this cultural meaning.",
+      "explanation": "Yoruba culture values respect for elders, community, and festivals. Orature is spoken literature - òwe (proverbs), oríkì (praise poetry), and folktales that teach morals. WAEC links language forms to this cultural meaning.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -275390,7 +275390,7 @@ module.exports = {
         "what",
         "yoruba"
       ],
-      "explanation": "Yoruba is a Nigerian language with rich culture and orature (spoken literature). WAEC Yoruba checks vocabulary, greetings, grammar, comprehension, and culture — including proverbs (òwe) and everyday polite speech.\n\nLearn meaning and correct usage together. A greeting or proverb is not just words; it shows respect and cultural understanding. Practice set 2. Same ideas, more exam-style checks.",
+      "explanation": "Yoruba is a Nigerian language with rich culture and orature (spoken literature). WAEC Yoruba checks vocabulary, greetings, grammar, comprehension, and culture - including proverbs (òwe) and everyday polite speech.\n\nLearn meaning and correct usage together. A greeting or proverb is not just words; it shows respect and cultural understanding. Practice set 2. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -278483,7 +278483,7 @@ module.exports = {
         "culture",
         "orature"
       ],
-      "explanation": "Yoruba culture values respect for elders, community, and festivals. Orature is spoken literature — òwe (proverbs), oríkì (praise poetry), and folktales that teach morals. WAEC links language forms to this cultural meaning. Practice set 2. Same ideas, more exam-style checks.",
+      "explanation": "Yoruba culture values respect for elders, community, and festivals. Orature is spoken literature - òwe (proverbs), oríkì (praise poetry), and folktales that teach morals. WAEC links language forms to this cultural meaning. Practice set 2. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -279278,7 +279278,7 @@ module.exports = {
         "what",
         "yoruba"
       ],
-      "explanation": "Yoruba is a Nigerian language with rich culture and orature (spoken literature). WAEC Yoruba checks vocabulary, greetings, grammar, comprehension, and culture — including proverbs (òwe) and everyday polite speech.\n\nLearn meaning and correct usage together. A greeting or proverb is not just words; it shows respect and cultural understanding. Practice set 3. Same ideas, more exam-style checks.",
+      "explanation": "Yoruba is a Nigerian language with rich culture and orature (spoken literature). WAEC Yoruba checks vocabulary, greetings, grammar, comprehension, and culture - including proverbs (òwe) and everyday polite speech.\n\nLearn meaning and correct usage together. A greeting or proverb is not just words; it shows respect and cultural understanding. Practice set 3. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -282371,7 +282371,7 @@ module.exports = {
         "culture",
         "orature"
       ],
-      "explanation": "Yoruba culture values respect for elders, community, and festivals. Orature is spoken literature — òwe (proverbs), oríkì (praise poetry), and folktales that teach morals. WAEC links language forms to this cultural meaning. Practice set 3. Same ideas, more exam-style checks.",
+      "explanation": "Yoruba culture values respect for elders, community, and festivals. Orature is spoken literature - òwe (proverbs), oríkì (praise poetry), and folktales that teach morals. WAEC links language forms to this cultural meaning. Practice set 3. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -283166,7 +283166,7 @@ module.exports = {
         "what",
         "yoruba"
       ],
-      "explanation": "Yoruba is a Nigerian language with rich culture and orature (spoken literature). WAEC Yoruba checks vocabulary, greetings, grammar, comprehension, and culture — including proverbs (òwe) and everyday polite speech.\n\nLearn meaning and correct usage together. A greeting or proverb is not just words; it shows respect and cultural understanding. Practice set 4. Same ideas, more exam-style checks.",
+      "explanation": "Yoruba is a Nigerian language with rich culture and orature (spoken literature). WAEC Yoruba checks vocabulary, greetings, grammar, comprehension, and culture - including proverbs (òwe) and everyday polite speech.\n\nLearn meaning and correct usage together. A greeting or proverb is not just words; it shows respect and cultural understanding. Practice set 4. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -286259,7 +286259,7 @@ module.exports = {
         "culture",
         "orature"
       ],
-      "explanation": "Yoruba culture values respect for elders, community, and festivals. Orature is spoken literature — òwe (proverbs), oríkì (praise poetry), and folktales that teach morals. WAEC links language forms to this cultural meaning. Practice set 4. Same ideas, more exam-style checks.",
+      "explanation": "Yoruba culture values respect for elders, community, and festivals. Orature is spoken literature - òwe (proverbs), oríkì (praise poetry), and folktales that teach morals. WAEC links language forms to this cultural meaning. Practice set 4. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -287054,7 +287054,7 @@ module.exports = {
         "what",
         "yoruba"
       ],
-      "explanation": "Yoruba is a Nigerian language with rich culture and orature (spoken literature). WAEC Yoruba checks vocabulary, greetings, grammar, comprehension, and culture — including proverbs (òwe) and everyday polite speech.\n\nLearn meaning and correct usage together. A greeting or proverb is not just words; it shows respect and cultural understanding. Practice set 5. Same ideas, more exam-style checks.",
+      "explanation": "Yoruba is a Nigerian language with rich culture and orature (spoken literature). WAEC Yoruba checks vocabulary, greetings, grammar, comprehension, and culture - including proverbs (òwe) and everyday polite speech.\n\nLearn meaning and correct usage together. A greeting or proverb is not just words; it shows respect and cultural understanding. Practice set 5. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -290147,7 +290147,7 @@ module.exports = {
         "culture",
         "orature"
       ],
-      "explanation": "Yoruba culture values respect for elders, community, and festivals. Orature is spoken literature — òwe (proverbs), oríkì (praise poetry), and folktales that teach morals. WAEC links language forms to this cultural meaning. Practice set 5. Same ideas, more exam-style checks.",
+      "explanation": "Yoruba culture values respect for elders, community, and festivals. Orature is spoken literature - òwe (proverbs), oríkì (praise poetry), and folktales that teach morals. WAEC links language forms to this cultural meaning. Practice set 5. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -290942,7 +290942,7 @@ module.exports = {
         "what",
         "yoruba"
       ],
-      "explanation": "Yoruba is a Nigerian language with rich culture and orature (spoken literature). WAEC Yoruba checks vocabulary, greetings, grammar, comprehension, and culture — including proverbs (òwe) and everyday polite speech.\n\nLearn meaning and correct usage together. A greeting or proverb is not just words; it shows respect and cultural understanding. Practice set 6. Same ideas, more exam-style checks.",
+      "explanation": "Yoruba is a Nigerian language with rich culture and orature (spoken literature). WAEC Yoruba checks vocabulary, greetings, grammar, comprehension, and culture - including proverbs (òwe) and everyday polite speech.\n\nLearn meaning and correct usage together. A greeting or proverb is not just words; it shows respect and cultural understanding. Practice set 6. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -294035,7 +294035,7 @@ module.exports = {
         "culture",
         "orature"
       ],
-      "explanation": "Yoruba culture values respect for elders, community, and festivals. Orature is spoken literature — òwe (proverbs), oríkì (praise poetry), and folktales that teach morals. WAEC links language forms to this cultural meaning. Practice set 6. Same ideas, more exam-style checks.",
+      "explanation": "Yoruba culture values respect for elders, community, and festivals. Orature is spoken literature - òwe (proverbs), oríkì (praise poetry), and folktales that teach morals. WAEC links language forms to this cultural meaning. Practice set 6. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -294830,7 +294830,7 @@ module.exports = {
         "what",
         "yoruba"
       ],
-      "explanation": "Yoruba is a Nigerian language with rich culture and orature (spoken literature). WAEC Yoruba checks vocabulary, greetings, grammar, comprehension, and culture — including proverbs (òwe) and everyday polite speech.\n\nLearn meaning and correct usage together. A greeting or proverb is not just words; it shows respect and cultural understanding. Practice set 7. Same ideas, more exam-style checks.",
+      "explanation": "Yoruba is a Nigerian language with rich culture and orature (spoken literature). WAEC Yoruba checks vocabulary, greetings, grammar, comprehension, and culture - including proverbs (òwe) and everyday polite speech.\n\nLearn meaning and correct usage together. A greeting or proverb is not just words; it shows respect and cultural understanding. Practice set 7. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -297923,7 +297923,7 @@ module.exports = {
         "culture",
         "orature"
       ],
-      "explanation": "Yoruba culture values respect for elders, community, and festivals. Orature is spoken literature — òwe (proverbs), oríkì (praise poetry), and folktales that teach morals. WAEC links language forms to this cultural meaning. Practice set 7. Same ideas, more exam-style checks.",
+      "explanation": "Yoruba culture values respect for elders, community, and festivals. Orature is spoken literature - òwe (proverbs), oríkì (praise poetry), and folktales that teach morals. WAEC links language forms to this cultural meaning. Practice set 7. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -298718,7 +298718,7 @@ module.exports = {
         "what",
         "yoruba"
       ],
-      "explanation": "Yoruba is a Nigerian language with rich culture and orature (spoken literature). WAEC Yoruba checks vocabulary, greetings, grammar, comprehension, and culture — including proverbs (òwe) and everyday polite speech.\n\nLearn meaning and correct usage together. A greeting or proverb is not just words; it shows respect and cultural understanding. Practice set 8. Same ideas, more exam-style checks.",
+      "explanation": "Yoruba is a Nigerian language with rich culture and orature (spoken literature). WAEC Yoruba checks vocabulary, greetings, grammar, comprehension, and culture - including proverbs (òwe) and everyday polite speech.\n\nLearn meaning and correct usage together. A greeting or proverb is not just words; it shows respect and cultural understanding. Practice set 8. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -301811,7 +301811,7 @@ module.exports = {
         "culture",
         "orature"
       ],
-      "explanation": "Yoruba culture values respect for elders, community, and festivals. Orature is spoken literature — òwe (proverbs), oríkì (praise poetry), and folktales that teach morals. WAEC links language forms to this cultural meaning. Practice set 8. Same ideas, more exam-style checks.",
+      "explanation": "Yoruba culture values respect for elders, community, and festivals. Orature is spoken literature - òwe (proverbs), oríkì (praise poetry), and folktales that teach morals. WAEC links language forms to this cultural meaning. Practice set 8. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -302606,7 +302606,7 @@ module.exports = {
         "what",
         "yoruba"
       ],
-      "explanation": "Yoruba is a Nigerian language with rich culture and orature (spoken literature). WAEC Yoruba checks vocabulary, greetings, grammar, comprehension, and culture — including proverbs (òwe) and everyday polite speech.\n\nLearn meaning and correct usage together. A greeting or proverb is not just words; it shows respect and cultural understanding. Practice set 9. Same ideas, more exam-style checks.",
+      "explanation": "Yoruba is a Nigerian language with rich culture and orature (spoken literature). WAEC Yoruba checks vocabulary, greetings, grammar, comprehension, and culture - including proverbs (òwe) and everyday polite speech.\n\nLearn meaning and correct usage together. A greeting or proverb is not just words; it shows respect and cultural understanding. Practice set 9. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -305699,7 +305699,7 @@ module.exports = {
         "culture",
         "orature"
       ],
-      "explanation": "Yoruba culture values respect for elders, community, and festivals. Orature is spoken literature — òwe (proverbs), oríkì (praise poetry), and folktales that teach morals. WAEC links language forms to this cultural meaning. Practice set 9. Same ideas, more exam-style checks.",
+      "explanation": "Yoruba culture values respect for elders, community, and festivals. Orature is spoken literature - òwe (proverbs), oríkì (praise poetry), and folktales that teach morals. WAEC links language forms to this cultural meaning. Practice set 9. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -306494,7 +306494,7 @@ module.exports = {
         "what",
         "yoruba"
       ],
-      "explanation": "Yoruba is a Nigerian language with rich culture and orature (spoken literature). WAEC Yoruba checks vocabulary, greetings, grammar, comprehension, and culture — including proverbs (òwe) and everyday polite speech.\n\nLearn meaning and correct usage together. A greeting or proverb is not just words; it shows respect and cultural understanding. Practice set 10. Same ideas, more exam-style checks.",
+      "explanation": "Yoruba is a Nigerian language with rich culture and orature (spoken literature). WAEC Yoruba checks vocabulary, greetings, grammar, comprehension, and culture - including proverbs (òwe) and everyday polite speech.\n\nLearn meaning and correct usage together. A greeting or proverb is not just words; it shows respect and cultural understanding. Practice set 10. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -309587,7 +309587,7 @@ module.exports = {
         "culture",
         "orature"
       ],
-      "explanation": "Yoruba culture values respect for elders, community, and festivals. Orature is spoken literature — òwe (proverbs), oríkì (praise poetry), and folktales that teach morals. WAEC links language forms to this cultural meaning. Practice set 10. Same ideas, more exam-style checks.",
+      "explanation": "Yoruba culture values respect for elders, community, and festivals. Orature is spoken literature - òwe (proverbs), oríkì (praise poetry), and folktales that teach morals. WAEC links language forms to this cultural meaning. Practice set 10. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -310381,7 +310381,7 @@ module.exports = {
         "what",
         "igbo"
       ],
-      "explanation": "Igbo is a major Nigerian language. WAEC Igbo tests vocabulary, greetings, simple structures, comprehension, and culture — including proverbs (ilu) and respectful conversation.\n\nPractise short, correct sentences you would really say. Know what common words mean, and when a greeting or reply is polite.",
+      "explanation": "Igbo is a major Nigerian language. WAEC Igbo tests vocabulary, greetings, simple structures, comprehension, and culture - including proverbs (ilu) and respectful conversation.\n\nPractise short, correct sentences you would really say. Know what common words mean, and when a greeting or reply is polite.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -314219,7 +314219,7 @@ module.exports = {
         "what",
         "igbo"
       ],
-      "explanation": "Igbo is a major Nigerian language. WAEC Igbo tests vocabulary, greetings, simple structures, comprehension, and culture — including proverbs (ilu) and respectful conversation.\n\nPractise short, correct sentences you would really say. Know what common words mean, and when a greeting or reply is polite. Practice set 2. Same ideas, more exam-style checks.",
+      "explanation": "Igbo is a major Nigerian language. WAEC Igbo tests vocabulary, greetings, simple structures, comprehension, and culture - including proverbs (ilu) and respectful conversation.\n\nPractise short, correct sentences you would really say. Know what common words mean, and when a greeting or reply is polite. Practice set 2. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -318061,7 +318061,7 @@ module.exports = {
         "what",
         "igbo"
       ],
-      "explanation": "Igbo is a major Nigerian language. WAEC Igbo tests vocabulary, greetings, simple structures, comprehension, and culture — including proverbs (ilu) and respectful conversation.\n\nPractise short, correct sentences you would really say. Know what common words mean, and when a greeting or reply is polite. Practice set 3. Same ideas, more exam-style checks.",
+      "explanation": "Igbo is a major Nigerian language. WAEC Igbo tests vocabulary, greetings, simple structures, comprehension, and culture - including proverbs (ilu) and respectful conversation.\n\nPractise short, correct sentences you would really say. Know what common words mean, and when a greeting or reply is polite. Practice set 3. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -321903,7 +321903,7 @@ module.exports = {
         "what",
         "igbo"
       ],
-      "explanation": "Igbo is a major Nigerian language. WAEC Igbo tests vocabulary, greetings, simple structures, comprehension, and culture — including proverbs (ilu) and respectful conversation.\n\nPractise short, correct sentences you would really say. Know what common words mean, and when a greeting or reply is polite. Practice set 4. Same ideas, more exam-style checks.",
+      "explanation": "Igbo is a major Nigerian language. WAEC Igbo tests vocabulary, greetings, simple structures, comprehension, and culture - including proverbs (ilu) and respectful conversation.\n\nPractise short, correct sentences you would really say. Know what common words mean, and when a greeting or reply is polite. Practice set 4. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -325745,7 +325745,7 @@ module.exports = {
         "what",
         "igbo"
       ],
-      "explanation": "Igbo is a major Nigerian language. WAEC Igbo tests vocabulary, greetings, simple structures, comprehension, and culture — including proverbs (ilu) and respectful conversation.\n\nPractise short, correct sentences you would really say. Know what common words mean, and when a greeting or reply is polite. Practice set 5. Same ideas, more exam-style checks.",
+      "explanation": "Igbo is a major Nigerian language. WAEC Igbo tests vocabulary, greetings, simple structures, comprehension, and culture - including proverbs (ilu) and respectful conversation.\n\nPractise short, correct sentences you would really say. Know what common words mean, and when a greeting or reply is polite. Practice set 5. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -329587,7 +329587,7 @@ module.exports = {
         "what",
         "igbo"
       ],
-      "explanation": "Igbo is a major Nigerian language. WAEC Igbo tests vocabulary, greetings, simple structures, comprehension, and culture — including proverbs (ilu) and respectful conversation.\n\nPractise short, correct sentences you would really say. Know what common words mean, and when a greeting or reply is polite. Practice set 6. Same ideas, more exam-style checks.",
+      "explanation": "Igbo is a major Nigerian language. WAEC Igbo tests vocabulary, greetings, simple structures, comprehension, and culture - including proverbs (ilu) and respectful conversation.\n\nPractise short, correct sentences you would really say. Know what common words mean, and when a greeting or reply is polite. Practice set 6. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -333429,7 +333429,7 @@ module.exports = {
         "what",
         "igbo"
       ],
-      "explanation": "Igbo is a major Nigerian language. WAEC Igbo tests vocabulary, greetings, simple structures, comprehension, and culture — including proverbs (ilu) and respectful conversation.\n\nPractise short, correct sentences you would really say. Know what common words mean, and when a greeting or reply is polite. Practice set 7. Same ideas, more exam-style checks.",
+      "explanation": "Igbo is a major Nigerian language. WAEC Igbo tests vocabulary, greetings, simple structures, comprehension, and culture - including proverbs (ilu) and respectful conversation.\n\nPractise short, correct sentences you would really say. Know what common words mean, and when a greeting or reply is polite. Practice set 7. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -337271,7 +337271,7 @@ module.exports = {
         "what",
         "igbo"
       ],
-      "explanation": "Igbo is a major Nigerian language. WAEC Igbo tests vocabulary, greetings, simple structures, comprehension, and culture — including proverbs (ilu) and respectful conversation.\n\nPractise short, correct sentences you would really say. Know what common words mean, and when a greeting or reply is polite. Practice set 8. Same ideas, more exam-style checks.",
+      "explanation": "Igbo is a major Nigerian language. WAEC Igbo tests vocabulary, greetings, simple structures, comprehension, and culture - including proverbs (ilu) and respectful conversation.\n\nPractise short, correct sentences you would really say. Know what common words mean, and when a greeting or reply is polite. Practice set 8. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -341113,7 +341113,7 @@ module.exports = {
         "what",
         "igbo"
       ],
-      "explanation": "Igbo is a major Nigerian language. WAEC Igbo tests vocabulary, greetings, simple structures, comprehension, and culture — including proverbs (ilu) and respectful conversation.\n\nPractise short, correct sentences you would really say. Know what common words mean, and when a greeting or reply is polite. Practice set 9. Same ideas, more exam-style checks.",
+      "explanation": "Igbo is a major Nigerian language. WAEC Igbo tests vocabulary, greetings, simple structures, comprehension, and culture - including proverbs (ilu) and respectful conversation.\n\nPractise short, correct sentences you would really say. Know what common words mean, and when a greeting or reply is polite. Practice set 9. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -344955,7 +344955,7 @@ module.exports = {
         "what",
         "igbo"
       ],
-      "explanation": "Igbo is a major Nigerian language. WAEC Igbo tests vocabulary, greetings, simple structures, comprehension, and culture — including proverbs (ilu) and respectful conversation.\n\nPractise short, correct sentences you would really say. Know what common words mean, and when a greeting or reply is polite. Practice set 10. Same ideas, more exam-style checks.",
+      "explanation": "Igbo is a major Nigerian language. WAEC Igbo tests vocabulary, greetings, simple structures, comprehension, and culture - including proverbs (ilu) and respectful conversation.\n\nPractise short, correct sentences you would really say. Know what common words mean, and when a greeting or reply is polite. Practice set 10. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -348796,7 +348796,7 @@ module.exports = {
         "what",
         "hausa"
       ],
-      "explanation": "Hausa is widely spoken in northern Nigeria and beyond. WAEC Hausa tests everyday vocabulary, greetings, comprehension, and cultural expressions such as proverbs (karin magana).\n\nFocus on clear meaning and polite use. Language and culture sit together — greetings show respect as much as vocabulary shows knowledge.",
+      "explanation": "Hausa is widely spoken in northern Nigeria and beyond. WAEC Hausa tests everyday vocabulary, greetings, comprehension, and cultural expressions such as proverbs (karin magana).\n\nFocus on clear meaning and polite use. Language and culture sit together - greetings show respect as much as vocabulary shows knowledge.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -352639,7 +352639,7 @@ module.exports = {
         "what",
         "hausa"
       ],
-      "explanation": "Hausa is widely spoken in northern Nigeria and beyond. WAEC Hausa tests everyday vocabulary, greetings, comprehension, and cultural expressions such as proverbs (karin magana).\n\nFocus on clear meaning and polite use. Language and culture sit together — greetings show respect as much as vocabulary shows knowledge. Practice set 2. Same ideas, more exam-style checks.",
+      "explanation": "Hausa is widely spoken in northern Nigeria and beyond. WAEC Hausa tests everyday vocabulary, greetings, comprehension, and cultural expressions such as proverbs (karin magana).\n\nFocus on clear meaning and polite use. Language and culture sit together - greetings show respect as much as vocabulary shows knowledge. Practice set 2. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -356486,7 +356486,7 @@ module.exports = {
         "what",
         "hausa"
       ],
-      "explanation": "Hausa is widely spoken in northern Nigeria and beyond. WAEC Hausa tests everyday vocabulary, greetings, comprehension, and cultural expressions such as proverbs (karin magana).\n\nFocus on clear meaning and polite use. Language and culture sit together — greetings show respect as much as vocabulary shows knowledge. Practice set 3. Same ideas, more exam-style checks.",
+      "explanation": "Hausa is widely spoken in northern Nigeria and beyond. WAEC Hausa tests everyday vocabulary, greetings, comprehension, and cultural expressions such as proverbs (karin magana).\n\nFocus on clear meaning and polite use. Language and culture sit together - greetings show respect as much as vocabulary shows knowledge. Practice set 3. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -360333,7 +360333,7 @@ module.exports = {
         "what",
         "hausa"
       ],
-      "explanation": "Hausa is widely spoken in northern Nigeria and beyond. WAEC Hausa tests everyday vocabulary, greetings, comprehension, and cultural expressions such as proverbs (karin magana).\n\nFocus on clear meaning and polite use. Language and culture sit together — greetings show respect as much as vocabulary shows knowledge. Practice set 4. Same ideas, more exam-style checks.",
+      "explanation": "Hausa is widely spoken in northern Nigeria and beyond. WAEC Hausa tests everyday vocabulary, greetings, comprehension, and cultural expressions such as proverbs (karin magana).\n\nFocus on clear meaning and polite use. Language and culture sit together - greetings show respect as much as vocabulary shows knowledge. Practice set 4. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -364180,7 +364180,7 @@ module.exports = {
         "what",
         "hausa"
       ],
-      "explanation": "Hausa is widely spoken in northern Nigeria and beyond. WAEC Hausa tests everyday vocabulary, greetings, comprehension, and cultural expressions such as proverbs (karin magana).\n\nFocus on clear meaning and polite use. Language and culture sit together — greetings show respect as much as vocabulary shows knowledge. Practice set 5. Same ideas, more exam-style checks.",
+      "explanation": "Hausa is widely spoken in northern Nigeria and beyond. WAEC Hausa tests everyday vocabulary, greetings, comprehension, and cultural expressions such as proverbs (karin magana).\n\nFocus on clear meaning and polite use. Language and culture sit together - greetings show respect as much as vocabulary shows knowledge. Practice set 5. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -368027,7 +368027,7 @@ module.exports = {
         "what",
         "hausa"
       ],
-      "explanation": "Hausa is widely spoken in northern Nigeria and beyond. WAEC Hausa tests everyday vocabulary, greetings, comprehension, and cultural expressions such as proverbs (karin magana).\n\nFocus on clear meaning and polite use. Language and culture sit together — greetings show respect as much as vocabulary shows knowledge. Practice set 6. Same ideas, more exam-style checks.",
+      "explanation": "Hausa is widely spoken in northern Nigeria and beyond. WAEC Hausa tests everyday vocabulary, greetings, comprehension, and cultural expressions such as proverbs (karin magana).\n\nFocus on clear meaning and polite use. Language and culture sit together - greetings show respect as much as vocabulary shows knowledge. Practice set 6. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -371874,7 +371874,7 @@ module.exports = {
         "what",
         "hausa"
       ],
-      "explanation": "Hausa is widely spoken in northern Nigeria and beyond. WAEC Hausa tests everyday vocabulary, greetings, comprehension, and cultural expressions such as proverbs (karin magana).\n\nFocus on clear meaning and polite use. Language and culture sit together — greetings show respect as much as vocabulary shows knowledge. Practice set 7. Same ideas, more exam-style checks.",
+      "explanation": "Hausa is widely spoken in northern Nigeria and beyond. WAEC Hausa tests everyday vocabulary, greetings, comprehension, and cultural expressions such as proverbs (karin magana).\n\nFocus on clear meaning and polite use. Language and culture sit together - greetings show respect as much as vocabulary shows knowledge. Practice set 7. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -375721,7 +375721,7 @@ module.exports = {
         "what",
         "hausa"
       ],
-      "explanation": "Hausa is widely spoken in northern Nigeria and beyond. WAEC Hausa tests everyday vocabulary, greetings, comprehension, and cultural expressions such as proverbs (karin magana).\n\nFocus on clear meaning and polite use. Language and culture sit together — greetings show respect as much as vocabulary shows knowledge. Practice set 8. Same ideas, more exam-style checks.",
+      "explanation": "Hausa is widely spoken in northern Nigeria and beyond. WAEC Hausa tests everyday vocabulary, greetings, comprehension, and cultural expressions such as proverbs (karin magana).\n\nFocus on clear meaning and polite use. Language and culture sit together - greetings show respect as much as vocabulary shows knowledge. Practice set 8. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -379568,7 +379568,7 @@ module.exports = {
         "what",
         "hausa"
       ],
-      "explanation": "Hausa is widely spoken in northern Nigeria and beyond. WAEC Hausa tests everyday vocabulary, greetings, comprehension, and cultural expressions such as proverbs (karin magana).\n\nFocus on clear meaning and polite use. Language and culture sit together — greetings show respect as much as vocabulary shows knowledge. Practice set 9. Same ideas, more exam-style checks.",
+      "explanation": "Hausa is widely spoken in northern Nigeria and beyond. WAEC Hausa tests everyday vocabulary, greetings, comprehension, and cultural expressions such as proverbs (karin magana).\n\nFocus on clear meaning and polite use. Language and culture sit together - greetings show respect as much as vocabulary shows knowledge. Practice set 9. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -383415,7 +383415,7 @@ module.exports = {
         "what",
         "hausa"
       ],
-      "explanation": "Hausa is widely spoken in northern Nigeria and beyond. WAEC Hausa tests everyday vocabulary, greetings, comprehension, and cultural expressions such as proverbs (karin magana).\n\nFocus on clear meaning and polite use. Language and culture sit together — greetings show respect as much as vocabulary shows knowledge. Practice set 10. Same ideas, more exam-style checks.",
+      "explanation": "Hausa is widely spoken in northern Nigeria and beyond. WAEC Hausa tests everyday vocabulary, greetings, comprehension, and cultural expressions such as proverbs (karin magana).\n\nFocus on clear meaning and polite use. Language and culture sit together - greetings show respect as much as vocabulary shows knowledge. Practice set 10. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -578649,7 +578649,7 @@ module.exports = {
         "what",
         "history"
       ],
-      "explanation": "History is the study of past human events, societies, and change over time using evidence. WAEC History asks for causes, courses, and effects — not only dates and names.\n\nWhen you answer, structure it: what happened, why it happened, and what followed. Use evidence language (sources, oral tradition) when the question needs it.",
+      "explanation": "History is the study of past human events, societies, and change over time using evidence. WAEC History asks for causes, courses, and effects - not only dates and names.\n\nWhen you answer, structure it: what happened, why it happened, and what followed. Use evidence language (sources, oral tradition) when the question needs it.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -582477,22 +582477,22 @@ module.exports = {
         "return",
         "democracy"
       ],
-      "explanation": "Nigeria experienced military coups after 1966, a civil war (1967–70), and later returns to civilian rule. Democratic governance was restored in 1999.",
+      "explanation": "Nigeria experienced military coups after 1966, a civil war (1967-70), and later returns to civilian rule. Democratic governance was restored in 1999.",
       "icon": "book-open-01",
       "questions": [
         {
           "id": "q1",
           "text": "Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -582634,15 +582634,15 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -582784,15 +582784,15 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -582934,15 +582934,15 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -583084,15 +583084,15 @@ module.exports = {
           "id": "q41",
           "text": "Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -583242,7 +583242,7 @@ module.exports = {
         "what",
         "history"
       ],
-      "explanation": "History is the study of past human events, societies, and change over time using evidence. WAEC History asks for causes, courses, and effects — not only dates and names.\n\nWhen you answer, structure it: what happened, why it happened, and what followed. Use evidence language (sources, oral tradition) when the question needs it. Practice set 2. Same ideas, more exam-style checks.",
+      "explanation": "History is the study of past human events, societies, and change over time using evidence. WAEC History asks for causes, courses, and effects - not only dates and names.\n\nWhen you answer, structure it: what happened, why it happened, and what followed. Use evidence language (sources, oral tradition) when the question needs it. Practice set 2. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -587074,22 +587074,22 @@ module.exports = {
         "return",
         "democracy"
       ],
-      "explanation": "Nigeria experienced military coups after 1966, a civil war (1967–70), and later returns to civilian rule. Democratic governance was restored in 1999. Practice set 2. Same ideas, more exam-style checks.",
+      "explanation": "Nigeria experienced military coups after 1966, a civil war (1967-70), and later returns to civilian rule. Democratic governance was restored in 1999. Practice set 2. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
           "id": "q1",
           "text": "Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -587231,15 +587231,15 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -587381,15 +587381,15 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -587531,15 +587531,15 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -587681,15 +587681,15 @@ module.exports = {
           "id": "q41",
           "text": "Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -587839,7 +587839,7 @@ module.exports = {
         "what",
         "history"
       ],
-      "explanation": "History is the study of past human events, societies, and change over time using evidence. WAEC History asks for causes, courses, and effects — not only dates and names.\n\nWhen you answer, structure it: what happened, why it happened, and what followed. Use evidence language (sources, oral tradition) when the question needs it. Practice set 3. Same ideas, more exam-style checks.",
+      "explanation": "History is the study of past human events, societies, and change over time using evidence. WAEC History asks for causes, courses, and effects - not only dates and names.\n\nWhen you answer, structure it: what happened, why it happened, and what followed. Use evidence language (sources, oral tradition) when the question needs it. Practice set 3. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -591671,22 +591671,22 @@ module.exports = {
         "return",
         "democracy"
       ],
-      "explanation": "Nigeria experienced military coups after 1966, a civil war (1967–70), and later returns to civilian rule. Democratic governance was restored in 1999. Practice set 3. Same ideas, more exam-style checks.",
+      "explanation": "Nigeria experienced military coups after 1966, a civil war (1967-70), and later returns to civilian rule. Democratic governance was restored in 1999. Practice set 3. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
           "id": "q1",
           "text": "Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -591828,15 +591828,15 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -591978,15 +591978,15 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -592128,15 +592128,15 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -592278,15 +592278,15 @@ module.exports = {
           "id": "q41",
           "text": "Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -592436,7 +592436,7 @@ module.exports = {
         "what",
         "history"
       ],
-      "explanation": "History is the study of past human events, societies, and change over time using evidence. WAEC History asks for causes, courses, and effects — not only dates and names.\n\nWhen you answer, structure it: what happened, why it happened, and what followed. Use evidence language (sources, oral tradition) when the question needs it. Practice set 4. Same ideas, more exam-style checks.",
+      "explanation": "History is the study of past human events, societies, and change over time using evidence. WAEC History asks for causes, courses, and effects - not only dates and names.\n\nWhen you answer, structure it: what happened, why it happened, and what followed. Use evidence language (sources, oral tradition) when the question needs it. Practice set 4. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -596268,22 +596268,22 @@ module.exports = {
         "return",
         "democracy"
       ],
-      "explanation": "Nigeria experienced military coups after 1966, a civil war (1967–70), and later returns to civilian rule. Democratic governance was restored in 1999. Practice set 4. Same ideas, more exam-style checks.",
+      "explanation": "Nigeria experienced military coups after 1966, a civil war (1967-70), and later returns to civilian rule. Democratic governance was restored in 1999. Practice set 4. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
           "id": "q1",
           "text": "Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -596425,15 +596425,15 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -596575,15 +596575,15 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -596725,15 +596725,15 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -596875,15 +596875,15 @@ module.exports = {
           "id": "q41",
           "text": "Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -597033,7 +597033,7 @@ module.exports = {
         "what",
         "history"
       ],
-      "explanation": "History is the study of past human events, societies, and change over time using evidence. WAEC History asks for causes, courses, and effects — not only dates and names.\n\nWhen you answer, structure it: what happened, why it happened, and what followed. Use evidence language (sources, oral tradition) when the question needs it. Practice set 5. Same ideas, more exam-style checks.",
+      "explanation": "History is the study of past human events, societies, and change over time using evidence. WAEC History asks for causes, courses, and effects - not only dates and names.\n\nWhen you answer, structure it: what happened, why it happened, and what followed. Use evidence language (sources, oral tradition) when the question needs it. Practice set 5. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -600865,22 +600865,22 @@ module.exports = {
         "return",
         "democracy"
       ],
-      "explanation": "Nigeria experienced military coups after 1966, a civil war (1967–70), and later returns to civilian rule. Democratic governance was restored in 1999. Practice set 5. Same ideas, more exam-style checks.",
+      "explanation": "Nigeria experienced military coups after 1966, a civil war (1967-70), and later returns to civilian rule. Democratic governance was restored in 1999. Practice set 5. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
           "id": "q1",
           "text": "Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -601022,15 +601022,15 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -601172,15 +601172,15 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -601322,15 +601322,15 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -601472,15 +601472,15 @@ module.exports = {
           "id": "q41",
           "text": "Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -601630,7 +601630,7 @@ module.exports = {
         "what",
         "history"
       ],
-      "explanation": "History is the study of past human events, societies, and change over time using evidence. WAEC History asks for causes, courses, and effects — not only dates and names.\n\nWhen you answer, structure it: what happened, why it happened, and what followed. Use evidence language (sources, oral tradition) when the question needs it. Practice set 6. Same ideas, more exam-style checks.",
+      "explanation": "History is the study of past human events, societies, and change over time using evidence. WAEC History asks for causes, courses, and effects - not only dates and names.\n\nWhen you answer, structure it: what happened, why it happened, and what followed. Use evidence language (sources, oral tradition) when the question needs it. Practice set 6. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -605462,22 +605462,22 @@ module.exports = {
         "return",
         "democracy"
       ],
-      "explanation": "Nigeria experienced military coups after 1966, a civil war (1967–70), and later returns to civilian rule. Democratic governance was restored in 1999. Practice set 6. Same ideas, more exam-style checks.",
+      "explanation": "Nigeria experienced military coups after 1966, a civil war (1967-70), and later returns to civilian rule. Democratic governance was restored in 1999. Practice set 6. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
           "id": "q1",
           "text": "Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -605619,15 +605619,15 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -605769,15 +605769,15 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -605919,15 +605919,15 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -606069,15 +606069,15 @@ module.exports = {
           "id": "q41",
           "text": "Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -606227,7 +606227,7 @@ module.exports = {
         "what",
         "history"
       ],
-      "explanation": "History is the study of past human events, societies, and change over time using evidence. WAEC History asks for causes, courses, and effects — not only dates and names.\n\nWhen you answer, structure it: what happened, why it happened, and what followed. Use evidence language (sources, oral tradition) when the question needs it. Practice set 7. Same ideas, more exam-style checks.",
+      "explanation": "History is the study of past human events, societies, and change over time using evidence. WAEC History asks for causes, courses, and effects - not only dates and names.\n\nWhen you answer, structure it: what happened, why it happened, and what followed. Use evidence language (sources, oral tradition) when the question needs it. Practice set 7. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -610059,22 +610059,22 @@ module.exports = {
         "return",
         "democracy"
       ],
-      "explanation": "Nigeria experienced military coups after 1966, a civil war (1967–70), and later returns to civilian rule. Democratic governance was restored in 1999. Practice set 7. Same ideas, more exam-style checks.",
+      "explanation": "Nigeria experienced military coups after 1966, a civil war (1967-70), and later returns to civilian rule. Democratic governance was restored in 1999. Practice set 7. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
           "id": "q1",
           "text": "Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -610216,15 +610216,15 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -610366,15 +610366,15 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -610516,15 +610516,15 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -610666,15 +610666,15 @@ module.exports = {
           "id": "q41",
           "text": "Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -610824,7 +610824,7 @@ module.exports = {
         "what",
         "history"
       ],
-      "explanation": "History is the study of past human events, societies, and change over time using evidence. WAEC History asks for causes, courses, and effects — not only dates and names.\n\nWhen you answer, structure it: what happened, why it happened, and what followed. Use evidence language (sources, oral tradition) when the question needs it. Practice set 8. Same ideas, more exam-style checks.",
+      "explanation": "History is the study of past human events, societies, and change over time using evidence. WAEC History asks for causes, courses, and effects - not only dates and names.\n\nWhen you answer, structure it: what happened, why it happened, and what followed. Use evidence language (sources, oral tradition) when the question needs it. Practice set 8. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -614656,22 +614656,22 @@ module.exports = {
         "return",
         "democracy"
       ],
-      "explanation": "Nigeria experienced military coups after 1966, a civil war (1967–70), and later returns to civilian rule. Democratic governance was restored in 1999. Practice set 8. Same ideas, more exam-style checks.",
+      "explanation": "Nigeria experienced military coups after 1966, a civil war (1967-70), and later returns to civilian rule. Democratic governance was restored in 1999. Practice set 8. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
           "id": "q1",
           "text": "Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -614813,15 +614813,15 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -614963,15 +614963,15 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -615113,15 +615113,15 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -615263,15 +615263,15 @@ module.exports = {
           "id": "q41",
           "text": "Nigeria’s civil war years were roughly?",
           "accept": [
-            "1967–1970"
+            "1967-1970"
           ],
-          "correctAnswer": "1967–1970",
-          "correction": "Not quite. The answer is 1967–1970.",
+          "correctAnswer": "1967-1970",
+          "correction": "Not quite. The answer is 1967-1970.",
           "options": [
-            "1967–1970",
-            "1960–1961",
-            "1999–2000",
-            "1914–1915"
+            "1967-1970",
+            "1960-1961",
+            "1999-2000",
+            "1914-1915"
           ]
         },
         {
@@ -615421,7 +615421,7 @@ module.exports = {
         "what",
         "history"
       ],
-      "explanation": "History is the study of past human events, societies, and change over time using evidence. WAEC History asks for causes, courses, and effects — not only dates and names.\n\nWhen you answer, structure it: what happened, why it happened, and what followed. Use evidence language (sources, oral tradition) when the question needs it. Practice set 9. Same ideas, more exam-style checks.",
+      "explanation": "History is the study of past human events, societies, and change over time using evidence. WAEC History asks for causes, courses, and effects - not only dates and names.\n\nWhen you answer, structure it: what happened, why it happened, and what followed. Use evidence language (sources, oral tradition) when the question needs it. Practice set 9. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -617725,13 +617725,13 @@ module.exports = {
           "id": "q1",
           "text": "Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -617740,13 +617740,13 @@ module.exports = {
           "id": "q2",
           "text": "Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -617875,13 +617875,13 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -617890,13 +617890,13 @@ module.exports = {
           "id": "q12",
           "text": "In one line: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -618025,13 +618025,13 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -618040,13 +618040,13 @@ module.exports = {
           "id": "q22",
           "text": "Recall: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -618175,13 +618175,13 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -618190,13 +618190,13 @@ module.exports = {
           "id": "q32",
           "text": "Exam check: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -618325,13 +618325,13 @@ module.exports = {
           "id": "q41",
           "text": "Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -618340,13 +618340,13 @@ module.exports = {
           "id": "q42",
           "text": "Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -622314,13 +622314,13 @@ module.exports = {
           "id": "q1",
           "text": "Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -622329,13 +622329,13 @@ module.exports = {
           "id": "q2",
           "text": "Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -622464,13 +622464,13 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -622479,13 +622479,13 @@ module.exports = {
           "id": "q12",
           "text": "In one line: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -622614,13 +622614,13 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -622629,13 +622629,13 @@ module.exports = {
           "id": "q22",
           "text": "Recall: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -622764,13 +622764,13 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -622779,13 +622779,13 @@ module.exports = {
           "id": "q32",
           "text": "Exam check: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -622914,13 +622914,13 @@ module.exports = {
           "id": "q41",
           "text": "Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -622929,13 +622929,13 @@ module.exports = {
           "id": "q42",
           "text": "Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -626907,13 +626907,13 @@ module.exports = {
           "id": "q1",
           "text": "Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -626922,13 +626922,13 @@ module.exports = {
           "id": "q2",
           "text": "Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -627057,13 +627057,13 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -627072,13 +627072,13 @@ module.exports = {
           "id": "q12",
           "text": "In one line: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -627207,13 +627207,13 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -627222,13 +627222,13 @@ module.exports = {
           "id": "q22",
           "text": "Recall: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -627357,13 +627357,13 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -627372,13 +627372,13 @@ module.exports = {
           "id": "q32",
           "text": "Exam check: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -627507,13 +627507,13 @@ module.exports = {
           "id": "q41",
           "text": "Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -627522,13 +627522,13 @@ module.exports = {
           "id": "q42",
           "text": "Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -631500,13 +631500,13 @@ module.exports = {
           "id": "q1",
           "text": "Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -631515,13 +631515,13 @@ module.exports = {
           "id": "q2",
           "text": "Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -631650,13 +631650,13 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -631665,13 +631665,13 @@ module.exports = {
           "id": "q12",
           "text": "In one line: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -631800,13 +631800,13 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -631815,13 +631815,13 @@ module.exports = {
           "id": "q22",
           "text": "Recall: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -631950,13 +631950,13 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -631965,13 +631965,13 @@ module.exports = {
           "id": "q32",
           "text": "Exam check: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -632100,13 +632100,13 @@ module.exports = {
           "id": "q41",
           "text": "Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -632115,13 +632115,13 @@ module.exports = {
           "id": "q42",
           "text": "Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -636093,13 +636093,13 @@ module.exports = {
           "id": "q1",
           "text": "Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -636108,13 +636108,13 @@ module.exports = {
           "id": "q2",
           "text": "Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -636243,13 +636243,13 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -636258,13 +636258,13 @@ module.exports = {
           "id": "q12",
           "text": "In one line: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -636393,13 +636393,13 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -636408,13 +636408,13 @@ module.exports = {
           "id": "q22",
           "text": "Recall: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -636543,13 +636543,13 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -636558,13 +636558,13 @@ module.exports = {
           "id": "q32",
           "text": "Exam check: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -636693,13 +636693,13 @@ module.exports = {
           "id": "q41",
           "text": "Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -636708,13 +636708,13 @@ module.exports = {
           "id": "q42",
           "text": "Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -640686,13 +640686,13 @@ module.exports = {
           "id": "q1",
           "text": "Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -640701,13 +640701,13 @@ module.exports = {
           "id": "q2",
           "text": "Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -640836,13 +640836,13 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -640851,13 +640851,13 @@ module.exports = {
           "id": "q12",
           "text": "In one line: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -640986,13 +640986,13 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -641001,13 +641001,13 @@ module.exports = {
           "id": "q22",
           "text": "Recall: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -641136,13 +641136,13 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -641151,13 +641151,13 @@ module.exports = {
           "id": "q32",
           "text": "Exam check: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -641286,13 +641286,13 @@ module.exports = {
           "id": "q41",
           "text": "Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -641301,13 +641301,13 @@ module.exports = {
           "id": "q42",
           "text": "Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -645279,13 +645279,13 @@ module.exports = {
           "id": "q1",
           "text": "Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -645294,13 +645294,13 @@ module.exports = {
           "id": "q2",
           "text": "Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -645429,13 +645429,13 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -645444,13 +645444,13 @@ module.exports = {
           "id": "q12",
           "text": "In one line: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -645579,13 +645579,13 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -645594,13 +645594,13 @@ module.exports = {
           "id": "q22",
           "text": "Recall: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -645729,13 +645729,13 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -645744,13 +645744,13 @@ module.exports = {
           "id": "q32",
           "text": "Exam check: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -645879,13 +645879,13 @@ module.exports = {
           "id": "q41",
           "text": "Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -645894,13 +645894,13 @@ module.exports = {
           "id": "q42",
           "text": "Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -649872,13 +649872,13 @@ module.exports = {
           "id": "q1",
           "text": "Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -649887,13 +649887,13 @@ module.exports = {
           "id": "q2",
           "text": "Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -650022,13 +650022,13 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -650037,13 +650037,13 @@ module.exports = {
           "id": "q12",
           "text": "In one line: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -650172,13 +650172,13 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -650187,13 +650187,13 @@ module.exports = {
           "id": "q22",
           "text": "Recall: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -650322,13 +650322,13 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -650337,13 +650337,13 @@ module.exports = {
           "id": "q32",
           "text": "Exam check: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -650472,13 +650472,13 @@ module.exports = {
           "id": "q41",
           "text": "Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -650487,13 +650487,13 @@ module.exports = {
           "id": "q42",
           "text": "Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -654465,13 +654465,13 @@ module.exports = {
           "id": "q1",
           "text": "Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -654480,13 +654480,13 @@ module.exports = {
           "id": "q2",
           "text": "Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -654615,13 +654615,13 @@ module.exports = {
           "id": "q11",
           "text": "In one line: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -654630,13 +654630,13 @@ module.exports = {
           "id": "q12",
           "text": "In one line: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -654765,13 +654765,13 @@ module.exports = {
           "id": "q21",
           "text": "Recall: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -654780,13 +654780,13 @@ module.exports = {
           "id": "q22",
           "text": "Recall: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -654915,13 +654915,13 @@ module.exports = {
           "id": "q31",
           "text": "Exam check: Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -654930,13 +654930,13 @@ module.exports = {
           "id": "q32",
           "text": "Exam check: Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -655065,13 +655065,13 @@ module.exports = {
           "id": "q41",
           "text": "Latitude lines run?",
           "accept": [
-            "east–west"
+            "east-west"
           ],
-          "correctAnswer": "east–west",
-          "correction": "Not quite. The answer is east–west.",
+          "correctAnswer": "east-west",
+          "correction": "Not quite. The answer is east-west.",
           "options": [
-            "east–west",
-            "not east–west",
+            "east-west",
+            "not east-west",
             "none of these",
             "all of these"
           ]
@@ -655080,13 +655080,13 @@ module.exports = {
           "id": "q42",
           "text": "Longitude lines run?",
           "accept": [
-            "north–south"
+            "north-south"
           ],
-          "correctAnswer": "north–south",
-          "correction": "Not quite. The answer is north–south.",
+          "correctAnswer": "north-south",
+          "correction": "Not quite. The answer is north-south.",
           "options": [
-            "north–south",
-            "not north–south",
+            "north-south",
+            "not north-south",
             "none of these",
             "all of these"
           ]
@@ -655225,7 +655225,7 @@ module.exports = {
         "fine arts",
         "fine art"
       ],
-      "explanation": "Fine Arts is creative visual work — drawing, painting, sculpture, and design — built on skill, expression, and careful looking. WAEC Fine Arts tests elements of art, principles of design, and practical making.\n\nName the element or principle (line, colour, balance, texture) and say how it is used in the work. Practical answers should describe process, not only the finished look.",
+      "explanation": "Fine Arts is creative visual work - drawing, painting, sculpture, and design - built on skill, expression, and careful looking. WAEC Fine Arts tests elements of art, principles of design, and practical making.\n\nName the element or principle (line, colour, balance, texture) and say how it is used in the work. Practical answers should describe process, not only the finished look.",
       "icon": "bookmark-01",
       "questions": [
         {
@@ -659813,7 +659813,7 @@ module.exports = {
         "fine arts",
         "fine art"
       ],
-      "explanation": "Fine Arts is creative visual work — drawing, painting, sculpture, and design — built on skill, expression, and careful looking. WAEC Fine Arts tests elements of art, principles of design, and practical making.\n\nName the element or principle (line, colour, balance, texture) and say how it is used in the work. Practical answers should describe process, not only the finished look. Practice set 2. Same ideas, more exam-style checks.",
+      "explanation": "Fine Arts is creative visual work - drawing, painting, sculpture, and design - built on skill, expression, and careful looking. WAEC Fine Arts tests elements of art, principles of design, and practical making.\n\nName the element or principle (line, colour, balance, texture) and say how it is used in the work. Practical answers should describe process, not only the finished look. Practice set 2. Same ideas, more exam-style checks.",
       "icon": "bookmark-01",
       "questions": [
         {
@@ -664406,7 +664406,7 @@ module.exports = {
         "fine arts",
         "fine art"
       ],
-      "explanation": "Fine Arts is creative visual work — drawing, painting, sculpture, and design — built on skill, expression, and careful looking. WAEC Fine Arts tests elements of art, principles of design, and practical making.\n\nName the element or principle (line, colour, balance, texture) and say how it is used in the work. Practical answers should describe process, not only the finished look. Practice set 3. Same ideas, more exam-style checks.",
+      "explanation": "Fine Arts is creative visual work - drawing, painting, sculpture, and design - built on skill, expression, and careful looking. WAEC Fine Arts tests elements of art, principles of design, and practical making.\n\nName the element or principle (line, colour, balance, texture) and say how it is used in the work. Practical answers should describe process, not only the finished look. Practice set 3. Same ideas, more exam-style checks.",
       "icon": "bookmark-01",
       "questions": [
         {
@@ -668999,7 +668999,7 @@ module.exports = {
         "fine arts",
         "fine art"
       ],
-      "explanation": "Fine Arts is creative visual work — drawing, painting, sculpture, and design — built on skill, expression, and careful looking. WAEC Fine Arts tests elements of art, principles of design, and practical making.\n\nName the element or principle (line, colour, balance, texture) and say how it is used in the work. Practical answers should describe process, not only the finished look. Practice set 4. Same ideas, more exam-style checks.",
+      "explanation": "Fine Arts is creative visual work - drawing, painting, sculpture, and design - built on skill, expression, and careful looking. WAEC Fine Arts tests elements of art, principles of design, and practical making.\n\nName the element or principle (line, colour, balance, texture) and say how it is used in the work. Practical answers should describe process, not only the finished look. Practice set 4. Same ideas, more exam-style checks.",
       "icon": "bookmark-01",
       "questions": [
         {
@@ -673592,7 +673592,7 @@ module.exports = {
         "fine arts",
         "fine art"
       ],
-      "explanation": "Fine Arts is creative visual work — drawing, painting, sculpture, and design — built on skill, expression, and careful looking. WAEC Fine Arts tests elements of art, principles of design, and practical making.\n\nName the element or principle (line, colour, balance, texture) and say how it is used in the work. Practical answers should describe process, not only the finished look. Practice set 5. Same ideas, more exam-style checks.",
+      "explanation": "Fine Arts is creative visual work - drawing, painting, sculpture, and design - built on skill, expression, and careful looking. WAEC Fine Arts tests elements of art, principles of design, and practical making.\n\nName the element or principle (line, colour, balance, texture) and say how it is used in the work. Practical answers should describe process, not only the finished look. Practice set 5. Same ideas, more exam-style checks.",
       "icon": "bookmark-01",
       "questions": [
         {
@@ -678185,7 +678185,7 @@ module.exports = {
         "fine arts",
         "fine art"
       ],
-      "explanation": "Fine Arts is creative visual work — drawing, painting, sculpture, and design — built on skill, expression, and careful looking. WAEC Fine Arts tests elements of art, principles of design, and practical making.\n\nName the element or principle (line, colour, balance, texture) and say how it is used in the work. Practical answers should describe process, not only the finished look. Practice set 6. Same ideas, more exam-style checks.",
+      "explanation": "Fine Arts is creative visual work - drawing, painting, sculpture, and design - built on skill, expression, and careful looking. WAEC Fine Arts tests elements of art, principles of design, and practical making.\n\nName the element or principle (line, colour, balance, texture) and say how it is used in the work. Practical answers should describe process, not only the finished look. Practice set 6. Same ideas, more exam-style checks.",
       "icon": "bookmark-01",
       "questions": [
         {
@@ -682778,7 +682778,7 @@ module.exports = {
         "fine arts",
         "fine art"
       ],
-      "explanation": "Fine Arts is creative visual work — drawing, painting, sculpture, and design — built on skill, expression, and careful looking. WAEC Fine Arts tests elements of art, principles of design, and practical making.\n\nName the element or principle (line, colour, balance, texture) and say how it is used in the work. Practical answers should describe process, not only the finished look. Practice set 7. Same ideas, more exam-style checks.",
+      "explanation": "Fine Arts is creative visual work - drawing, painting, sculpture, and design - built on skill, expression, and careful looking. WAEC Fine Arts tests elements of art, principles of design, and practical making.\n\nName the element or principle (line, colour, balance, texture) and say how it is used in the work. Practical answers should describe process, not only the finished look. Practice set 7. Same ideas, more exam-style checks.",
       "icon": "bookmark-01",
       "questions": [
         {
@@ -687371,7 +687371,7 @@ module.exports = {
         "fine arts",
         "fine art"
       ],
-      "explanation": "Fine Arts is creative visual work — drawing, painting, sculpture, and design — built on skill, expression, and careful looking. WAEC Fine Arts tests elements of art, principles of design, and practical making.\n\nName the element or principle (line, colour, balance, texture) and say how it is used in the work. Practical answers should describe process, not only the finished look. Practice set 8. Same ideas, more exam-style checks.",
+      "explanation": "Fine Arts is creative visual work - drawing, painting, sculpture, and design - built on skill, expression, and careful looking. WAEC Fine Arts tests elements of art, principles of design, and practical making.\n\nName the element or principle (line, colour, balance, texture) and say how it is used in the work. Practical answers should describe process, not only the finished look. Practice set 8. Same ideas, more exam-style checks.",
       "icon": "bookmark-01",
       "questions": [
         {
@@ -691964,7 +691964,7 @@ module.exports = {
         "fine arts",
         "fine art"
       ],
-      "explanation": "Fine Arts is creative visual work — drawing, painting, sculpture, and design — built on skill, expression, and careful looking. WAEC Fine Arts tests elements of art, principles of design, and practical making.\n\nName the element or principle (line, colour, balance, texture) and say how it is used in the work. Practical answers should describe process, not only the finished look. Practice set 9. Same ideas, more exam-style checks.",
+      "explanation": "Fine Arts is creative visual work - drawing, painting, sculpture, and design - built on skill, expression, and careful looking. WAEC Fine Arts tests elements of art, principles of design, and practical making.\n\nName the element or principle (line, colour, balance, texture) and say how it is used in the work. Practical answers should describe process, not only the finished look. Practice set 9. Same ideas, more exam-style checks.",
       "icon": "bookmark-01",
       "questions": [
         {
@@ -770133,7 +770133,7 @@ module.exports = {
         "management",
         "home management"
       ],
-      "explanation": "Home Management is planning and running a home wisely — time, money, cleaning, family needs, and good decisions. WAEC tests practical home skills and responsible use of resources.\n\nGive clear, useful steps. A budget, a cleaning plan, or a safety habit should sound like something a family could actually do.",
+      "explanation": "Home Management is planning and running a home wisely - time, money, cleaning, family needs, and good decisions. WAEC tests practical home skills and responsible use of resources.\n\nGive clear, useful steps. A budget, a cleaning plan, or a safety habit should sound like something a family could actually do.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -773194,7 +773194,7 @@ module.exports = {
         "laundry",
         "care"
       ],
-      "explanation": "Clothing meets physical and social needs. Laundry care—sorting, washing, drying, and storing—keeps clothes clean and lasting longer.",
+      "explanation": "Clothing meets physical and social needs. Laundry care-sorting, washing, drying, and storing-keeps clothes clean and lasting longer.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -774726,7 +774726,7 @@ module.exports = {
         "management",
         "home management"
       ],
-      "explanation": "Home Management is planning and running a home wisely — time, money, cleaning, family needs, and good decisions. WAEC tests practical home skills and responsible use of resources.\n\nGive clear, useful steps. A budget, a cleaning plan, or a safety habit should sound like something a family could actually do. Practice set 2. Same ideas, more exam-style checks.",
+      "explanation": "Home Management is planning and running a home wisely - time, money, cleaning, family needs, and good decisions. WAEC tests practical home skills and responsible use of resources.\n\nGive clear, useful steps. A budget, a cleaning plan, or a safety habit should sound like something a family could actually do. Practice set 2. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -777791,7 +777791,7 @@ module.exports = {
         "laundry",
         "care"
       ],
-      "explanation": "Clothing meets physical and social needs. Laundry care—sorting, washing, drying, and storing—keeps clothes clean and lasting longer. Practice set 2. Same ideas, more exam-style checks.",
+      "explanation": "Clothing meets physical and social needs. Laundry care-sorting, washing, drying, and storing-keeps clothes clean and lasting longer. Practice set 2. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -779324,7 +779324,7 @@ module.exports = {
         "management",
         "home management"
       ],
-      "explanation": "Home Management is planning and running a home wisely — time, money, cleaning, family needs, and good decisions. WAEC tests practical home skills and responsible use of resources.\n\nGive clear, useful steps. A budget, a cleaning plan, or a safety habit should sound like something a family could actually do. Practice set 3. Same ideas, more exam-style checks.",
+      "explanation": "Home Management is planning and running a home wisely - time, money, cleaning, family needs, and good decisions. WAEC tests practical home skills and responsible use of resources.\n\nGive clear, useful steps. A budget, a cleaning plan, or a safety habit should sound like something a family could actually do. Practice set 3. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -782389,7 +782389,7 @@ module.exports = {
         "laundry",
         "care"
       ],
-      "explanation": "Clothing meets physical and social needs. Laundry care—sorting, washing, drying, and storing—keeps clothes clean and lasting longer. Practice set 3. Same ideas, more exam-style checks.",
+      "explanation": "Clothing meets physical and social needs. Laundry care-sorting, washing, drying, and storing-keeps clothes clean and lasting longer. Practice set 3. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -783922,7 +783922,7 @@ module.exports = {
         "management",
         "home management"
       ],
-      "explanation": "Home Management is planning and running a home wisely — time, money, cleaning, family needs, and good decisions. WAEC tests practical home skills and responsible use of resources.\n\nGive clear, useful steps. A budget, a cleaning plan, or a safety habit should sound like something a family could actually do. Practice set 4. Same ideas, more exam-style checks.",
+      "explanation": "Home Management is planning and running a home wisely - time, money, cleaning, family needs, and good decisions. WAEC tests practical home skills and responsible use of resources.\n\nGive clear, useful steps. A budget, a cleaning plan, or a safety habit should sound like something a family could actually do. Practice set 4. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -786987,7 +786987,7 @@ module.exports = {
         "laundry",
         "care"
       ],
-      "explanation": "Clothing meets physical and social needs. Laundry care—sorting, washing, drying, and storing—keeps clothes clean and lasting longer. Practice set 4. Same ideas, more exam-style checks.",
+      "explanation": "Clothing meets physical and social needs. Laundry care-sorting, washing, drying, and storing-keeps clothes clean and lasting longer. Practice set 4. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -788520,7 +788520,7 @@ module.exports = {
         "management",
         "home management"
       ],
-      "explanation": "Home Management is planning and running a home wisely — time, money, cleaning, family needs, and good decisions. WAEC tests practical home skills and responsible use of resources.\n\nGive clear, useful steps. A budget, a cleaning plan, or a safety habit should sound like something a family could actually do. Practice set 5. Same ideas, more exam-style checks.",
+      "explanation": "Home Management is planning and running a home wisely - time, money, cleaning, family needs, and good decisions. WAEC tests practical home skills and responsible use of resources.\n\nGive clear, useful steps. A budget, a cleaning plan, or a safety habit should sound like something a family could actually do. Practice set 5. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -791585,7 +791585,7 @@ module.exports = {
         "laundry",
         "care"
       ],
-      "explanation": "Clothing meets physical and social needs. Laundry care—sorting, washing, drying, and storing—keeps clothes clean and lasting longer. Practice set 5. Same ideas, more exam-style checks.",
+      "explanation": "Clothing meets physical and social needs. Laundry care-sorting, washing, drying, and storing-keeps clothes clean and lasting longer. Practice set 5. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -793118,7 +793118,7 @@ module.exports = {
         "management",
         "home management"
       ],
-      "explanation": "Home Management is planning and running a home wisely — time, money, cleaning, family needs, and good decisions. WAEC tests practical home skills and responsible use of resources.\n\nGive clear, useful steps. A budget, a cleaning plan, or a safety habit should sound like something a family could actually do. Practice set 6. Same ideas, more exam-style checks.",
+      "explanation": "Home Management is planning and running a home wisely - time, money, cleaning, family needs, and good decisions. WAEC tests practical home skills and responsible use of resources.\n\nGive clear, useful steps. A budget, a cleaning plan, or a safety habit should sound like something a family could actually do. Practice set 6. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -796183,7 +796183,7 @@ module.exports = {
         "laundry",
         "care"
       ],
-      "explanation": "Clothing meets physical and social needs. Laundry care—sorting, washing, drying, and storing—keeps clothes clean and lasting longer. Practice set 6. Same ideas, more exam-style checks.",
+      "explanation": "Clothing meets physical and social needs. Laundry care-sorting, washing, drying, and storing-keeps clothes clean and lasting longer. Practice set 6. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -797716,7 +797716,7 @@ module.exports = {
         "management",
         "home management"
       ],
-      "explanation": "Home Management is planning and running a home wisely — time, money, cleaning, family needs, and good decisions. WAEC tests practical home skills and responsible use of resources.\n\nGive clear, useful steps. A budget, a cleaning plan, or a safety habit should sound like something a family could actually do. Practice set 7. Same ideas, more exam-style checks.",
+      "explanation": "Home Management is planning and running a home wisely - time, money, cleaning, family needs, and good decisions. WAEC tests practical home skills and responsible use of resources.\n\nGive clear, useful steps. A budget, a cleaning plan, or a safety habit should sound like something a family could actually do. Practice set 7. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -800781,7 +800781,7 @@ module.exports = {
         "laundry",
         "care"
       ],
-      "explanation": "Clothing meets physical and social needs. Laundry care—sorting, washing, drying, and storing—keeps clothes clean and lasting longer. Practice set 7. Same ideas, more exam-style checks.",
+      "explanation": "Clothing meets physical and social needs. Laundry care-sorting, washing, drying, and storing-keeps clothes clean and lasting longer. Practice set 7. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -802314,7 +802314,7 @@ module.exports = {
         "management",
         "home management"
       ],
-      "explanation": "Home Management is planning and running a home wisely — time, money, cleaning, family needs, and good decisions. WAEC tests practical home skills and responsible use of resources.\n\nGive clear, useful steps. A budget, a cleaning plan, or a safety habit should sound like something a family could actually do. Practice set 8. Same ideas, more exam-style checks.",
+      "explanation": "Home Management is planning and running a home wisely - time, money, cleaning, family needs, and good decisions. WAEC tests practical home skills and responsible use of resources.\n\nGive clear, useful steps. A budget, a cleaning plan, or a safety habit should sound like something a family could actually do. Practice set 8. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -805379,7 +805379,7 @@ module.exports = {
         "laundry",
         "care"
       ],
-      "explanation": "Clothing meets physical and social needs. Laundry care—sorting, washing, drying, and storing—keeps clothes clean and lasting longer. Practice set 8. Same ideas, more exam-style checks.",
+      "explanation": "Clothing meets physical and social needs. Laundry care-sorting, washing, drying, and storing-keeps clothes clean and lasting longer. Practice set 8. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -806912,7 +806912,7 @@ module.exports = {
         "management",
         "home management"
       ],
-      "explanation": "Home Management is planning and running a home wisely — time, money, cleaning, family needs, and good decisions. WAEC tests practical home skills and responsible use of resources.\n\nGive clear, useful steps. A budget, a cleaning plan, or a safety habit should sound like something a family could actually do. Practice set 9. Same ideas, more exam-style checks.",
+      "explanation": "Home Management is planning and running a home wisely - time, money, cleaning, family needs, and good decisions. WAEC tests practical home skills and responsible use of resources.\n\nGive clear, useful steps. A budget, a cleaning plan, or a safety habit should sound like something a family could actually do. Practice set 9. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -886000,7 +886000,7 @@ module.exports = {
         "creation",
         "bible"
       ],
-      "explanation": "CRK teaches belief in one God who created the world. The Bible—Old and New Testaments—is the sacred scripture of Christianity.",
+      "explanation": "CRK teaches belief in one God who created the world. The Bible-Old and New Testaments-is the sacred scripture of Christianity.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -890597,7 +890597,7 @@ module.exports = {
         "creation",
         "bible"
       ],
-      "explanation": "CRK teaches belief in one God who created the world. The Bible—Old and New Testaments—is the sacred scripture of Christianity. Practice set 2. Same ideas, more exam-style checks.",
+      "explanation": "CRK teaches belief in one God who created the world. The Bible-Old and New Testaments-is the sacred scripture of Christianity. Practice set 2. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -895198,7 +895198,7 @@ module.exports = {
         "creation",
         "bible"
       ],
-      "explanation": "CRK teaches belief in one God who created the world. The Bible—Old and New Testaments—is the sacred scripture of Christianity. Practice set 3. Same ideas, more exam-style checks.",
+      "explanation": "CRK teaches belief in one God who created the world. The Bible-Old and New Testaments-is the sacred scripture of Christianity. Practice set 3. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -899799,7 +899799,7 @@ module.exports = {
         "creation",
         "bible"
       ],
-      "explanation": "CRK teaches belief in one God who created the world. The Bible—Old and New Testaments—is the sacred scripture of Christianity. Practice set 4. Same ideas, more exam-style checks.",
+      "explanation": "CRK teaches belief in one God who created the world. The Bible-Old and New Testaments-is the sacred scripture of Christianity. Practice set 4. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -904400,7 +904400,7 @@ module.exports = {
         "creation",
         "bible"
       ],
-      "explanation": "CRK teaches belief in one God who created the world. The Bible—Old and New Testaments—is the sacred scripture of Christianity. Practice set 5. Same ideas, more exam-style checks.",
+      "explanation": "CRK teaches belief in one God who created the world. The Bible-Old and New Testaments-is the sacred scripture of Christianity. Practice set 5. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -909001,7 +909001,7 @@ module.exports = {
         "creation",
         "bible"
       ],
-      "explanation": "CRK teaches belief in one God who created the world. The Bible—Old and New Testaments—is the sacred scripture of Christianity. Practice set 6. Same ideas, more exam-style checks.",
+      "explanation": "CRK teaches belief in one God who created the world. The Bible-Old and New Testaments-is the sacred scripture of Christianity. Practice set 6. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -913602,7 +913602,7 @@ module.exports = {
         "creation",
         "bible"
       ],
-      "explanation": "CRK teaches belief in one God who created the world. The Bible—Old and New Testaments—is the sacred scripture of Christianity. Practice set 7. Same ideas, more exam-style checks.",
+      "explanation": "CRK teaches belief in one God who created the world. The Bible-Old and New Testaments-is the sacred scripture of Christianity. Practice set 7. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -918203,7 +918203,7 @@ module.exports = {
         "creation",
         "bible"
       ],
-      "explanation": "CRK teaches belief in one God who created the world. The Bible—Old and New Testaments—is the sacred scripture of Christianity. Practice set 8. Same ideas, more exam-style checks.",
+      "explanation": "CRK teaches belief in one God who created the world. The Bible-Old and New Testaments-is the sacred scripture of Christianity. Practice set 8. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -922804,7 +922804,7 @@ module.exports = {
         "creation",
         "bible"
       ],
-      "explanation": "CRK teaches belief in one God who created the world. The Bible—Old and New Testaments—is the sacred scripture of Christianity. Practice set 9. Same ideas, more exam-style checks.",
+      "explanation": "CRK teaches belief in one God who created the world. The Bible-Old and New Testaments-is the sacred scripture of Christianity. Practice set 9. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -961900,7 +961900,7 @@ module.exports = {
         "english",
         "literature in english"
       ],
-      "explanation": "Literature in English studies novels, drama, and poetry — how writers use language to create meaning and feeling. WAEC tests themes, characters, devices, and clear essay answers.\n\nAlways name the device or theme, then give a short reference from the text. Structure essays: point → evidence → explanation.",
+      "explanation": "Literature in English studies novels, drama, and poetry - how writers use language to create meaning and feeling. WAEC tests themes, characters, devices, and clear essay answers.\n\nAlways name the device or theme, then give a short reference from the text. Structure essays: point → evidence → explanation.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -966492,7 +966492,7 @@ module.exports = {
         "english",
         "literature in english"
       ],
-      "explanation": "Literature in English studies novels, drama, and poetry — how writers use language to create meaning and feeling. WAEC tests themes, characters, devices, and clear essay answers.\n\nAlways name the device or theme, then give a short reference from the text. Structure essays: point → evidence → explanation. Practice set 2. Same ideas, more exam-style checks.",
+      "explanation": "Literature in English studies novels, drama, and poetry - how writers use language to create meaning and feeling. WAEC tests themes, characters, devices, and clear essay answers.\n\nAlways name the device or theme, then give a short reference from the text. Structure essays: point → evidence → explanation. Practice set 2. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -971089,7 +971089,7 @@ module.exports = {
         "english",
         "literature in english"
       ],
-      "explanation": "Literature in English studies novels, drama, and poetry — how writers use language to create meaning and feeling. WAEC tests themes, characters, devices, and clear essay answers.\n\nAlways name the device or theme, then give a short reference from the text. Structure essays: point → evidence → explanation. Practice set 3. Same ideas, more exam-style checks.",
+      "explanation": "Literature in English studies novels, drama, and poetry - how writers use language to create meaning and feeling. WAEC tests themes, characters, devices, and clear essay answers.\n\nAlways name the device or theme, then give a short reference from the text. Structure essays: point → evidence → explanation. Practice set 3. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -975686,7 +975686,7 @@ module.exports = {
         "english",
         "literature in english"
       ],
-      "explanation": "Literature in English studies novels, drama, and poetry — how writers use language to create meaning and feeling. WAEC tests themes, characters, devices, and clear essay answers.\n\nAlways name the device or theme, then give a short reference from the text. Structure essays: point → evidence → explanation. Practice set 4. Same ideas, more exam-style checks.",
+      "explanation": "Literature in English studies novels, drama, and poetry - how writers use language to create meaning and feeling. WAEC tests themes, characters, devices, and clear essay answers.\n\nAlways name the device or theme, then give a short reference from the text. Structure essays: point → evidence → explanation. Practice set 4. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -980283,7 +980283,7 @@ module.exports = {
         "english",
         "literature in english"
       ],
-      "explanation": "Literature in English studies novels, drama, and poetry — how writers use language to create meaning and feeling. WAEC tests themes, characters, devices, and clear essay answers.\n\nAlways name the device or theme, then give a short reference from the text. Structure essays: point → evidence → explanation. Practice set 5. Same ideas, more exam-style checks.",
+      "explanation": "Literature in English studies novels, drama, and poetry - how writers use language to create meaning and feeling. WAEC tests themes, characters, devices, and clear essay answers.\n\nAlways name the device or theme, then give a short reference from the text. Structure essays: point → evidence → explanation. Practice set 5. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -984880,7 +984880,7 @@ module.exports = {
         "english",
         "literature in english"
       ],
-      "explanation": "Literature in English studies novels, drama, and poetry — how writers use language to create meaning and feeling. WAEC tests themes, characters, devices, and clear essay answers.\n\nAlways name the device or theme, then give a short reference from the text. Structure essays: point → evidence → explanation. Practice set 6. Same ideas, more exam-style checks.",
+      "explanation": "Literature in English studies novels, drama, and poetry - how writers use language to create meaning and feeling. WAEC tests themes, characters, devices, and clear essay answers.\n\nAlways name the device or theme, then give a short reference from the text. Structure essays: point → evidence → explanation. Practice set 6. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -989477,7 +989477,7 @@ module.exports = {
         "english",
         "literature in english"
       ],
-      "explanation": "Literature in English studies novels, drama, and poetry — how writers use language to create meaning and feeling. WAEC tests themes, characters, devices, and clear essay answers.\n\nAlways name the device or theme, then give a short reference from the text. Structure essays: point → evidence → explanation. Practice set 7. Same ideas, more exam-style checks.",
+      "explanation": "Literature in English studies novels, drama, and poetry - how writers use language to create meaning and feeling. WAEC tests themes, characters, devices, and clear essay answers.\n\nAlways name the device or theme, then give a short reference from the text. Structure essays: point → evidence → explanation. Practice set 7. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -994074,7 +994074,7 @@ module.exports = {
         "english",
         "literature in english"
       ],
-      "explanation": "Literature in English studies novels, drama, and poetry — how writers use language to create meaning and feeling. WAEC tests themes, characters, devices, and clear essay answers.\n\nAlways name the device or theme, then give a short reference from the text. Structure essays: point → evidence → explanation. Practice set 8. Same ideas, more exam-style checks.",
+      "explanation": "Literature in English studies novels, drama, and poetry - how writers use language to create meaning and feeling. WAEC tests themes, characters, devices, and clear essay answers.\n\nAlways name the device or theme, then give a short reference from the text. Structure essays: point → evidence → explanation. Practice set 8. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {
@@ -998671,7 +998671,7 @@ module.exports = {
         "english",
         "literature in english"
       ],
-      "explanation": "Literature in English studies novels, drama, and poetry — how writers use language to create meaning and feeling. WAEC tests themes, characters, devices, and clear essay answers.\n\nAlways name the device or theme, then give a short reference from the text. Structure essays: point → evidence → explanation. Practice set 9. Same ideas, more exam-style checks.",
+      "explanation": "Literature in English studies novels, drama, and poetry - how writers use language to create meaning and feeling. WAEC tests themes, characters, devices, and clear essay answers.\n\nAlways name the device or theme, then give a short reference from the text. Structure essays: point → evidence → explanation. Practice set 9. Same ideas, more exam-style checks.",
       "icon": "book-open-01",
       "questions": [
         {

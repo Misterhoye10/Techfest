@@ -1,6 +1,6 @@
 /**
  * Short-lived WhatsApp OTP codes for Reca auth.
- * In-memory — fine for BuildFest; move to Redis/Supabase later.
+ * In-memory - fine for BuildFest; move to Redis/Supabase later.
  */
 
 const crypto = require("crypto");
@@ -74,7 +74,7 @@ function verifyOtp({ phone, code }) {
     const left = MAX_ATTEMPTS - record.attempts;
     const err = new Error(
       left > 0
-        ? `Not quite — ${left} try${left === 1 ? "" : "s"} left.`
+        ? `Not quite - ${left} try${left === 1 ? "" : "s"} left.`
         : "Too many tries. Request a new code."
     );
     err.status = 400;

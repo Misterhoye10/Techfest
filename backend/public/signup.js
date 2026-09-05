@@ -329,7 +329,7 @@
     showError(otpError, "");
     const code = (otpCode?.value || "").trim();
     if (!/^\d{4,6}$/.test(code)) {
-      showError(otpError, "Enter the 4–6 digit code.");
+      showError(otpError, "Enter the 4-6 digit code.");
       otpCode?.focus();
       return;
     }

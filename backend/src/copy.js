@@ -1,28 +1,28 @@
-/** Polished WhatsApp copy — keep in sync with docs/reca/conversation-copy.md */
+/** Polished WhatsApp copy. Keep in sync with docs/reca/conversation-copy.md */
 
 const copy = {
-  welcome: `Hi — I'm Reca.
+  welcome: `Hi. I'm Reca.
 
 Send a topic like: explain photosynthesis
 
 I'll explain it simply, ask 2 quick questions, and come back later if you miss something.`,
 
   help: `I can:
-• explain a topic — explain photosynthesis
-• show progress — how am I doing in Biology?
+• explain a topic (e.g. explain photosynthesis)
+• show progress (e.g. how am I doing in Biology?)
 
 What do you want to study?`,
 
-  emptyRecap: `Nothing saved yet. Open Revise, pick a topic, and answer a few questions — Progress will fill in here.`,
+  emptyRecap: `Nothing saved yet. Open Revise, pick a topic, and answer a few questions. Progress will fill in here.`,
 
-  unclear: `I couldn't match that. Reply with a short answer for Q1 — one or two words is fine.`,
+  unclear: `I couldn't match that. Reply with a short answer for Q1. One or two words is fine.`,
 
-  error: `I got your message but couldn't finish that. Send the topic again — e.g. explain photosynthesis.`,
+  error: `I got your message but couldn't finish that. Send the topic again, e.g. explain photosynthesis.`,
 
   explainAndQ1(explanation, q1) {
     return `${explanation}
 
-Quick check — Q1: ${q1}`;
+Quick check. Q1: ${q1}`;
   },
 
   q2(text) {
@@ -30,7 +30,7 @@ Quick check — Q1: ${q1}`;
   },
 
   bothCorrect(nextHint = "explain osmosis") {
-    return `Nice — both correct. You've got this topic for now.
+    return `Nice. Both correct. You've got this topic for now.
 
 Want another topic? Try: ${nextHint}`;
   },
@@ -39,13 +39,13 @@ Want another topic? Try: ${nextHint}`;
     const lines = [];
     if (q2Correct) lines.push("Q2 is correct.");
     else if (q2)
-      lines.push(`Q2 — not quite. ${q2.correction}`);
+      lines.push(`Q2: not quite. ${q2.correction}`);
 
     if (q1Correct) lines.push("Q1 is correct.");
     else if (q1) {
-      lines.push(`Q1 — not quite. ${q1.correction}`);
+      lines.push(`Q1: not quite. ${q1.correction}`);
       lines.push(
-        `I'll remember that ${q1.correctAnswer} one for you — I'll check again soon.`
+        `I'll remember that ${q1.correctAnswer} one for you. I'll check again soon.`
       );
     }
     return lines.join("\n\n");
@@ -68,32 +68,31 @@ I'll remember it and check again later.`;
   },
 
   /**
-   * Unprompted daily companion — not a retest, a study-plan nudge.
-   * Example: "23 days to WAEC. Today's focus: Ecology, your weakest topic. Ready?"
+   * Unprompted daily companion: study-plan nudge (not a retest).
    */
   dailyBriefing({ daysLeft, focusTopic, examLabel = "WAEC", name }) {
-    const who = name ? `${name} — ` : "";
+    const who = name ? `${name}. ` : "";
     const focus = focusTopic || "your next topic";
     if (typeof daysLeft === "number" && daysLeft >= 0) {
-      return `${who}${daysLeft} day${daysLeft === 1 ? "" : "s"} to ${examLabel}. Today's focus: ${focus} — your weakest topic. Ready?
+      return `${who}${daysLeft} day${daysLeft === 1 ? "" : "s"} to ${examLabel}. Today's focus: ${focus}, your weakest topic. Ready?
 
 Open Revise and pick ${focus}, or reply: revise ${focus}`;
     }
     if (typeof daysLeft === "number" && daysLeft < 0) {
-      return `${who}${examLabel} window is here. Today's focus: ${focus} — keep clearing weak spots.
+      return `${who}${examLabel} window is here. Today's focus: ${focus}. Keep clearing weak spots.
 
 Open Revise and pick ${focus}.`;
     }
-    return `${who}Today's focus: ${focus} — your weakest topic. Ready?
+    return `${who}Today's focus: ${focus}, your weakest topic. Ready?
 
 Open Revise and pick ${focus}.`;
   },
 
   /**
-   * Proactive Nigerian university admin update — admission, POST-UTME, CAPS.
+   * Proactive Nigerian university admin update: admission, POST-UTME, CAPS.
    */
   uniAdminUpdate({ update, name, universityName }) {
-    const who = name ? `${name} — ` : "";
+    const who = name ? `${name}. ` : "";
     const school = universityName || update?.universityName || "your school";
     const headline = update?.headline || "University admin update";
     const detail = update?.detail || "";
@@ -108,7 +107,7 @@ ${detail}
 
 ${hint}${sourceLine}
 
-Always confirm on the school's official site — Reca reminds; it doesn't replace the portal.`;
+Always confirm on the school's official site. Reca reminds; it doesn't replace the portal.`;
   },
 
   recap({ subject, strong, cleared, needsWork, nextWeak, answered, correct, accuracy }) {
@@ -116,7 +115,7 @@ Always confirm on the school's official site — Reca reminds; it doesn't replac
       list.length ? `${label}: ${list.join(", ")}` : null;
     const headline =
       answered > 0
-        ? `${subject} so far — ${correct}/${answered} correct (${accuracy}%).`
+        ? `${subject} so far: ${correct}/${answered} correct (${accuracy}%).`
         : `${subject} so far:`;
     const body = [
       headline,
@@ -130,7 +129,7 @@ Always confirm on the school's official site — Reca reminds; it doesn't replac
     if (nextWeak) {
       return `${body}
 
-Next up: revise ${nextWeak} — open Revise and pick that topic.`;
+Next up: revise ${nextWeak}. Open Revise and pick that topic.`;
     }
     return body || copy.emptyRecap;
   },

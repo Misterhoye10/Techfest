@@ -94,6 +94,10 @@
   let feature = "learn";
   let learnFilter = "All";
   let reviseFilter = "All";
+  let reviseExamBody =
+    String(localStorage.getItem("reca_exam_body") || "WAEC").toUpperCase() === "JAMB"
+      ? "JAMB"
+      : "WAEC";
   let progressFilter = "All";
   let thinkingEl = null;
   let thinkingTimer = null;
@@ -139,7 +143,7 @@
         body: JSON.stringify({ phone: p, message }),
       });
     } catch (_) {
-      /* best-effort — Render may be cold */
+      /* best-effort - Render may be cold */
     }
   }
 
@@ -226,7 +230,7 @@
     if (!nudge) return "";
     if (nudge.questionText) return String(nudge.questionText).trim();
     const raw = String(nudge.text || "").trim();
-    return raw.replace(/^quick recall\s*[—\-–:]\s*/i, "").trim() || raw;
+    return raw.replace(/^quick recall\s*[-\--:]\s*/i, "").trim() || raw;
   }
 
   function showNudge(nudge) {
@@ -397,7 +401,7 @@
         feedback.hidden = false;
         feedback.className =
           "recall__feedback " + (ok ? "is-correct" : "is-wrong");
-        feedback.textContent = line.replace(/\s*[—–]\s*/g, ". ").replace(/\s+/g, " ").trim();
+        feedback.textContent = cleanDisplay(line).replace(/\s+/g, " ").trim();
       }
       if (form) form.hidden = true;
       if (doneBtn) doneBtn.hidden = false;
@@ -471,13 +475,33 @@
     if (!rec) return;
     const reviseTitle = document.getElementById("reviseRecommendTitle");
     if (reviseTitle) reviseTitle.textContent = rec.label;
-    const reviseMeta = document.getElementById("reviseRecommendMeta") || reviseRecommend?.querySelector(".recommend__meta");
-    if (reviseMeta) reviseMeta.textContent = `${rec.subject || "Biology"} · 5`;
+    const reviseMeta =
+      document.getElementById("reviseRecommendMeta") ||
+      reviseRecommend?.querySelector(".recommend__meta");
+    if (reviseMeta) {
+      reviseMeta.textContent = `${reviseExamBody} · ${rec.subject || "Biology"} · 5`;
+    }
     const browse = document.getElementById("reviseBrowse");
     if (browse) browse.hidden = !showBrowseTopics;
   }
 
-  /** Inline SVGs — no icon font (CDN glyphs were rendering as CJK tofu). */
+  function syncExamSeg() {
+    const seg = document.getElementById("reviseExamSeg");
+    if (!seg) return;
+    seg.querySelectorAll("[data-exam]").forEach((btn) => {
+      const on = btn.getAttribute("data-exam") === reviseExamBody;
+      btn.setAttribute("aria-checked", on ? "true" : "false");
+    });
+    syncRecommend();
+  }
+
+  function setReviseExamBody(body) {
+    reviseExamBody = body === "JAMB" ? "JAMB" : "WAEC";
+    localStorage.setItem("reca_exam_body", reviseExamBody);
+    syncExamSeg();
+  }
+
+  /** Inline SVGs - no icon font (CDN glyphs were rendering as CJK tofu). */
   const ICON_PATHS = {
     "mortarboard-01":
       '<path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/>',
@@ -644,7 +668,7 @@
     applyThemePref("system", false);
   });
 
-  /* First-run loop tip — no WhatsApp gate (#3). Dismiss once; skip forever. */
+  /* First-run loop tip - no WhatsApp gate (#3). Dismiss once; skip forever. */
   const LOOP_TIP_KEY = "reca_loop_tip_seen";
   const learnLoopTip = document.getElementById("learnLoopTip");
   const learnLoopDismiss = document.getElementById("learnLoopDismiss");
@@ -708,7 +732,7 @@
     const guest = isGuestSession();
 
     if (profilePopEmail) {
-      // Never surface guest_* session tokens — reads as debug, not account UI (#6, #9)
+      // Never surface guest_* session tokens - reads as debug, not account UI (#6, #9)
       if (name) profilePopEmail.textContent = name;
       else if (linked) profilePopEmail.textContent = phoneSaved;
       else profilePopEmail.textContent = "Student";
@@ -1354,7 +1378,7 @@
     if (!banner) return;
     if (!isGuestSession()) return;
     if (localStorage.getItem("reca_link_prompt_dismissed") === "1") return;
-    // Never cover an active quiz — answer is the only job (#2)
+    // Never cover an active quiz - answer is the only job (#2)
     const quizActive =
       app.dataset.mode === "quiz" && quizSummary && quizSummary.hidden !== false;
     if (quizActive) {
@@ -1392,7 +1416,7 @@
       statusLine.querySelector(".status-ico").style.color = "#fb735b";
       return;
     }
-    // Quiet meta — no Discord-green “Online” (#1, anti AI-wrapper)
+    // Quiet meta - no Discord-green “Online” (#1, anti AI-wrapper)
     statusLine.textContent = label;
   }
 
@@ -1567,7 +1591,7 @@
       .map((r) => (typeof r === "string" ? r : r?.text || ""))
       .join(" ");
     const len = text.length;
-    // Preset replies are instant — still feel generative
+    // Preset replies are instant - still feel generative
     return Math.min(1600, Math.max(900, 700 + Math.floor(len / 12)));
   }
 
@@ -1785,7 +1809,7 @@
     }
   }
 
-  /** Real name only — never greet as “Student” (#6, #9) */
+  /** Real name only - never greet as “Student” (#6, #9) */
   function realDisplayName() {
     const name = (localStorage.getItem("reca_display_name") || "").trim();
     if (!name || /^student$/i.test(name)) return "";
@@ -1814,7 +1838,7 @@
     });
   }
 
-  /** Empty hubs: job label + topic list — greeting is caption only */
+  /** Empty hubs: job label + topic list - greeting is caption only */
   function learnGreeting() {
     return {
       title: "Start with a topic",
@@ -1824,8 +1848,8 @@
 
   function reviseGreeting() {
     return {
-      title: "Pick a topic to quiz",
-      desc: "Five questions. Stop whenever you want.",
+      title: "Past questions",
+      desc: "WAEC or JAMB · five questions · stop anytime.",
     };
   }
 
@@ -1921,10 +1945,18 @@
     }
   }
 
+  function cleanDisplay(text) {
+    return String(text || "")
+      .replace(/\u2014/g, "-")
+      .replace(/\u2013/g, "-")
+      .replace(/\u2015/g, "-")
+      .replace(/\u2212/g, "-");
+  }
+
   function formatBody(text) {
     const body = document.createElement("div");
     body.className = "msg__body";
-    String(text)
+    String(cleanDisplay(text))
       .split(/\n{2,}/)
       .forEach((block) => {
         const trimmed = block.trim();
@@ -1935,7 +1967,7 @@
       });
     if (!body.childNodes.length) {
       const p = document.createElement("p");
-      p.textContent = text;
+      p.textContent = cleanDisplay(text);
       body.appendChild(p);
     }
     return body;
@@ -1943,7 +1975,7 @@
 
   /** Structure Learn replies: spelling note → explanation → quick-check callout */
   function formatTeachBody(text) {
-    let raw = String(text || "").trim();
+    let raw = cleanDisplay(text).trim();
     raw = raw
       .replace(
         /\n\nYou['’]re on [\s\S]+?Reca will answer\.?\s*$/i,
@@ -1963,7 +1995,7 @@
       // Prefer crisp “typed → correct” chips (period or dash between clauses)
       const pairs = [
         ...rawBits.matchAll(
-          /[“"]([^”"]+)[”"](?:\s*[—–-]\s*|\.\s*)it['’]?s\s*spelled\s*[“"]([^”"]+)[”"]/gi
+          /[“"]([^”"]+)[”"](?:\s*[-–—]\s*|\.\s*)it['’]?s\s*spelled\s*[“"]([^”"]+)[”"]/gi
         ),
       ];
       if (pairs.length) {
@@ -2003,7 +2035,7 @@
       const label = document.createElement("span");
       label.className = "msg__check-label";
       label.textContent = "Quick check";
-      const bodyText = check.replace(/^Quick check\s*[—–-]?\s*/i, "").trim();
+      const bodyText = check.replace(/^Quick check\s*[---]?\s*/i, "").trim();
       const p = document.createElement("p");
       p.className = "msg__check-text";
       p.textContent = bodyText;
@@ -2040,6 +2072,7 @@
     if (!image?.src || !el) return;
     const figure = document.createElement("figure");
     figure.className = "msg__media";
+    if (image.labelled) figure.classList.add("msg__media--labelled");
     const img = document.createElement("img");
     img.src = assetUrl(image.src);
     img.alt = image.alt || image.caption || "Teaching diagram";
@@ -2048,7 +2081,15 @@
     img.width = 640;
     img.height = 360;
     img.addEventListener("error", () => {
-      figure.hidden = true;
+      figure.classList.add("is-broken");
+      if (!figure.querySelector(".msg__media-fallback")) {
+        const fb = document.createElement("p");
+        fb.className = "msg__media-fallback";
+        fb.textContent = image.caption
+          ? `Diagram: ${image.caption}`
+          : "Diagram couldn’t load - refresh and try again.";
+        figure.appendChild(fb);
+      }
     });
     figure.appendChild(img);
     if (image.caption) {
@@ -2056,7 +2097,16 @@
       cap.textContent = image.caption;
       figure.appendChild(cap);
     }
-    el.appendChild(figure);
+    // Diagram above the timestamp; for labelled packs, above the teach text
+    const teach = el.querySelector(".msg__teach, .msg__body");
+    const meta = el.querySelector(".msg__meta");
+    if (image.labelled && teach) {
+      el.insertBefore(figure, teach);
+    } else if (meta) {
+      el.insertBefore(figure, meta);
+    } else {
+      el.appendChild(figure);
+    }
   }
 
   function outgoingLabel(text, meta = {}) {
@@ -2305,7 +2355,7 @@
         }
       }
     } catch {
-      /* silent — meta is optional */
+      /* silent - meta is optional */
     }
   }
 
@@ -2377,7 +2427,7 @@
         );
       });
       if (!list.length) {
-        // Quizable samples across subjects — Progress empty still maps the syllabus
+        // Quizable samples across subjects - Progress empty still maps the syllabus
         list = balancedTopicSample(quizableTopics(filtered("All", "")), 2);
       }
       return list;
@@ -2392,7 +2442,7 @@
     return list;
   }
 
-  /** Subject intros (“What is Biology”) are Learn cards — Prefer concept topics for quiz */
+  /** Subject intros (“What is Biology”) are Learn cards - Prefer concept topics for quiz */
   function isSubjectIntroTopic(t) {
     return /^what is\b/i.test(String(t?.label || t?.title || ""));
   }
@@ -2402,7 +2452,7 @@
     return quiz.length ? quiz : list || [];
   }
 
-  /** Prefer demo starters inside their subject — never collapse other subjects away */
+  /** Prefer demo starters inside their subject - never collapse other subjects away */
   function promoteDemoTopics(list) {
     const demoFirst = DEMO_TOPIC_IDS.map((id) => list.find((t) => t.id === id)).filter(Boolean);
     if (!demoFirst.length) return list;
@@ -2410,7 +2460,7 @@
     return [...demoFirst, ...rest];
   }
 
-  /** Keep every subject visible — take up to `perSubject` topics from each. */
+  /** Keep every subject visible - take up to `perSubject` topics from each. */
   function balancedTopicSample(list, perSubject) {
     const by = {};
     list.forEach((t) => {
@@ -2561,7 +2611,7 @@
             startRevise(item);
           });
 
-          // On Revise/Progress the row already quizzes — lead with Start quiz in the menu
+          // On Revise/Progress the row already quizzes - lead with Start quiz in the menu
           if (mode === "learn") menu.append(askBtn, quizBtn);
           else menu.append(quizBtn, askBtn);
 
@@ -3020,9 +3070,9 @@
 
   function focusDisplayLabel(topic) {
     if (!topic) return "";
-    const label = String(topic.label || topic.title || "").trim();
-    const subject = String(topic.subject || "").trim();
-    // Intro cards: header shows the subject, not “What is …”
+    const label = cleanDisplay(topic.label || topic.title || "").trim();
+    const subject = cleanDisplay(topic.subject || "").trim();
+    // Intro cards: header shows the subject, not "What is …"
     if (subject && /^what is\b/i.test(label)) return subject;
     return label || subject;
   }
@@ -3091,7 +3141,7 @@
     const thinkStarted = Date.now();
 
     try {
-      // Soft focus only — server resolves typos + topic switches
+      // Soft focus only - server resolves typos + topic switches
       const topicId = opts.topicId || lastLearnTopic?.id || undefined;
       const res = await fetch("/api/chat", {
         method: "POST",
@@ -3113,7 +3163,7 @@
         setStatus("Online", true);
         return;
       }
-      // Switch header as soon as we know the topic — before the answer types out
+      // Switch header as soon as we know the topic - before the answer types out
       let topic = null;
       if (mode === "learn") {
         topic = applyLearnFocus(data, { topic: opts.learnTopic });
@@ -3170,7 +3220,7 @@
     markValue();
     if (mainEyebrow) {
       mainEyebrow.hidden = false;
-      mainEyebrow.textContent = "Revise";
+      mainEyebrow.textContent = `${reviseExamBody}-style`;
     }
     mainTitle.textContent = item.label;
     showOnly(quizPanel);
@@ -3193,7 +3243,12 @@
       const res = await fetch("/api/quiz/start", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone, topicId: item.id, limit }),
+        body: JSON.stringify({
+          phone,
+          topicId: item.id,
+          limit,
+          examBody: reviseExamBody,
+        }),
       });
       const data = await res.json();
       if (!res.ok || !data.question) throw new Error(data.error || "Failed");
@@ -3245,12 +3300,13 @@
     if (quizEndBtn) quizEndBtn.hidden = false;
     if (quizComposerHint) {
       quizComposerHint.hidden = false;
+      const style = q.examBody || reviseExamBody || "WAEC";
       quizComposerHint.textContent =
         q.total <= 2
-          ? `${q.total} quick questions · End anytime. Tap or type your answer.`
-          : `${q.total} questions · End anytime. Tap an answer or type below.`;
+          ? `${style}-style · ${q.total} quick checks · End anytime.`
+          : `${style}-style · ${q.total} questions · End anytime. Tap or type.`;
     }
-    quizTopic.textContent = `${q.subject} · ${q.topicLabel}`;
+    quizTopic.textContent = `${q.examBody || reviseExamBody || "WAEC"} · ${q.subject} · ${q.topicLabel}`;
     quizCount.textContent = `${q.index} of ${q.total}`;
     if (quizLabel) quizLabel.textContent = `Question ${q.index}`;
     if (quizBar) {
@@ -3532,7 +3588,7 @@
       }
 
       if (!data.feedback.correct) {
-        // Defer WhatsApp link prompt — never mid-question
+        // Defer WhatsApp link prompt - never mid-question
         pendingLinkPrompt = true;
       }
 
@@ -3720,7 +3776,7 @@
         else setFeature("revise");
         return;
       }
-      // Resurface: answer THIS miss — not a full quiz session
+      // Resurface: answer THIS miss - not a full quiz session
       openRecallModal(nudge);
     });
   }
@@ -3768,7 +3824,7 @@
     btn.addEventListener("click", () => setFeature(btn.dataset.nav));
   });
 
-  /* ——— Nav coach tips (desktop hover / keyboard) ——— */
+  /* --- Nav coach tips (desktop hover / keyboard) --- */
   const NAV_TIPS = {
     learn: {
       eyebrow: "Learn",
@@ -3826,7 +3882,7 @@
   function canShowNavTips() {
     if (!navTip) return false;
     if (prefersReducedMotion()) {
-      /* still allow tips — just no fancy motion via CSS */
+      /* still allow tips - just no fancy motion via CSS */
     }
     try {
       return window.matchMedia("(hover: hover) and (pointer: fine)").matches;
@@ -3959,7 +4015,7 @@
       navTipCloseTimer = null;
     }
     if (navTipOpenTimer) clearTimeout(navTipOpenTimer);
-    // Intent delay — don’t flash on a quick mouse pass (#5)
+    // Intent delay - don’t flash on a quick mouse pass (#5)
     navTipOpenTimer = setTimeout(() => showNavTip(key, anchor), 360);
   }
 
@@ -4116,6 +4172,36 @@
     });
   }
 
+  const reviseExamSeg = document.getElementById("reviseExamSeg");
+  if (reviseExamSeg) {
+    reviseExamSeg.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-exam]");
+      if (!btn) return;
+      setReviseExamBody(btn.getAttribute("data-exam"));
+    });
+    reviseExamSeg.addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+      e.preventDefault();
+      setReviseExamBody(reviseExamBody === "WAEC" ? "JAMB" : "WAEC");
+      const next = reviseExamSeg.querySelector(
+        `[data-exam="${reviseExamBody}"]`
+      );
+      next?.focus();
+    });
+  }
+
+  const reviseSnapBtn = document.getElementById("reviseSnapBtn");
+  if (reviseSnapBtn && imageUpload) {
+    hydrateIcons(reviseSnapBtn);
+    reviseSnapBtn.addEventListener("click", () => {
+      if (busy) return;
+      setFeature("learn");
+      imageUpload.click();
+    });
+  }
+
+  syncExamSeg();
+
   document.querySelectorAll("[data-revise]").forEach((btn) => {
     btn.addEventListener("click", () => {
       const label = btn.getAttribute("data-revise");
@@ -4224,7 +4310,7 @@
       handleReviseAsk(text);
       return;
     }
-    // Learn: freeform ask — server resolves topic (including typos); don't pin UI topic
+    // Learn: freeform ask - server resolves topic (including typos); don't pin UI topic
     sendMessage(text, {
       mode: "learn",
       topicId: lastLearnTopic?.id,
@@ -4344,7 +4430,7 @@
       }
       if (composerPreviewLabel) composerPreviewLabel.textContent = file.name;
       if (composerPreview) composerPreview.classList.add("is-visible");
-      // Auto-send for fest demo — one tap from camera roll to explain
+      // Auto-send for fest demo - one tap from camera roll to explain
       uploadPastQuestion(file);
     });
   }

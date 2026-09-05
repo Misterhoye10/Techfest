@@ -1,6 +1,6 @@
 /**
  * Reca perimeter defenses for public / competition traffic.
- * Frontend is untrusted — every route re-validates here.
+ * Frontend is untrusted - every route re-validates here.
  */
 const crypto = require("crypto");
 const rateLimit = require("express-rate-limit");
@@ -54,9 +54,9 @@ function requireDemoAccess(req, res, next) {
     if (isProd()) {
       return res.status(404).json({ error: "Not found" });
     }
-    // Local without secret — allow but warn once per process
+    // Local without secret - allow but warn once per process
     if (!requireDemoAccess._warned) {
-      console.warn("[security] DEMO_SECRET unset — demo/debug routes are open on this host");
+      console.warn("[security] DEMO_SECRET unset - demo/debug routes are open on this host");
       requireDemoAccess._warned = true;
     }
     return next();
@@ -118,7 +118,7 @@ function validateUploadPayload({ imageBase64, mimeType, note }) {
     return {
       ok: false,
       status: 413,
-      error: `Photo too large — max about ${Math.round(MAX_UPLOAD_BYTES / 1000)}KB.`,
+      error: `Photo too large - max about ${Math.round(MAX_UPLOAD_BYTES / 1000)}KB.`,
     };
   }
   if (cleaned.length < 32) {
@@ -135,17 +135,17 @@ function validateUploadPayload({ imageBase64, mimeType, note }) {
 }
 
 /**
- * Meta X-Hub-Signature-256 — requires raw body buffer on req.rawBody.
+ * Meta X-Hub-Signature-256 - requires raw body buffer on req.rawBody.
  */
 function verifyMetaWebhookSignature(req) {
   const secret = String(process.env.META_APP_SECRET || "").trim();
   if (!secret) {
     if (isProd()) {
-      console.error("[security] META_APP_SECRET missing — rejecting webhook POST in production");
+      console.error("[security] META_APP_SECRET missing - rejecting webhook POST in production");
       return false;
     }
     if (!verifyMetaWebhookSignature._warned) {
-      console.warn("[security] META_APP_SECRET unset — webhook POSTs accept any body (local only)");
+      console.warn("[security] META_APP_SECRET unset - webhook POSTs accept any body (local only)");
       verifyMetaWebhookSignature._warned = true;
     }
     return true;
@@ -178,7 +178,7 @@ const globalLimiter = rateLimit({
   max: Number(process.env.RATE_LIMIT_GLOBAL || 180),
   standardHeaders: true,
   legacyHeaders: false,
-  message: { error: "Too many requests — slow down a moment." },
+  message: { error: "Too many requests - slow down a moment." },
 });
 
 const authLimiter = rateLimit({
@@ -194,7 +194,7 @@ const chatLimiter = rateLimit({
   max: Number(process.env.RATE_LIMIT_CHAT || 40),
   standardHeaders: true,
   legacyHeaders: false,
-  message: { error: "Reca is busy — wait a few seconds, then ask again." },
+  message: { error: "Reca is busy - wait a few seconds, then ask again." },
 });
 
 const uploadLimiter = rateLimit({

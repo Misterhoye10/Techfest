@@ -1,5 +1,5 @@
 /**
- * Meta WhatsApp Cloud API — ported from ai-study-companion-backend/app.js (origin/main).
+ * Meta WhatsApp Cloud API - ported from ai-study-companion-backend/app.js (origin/main).
  * Not Twilio.
  */
 
@@ -60,9 +60,9 @@ async function sendWhatsApp(to, body) {
     return { messages: [{ id: "dry-run" }] };
   }
 
-  // Guest web sessions have no WhatsApp destination — web outbox still delivers toasts
+  // Guest web sessions have no WhatsApp destination - web outbox still delivers toasts
   if (/^guest_/i.test(String(to || ""))) {
-    const err = new Error("WhatsApp needs a linked phone — web toast still delivered");
+    const err = new Error("WhatsApp needs a linked phone - web toast still delivered");
     err.code = "WA_GUEST_SKIP";
     throw err;
   }
@@ -70,7 +70,7 @@ async function sendWhatsApp(to, body) {
   const id = phoneNumberId();
   const token = accessToken();
   if (!id || !token) {
-    console.warn("Meta WhatsApp not configured — printing message instead:");
+    console.warn("Meta WhatsApp not configured - printing message instead:");
     console.log(`→ ${to}: ${body}`);
     return { messages: [{ id: "no-meta" }] };
   }
