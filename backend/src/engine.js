@@ -25,6 +25,10 @@ const {
   findPackById,
   missingPackCopy,
 } = require("./data/diagram-packs");
+const {
+  resolveCalculationPack,
+  formatCalculationReply,
+} = require("./data/calculation-packs");
 
 const resurfaceMinutes = Number(process.env.RESURFACE_MINUTES || 2);
 
@@ -260,6 +264,27 @@ async function handleIncoming(phone, body, opts = {}) {
       }
     }
 
+    // Calculation & formula packs
+    {
+      const calcHit = resolveCalculationPack(text);
+      if (calcHit) {
+        student.learnFocusId = calcHit.id;
+        student.learnDepth = 0;
+        student.pending = {
+          kind: "calculation-pack",
+          topicId: calcHit.id,
+          subject: calcHit.subject,
+          topic: {
+            id: calcHit.id,
+            title: calcHit.title,
+            subject: calcHit.subject,
+            questions: [calcHit.practice],
+          },
+        };
+        return [formatCalculationReply(calcHit)];
+      }
+    }
+
     if (isRecap(text)) {
       const lower = text.toLowerCase();
       const subject = lower.includes("further math")
@@ -347,6 +372,17 @@ async function handlePendingAnswer(student, text) {
   const { topic, step } = student.pending;
   const q1 = topic.questions[0];
   const q2 = topic.questions[1];
+
+  if (student.pending.kind === "calculation-pack") {
+    const { ok, feedback } = await gradeWithFallback(q1, text);
+    student.pending = null;
+    const fb = feedback ? `\n\n${feedback}` : "";
+    if (ok) {
+      return [`🎉 *Correct calculation!* Excellent work on ${topic.title}.${fb}\n\nTry another calculation (e.g. "calculate velocity" or "quadratic formula") or ask for a diagram anytime!`];
+    } else {
+      return [`❌ Not quite. ${q1.correction || `The correct answer is ${q1.correctAnswer}.`}${fb}\n\nReview the step-by-step formula and try another question!`];
+    }
+  }
 
   if (step === "q1") {
     const { ok } = await gradeWithFallback(q1, text);

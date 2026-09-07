@@ -10,6 +10,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const axios = require('axios');
+const { resolveDiagramPack } = require('./data/diagram-packs');
+const { resolveCalculationPack, formatCalculationReply } = require('./data/calculation-packs');
 
 // Load environment variables
 dotenv.config();
@@ -268,6 +270,44 @@ app.post('/webhook', async (req, res) => {
   const session = userSessions[senderPhone];
   const isShortTopic = wordCount <= 3 && !session && !isGreeting;
 
+  // Check if user is asking for a math / physics calculation pack
+  const calcHit = !session ? resolveCalculationPack(userMessage) : null;
+  if (calcHit) {
+    console.log('📐 User requested calculation pack:', calcHit.title);
+    userSessions[senderPhone] = {
+      topic: calcHit.title,
+      isCalculation: true,
+      questions: [calcHit.practice.question],
+      correctAnswer: calcHit.practice.correctAnswer,
+      accept: calcHit.practice.accept,
+      correction: calcHit.practice.correction,
+      timestamp: Date.now()
+    };
+    await sendMetaWhatsAppMessage(senderPhone, formatCalculationReply(calcHit));
+    return;
+  }
+
+  // Check if user is asking for a labelled diagram pack
+  const diagramHit = !session ? resolveDiagramPack(userMessage) : null;
+  if (diagramHit && diagramHit.pack) {
+    const pack = diagramHit.pack;
+    console.log('🔬 User requested diagram pack:', pack.title);
+    const keyLabels = pack.labels.map(l => `• Label ${l.n}: ${l.name}`).join('\n');
+    const q = pack.labels[0];
+    userSessions[senderPhone] = {
+      topic: pack.title,
+      questions: [`On the diagram, what is label ${q.n}?`],
+      isDiagram: true,
+      correctAnswer: q.name,
+      accept: q.accept,
+      correction: `Label ${q.n} is ${q.name}.`,
+      timestamp: Date.now()
+    };
+    const reply = `🔬 *${pack.title}* (${pack.subjects.join(', ')})\n\n${pack.teach}\n\n*Labelled Keys:*\n${keyLabels}\n\n🖼️ *Full Interactive SVG Diagram:*\nhttps://reca-study-companion.vercel.app${pack.src}\n\n❓ *Quick Check:*\nOn the diagram, what is label ${q.n}?\n\n(Reply with your answer!)`;
+    await sendMetaWhatsAppMessage(senderPhone, reply);
+    return;
+  }
+
   // Check if user wants to explain something
   if ((isStudyRequest || isShortTopic) && topic.length > 0) {
     console.log('🎓 User wants to explain:', topic);
@@ -381,7 +421,14 @@ Please grade their answers:
 Format your response as a clean WhatsApp message.`;
 
         let feedbackText;
-        if (process.env.GEMINI_API_KEY) {
+        if (session.isCalculation || session.isDiagram) {
+          const isCorrect = (session.accept || [session.correctAnswer]).some(a => userMessage.toLowerCase().includes(String(a).toLowerCase()));
+          if (isCorrect) {
+            feedbackText = `*1/1* 🌟 *Correct!* Outstanding work on *${session.topic}*! Your answer is syllabus-accurate for WAEC/JAMB. 🔥`;
+          } else {
+            feedbackText = `*0/1* ❌ Not quite. ${session.correction || `The correct answer is ${session.correctAnswer}.`}\n\nReview the formula or diagram and try another question anytime! 📚`;
+          }
+        } else if (process.env.GEMINI_API_KEY) {
           try {
             const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
             const res = await axios.post(

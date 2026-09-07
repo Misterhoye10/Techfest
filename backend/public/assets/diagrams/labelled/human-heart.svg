@@ -1,0 +1,49 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-label="Human heart labelled diagram">
+  <rect width="640" height="400" fill="#f7f5f1"/>
+  <text x="320" y="32" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" font-weight="600" fill="#1a1a1a">Mammalian Heart Anatomy (label the parts)</text>
+
+  <!-- Heart Muscle Body -->
+  <path d="M220 180 C 180 180 170 270 230 310 C 270 335 320 350 340 360 C 360 350 430 320 450 270 C 470 220 440 180 390 180 Z" fill="#fee2e2" stroke="#dc2626" stroke-width="4"/>
+
+  <!-- Septum dividing ventricles -->
+  <path d="M320 200 L 330 350" stroke="#b91c1c" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Left Ventricle wall (thicker) -->
+  <path d="M370 220 C 410 240 420 280 380 320" fill="none" stroke="#dc2626" stroke-width="8"/>
+
+  <!-- Superior Vena Cava (Blue - Right side anatomically) -->
+  <rect x="230" y="70" width="30" height="85" rx="6" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="3"/>
+
+  <!-- Aorta (Red arch - Center top) -->
+  <path d="M310 140 C 310 75 390 75 390 155" fill="none" stroke="#ef4444" stroke-width="26"/>
+  <!-- Branching arteries on Aorta -->
+  <rect x="330" y="60" width="8" height="20" fill="#ef4444"/>
+  <rect x="345" y="55" width="8" height="25" fill="#ef4444"/>
+  <rect x="360" y="60" width="8" height="20" fill="#ef4444"/>
+
+  <!-- Pulmonary Artery (Blue/Purple cross) -->
+  <path d="M290 150 L 370 120" stroke="#3b82f6" stroke-width="20"/>
+
+  <!-- Number badges -->
+  <g font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#fff">
+    <!-- 1: Vena Cava -->
+    <circle cx="120" cy="100" r="14" fill="#1d4ed8"/><text x="120" y="105" text-anchor="middle">1</text>
+    <line x1="134" y1="100" x2="228" y2="100" stroke="#1d4ed8" stroke-width="2"/>
+
+    <!-- 2: Right Ventricle -->
+    <circle cx="120" cy="270" r="14" fill="#1d4ed8"/><text x="120" y="275" text-anchor="middle">2</text>
+    <line x1="134" y1="270" x2="260" y2="270" stroke="#1d4ed8" stroke-width="2"/>
+
+    <!-- 3: Left Ventricle (Thick wall) -->
+    <circle cx="530" cy="280" r="14" fill="#1d4ed8"/><text x="530" y="285" text-anchor="middle">3</text>
+    <line x1="516" y1="280" x2="385" y2="280" stroke="#1d4ed8" stroke-width="2"/>
+
+    <!-- 4: Aorta -->
+    <circle cx="530" cy="85" r="14" fill="#1d4ed8"/><text x="530" y="90" text-anchor="middle">4</text>
+    <line x1="516" y1="85" x2="395" y2="95" stroke="#1d4ed8" stroke-width="2"/>
+
+    <!-- 5: Pulmonary Artery -->
+    <circle cx="530" cy="145" r="14" fill="#1d4ed8"/><text x="530" y="150" text-anchor="middle">5</text>
+    <line x1="516" y1="145" x2="375" y2="135" stroke="#1d4ed8" stroke-width="2"/>
+  </g>
+</svg>

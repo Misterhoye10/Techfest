@@ -117,6 +117,168 @@ const PACKS = [
       { n: 4, name: "Leg b", accept: ["leg b", "side b", "b"] },
     ],
   },
+  {
+    id: "animal-cell",
+    subjects: ["Biology"],
+    triggers: [
+      "label an animal cell",
+      "label animal cell",
+      "animal cell diagram",
+      "cell diagram",
+      "parts of an animal cell",
+      "draw and label an animal cell",
+      "labelled animal cell",
+      "labeled animal cell",
+      "animal cell structure",
+    ],
+    src: "/assets/diagrams/labelled/animal-cell.svg",
+    title: "Animal Cell - labelled parts",
+    alt: "Numbered animal cell diagram for WAEC labelling",
+    teach:
+      "Animal cells have no cell wall or chloroplasts. Remember the key organelles: Cell membrane controls what enters/leaves; Cytoplasm is the site for chemical reactions; Nucleus holds genetic material and controls the cell; Mitochondria are the powerhouses where aerobic respiration releases ATP energy; Ribosomes synthesize proteins.",
+    labels: [
+      { n: 1, name: "Cell membrane", accept: ["cell membrane", "plasma membrane"] },
+      { n: 2, name: "Cytoplasm", accept: ["cytoplasm"] },
+      { n: 3, name: "Nucleus", accept: ["nucleus", "nuclear membrane"] },
+      { n: 4, name: "Mitochondrion", accept: ["mitochondrion", "mitochondria"] },
+      { n: 5, name: "Ribosome", accept: ["ribosome", "ribosomes"] },
+    ],
+  },
+  {
+    id: "human-eye",
+    subjects: ["Biology", "Physics"],
+    triggers: [
+      "label the eye",
+      "label human eye",
+      "eye diagram",
+      "parts of the eye",
+      "draw and label the eye",
+      "human eye diagram",
+      "labelled eye",
+      "labeled eye",
+      "eye anatomy",
+    ],
+    src: "/assets/diagrams/labelled/human-eye.svg",
+    title: "Human Eye - labelled parts",
+    alt: "Numbered human eye diagram showing cornea, lens, retina",
+    teach:
+      "The eye focuses light to form real, inverted images on the retina. Cornea refracts light entering the eye; Iris controls the amount of light by adjusting the pupil size; Lens fine-tunes light focus; Retina converts light into electrical impulses; Optic nerve transmits sensory signals to the brain.",
+    labels: [
+      { n: 1, name: "Cornea", accept: ["cornea"] },
+      { n: 2, name: "Iris", accept: ["iris"] },
+      { n: 3, name: "Pupil", accept: ["pupil"] },
+      { n: 4, name: "Lens", accept: ["lens", "crystalline lens"] },
+      { n: 5, name: "Retina", accept: ["retina"] },
+      { n: 6, name: "Optic nerve", accept: ["optic nerve", "nerve"] },
+    ],
+  },
+  {
+    id: "human-heart",
+    subjects: ["Biology"],
+    triggers: [
+      "label the heart",
+      "label human heart",
+      "heart diagram",
+      "parts of the heart",
+      "draw and label the heart",
+      "mammalian heart diagram",
+      "labelled heart",
+      "labeled heart",
+      "heart anatomy",
+      "cardiac cycle diagram",
+    ],
+    src: "/assets/diagrams/labelled/human-heart.svg",
+    title: "Mammalian Heart - labelled parts",
+    alt: "Numbered mammalian heart diagram showing chambers and major blood vessels",
+    teach:
+      "The mammalian heart is a double pump. Right side handles deoxygenated blood; Left side handles oxygenated blood. Vena Cava returns deoxygenated blood to the right atrium; Right ventricle pumps blood to lungs via the Pulmonary Artery; Left ventricle has the thickest muscular wall to pump oxygenated blood under high pressure through the Aorta to the entire body.",
+    labels: [
+      { n: 1, name: "Vena Cava", accept: ["vena cava", "superior vena cava"] },
+      { n: 2, name: "Right Ventricle", accept: ["right ventricle", "ventricle"] },
+      { n: 3, name: "Left Ventricle", accept: ["left ventricle", "thick ventricle"] },
+      { n: 4, name: "Aorta", accept: ["aorta", "main artery"] },
+      { n: 5, name: "Pulmonary Artery", accept: ["pulmonary artery"] },
+    ],
+  },
+  {
+    id: "flower-anatomy",
+    subjects: ["Biology", "Agriculture"],
+    triggers: [
+      "label a flower",
+      "label flower",
+      "flower diagram",
+      "parts of a flower",
+      "draw and label a flower",
+      "flower anatomy",
+      "labelled flower",
+      "labeled flower",
+      "reproductive parts of a flower",
+    ],
+    src: "/assets/diagrams/labelled/flower-anatomy.svg",
+    title: "Flower Anatomy - labelled parts",
+    alt: "Numbered diagram of flower reproductive organs and petals",
+    teach:
+      "Flowers are the reproductive organs of angiosperms. Petals attract pollinating insects; Sepals protect the flower bud; Stamen (male) consists of Anther (makes pollen) and filament; Carpel/Pistil (female) consists of Stigma (sticky pollen receiver), style, and Ovary (contains ovules which become seeds after fertilization).",
+    labels: [
+      { n: 1, name: "Petal (Corolla)", accept: ["petal", "petals", "corolla"] },
+      { n: 2, name: "Sepal (Calyx)", accept: ["sepal", "sepals", "calyx"] },
+      { n: 3, name: "Anther", accept: ["anther", "stamen"] },
+      { n: 4, name: "Stigma", accept: ["stigma", "pistil", "carpel"] },
+      { n: 5, name: "Ovary", accept: ["ovary", "ovule"] },
+    ],
+  },
+  {
+    id: "electric-circuit",
+    subjects: ["Physics"],
+    triggers: [
+      "label a circuit",
+      "label electric circuit",
+      "circuit diagram",
+      "electric circuit diagram",
+      "parts of a circuit",
+      "draw a circuit",
+      "labelled circuit",
+      "labeled circuit",
+      "simple circuit",
+    ],
+    src: "/assets/diagrams/labelled/electric-circuit.svg",
+    title: "Electric Circuit - labelled components",
+    alt: "Numbered simple series electric circuit with battery, switch, resistor, and ammeter",
+    teach:
+      "In an electric circuit, charge flows when there is a closed conducting loop. The Battery/Cell supplies electromotive force (EMF / voltage); The Switch opens or closes the path; The Resistor opposes current flow; The Ammeter must be connected in series to measure current in Amperes (A).",
+    labels: [
+      { n: 1, name: "Battery / Cell", accept: ["battery", "cell", "electric cell", "power source"] },
+      { n: 2, name: "Switch / Key", accept: ["switch", "key"] },
+      { n: 3, name: "Resistor", accept: ["resistor", "load"] },
+      { n: 4, name: "Ammeter", accept: ["ammeter", "current meter"] },
+    ],
+  },
+  {
+    id: "light-refraction",
+    subjects: ["Physics"],
+    triggers: [
+      "label refraction",
+      "refraction diagram",
+      "light refraction diagram",
+      "parts of refraction",
+      "draw refraction",
+      "labelled refraction",
+      "labeled refraction",
+      "snell's law diagram",
+      "refraction of light",
+    ],
+    src: "/assets/diagrams/labelled/light-refraction.svg",
+    title: "Refraction of Light - labelled parts",
+    alt: "Numbered light refraction diagram showing boundary, incident ray, normal, and refracted ray",
+    teach:
+      "Refraction is the bending of light as it passes from one optical medium into another of different density. As light travels from air into denser glass, it slows down and bends towards the normal line. Key definitions: Incident ray (incoming light), Normal (perpendicular line at point of incidence), Refracted ray (bent light ray), Angle of incidence 'i' (between incident ray and normal).",
+    labels: [
+      { n: 1, name: "Incident ray", accept: ["incident ray", "incident"] },
+      { n: 2, name: "Normal line", accept: ["normal", "normal line"] },
+      { n: 3, name: "Refracted ray", accept: ["refracted ray", "refracted"] },
+      { n: 4, name: "Angle of incidence", accept: ["angle of incidence", "i", "incidence angle"] },
+    ],
+  },
 ];
 
 function normalizeQuery(text) {
@@ -133,8 +295,8 @@ function isLabelIntent(text) {
   if (!q) return false;
   return (
     /\b(label|labelled|labeled|diagram|draw and label|parts of)\b/.test(q) ||
-    /\bpie chart\b/.test(q) ||
-    /\b(human body|hypotenuse|stomata|palisade)\b/.test(q)
+    /\b(pie chart|animal cell|human eye|human heart|flower|electric circuit|refraction)\b/.test(q) ||
+    /\b(human body|hypotenuse|stomata|palisade|cornea|retina|ventricle|aorta|anther|stigma|resistor|ammeter)\b/.test(q)
   );
 }
 
@@ -256,7 +418,7 @@ function allPackTopics() {
 }
 
 function missingPackCopy() {
-  return "I don't have a labelled diagram for that yet. Try: \"label a leaf\", \"label the human body\", \"pie chart\", or \"label a right-angled triangle\". I'm expanding the pack library subject by subject. I won't invent labels.";
+  return "I don't have a labelled diagram for that yet. Try: \"label an animal cell\", \"label a leaf\", \"eye diagram\", \"heart diagram\", \"flower diagram\", \"circuit diagram\", \"refraction diagram\", \"pie chart\", or \"label a right-angled triangle\". I'm expanding the pack library subject by subject. I won't invent labels.";
 }
 
 module.exports = {
