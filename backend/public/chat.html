@@ -33,7 +33,7 @@
           },
           revise: {
             title: "Past questions",
-            desc: "WAEC or JAMB · five questions · stop anytime.",
+            desc: "WAEC or JAMB · pick a subject or topic · 8 questions · keep going if you want.",
           },
         };
       })();
@@ -247,7 +247,9 @@
             <div class="start start--revise">
               <p class="start__greet" id="reviseGreet" hidden></p>
               <h2 class="start__title" id="reviseTitle">Past questions</h2>
-              <p class="start__hint" id="reviseDesc">WAEC or JAMB · five questions · stop anytime.</p>
+              <p class="start__hint" id="reviseDesc">
+                WAEC or JAMB · pick a subject or topic · 8 questions · keep going if you want.
+              </p>
               <div
                 class="exam-seg"
                 id="reviseExamSeg"
@@ -275,12 +277,13 @@
                   JAMB
                 </button>
               </div>
+              <div class="revise-subjects" id="reviseSubjects" role="group" aria-label="Revise by subject"></div>
               <ul class="start__list" aria-label="Suggested revise topics">
                 <li>
                   <button type="button" class="start__row start__row--primary" id="reviseRecommend">
                     <span data-icon="quiz-03" class="start__row-ico" aria-hidden="true"></span>
                     <span class="start__row-main" id="reviseRecommendTitle">Photosynthesis</span>
-                    <span class="start__row-meta" id="reviseRecommendMeta">WAEC · Biology · 5</span>
+                    <span class="start__row-meta" id="reviseRecommendMeta">WAEC · Biology · 8</span>
                   </button>
                 </li>
                 <li>
@@ -313,7 +316,7 @@
                 <p class="revise-foot__hint">Photo a real paper question. Reca explains, then you practise.</p>
               </div>
               <p class="revise-tip" id="reviseTip" hidden role="status"></p>
-              <details class="revise-browse" id="reviseBrowse" hidden>
+              <details class="revise-browse" id="reviseBrowse">
                 <summary class="revise-browse__summary">Browse topics</summary>
                 <div class="revise-browse__body">
                   <div class="topic-search">
@@ -350,7 +353,7 @@
                 <div class="quiz__summary" id="quizSummary" hidden></div>
               </div>
               <p class="quiz__composer-hint" id="quizComposerHint">
-                5 questions · End anytime. Tap an answer or type below.
+                8 questions · End anytime. Tap an answer or type below.
               </p>
             </div>
 
@@ -710,7 +713,7 @@
               </li>
               <li>
                 <strong>Quiz</strong>
-                <span>Tap <em>Try 2 quick questions</em> for an AI-graded check, or open Revise for five.</span>
+                <span>Tap <em>Try 2 quick questions</em> for an AI-graded check, or open Revise for eight.</span>
               </li>
               <li>
                 <strong>Track misses</strong>

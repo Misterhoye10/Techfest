@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Reca | The topic you missed texts you back</title>
+    <meta
+      name="description"
+      content="WAEC and JAMB study companion. Reca explains, quizzes, and returns on WhatsApp until weak topics stick."
+    />
+    <link rel="icon" href="/assets/reca-mark.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/marketing.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="nav" id="top">
+      <div class="nav__inner">
+        <a class="nav__brand" href="/" aria-label="Reca home">
+          <img src="/assets/reca-mark.svg" width="28" height="28" alt="" />
+          <span>Reca</span>
+        </a>
+
+        <button
+          class="nav__toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="navMenu"
+          id="navToggle"
+        >
+          <span class="nav__toggle-label">Menu</span>
+        </button>
+
+        <div class="nav__menu" id="navMenu">
+          <nav class="nav__links" aria-label="Primary">
+            <a href="#product">Product</a>
+            <a href="#how-it-works">How it works</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
+          </nav>
+          <div class="nav__actions">
+            <a class="btn btn--text" href="/signup.html?mode=signin">Sign in</a>
+            <a class="btn btn--solid" href="/signup.html">Start studying</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="heroTitle">
+        <div class="hero__copy">
+          <p class="hero__eyebrow">WAEC and JAMB</p>
+          <h1 id="heroTitle">The topic you missed texts you back.</h1>
+          <p class="hero__sub">
+            Reca explains, quizzes you, then returns on WhatsApp until it sticks. Built for Nigerian
+            exam prep.
+          </p>
+          <div class="hero__cta">
+            <a class="btn btn--solid btn--lg" href="/signup.html">Start studying</a>
+            <a class="btn btn--ghost btn--lg" href="#how-it-works">See the loop</a>
+          </div>
+        </div>
+
+        <div class="hero__visual">
+          <div
+            class="hero-demo"
+            id="heroDemo"
+            role="img"
+            aria-label="Product walkthrough. Reca explains photosynthesis, quizzes you, then returns days later on WhatsApp."
+          >
+            <p class="hero-demo__caption" id="heroDemoCaption">Student asks Reca</p>
+            <div class="phone">
+              <div class="phone__bar">
+                <span class="phone__dot"></span>
+                <span>Reca</span>
+                <span class="phone__live" id="heroDemoLive">Live demo</span>
+              </div>
+              <div class="phone__thread" id="heroDemoThread">
+                <div class="bubble bubble--you" data-step="1">explain photosynthesis</div>
+                <div class="bubble bubble--reca" data-step="2">
+                  Plants make food from sunlight, water, and CO₂. Chlorophyll catches the light.
+                </div>
+                <div class="bubble bubble--reca bubble--quiz" data-step="3">
+                  Quick check. Which part of the plant cell captures sunlight?
+                </div>
+                <div class="bubble bubble--you" data-step="4">mitochondria</div>
+                <div class="bubble bubble--reca" data-step="5">
+                  Not quite. That is for respiration. The answer is <strong>chloroplast</strong>.
+                  I will remember that. I will check again soon.
+                </div>
+                <div class="hero-demo__skip" data-step="6" hidden>
+                  <span>3 days later</span>
+                </div>
+                <div class="bubble bubble--reca bubble--recall" data-step="7">
+                  <span class="pill">Unprompted</span>
+                  Quick recall. Which part of the plant cell captures sunlight for photosynthesis?
+                </div>
+                <div class="bubble bubble--you" data-step="8">chloroplast</div>
+                <div class="bubble bubble--reca bubble--ok" data-step="9">
+                  Correct. You have got this one now.
+                </div>
+              </div>
+            </div>
+            <div class="hero-demo__rail" aria-hidden="true">
+              <span class="hero-demo__dot is-active" data-rail="0"></span>
+              <span class="hero-demo__dot" data-rail="1"></span>
+              <span class="hero-demo__dot" data-rail="2"></span>
+              <span class="hero-demo__dot" data-rail="3"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="product" aria-labelledby="productTitle">
+        <div class="section__intro">
+          <h2 id="productTitle">One memory. Two surfaces.</h2>
+          <p>
+            Learn and Revise on the web. Reca brings weak topics back on WhatsApp. Same Progress.
+            Never two products.
+          </p>
+        </div>
+
+        <ol class="loop">
+          <li class="loop__card">
+            <span class="loop__step">1</span>
+            <h3>Learn</h3>
+            <p>Short explanations at WAEC and JAMB level, with diagrams and calculations.</p>
+          </li>
+          <li class="loop__card">
+            <span class="loop__step">2</span>
+            <h3>Revise</h3>
+            <p>Practise weak topics and past question style items. Miss one? Reca stores it.</p>
+          </li>
+          <li class="loop__card">
+            <span class="loop__step">3</span>
+            <h3>Progress</h3>
+            <p>See what is strong, what needs work, and what is cleared.</p>
+          </li>
+          <li class="loop__card loop__card--accent">
+            <span class="loop__step">4</span>
+            <h3>WhatsApp recall</h3>
+            <p>Reca messages first. You answer in the thread. The topic sticks.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section section--band" id="how-it-works" aria-labelledby="howTitle">
+        <div class="section__intro">
+          <h2 id="howTitle">How it works</h2>
+          <p>Three steps. WhatsApp you already open.</p>
+        </div>
+
+        <ol class="steps">
+          <li>
+            <h3>Learn a topic on the web</h3>
+            <p>Open Biology, Maths, or English. Get a short explanation you can use in the hall.</p>
+          </li>
+          <li>
+            <h3>Practise in Revise</h3>
+            <p>Quiz yourself. Snap a past question style item. Every miss gets a next review date.</p>
+          </li>
+          <li>
+            <h3>Reca messages you first</h3>
+            <p>
+              Days later, unprompted:
+              “Quick recall. Which part of the plant cell captures sunlight?”
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section section--pricing" id="pricing" aria-labelledby="pricingTitle">
+        <div class="section__intro section__intro--center">
+          <h2 id="pricingTitle">Explore plans</h2>
+          <p>Free to start. Plus unlocks the full memory habit.</p>
+        </div>
+
+        <div class="pricing-toggle" role="tablist" aria-label="Pricing audience">
+          <button
+            type="button"
+            class="pricing-toggle__btn is-active"
+            role="tab"
+            aria-selected="true"
+            aria-controls="plansStudents"
+            id="tabStudents"
+            data-pricing="students"
+          >
+            Students
+          </button>
+          <button
+            type="button"
+            class="pricing-toggle__btn"
+            role="tab"
+            aria-selected="false"
+            aria-controls="plansSchools"
+            id="tabSchools"
+            data-pricing="schools"
+          >
+            Schools and tutorials
+          </button>
+        </div>
+
+        <div
+          class="pricing-board"
+          data-panel="students"
+          id="plansStudents"
+          role="tabpanel"
+          aria-labelledby="tabStudents"
+        >
+          <article class="price-col">
+            <div class="price-col__top">
+              <h3 class="price-col__name">Free</h3>
+              <p class="price-col__tag">Try Reca on core topics</p>
+              <p class="price-col__amount"><span class="price-col__currency">₦</span>0</p>
+              <p class="price-col__period">Forever. No card required.</p>
+            </div>
+            <div class="price-col__actions">
+              <a class="btn btn--solid price-col__cta" href="/signup.html">Start studying</a>
+              <p class="price-col__trust">&nbsp;</p>
+            </div>
+            <div class="price-col__body">
+              <p class="price-col__plus-label">Includes:</p>
+              <ul class="price-col__features">
+                <li>Learn and Revise on core WAEC/JAMB topics</li>
+                <li>Instant quizzes with calm corrections</li>
+                <li>Progress for topics you have practised</li>
+                <li>Limited WhatsApp resurfaces each week</li>
+                <li>Phone browser. Low data.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="price-col price-col--featured">
+            <p class="price-col__badge">Recommended</p>
+            <div class="price-col__top">
+              <h3 class="price-col__name">Plus</h3>
+              <p class="price-col__tag">Full memory habit on WhatsApp</p>
+              <p class="price-col__amount">
+                <span class="price-col__currency">₦</span>1,500
+              </p>
+              <p class="price-col__period">Per month. Early access free until pilot ends.</p>
+            </div>
+            <div class="price-col__actions">
+              <a class="btn btn--solid price-col__cta" href="/signup.html">Get Plus free</a>
+              <p class="price-col__trust">Then ₦1,500/mo. Cancel anytime.</p>
+            </div>
+            <div class="price-col__body">
+              <p class="price-col__plus-label">Everything in Free, plus:</p>
+              <ul class="price-col__features">
+                <li>Unlimited unprompted WhatsApp recall</li>
+                <li>Weak topic queue that keeps coming back</li>
+                <li>Deeper Progress across all core subjects</li>
+                <li>Past question style practise (WAEC or JAMB)</li>
+                <li>Priority when new topic packs ship</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="price-col">
+            <div class="price-col__top">
+              <h3 class="price-col__name">Pro</h3>
+              <p class="price-col__tag">For retakers and heavy prep</p>
+              <p class="price-col__amount">
+                From <span class="price-col__currency">₦</span>3,500
+              </p>
+              <p class="price-col__period">Per month. Opens after pilot.</p>
+            </div>
+            <div class="price-col__actions">
+              <a class="btn btn--solid price-col__cta" href="/signup.html">Join waitlist</a>
+              <p class="price-col__trust">No commitment. Cancel anytime.</p>
+            </div>
+            <div class="price-col__body">
+              <p class="price-col__plus-label">Everything in Plus, plus:</p>
+              <ul class="price-col__features">
+                <li>Higher daily practise and resurface limits</li>
+                <li>Exam body focus modes (WAEC or JAMB)</li>
+                <li>Early access to diagram and calculation packs</li>
+                <li>Study streak and weekly recap on WhatsApp</li>
+                <li>Priority support during exam season</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div
+          class="pricing-board pricing-board--schools"
+          data-panel="schools"
+          id="plansSchools"
+          role="tabpanel"
+          aria-labelledby="tabSchools"
+          hidden
+        >
+          <article class="price-col">
+            <div class="price-col__top">
+              <h3 class="price-col__name">Centre</h3>
+              <p class="price-col__tag">For tutorial batches</p>
+              <p class="price-col__amount">Pilot</p>
+              <p class="price-col__period">Lagos / Ogun. Limited seats.</p>
+            </div>
+            <div class="price-col__actions">
+              <a class="btn btn--solid price-col__cta" href="/signup.html">Request pilot access</a>
+              <p class="price-col__trust">Students start free. We onboard your cohort.</p>
+            </div>
+            <div class="price-col__body">
+              <p class="price-col__plus-label">Includes:</p>
+              <ul class="price-col__features">
+                <li>Seats for one tutorial batch or SS3 class</li>
+                <li>Learn, Revise, Progress, and WhatsApp recall</li>
+                <li>Shared onboarding for your students</li>
+                <li>Direct line to the Reca team during pilot</li>
+                <li>Same memory engine students already use</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="price-col">
+            <div class="price-col__top">
+              <h3 class="price-col__name">Campus</h3>
+              <p class="price-col__tag">For schools and multi centre</p>
+              <p class="price-col__amount">Custom</p>
+              <p class="price-col__period">After the student loop is proven.</p>
+            </div>
+            <div class="price-col__actions">
+              <a class="btn btn--ghost price-col__cta" href="/signup.html">Talk to us</a>
+              <p class="price-col__trust">Teacher dashboards planned post pilot.</p>
+            </div>
+            <div class="price-col__body">
+              <p class="price-col__plus-label">Everything in Centre, plus:</p>
+              <ul class="price-col__features">
+                <li>Multiple classes or centres under one account</li>
+                <li>Teacher progress view (roadmap)</li>
+                <li>Subject pack priorities for your syllabus</li>
+                <li>Staff training session</li>
+                <li>Dedicated onboarding for your school</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <p class="pricing-footnote">
+          Free forever at ₦0. Plus is ₦1,500/mo (waived in early access until pilot ends). Pro from
+          ₦3,500/mo is provisional. We confirm before charging. Reca does not sell official
+          WAEC/JAMB papers.
+        </p>
+      </section>
+
+      <section class="section section--band" id="faq" aria-labelledby="faqTitle">
+        <div class="section__intro section__intro--center">
+          <h2 id="faqTitle">FAQ</h2>
+          <p>Straight answers. No score guarantees.</p>
+        </div>
+
+        <div class="faq">
+          <details class="faq__item">
+            <summary>What is Reca?</summary>
+            <p>
+              Reca is a study companion for WAEC and JAMB. You learn and practise on the web. Reca
+              remembers what you missed and messages you on WhatsApp to check again.
+            </p>
+          </details>
+          <details class="faq__item">
+            <summary>Does Reca work on WhatsApp?</summary>
+            <p>
+              Yes. WhatsApp is how Reca comes back to you. Link your number after you start so
+              unprompted recall can reach you. The web app is where you do deeper study.
+            </p>
+          </details>
+          <details class="faq__item">
+            <summary>Is this official WAEC or JAMB?</summary>
+            <p>
+              No. Reca is exam style practice and explanations aligned to how students prepare. We
+              do not claim official scanned papers unless we have a licensed bank.
+            </p>
+          </details>
+          <details class="faq__item">
+            <summary>How is Reca different from a chatbot?</summary>
+            <p>
+              A chatbot explains when you ask. Reca also tests you, stores what you got wrong, and
+              comes back later without you opening an app. Memory over time is the product.
+            </p>
+          </details>
+          <details class="faq__item">
+            <summary>Do I need to pay?</summary>
+            <p>
+              Free is ₦0 forever for core revision. Plus is ₦1,500/mo, free during early access,
+              then billed after pilot. Pro starts from ₦3,500/mo on the waitlist. We confirm before
+              charging anyone.
+            </p>
+          </details>
+          <details class="faq__item">
+            <summary>Can my school use Reca?</summary>
+            <p>
+              Yes. Start students on Reca first. Cohort tools for teachers come after we prove the
+              memory loop with real SS3 and JAMB candidates.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section class="cta-band" aria-labelledby="ctaTitle">
+        <h2 id="ctaTitle">Ready when you are.</h2>
+        <p>Explain. Practise. Reca comes back.</p>
+        <a class="btn btn--solid btn--lg" href="/signup.html">Start studying</a>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="nav__brand" href="/">
+            <img src="/assets/reca-mark.svg" width="28" height="28" alt="" />
+            <span>Reca</span>
+          </a>
+          <p>The memory layer for Nigerian exam prep.</p>
+        </div>
+        <div>
+          <h3>Product</h3>
+          <ul>
+            <li><a href="#product">Loop</a></li>
+            <li><a href="#how-it-works">How it works</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="/signup.html">Start studying</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Study</h3>
+          <ul>
+            <li><a href="/signup.html">WAEC prep</a></li>
+            <li><a href="/signup.html">JAMB prep</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Account</h3>
+          <ul>
+            <li><a href="/signup.html?mode=signin">Sign in</a></li>
+            <li><a href="/signup.html">Sign up</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Legal</h3>
+          <ul>
+            <li><span class="footer__soon">Privacy soon</span></li>
+            <li><span class="footer__soon">Terms soon</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__base">
+        <p>© <span id="year">2026</span> Reca</p>
+        <a href="#top">Back to top</a>
+      </div>
+    </footer>
+
+    <script src="/marketing.js" defer></script>
+  </body>
+</html>

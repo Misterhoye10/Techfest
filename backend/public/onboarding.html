@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Reca · Set up</title>
+    <link rel="icon" href="/assets/reca-mark.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/onboarding.css" />
+  </head>
+  <body>
+    <div class="convo" id="convoApp">
+      <header class="convo__top">
+        <img class="convo__mark" src="/assets/reca-mark.svg" width="28" height="28" alt="" />
+      </header>
+
+      <main class="convo__main" id="convoThread" aria-live="polite"></main>
+
+      <div class="convo__chooser" id="convoChooser" hidden></div>
+
+      <footer class="convo__foot">
+        <button type="button" class="convo__skip" id="btnSkip" hidden>Skip</button>
+        <button type="button" class="convo__continue" id="btnContinue" hidden>Continue</button>
+        <div class="convo__rail" aria-hidden="true">
+          <span class="convo__tick is-on" data-tick="0"></span>
+          <span class="convo__tick" data-tick="1"></span>
+          <span class="convo__tick" data-tick="2"></span>
+          <span class="convo__tick" data-tick="3"></span>
+        </div>
+      </footer>
+    </div>
+
+    <div class="convo-modal" id="skipModal" hidden>
+      <div class="convo-modal__card" role="dialog" aria-labelledby="skipTitle" aria-modal="true">
+        <button type="button" class="convo-modal__x" id="skipClose" aria-label="Close">×</button>
+        <h2 id="skipTitle">Skip setup?</h2>
+        <p>You will go straight to Reca. You can set exam and subjects later.</p>
+        <div class="convo-modal__actions">
+          <button type="button" class="convo__continue convo__continue--light" id="skipKeep">
+            Keep setting up
+          </button>
+          <button type="button" class="convo__ghost" id="skipGo">Go to Reca</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/onboarding.js" defer></script>
+  </body>
+</html>

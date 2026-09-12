@@ -24,7 +24,7 @@
   --shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
   --radius: 28px;
   --radius-card: 14px;
-  --radius-control: 10px;
+  --radius-control: 12px;
   /* Motion system — docs/reca/motion-system.md */
   --motion-instant: 80ms;
   --motion-fast: 120ms;
@@ -3033,11 +3033,19 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0;
-  margin: 0.15rem 0 1rem;
+  margin: 0.15rem 0 0.75rem;
   padding: 3px;
   border-radius: 999px;
   border: 1px solid color-mix(in srgb, var(--line) 92%, transparent);
   background: color-mix(in srgb, var(--ink) 4%, transparent);
+}
+
+.revise-subjects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.4rem;
+  margin: 0 0 1rem;
 }
 
 .exam-seg__btn {

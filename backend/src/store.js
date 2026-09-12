@@ -3,7 +3,11 @@
  * Swap for Supabase later - same shape.
  *
  * Identity = WhatsApp number (E.164). Web + WhatsApp share the same student key.
+ * Local file mirror keeps Progress across `node --watch` restarts.
  */
+const fs = require("fs");
+const path = require("path");
+
 const students = new Map();
 /** phone (E.164) → { phone, name, email?, createdAt } */
 const accounts = new Map();
@@ -11,6 +15,86 @@ const accounts = new Map();
 const accountsByEmail = new Map();
 /** Outbound messages for web chat clients: phone → [{ id, text, at, kind }] */
 const outbox = new Map();
+
+const STORE_FILE = path.join(__dirname, "data", "students-store.json");
+let saveTimer = null;
+
+function scheduleSave() {
+  if (saveTimer) clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    saveTimer = null;
+    try {
+      persistStore();
+    } catch (err) {
+      console.error("store persist failed:", err.message);
+    }
+  }, 150);
+}
+
+function persistStore() {
+  const dir = path.dirname(STORE_FILE);
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  const payload = {
+    version: 1,
+    savedAt: Date.now(),
+    students: [...students.entries()].map(([id, s]) => [
+      id,
+      {
+        phone: s.phone,
+        attempts: s.attempts || [],
+        examDate: s.examDate,
+        examLabel: s.examLabel,
+        displayName: s.displayName,
+        lastBriefingDay: s.lastBriefingDay || null,
+        targetUniversity: s.targetUniversity || null,
+        uniUpdatesEnabled: s.uniUpdatesEnabled !== false,
+        deliveredUniUpdateIds: s.deliveredUniUpdateIds || [],
+        lastUniUpdateDay: s.lastUniUpdateDay || null,
+      },
+    ]),
+    accounts: [...accounts.entries()],
+    accountsByEmail: [...accountsByEmail.entries()],
+  };
+  fs.writeFileSync(STORE_FILE, JSON.stringify(payload), "utf8");
+}
+
+function loadPersistedStore() {
+  try {
+    if (!fs.existsSync(STORE_FILE)) return;
+    const raw = fs.readFileSync(STORE_FILE, "utf8");
+    const data = JSON.parse(raw);
+    for (const [id, s] of data.students || []) {
+      if (!id || !s) continue;
+      students.set(id, {
+        phone: id,
+        pending: null,
+        attempts: Array.isArray(s.attempts) ? s.attempts : [],
+        awaitingResurface: null,
+        examDate: s.examDate || defaultExamDate(),
+        examLabel: s.examLabel || process.env.EXAM_LABEL || "WAEC",
+        displayName: s.displayName || null,
+        lastBriefingDay: s.lastBriefingDay || null,
+        targetUniversity: s.targetUniversity || null,
+        uniUpdatesEnabled: s.uniUpdatesEnabled !== false,
+        deliveredUniUpdateIds: Array.isArray(s.deliveredUniUpdateIds)
+          ? s.deliveredUniUpdateIds
+          : [],
+        lastUniUpdateDay: s.lastUniUpdateDay || null,
+      });
+    }
+    for (const [id, a] of data.accounts || []) {
+      if (id && a) accounts.set(id, a);
+    }
+    for (const [email, phone] of data.accountsByEmail || []) {
+      if (email && phone) accountsByEmail.set(email, phone);
+    }
+    if (students.size) {
+      console.log(`Progress store restored: ${students.size} student(s) from disk`);
+    }
+  } catch (err) {
+    console.error("store load failed:", err.message);
+  }
+}
 
 function normalizeEmail(raw) {
   return String(raw || "")
@@ -64,6 +148,7 @@ function upsertAccount({ phone, name, email }) {
 
   const student = getStudent(key);
   if (account.name) student.displayName = account.name;
+  scheduleSave();
 
   return account;
 }
@@ -99,6 +184,7 @@ function getStudent(phone) {
       deliveredUniUpdateIds: [],
       lastUniUpdateDay: null,
     });
+    scheduleSave();
   }
   const s = students.get(phone);
   if (!s.examDate) s.examDate = defaultExamDate();
@@ -133,6 +219,7 @@ function setExamDate(phone, isoDate) {
     throw err;
   }
   s.examDate = raw;
+  scheduleSave();
   return s;
 }
 
@@ -140,6 +227,7 @@ function setDisplayName(phone, name) {
   const s = getStudent(phone);
   const v = String(name || "").trim().slice(0, 40);
   s.displayName = v || null;
+  scheduleSave();
   return s;
 }
 
@@ -257,7 +345,10 @@ function listDue(now = Date.now()) {
 
 function markSurfaced(phone, index) {
   const s = getStudent(phone);
-  if (s.attempts[index]) s.attempts[index].surfaced = true;
+  if (s.attempts[index]) {
+    s.attempts[index].surfaced = true;
+    scheduleSave();
+  }
 }
 
 function progressFor(phone, subjectFilter) {
@@ -265,10 +356,16 @@ function progressFor(phone, subjectFilter) {
   const byTopic = new Map();
 
   for (const a of s.attempts) {
-    if (subjectFilter && a.subject.toLowerCase() !== subjectFilter.toLowerCase()) continue;
+    if (!a) continue;
+    if (
+      subjectFilter &&
+      String(a.subject || "").toLowerCase() !== subjectFilter.toLowerCase()
+    ) {
+      continue;
+    }
     const cur = byTopic.get(a.topicId) || {
       topicId: a.topicId,
-      subject: a.subject,
+      subject: a.subject || "General",
       answered: 0,
       correct: 0,
       wrongOpen: 0,
@@ -342,7 +439,13 @@ function progressFor(phone, subjectFilter) {
   const dueForRecall = [];
   const seenQ = new Set();
   for (const a of s.attempts) {
-    if (subjectFilter && a.subject.toLowerCase() !== subjectFilter.toLowerCase()) continue;
+    if (!a) continue;
+    if (
+      subjectFilter &&
+      String(a.subject || "").toLowerCase() !== subjectFilter.toLowerCase()
+    ) {
+      continue;
+    }
     if (a.isCorrect || a.cleared) continue;
     const key = `${a.topicId}:${a.questionId}`;
     if (seenQ.has(key)) continue;
@@ -378,8 +481,10 @@ function progressFor(phone, subjectFilter) {
 }
 
 function capitalize(s) {
-  return s.replace(/\b\w/g, (c) => c.toUpperCase());
+  return String(s || "").replace(/\b\w/g, (c) => c.toUpperCase());
 }
+
+loadPersistedStore();
 
 module.exports = {
   getStudent,
@@ -404,6 +509,8 @@ module.exports = {
   markUniUpdateDelivered,
   resetUniUpdateCycle,
   defaultExamDate,
+  scheduleSave,
+  persistStore,
   _students: students,
   _accounts: accounts,
 };

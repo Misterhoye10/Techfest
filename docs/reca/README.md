@@ -1,37 +1,54 @@
 # Reca — team docs
 
-**Locked track:** Case Study 2 — AI Study Companion (**Reca only**).  
-**Platform:** WhatsApp (intended) · **Web chat** (demo if APIs blocked)  
-**Core loop:** explain → quiz → grade → resurface → recap  
-**Budget:** free tools only  
+**Product thesis (rebuild):** Nigeria-first WAEC/JAMB memory layer — **web** for Learn/Revise/Progress, **WhatsApp** for unprompted resurface (required channel).  
+**Craft bar:** global quality, not global launch on day one.
 
-## Start here
+## Marketing site
 
-1. **[WEB-CHAT-SETUP.md](./WEB-CHAT-SETUP.md)** — **demo now** (no Meta/Twilio needed)  
-2. **[BUILD-REQUIREMENTS.md](./BUILD-REQUIREMENTS.md)** — MVP contract  
-3. **[WHATSAPP-SETUP.md](./WHATSAPP-SETUP.md)** — Twilio / Meta when unblocked  
-4. **[FREE-STACK.md](./FREE-STACK.md)** — free tools only  
+- Live locally: **http://localhost:3000/** (`backend/public/index.html`)
+- First-run: **http://localhost:3000/onboarding.html** ([onboarding.md](./onboarding.md))
+- Brief: [marketing-site.md](./marketing-site.md)
+- Auth after value: `/signup.html` · Sign in: `/signup.html?mode=signin`
 
-## Your lane (product / demo)
+## Start here (rebuild)
+
+1. **[REBUILD-ROADMAP.md](./REBUILD-ROADMAP.md)** — checklist spine  
+2. **[discovery.md](./discovery.md)** — problem map + JTBD  
+3. **[vision.md](./vision.md)** — dual-surface rule + craft bars  
+4. **[voice.md](./voice.md)** — calm tutor  
+5. **[ia.md](./ia.md)** · **[states.md](./states.md)** · **[curriculum.md](./curriculum.md)** · **[flows/revise.md](./flows/revise.md)**  
+6. **[rebuild-tech.md](./rebuild-tech.md)** · **[pilot.md](./pilot.md)**  
+
+## Locked decisions
+
+| Decision | Choice |
+|----------|--------|
+| Market wedge | Nigeria first (WAEC + JAMB) |
+| Primary surface | Web app (Learn / Revise / Progress) |
+| Habit channel | WhatsApp required for full resurface loop — [0002](./decisions/0002-whatsapp-required-habit-channel.md) |
+| Past questions | Inside Revise, not a fourth tab |
+| Revise session | Default 8 · Keep going +5 · subject or topic — [flows/revise.md](./flows/revise.md) |
+| Diagrams | Curated packs only — never LLM-invented labels |
+
+## Hackathon / fest (historical)
+
+Still valid as BuildFest contract; **superseded for rebuild direction** by vision + roadmap.
 
 | File | What it is |
 |------|------------|
-| [demo-script.md](./demo-script.md) | **90s live demo** |
-| [demo-topics.md](./demo-topics.md) | Bio/Chem topics |
-| [conversation-copy.md](./conversation-copy.md) | Reply copy |
-| [pitch-outline.md](./pitch-outline.md) | Judge pitch |
+| [BUILD-REQUIREMENTS.md](./BUILD-REQUIREMENTS.md) | Fest MVP contract |
+| [product-prd.md](./product-prd.md) | Fest product PRD |
+| [technical-prd.md](./technical-prd.md) | Fest technical PRD |
+| [conversation-copy.md](./conversation-copy.md) | WhatsApp copy (keep aligned with voice.md) |
+| [demo-script.md](./demo-script.md) | 90s live demo |
+| [WHATSAPP-SETUP.md](./WHATSAPP-SETUP.md) | Meta / Twilio setup |
+| [WEB-CHAT-SETUP.md](./WEB-CHAT-SETUP.md) | Dev harness |
+| [FREE-STACK.md](./FREE-STACK.md) | Fest free tools |
 
 ## Code
 
-**[`../../backend/`](../../backend/)** — presets + web chat at `/chat.html` + optional WhatsApp webhook.
+**[`../../backend/`](../../backend/)** — presets, APIs, WhatsApp webhook. `chat.html` = harness, not the rebuild product UI.
 
-## Full PRDs
+## Archive
 
-| File | What it is |
-|------|------------|
-| [product-prd.md](./product-prd.md) | Product PRD |
-| [technical-prd.md](./technical-prd.md) | Technical PRD |
-| [investor-brief.md](./investor-brief.md) | Investor brief |
-| [decision-brief-reca-vs-nexus.md](./decision-brief-reca-vs-nexus.md) | Why Reca |
-
-**Note:** Root `PRD.md` is an older generic draft. Archive: [../archive/](../archive/)
+Root `PRD.md` is an older generic draft. Archive: [../archive/](../archive/)

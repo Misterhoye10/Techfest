@@ -71,6 +71,7 @@ app.get("/health", async (_req, res) => {
     whatsapp: isConfigured() ? "meta" : "off",
     database: dbPing,
     chat: "/chat.html",
+    home: "/",
     signup: "/signup.html",
     otp: true,
   });
@@ -86,8 +87,9 @@ app.get("/api/config", (_req, res) => {
   });
 });
 
+/** Marketing site — value first; auth stays on /signup.html */
 app.get("/", (_req, res) => {
-  res.redirect("/signup.html");
+  res.sendFile(path.join(__dirname, "..", "public", "index.html"));
 });
 
 function whatsappFromNumber() {
@@ -436,7 +438,8 @@ app.post("/api/quiz/start", security.chatLimiter, (req, res) => {
   const limit = req.body.limit != null ? Number(req.body.limit) : undefined;
   const topicId = req.body.topicId ? String(req.body.topicId).slice(0, 80) : undefined;
   const examBody = req.body.examBody ? String(req.body.examBody).slice(0, 12) : undefined;
-  const result = startQuiz(phone, topicId, { limit, examBody });
+  const subject = req.body.subject ? String(req.body.subject).slice(0, 40) : undefined;
+  const result = startQuiz(phone, topicId, { limit, examBody, subject });
   if (result.error) return res.status(400).json(result);
   res.json(result);
 });
@@ -1196,6 +1199,7 @@ if (!process.env.VERCEL) {
   const port = Number(process.env.PORT || 3000);
   app.listen(port, () => {
     console.log(`Reca listening on :${port}`);
+    console.log(`Marketing: http://localhost:${port}/`);
     console.log(`Web chat:  http://localhost:${port}/chat.html`);
     console.log(`Signup:    http://localhost:${port}/signup.html`);
     console.log(`Demo fire: POST /demo/resurface | POST /demo/briefing | POST /demo/uni-update | POST /demo/uni-feed-refresh (header x-demo-secret)`);

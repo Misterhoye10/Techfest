@@ -54,8 +54,13 @@
     return signed && isRealPhone(phone);
   }
 
+  function afterAuthPath() {
+    if (localStorage.getItem("reca_onboarding_done") === "1") return "/chat.html";
+    return "/onboarding.html?restart=1";
+  }
+
   if (hasActiveSession() && !forceLink) {
-    location.replace("/chat.html");
+    location.replace(afterAuthPath());
     return;
   }
 
@@ -282,7 +287,7 @@
       localStorage.getItem(SESSION_KEY) === "1" &&
       (localStorage.getItem("reca_phone") || "").trim() === phone
     ) {
-      location.assign("/chat.html");
+      location.assign(afterAuthPath());
       return;
     }
 
@@ -366,7 +371,7 @@
       }).catch(() => {});
 
       if (data.purpose === "signin" || mode === "signin" || forceLink) {
-        location.assign("/chat.html");
+        location.assign(afterAuthPath());
         return;
       }
 
@@ -383,7 +388,7 @@
   });
 
   syncContinue?.addEventListener("click", () => {
-    location.assign("/chat.html");
+    location.assign(afterAuthPath());
   });
 
   guestLink?.addEventListener("click", () => {

@@ -1,36 +1,36 @@
 # Reca - AI Study Companion (Techfest)
 
-WhatsApp study companion for WAEC & JAMB. Remembers what you got wrong and comes back.
+Memory layer for Nigerian WAEC & JAMB prep. **Web** for Learn / Revise / Progress; **WhatsApp** for unprompted resurface. Remembers what you got wrong and comes back.
 
-**Budget:** free tools / free tiers only  
-**Repo branch for docs:** `PRD`  
-**Team docs folder:** [`docs/reca/`](./docs/reca/)  
-**Backend (run locally):** [`backend/`](./backend/) - teammates can implement and extend here (preset Reca + WhatsApp webhook). Conversation copy is polished in [`docs/reca/conversation-copy.md`](./docs/reca/conversation-copy.md).
+**Rebuild thesis:** Nigeria-first, global craft — see [`docs/reca/REBUILD-ROADMAP.md`](./docs/reca/REBUILD-ROADMAP.md).  
+**Marketing site:** http://localhost:3000/ (`backend/public/index.html`)  
+**Team docs:** [`docs/reca/`](./docs/reca/)  
+**Backend:** [`backend/`](./backend/)
 
-## Start here
+## Start here (rebuild)
 
-1. **[docs/reca/BUILD-REQUIREMENTS.md](./docs/reca/BUILD-REQUIREMENTS.md)** - what to build now (MVP contract)
-2. **[docs/reca/FREE-STACK.md](./docs/reca/FREE-STACK.md)** - approved free tools only
-3. [docs/reca/WHATSAPP-SETUP.md](./docs/reca/WHATSAPP-SETUP.md) - Twilio sandbox / Meta setup (ASAP)
-4. [docs/reca/demo-script.md](./docs/reca/demo-script.md) - 90s live demo script
-5. [docs/reca/demo-topics.md](./docs/reca/demo-topics.md) - Bio/Chem demo topics
-6. [docs/reca/conversation-copy.md](./docs/reca/conversation-copy.md) - WhatsApp copy pack
-7. [docs/reca/pitch-outline.md](./docs/reca/pitch-outline.md) - pitch outline
-8. [docs/reca/product-prd.md](./docs/reca/product-prd.md) - product PRD
-9. [docs/reca/technical-prd.md](./docs/reca/technical-prd.md) - technical PRD
-10. [docs/reca/investor-brief.md](./docs/reca/investor-brief.md) - pitch brief
-11. [docs/reca/decision-brief-reca-vs-nexus.md](./docs/reca/decision-brief-reca-vs-nexus.md) - why Reca only
+1. **[docs/reca/marketing-site.md](./docs/reca/marketing-site.md)** — marketing brief  
+2. **[docs/reca/REBUILD-ROADMAP.md](./docs/reca/REBUILD-ROADMAP.md)** — checklist spine  
+2. **[docs/reca/discovery.md](./docs/reca/discovery.md)** — problem + JTBD  
+3. **[docs/reca/vision.md](./docs/reca/vision.md)** — dual-surface rule  
+4. **[docs/reca/ia.md](./docs/reca/ia.md)** · **[states.md](./docs/reca/states.md)** · **[curriculum.md](./docs/reca/curriculum.md)**  
+5. **[docs/reca/rebuild-tech.md](./docs/reca/rebuild-tech.md)** · **[pilot.md](./docs/reca/pilot.md)**  
+6. **[docs/reca/voice.md](./docs/reca/voice.md)** · [conversation-copy.md](./docs/reca/conversation-copy.md)
 
-## Locked decisions
+## Fest / demo (historical)
+
+Hackathon MVP docs remain under `docs/reca/` ([BUILD-REQUIREMENTS.md](./docs/reca/BUILD-REQUIREMENTS.md), [product-prd.md](./docs/reca/product-prd.md)). Superseded for **rebuild direction** by vision + roadmap.
+
+## Locked decisions (rebuild)
 
 | Decision | Choice |
 |----------|--------|
-| Case study | 2 - AI Study Companion |
-| Product | Reca (not Nexus) |
-| Platform | WhatsApp |
-| Budget | Free tools / free tiers only |
+| Market | Nigeria first (WAEC + JAMB) |
+| Study surface | Web — Learn / Revise / Progress |
+| Habit channel | WhatsApp required for resurface |
 | Hero feature | Unprompted resurfacing of weak topics |
+| Past questions | Inside Revise (WAEC \| JAMB) |
 
 ## Do not build from
 
-Root [`PRD.md`](./PRD.md) is an older generic draft (also archived under `docs/archive/`). Ignore it for the 2-day MVP.
+Root [`PRD.md`](./PRD.md) is an older generic draft (also archived under `docs/archive/`).

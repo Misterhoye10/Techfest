@@ -87,6 +87,8 @@
   let TOPICS = FALLBACK_TOPICS.slice();
   let learnQuery = "";
   let reviseQuery = "";
+  const REVISE_DEFAULT_LIMIT = 8;
+  const REVISE_KEEP_GOING = 5;
   const seen = new Set();
   let phone = localStorage.getItem("reca_phone") || "";
   let lastEventId = "";
@@ -479,10 +481,10 @@
       document.getElementById("reviseRecommendMeta") ||
       reviseRecommend?.querySelector(".recommend__meta");
     if (reviseMeta) {
-      reviseMeta.textContent = `${reviseExamBody} · ${rec.subject || "Biology"} · 5`;
+      reviseMeta.textContent = `${reviseExamBody} · ${rec.subject || "Biology"} · ${REVISE_DEFAULT_LIMIT}`;
     }
     const browse = document.getElementById("reviseBrowse");
-    if (browse) browse.hidden = !showBrowseTopics;
+    if (browse) browse.hidden = false;
   }
 
   function syncExamSeg() {
@@ -1849,7 +1851,7 @@
   function reviseGreeting() {
     return {
       title: "Past questions",
-      desc: "WAEC or JAMB · five questions · stop anytime.",
+      desc: "WAEC or JAMB · pick a subject or topic · 8 questions · keep going if you want.",
     };
   }
 
@@ -2224,11 +2226,27 @@
   function renderSubjectBar(container, filter, onPick) {
     if (!container) return;
     container.innerHTML = "";
-    ["All", ...new Set(TOPICS.map((t) => t.subject))].forEach((name) => {
+    const subjects = [...new Set(TOPICS.map((t) => t.subject))].filter(Boolean);
+    // Core five first when present (#12)
+    const core = ["Mathematics", "English", "Biology", "Chemistry", "Physics"];
+    const ordered = [
+      ...core.filter((s) => subjects.includes(s)),
+      ...subjects.filter((s) => !core.includes(s)),
+    ].slice(0, 12);
+
+    const allBtn = document.createElement("button");
+    allBtn.type = "button";
+    allBtn.className = "revise-subject" + (filter === "All" ? " is-active" : "");
+    allBtn.textContent = "Browse topics";
+    allBtn.addEventListener("click", () => onPick("All"));
+    container.appendChild(allBtn);
+
+    ordered.forEach((name) => {
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "revise-subject" + (filter === name ? " is-active" : "");
-      btn.textContent = name === "All" ? "All topics" : name;
+      btn.textContent = name;
+      btn.title = `Test ${name} · ${REVISE_DEFAULT_LIMIT} questions`;
       btn.addEventListener("click", () => onPick(name));
       container.appendChild(btn);
     });
@@ -2856,7 +2874,11 @@
     progressError.hidden = true;
 
     try {
+      if (!phone) {
+        phone = (localStorage.getItem("reca_phone") || "").trim();
+      }
       if (!phone) await startSession(false);
+      phone = (phone || localStorage.getItem("reca_phone") || "").trim();
       const subject =
         progressFilter && progressFilter !== "All"
           ? `&subject=${encodeURIComponent(progressFilter)}`
@@ -2888,6 +2910,14 @@
 
   function renderHubs() {
     syncRecommend();
+    renderSubjectBar(reviseSubjects, reviseFilter, (name) => {
+      if (name === "All") {
+        reviseFilter = "All";
+        openReviseBrowse("All", "");
+        return;
+      }
+      startSubjectRevise(name);
+    });
     renderTopicCards(reviseTopics, reviseFilter, reviseQuery, startRevise, "Revise");
     renderSideTopics(feature === "revise" ? "revise" : feature === "progress" ? "progress" : "learn");
   }
@@ -3203,18 +3233,24 @@
   }
 
   async function startRevise(item, opts = {}) {
-    if (!item?.id) return;
+    if (!item?.id && !opts.subject) return;
     if (!phone) await startSession(false);
     clearReviseTip();
 
-    const limit = opts.limit != null ? Number(opts.limit) : 5;
+    const limit =
+      opts.limit != null ? Number(opts.limit) : REVISE_DEFAULT_LIMIT;
+    const subjectOnly = Boolean(opts.subject && !item?.id);
 
     setNavActive("revise");
     feature = "revise";
     app.dataset.feature = "revise";
     app.dataset.mode = "quiz";
-    activeQuizTopic = item;
-    touchTopic(item.id);
+    activeQuizTopic = item || {
+      id: `subject:${opts.subject}`,
+      label: `${opts.subject} mix`,
+      subject: opts.subject,
+    };
+    if (item?.id) touchTopic(item.id);
     syncActiveSideTopic();
     syncComposerCtx();
     markValue();
@@ -3222,7 +3258,9 @@
       mainEyebrow.hidden = false;
       mainEyebrow.textContent = `${reviseExamBody}-style`;
     }
-    mainTitle.textContent = item.label;
+    mainTitle.textContent = subjectOnly
+      ? `${opts.subject} mix`
+      : item.label;
     showOnly(quizPanel);
     mainDock.hidden = false;
     input.placeholder = "Type your answer…";
@@ -3240,15 +3278,18 @@
     const quizThinkStarted = Date.now();
 
     try {
+      const body = {
+        phone,
+        limit,
+        examBody: reviseExamBody,
+      };
+      if (subjectOnly) body.subject = opts.subject;
+      else body.topicId = item.id;
+
       const res = await fetch("/api/quiz/start", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          phone,
-          topicId: item.id,
-          limit,
-          examBody: reviseExamBody,
-        }),
+        body: JSON.stringify(body),
       });
       const data = await res.json();
       if (!res.ok || !data.question) throw new Error(data.error || "Failed");
@@ -3284,6 +3325,12 @@
       mainDock.hidden = true;
       setStatus("Online", true);
     }
+  }
+
+  function startSubjectRevise(subject) {
+    if (!subject || subject === "All") return;
+    reviseFilter = subject;
+    startRevise(null, { subject, limit: REVISE_DEFAULT_LIMIT });
   }
 
   async function renderQuestion(q) {
@@ -3449,9 +3496,42 @@
     const actions = document.createElement("div");
     actions.className = "quiz__summary-actions";
 
+    const keepGoing = document.createElement("button");
+    keepGoing.type = "button";
+    keepGoing.className = "quiz__again";
+    keepGoing.append(
+      iconEl("quiz-03"),
+      document.createTextNode(` Keep going (+${REVISE_KEEP_GOING})`)
+    );
+    keepGoing.addEventListener("click", () => {
+      const isMix = String(summary.topicId || "").startsWith("subject:");
+      const subject =
+        summary.subject ||
+        (isMix ? String(summary.topicId).slice("subject:".length) : "") ||
+        activeQuizTopic?.subject ||
+        "";
+      if (isMix && subject) {
+        startRevise(null, { subject, limit: REVISE_KEEP_GOING });
+        return;
+      }
+      const match =
+        TOPICS.find((t) => t.id === summary.topicId) ||
+        TOPICS.find((t) => t.label === summary.topicLabel) ||
+        (activeQuizTopic?.id && !String(activeQuizTopic.id).startsWith("subject:")
+          ? activeQuizTopic
+          : null);
+      if (match?.id) {
+        startRevise(match, { limit: REVISE_KEEP_GOING });
+      } else if (subject) {
+        startRevise(null, { subject, limit: REVISE_KEEP_GOING });
+      } else {
+        setFeature("revise");
+      }
+    });
+
     const toProgress = document.createElement("button");
     toProgress.type = "button";
-    toProgress.className = "quiz__again";
+    toProgress.className = "quiz__to-learn";
     toProgress.append(iconEl("analytics-01"), document.createTextNode(" See Progress"));
     toProgress.addEventListener("click", () => setFeature("progress"));
 
@@ -3460,12 +3540,20 @@
     again.className = "quiz__to-learn";
     again.append(iconEl("quiz-03"), document.createTextNode(" Quiz again"));
     again.addEventListener("click", () => {
+      const isMix = String(summary.topicId || "").startsWith("subject:");
+      const subject =
+        summary.subject ||
+        (isMix ? String(summary.topicId).slice("subject:".length) : "");
+      if (isMix && subject) {
+        startRevise(null, { subject, limit: REVISE_DEFAULT_LIMIT });
+        return;
+      }
       const match =
         TOPICS.find((t) => t.id === summary.topicId) ||
         TOPICS.find((t) => t.label === summary.topicLabel) ||
         activeQuizTopic ||
         TOPICS[0];
-      startRevise(match);
+      startRevise(match, { limit: REVISE_DEFAULT_LIMIT });
     });
 
     const links = document.createElement("div");
@@ -3484,7 +3572,7 @@
       onWa.textContent = "Continue on WhatsApp";
       links.append(onWa);
     }
-    actions.append(toProgress, again, links);
+    actions.append(keepGoing, toProgress, again, links);
     quizSummary.appendChild(actions);
     mainDock.hidden = true;
     announce(summary.message || "Quiz complete");
@@ -3660,14 +3748,17 @@
   }
 
   async function startSession(fresh = false) {
-    if (fresh || wantsGuest) {
+    // Only wipe identity on explicit fresh start — not every ?guest=1 reload (#3 Progress)
+    if (fresh) {
       localStorage.removeItem("reca_phone");
       localStorage.removeItem("reca_signed_in");
       localStorage.removeItem("reca_email");
-      if (wantsGuest) localStorage.setItem("reca_guest", "1");
       phone = "";
       lastEventId = "";
       seen.clear();
+    }
+    if (wantsGuest || localStorage.getItem("reca_guest") === "1") {
+      localStorage.setItem("reca_guest", "1");
     }
     // Drop invalid / shared-bucket leftovers so the server can mint guest_*
     const saved = String(phone || localStorage.getItem("reca_phone") || "").trim();
@@ -4480,7 +4571,7 @@
 
   loadConfig()
     .then(() => loadTopics())
-    .then(() => startSession(wantsGuest))
+    .then(() => startSession(false))
     .then(() => {
       if (wantsGuest) {
         const clean = new URL(location.href);

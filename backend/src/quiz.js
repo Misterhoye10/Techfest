@@ -10,6 +10,7 @@ const { getDiagram } = require("./diagrams");
 const { findPackById, packToTopic, questionsFromPack } = require("./data/diagram-packs");
 
 const resurfaceMinutes = Number(process.env.RESURFACE_MINUTES || 2);
+const DEFAULT_SESSION_LIMIT = 8;
 
 function resolveQuizTopic(topicId) {
   if (!topicId) return topics[0];
@@ -33,16 +34,18 @@ function normalizeExamBody(value) {
 
 function publicQuestion(topic, question, index, total, examBody = "WAEC") {
   const body = normalizeExamBody(examBody);
+  const subject = question.sourceSubject || topic.subject;
+  const label = question.sourceTopicLabel || topicLabel(topic);
   return {
-    topicId: topic.id,
-    topicLabel: topicLabel(topic),
-    subject: topic.subject,
+    topicId: question.sourceTopicId || topic.id,
+    topicLabel: label,
+    subject,
     questionId: question.id,
     index,
     total,
     text: question.text,
     options: shuffle(question.options || [question.correctAnswer]),
-    diagram: getDiagram(topic.id, topic.subject),
+    diagram: getDiagram(question.sourceTopicId || topic.id, subject),
     examBody: body,
   };
 }
@@ -57,15 +60,56 @@ function topicQuestions(quiz, topic) {
   return quiz.questions || topic.questions || [];
 }
 
-/** Start a revise quiz - AI asks, student picks or types. No explanation.
- *  @param {string} phone
- *  @param {string} topicId
- *  @param {{ limit?: number, examBody?: string }} [opts] - default 5; Learn quick-check uses 2
- */
+function sessionTopic(student) {
+  if (!student.quiz) return null;
+  if (student.quiz.topicSnapshot) return student.quiz.topicSnapshot;
+  return resolveQuizTopic(student.quiz.topicId);
+}
+
+function buildSubjectTopic(subject) {
+  const name = String(subject || "").trim();
+  if (!name) return null;
+  const pool = topics.filter(
+    (t) => t.subject === name && Array.isArray(t.questions) && t.questions.length
+  );
+  if (!pool.length) return null;
+
+  const stamped = [];
+  for (const t of pool) {
+    const label = topicLabel(t);
+    for (const q of t.questions) {
+      stamped.push({
+        ...q,
+        id: `${t.id}__${q.id}`,
+        sourceTopicId: t.id,
+        sourceTopicLabel: label,
+        sourceSubject: t.subject,
+      });
+    }
+  }
+  if (!stamped.length) return null;
+
+  return {
+    id: `subject:${name}`,
+    title: `${name} mix`,
+    subject: name,
+    questions: stamped,
+    isSubjectMix: true,
+  };
+}
+
+function resolveSessionLimit(opts) {
+  const requested = Number(opts.limit);
+  if (Number.isFinite(requested) && requested > 0) return Math.floor(requested);
+  return DEFAULT_SESSION_LIMIT;
+}
+
+/** Start a revise quiz. Default 8; Learn quick-check uses 2; subject = mixed set. */
 function startQuiz(phone, topicId, opts = {}) {
   const student = store.getStudent(phone);
-  const topic = resolveQuizTopic(topicId);
-  if (!topic) return { error: "Topic not found" };
+  const subject = opts.subject ? String(opts.subject).trim() : "";
+  const topic = subject && !topicId ? buildSubjectTopic(subject) : resolveQuizTopic(topicId);
+  if (!topic) return { error: subject ? "No questions for that subject" : "Topic not found" };
   if (!topic.questions?.length) return { error: "No questions for this topic" };
 
   student.pending = null;
@@ -77,8 +121,7 @@ function startQuiz(phone, topicId, opts = {}) {
     [order[i], order[j]] = [order[j], order[i]];
   }
 
-  const requested = Number(opts.limit);
-  const limit = Number.isFinite(requested) && requested > 0 ? Math.floor(requested) : 5;
+  const limit = resolveSessionLimit(opts);
   const session = order.slice(0, Math.min(limit, order.length));
   const examBody = normalizeExamBody(opts.examBody);
 
@@ -89,6 +132,8 @@ function startQuiz(phone, topicId, opts = {}) {
     results: [],
     examBody,
     questions: topic.questions,
+    topicSnapshot: topic,
+    subject: topic.subject,
   };
 
   const q = topic.questions[session[0]];
@@ -101,7 +146,7 @@ function startQuiz(phone, topicId, opts = {}) {
 function currentQuiz(phone) {
   const student = store.getStudent(phone);
   if (!student.quiz) return { ok: true, active: false };
-  const topic = resolveQuizTopic(student.quiz.topicId);
+  const topic = sessionTopic(student);
   if (!topic) return { ok: true, active: false };
   const qs = topicQuestions(student.quiz, topic);
   const order = sessionOrder(student.quiz, topic);
@@ -126,7 +171,7 @@ function answerQuiz(phone, answer) {
   const student = store.getStudent(phone);
   if (!student.quiz) return { error: "No active revise session. Start a topic first." };
 
-  const topic = resolveQuizTopic(student.quiz.topicId);
+  const topic = sessionTopic(student);
   if (!topic) return { error: "Topic missing" };
 
   const qs = topicQuestions(student.quiz, topic);
@@ -137,10 +182,11 @@ function answerQuiz(phone, answer) {
 
   const correct = gradeAnswer(question, answer);
   const nextReviewAt = Date.now() + resurfaceMinutes * 60 * 1000;
+  const attemptTopicId = question.sourceTopicId || topic.id;
 
   student.attempts.push({
-    topicId: topic.id,
-    subject: topic.subject,
+    topicId: attemptTopicId,
+    subject: question.sourceSubject || topic.subject,
     questionId: question.id,
     questionText: question.text,
     correctAnswer: question.correctAnswer,
@@ -152,6 +198,7 @@ function answerQuiz(phone, answer) {
   });
 
   student.quiz.results.push({ questionId: question.id, correct });
+  store.scheduleSave();
 
   const feedback = {
     correct,
@@ -170,20 +217,23 @@ function answerQuiz(phone, answer) {
   if (nextIndex >= order.length) {
     const score = student.quiz.results.filter((r) => r.correct).length;
     const total = student.quiz.results.length;
-    const missed = total - score;
+    const summaryTopicId = topic.id;
+    const summaryLabel = topicLabel(topic);
+    const summarySubject = topic.subject;
     student.quiz = null;
     return {
       ok: true,
       feedback,
       done: true,
       summary: {
-        topicLabel: topicLabel(topic),
-        topicId: topic.id,
+        topicLabel: summaryLabel,
+        topicId: summaryTopicId,
+        subject: summarySubject,
         score,
         total,
         message:
           score === total
-            ? `Perfect. ${score}/${total}. You've got this topic for now.`
+            ? `Perfect. ${score}/${total}. You've got this for now.`
             : `${score}/${total} correct. Missed ones are saved in Progress.`,
       },
       question: null,
@@ -210,14 +260,18 @@ function answerQuiz(phone, answer) {
 function endQuiz(phone) {
   const student = store.getStudent(phone);
   if (!student.quiz) return { ok: true, ended: false };
-  const topic = resolveQuizTopic(student.quiz.topicId);
+  const topic = sessionTopic(student);
   const score = student.quiz.results.filter((r) => r.correct).length;
   const total = student.quiz.results.length;
   const topicId = student.quiz.topicId;
   const label = topic ? topicLabel(topic) : topicId;
+  const subject = topic?.subject || student.quiz.subject;
   student.quiz = null;
   const missed = student.attempts.filter(
-    (a) => a.topicId === topicId && !a.isCorrect && !a.cleared
+    (a) =>
+      (a.topicId === topicId || (subject && a.subject === subject)) &&
+      !a.isCorrect &&
+      !a.cleared
   ).length;
   return {
     ok: true,
@@ -225,6 +279,7 @@ function endQuiz(phone) {
     summary: {
       topicLabel: label,
       topicId,
+      subject,
       score,
       total,
       message:
@@ -237,4 +292,10 @@ function endQuiz(phone) {
   };
 }
 
-module.exports = { startQuiz, answerQuiz, currentQuiz, endQuiz };
+module.exports = {
+  startQuiz,
+  answerQuiz,
+  currentQuiz,
+  endQuiz,
+  DEFAULT_SESSION_LIMIT,
+};
